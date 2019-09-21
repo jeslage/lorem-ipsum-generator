@@ -32,8 +32,6 @@ IndexPage.getInitialProps = async ({ query }) => {
     config = JSON.parse(Base64.decode(query.config));
   }
 
-  console.log(typeof config);
-
   return { queryConfig: config };
 };
 

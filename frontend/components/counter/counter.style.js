@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
 const StyledCounter = styled.div`
-  display: inline-flex;
+  display: flex;
   align-items: center;
+
+  p {
+    flex-grow: 2;
+  }
 
   button {
     padding: 0;
@@ -43,7 +47,7 @@ const StyledCounter = styled.div`
     border: none;
     outline: none;
     display: inline-block;
-    max-width: 50px;
+    max-width: 60px;
     padding: 0 10px;
     font-size: inherit;
     font-family: inherit;

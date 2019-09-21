@@ -19,54 +19,69 @@ export const SettingsContext = React.createContext();
 
 const SettingsProvider = ({ queryConfig, children }) => {
   const defaultConfig = {
+    textType: "loremIpsum",
+    removeSpecialCharacters: false,
     paragraph: {
+      fontFamily: "Arial, Helvetica, sans-serif",
       count: 1,
-      size: 12,
+      numberOfCharacters: 500,
+      size: 20,
       lineHeight: 1.5,
       letterSpacing: 0
     },
-
-    withHeadlines: false,
     headline: {
+      fontFamily: "Arial, Helvetica, sans-serif",
+      visible: false,
       frequency: 1,
       size: 30,
       lineHeight: 1.5
     },
-
-    withSublines: false,
     subline: {
+      fontFamily: "Arial, Helvetica, sans-serif",
+      visible: false,
       size: 24,
       lineHeight: 1.5
-    },
-
-    numberOfCharacters: 500,
-    removeSpecialCharacters: false
+    }
   };
 
   // Build initial settings state
   const [settings, setSettings] = useState({
-    // Styling
-    darkMode: queryConfig.darkMode || false,
-
+    // General
+    textType: queryConfig.textType || defaultConfig.textType,
+    removeSpecialCharacters:
+      queryConfig.removeSpecialCharacters ||
+      defaultConfig.removeSpecialCharacters,
     // Paragraph settings
     paragraph: queryConfig.paragraph || defaultConfig.paragraph,
-
     // Headline settings
-    withHeadlines: queryConfig.withHeadlines || defaultConfig.withHeadlines,
     headline: queryConfig.headline || defaultConfig.headline,
-
     // Subline settings
-    withSublines: queryConfig.withSublines || defaultConfig.withSublines,
-    subline: queryConfig.subline || defaultConfig.subline,
-
-    // General
-    numberOfCharacters: queryConfig.numberOfCharacters
-      ? parseFloat(queryConfig.numberOfCharacters)
-      : defaultConfig.numberOfCharacters,
-    removeSpecialCharacters: queryConfig.removeSpecialCharacters
-      ? parseFloat(queryConfig.removeSpecialCharacters)
-      : defaultConfig.removeSpecialCharacters
+    subline: queryConfig.subline || defaultConfig.subline
   });
+
+  const [utility, setUtility] = useState({
+    // Styling
+    darkMode: false,
+    printTags: false
+  });
+
+  // Font families
+  const fontFamilies = [
+    { label: "Arial, Helvetica", value: "Arial, Helvetica, sans-serif" },
+    { label: "Arial Black", value: "'Arial Black', Gadget, sans-serif" },
+    { label: "Comic Sans", value: "'Comic Sans MS', cursive, sans-serif" },
+    { label: "Impact, Charcoal", value: "Impact, Charcoal, sans-serif" },
+    {
+      label: "Lucida Sans, Lucida Grande",
+      value: "'Lucida Sans Unicode', 'Lucida Grande', sans-serif"
+    },
+    { label: "Tahoma, Geneva", value: "Tahoma, Geneva, sans-serif" },
+    {
+      label: "Trebuchet MS, Helvetica",
+      value: "'Trebuchet MS', Helvetica, sans-serif"
+    },
+    { label: "Verdana, Geneva", value: "Verdana, Geneva, sans-serif" }
+  ];
 
   // Update route query params based on settings
   useEffect(() => {
@@ -78,6 +93,14 @@ const SettingsProvider = ({ queryConfig, children }) => {
       }
     );
   }, [settings]);
+
+  // Update utility value
+  const updateUtility = (key, value) => {
+    setUtility(prev => ({
+      ...prev,
+      [key]: value
+    }));
+  };
 
   // Update settings value
   const updateSettings = (key, value) => {
@@ -100,12 +123,12 @@ const SettingsProvider = ({ queryConfig, children }) => {
 
   // Reset text settings
   const resetSettings = () => {
-    setSettings(prev => ({ ...prev, ...defaultConfig }));
+    setSettings(defaultConfig);
   };
 
   // Color theme settings
   const getColors = () =>
-    settings.darkMode
+    utility.darkMode
       ? {
           primary: "#323232",
           secondary: " #fff"
@@ -117,7 +140,15 @@ const SettingsProvider = ({ queryConfig, children }) => {
 
   return (
     <SettingsContext.Provider
-      value={{ settings, updateSettings, updateNestedSettings, resetSettings }}
+      value={{
+        settings,
+        updateSettings,
+        updateNestedSettings,
+        resetSettings,
+        fontFamilies,
+        updateUtility,
+        utility
+      }}
     >
       <ThemeProvider theme={{ ...settings, colors: getColors() }}>
         {children}

@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import StyledSelect from "./select.style";
 
 const Select = ({ options, initialValue, label, onChange }) => {
-  const [currentValue, setCurrentValue] = useState(
-    initialValue || options[0].value
-  );
+  const [currentValue, setCurrentValue] = useState(initialValue);
 
   const handleChange = event => {
     const { value } = event.target;
@@ -18,14 +16,18 @@ const Select = ({ options, initialValue, label, onChange }) => {
     }
   };
 
+  useEffect(() => {
+    setCurrentValue(initialValue);
+  }, [initialValue]);
+
   return (
     <StyledSelect>
       <label>
-        {label && <span className="select__label">{label}</span>}
+        {label && <span>{label}</span>}
         <select value={currentValue} onChange={handleChange}>
           {options.map(option => (
             <option value={option.value} key={option.value}>
-              {option.label}
+              {option.label || option.value}
             </option>
           ))}
         </select>
@@ -38,7 +40,7 @@ const Select = ({ options, initialValue, label, onChange }) => {
 Select.propTypes = {
   onChange: PropTypes.func,
   label: PropTypes.string,
-  initialValue: PropTypes.string,
+  initialValue: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string,
@@ -49,8 +51,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
   onChange: undefined,
-  label: "Choose an option",
-  initialValue: null
+  label: "Choose an option"
 };
 
 export default Select;

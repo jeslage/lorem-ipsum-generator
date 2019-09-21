@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export",
+    "deploy": "now --name lorem-ipsum-generator"
   },
   "dependencies": {
     "clipboard-polyfill": "^2.8.6",
@@ -13,6 +15,7 @@
     "prismjs": "^1.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
+    "react-accessible-accordion": "^3.0.0",
     "react-dom": "^16.7.0",
     "styled-components": "^4.0.0"
   },

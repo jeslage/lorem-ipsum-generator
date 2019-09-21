@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import StyledCounter from "./counter.style";
 
-const Counter = ({ value, min, max, steps, onChange, suffix }) => {
+const Counter = ({ label, value, min, max, steps, onChange, suffix }) => {
   const [currentValue, setCurrentValue] = useState(parseFloat(value));
 
   useEffect(() => {
@@ -46,6 +46,8 @@ const Counter = ({ value, min, max, steps, onChange, suffix }) => {
 
   return (
     <StyledCounter>
+      {label && <p>{label}</p>}
+
       <button
         type="button"
         onClick={() => setCurrentValue(prev => prev - steps)}
@@ -82,6 +84,7 @@ const Counter = ({ value, min, max, steps, onChange, suffix }) => {
 };
 
 Counter.propTypes = {
+  label: PropTypes.string,
   value: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
@@ -91,6 +94,7 @@ Counter.propTypes = {
 };
 
 Counter.defaultProps = {
+  label: null,
   value: 0,
   min: 1,
   max: 100,

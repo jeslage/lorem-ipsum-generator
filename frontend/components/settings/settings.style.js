@@ -5,6 +5,7 @@ const StyledSettings = styled.div`
   height: 100vh;
   max-height: 100vh;
   overflow-y: auto;
+  background: ${props => props.theme.colors.tertiary};
   flex-shrink: 0;
   border-left: 2px solid ${props => props.theme.colors.secondary};
 

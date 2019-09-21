@@ -80,7 +80,24 @@ const SettingsProvider = ({ queryConfig, children }) => {
       label: "Trebuchet MS, Helvetica",
       value: "'Trebuchet MS', Helvetica, sans-serif"
     },
-    { label: "Verdana, Geneva", value: "Verdana, Geneva, sans-serif" }
+    { label: "Verdana, Geneva", value: "Verdana, Geneva, sans-serif" },
+    { label: "Georgia", value: "Georgia, serif" },
+    {
+      label: "Palatino, Book Antiqua",
+      value: "'Palatino Linotype', 'Book Antiqua', Palatino, serif"
+    },
+    {
+      label: "Times New Roman, Times",
+      value: "'Times New Roman', Times, serif"
+    },
+    {
+      label: "Courier New, Courier",
+      value: "'Courier New', Courier, monospace"
+    },
+    {
+      label: "Lucida Console, Monaco",
+      value: "'Lucida Console', Monaco, monospace"
+    }
   ];
 
   // Update route query params based on settings
@@ -131,11 +148,13 @@ const SettingsProvider = ({ queryConfig, children }) => {
     utility.darkMode
       ? {
           primary: "#323232",
-          secondary: " #fff"
+          secondary: "#aaa",
+          tertiary: "#222"
         }
       : {
           primary: "#fff",
-          secondary: " #323232"
+          secondary: "#323232",
+          tertiary: "#f4f4f4"
         };
 
   return (

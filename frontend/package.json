@@ -1,0 +1,23 @@
+{
+  "name": "lorem-ipsum-generator",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "clipboard-polyfill": "^2.8.6",
+    "js-base64": "^2.5.1",
+    "next": "latest",
+    "prismjs": "^1.17.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "styled-components": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0"
+  },
+  "license": "ISC"
+}

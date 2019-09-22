@@ -54,7 +54,7 @@ const General = () => {
       />
       <ColorPicker
         label="Background color"
-        value={backgroundColor.rgb}
+        value={backgroundColor}
         onChange={value => updateSettings("backgroundColor", value)}
       />
       <Toggle

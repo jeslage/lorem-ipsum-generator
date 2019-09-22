@@ -3,9 +3,11 @@ import styled from "styled-components";
 const StyledToggle = styled.div`
   display: flex;
   align-items: center;
+  margin: 1.5em 0;
 
   p {
     flex-grow: 2;
+    margin: 0;
   }
 
   button {

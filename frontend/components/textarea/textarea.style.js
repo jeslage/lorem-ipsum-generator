@@ -9,6 +9,7 @@ const StyledTextarea = styled.label`
     background: none;
     padding: 5px;
     border: 1px solid ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.secondary};
   }
 `;
 

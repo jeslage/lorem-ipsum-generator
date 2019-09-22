@@ -35,6 +35,7 @@ const Headline = () => {
           />
           <Counter
             label="Frequency"
+            description="Headlines will appear every nth paragrah."
             value={frequency}
             onChange={value =>
               updateNestedSettings("headline", "frequency", value)
@@ -56,11 +57,11 @@ const Headline = () => {
           />
           <ColorPicker
             label="Color"
-            value={color.rgb}
+            value={color}
             onChange={value => updateNestedSettings("headline", "color", value)}
           />
           <Code
-            code={`h2 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color.rgba};\r\n}`}
+            code={`h2 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n}`}
           />
         </>
       )}

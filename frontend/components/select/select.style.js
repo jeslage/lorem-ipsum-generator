@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledSelect = styled.div`
-  margin: 10px 0;
+  margin: 1.5em 0;
 
   label {
     display: flex;

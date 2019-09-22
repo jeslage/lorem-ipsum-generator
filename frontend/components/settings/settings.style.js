@@ -7,15 +7,19 @@ const StyledSettings = styled.div`
   overflow-y: auto;
   background: ${props => props.theme.colors.tertiary};
   flex-shrink: 0;
-  border-left: 2px solid ${props => props.theme.colors.secondary};
+  border-left: 1px solid ${props => props.theme.colors.secondary};
 
   .accordion__item {
-    border-bottom: 2px solid ${props => props.theme.colors.secondary};
+    border-bottom: 1px solid ${props => props.theme.colors.secondary};
   }
 
-  .accordion__button,
+  .accordion__button {
+    padding: 1em 1.5em;
+  }
+
   .accordion__panel {
-    padding: 20px;
+    padding: 0 1.5em;
+    margin: 1em 0;
   }
 
   .accordion__heading {

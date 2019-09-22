@@ -5,6 +5,7 @@ import Prism from "prismjs";
 import * as clipboard from "clipboard-polyfill";
 
 import StyledCode from "./code.style";
+import { visible } from "ansi-colors";
 
 const loadLanguage = async language => {
   if (language === "javascript") {
@@ -26,10 +27,12 @@ const Code = props => {
   const codeBox = React.createRef();
 
   useEffect(() => {
-    loadLanguage(language);
+    if (!init && showCode) {
+      loadLanguage(language);
+      setInit(true);
+    }
     Prism.highlightAll();
-    setInit(true);
-  });
+  }, [showCode]);
 
   const copyCode = () => {
     setCopied(true);
@@ -44,7 +47,7 @@ const Code = props => {
         onClick={() => setShowCode(prev => !prev)}
         className="code__showCode"
       >
-        {showCode ? "Hide Code -" : "Show Code +"}
+        {showCode ? "Hide CSS -" : "Show CSS +"}
       </button>
       {showCode && (
         <pre>

@@ -23,11 +23,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
   const defaultConfig = {
     textType: "loremIpsum",
     textWidth: 100,
-    backgroundColor: {
-      hex: "#fff",
-      rgba: "rgba(255, 255, 255, 1)",
-      rgb: { r: 255, g: 255, b: 255, a: 1 }
-    },
+    backgroundColor: "#fff",
     useCustomText: false,
     customText: "",
     removeSpecialCharacters: false,
@@ -38,11 +34,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       size: 20,
       lineHeight: 1.5,
       letterSpacing: 0,
-      color: {
-        hex: "#000",
-        rgba: "rgba(0, 0, 0, 1)",
-        rgb: { r: 0, g: 0, b: 0, a: 1 }
-      }
+      color: "#000"
     },
     headline: {
       fontFamily: "Arial, Helvetica, sans-serif",
@@ -50,22 +42,14 @@ const SettingsProvider = ({ queryConfig, children }) => {
       frequency: 2,
       size: 30,
       lineHeight: 1.5,
-      color: {
-        hex: "#000",
-        rgba: "rgba(0, 0, 0, 1)",
-        rgb: { r: 0, g: 0, b: 0, a: 1 }
-      }
+      color: "#000"
     },
     subline: {
       fontFamily: "Arial, Helvetica, sans-serif",
       visible: false,
       size: 24,
       lineHeight: 1.5,
-      color: {
-        hex: "#000",
-        rgba: "rgba(0, 0, 0, 1)",
-        rgb: { r: 0, g: 0, b: 0, a: 1 }
-      }
+      color: "#000"
     }
   };
 
@@ -149,7 +133,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       : {
           primary: "#fff",
           secondary: "#323232",
-          tertiary: "#f4f4f4"
+          tertiary: "#E0E0E0"
         };
 
   return (

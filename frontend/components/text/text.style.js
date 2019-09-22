@@ -6,7 +6,7 @@ const StyledText = styled.div`
   height: 100vh;
   max-height: 100vh;
   overflow-y: auto;
-  background: ${({ theme }) => theme.backgroundColor.rgba};
+  background: ${({ theme }) => theme.backgroundColor};
 
   .text__content {
     width: ${({ theme }) => theme.textWidth}%;
@@ -17,7 +17,7 @@ const StyledText = styled.div`
     line-height: ${({ theme }) => theme.paragraph.lineHeight};
     letter-spacing: ${({ theme }) => theme.paragraph.letterSpacing}px;
     font-family: ${({ theme }) => theme.paragraph.fontFamily};
-    color: ${({ theme }) => theme.paragraph.color.rgba};
+    color: ${({ theme }) => theme.paragraph.color};
   }
 
   h2 {
@@ -25,14 +25,14 @@ const StyledText = styled.div`
     line-height: ${({ theme }) => theme.headline.lineHeight};
     letter-spacing: ${({ theme }) => theme.headline.letterSpacing}px;
     font-family: ${({ theme }) => theme.headline.fontFamily};
-    color: ${({ theme }) => theme.headline.color.rgba};
+    color: ${({ theme }) => theme.headline.color};
   }
 
   h3 {
     font-size: ${({ theme }) => theme.subline.size}px;
     line-height: ${({ theme }) => theme.subline.lineHeight};
     font-family: ${({ theme }) => theme.subline.fontFamily};
-    color: ${({ theme }) => theme.subline.color.rgba};
+    color: ${({ theme }) => theme.subline.color};
   }
 `;
 

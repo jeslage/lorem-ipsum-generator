@@ -49,11 +49,11 @@ const Subline = () => {
           />
           <ColorPicker
             label="Color"
-            value={color.rgb}
+            value={color}
             onChange={value => updateNestedSettings("subline", "color", value)}
           />
           <Code
-            code={`h3 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color.rgba};\r\n}`}
+            code={`h3 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n}`}
           />
         </>
       )}

@@ -71,11 +71,11 @@ const Paragraph = () => {
       />
       <ColorPicker
         label="Color"
-        value={color.rgb}
+        value={color}
         onChange={value => updateNestedSettings("paragraph", "color", value)}
       />
       <Code
-        code={`p {\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color.rgba};\r\n}`}
+        code={`p {\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n}`}
       />
     </div>
   );

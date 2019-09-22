@@ -3,9 +3,20 @@ import styled from "styled-components";
 const StyledCounter = styled.div`
   display: flex;
   align-items: center;
+  margin: 1.5em 0;
 
-  p {
+  .counter__text {
     flex-grow: 2;
+    padding-right: 10px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .counter__counter {
+    display: flex;
+    align-items: center;
   }
 
   button {

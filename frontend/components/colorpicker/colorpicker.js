@@ -6,31 +6,34 @@ import StyledColorPicker from "./colorpicker.style";
 
 const ColorPicker = ({ label, onChange, value }) => {
   const [visible, setVisible] = useState(false);
-  const color = `rgba(${value.r}, ${value.g}, ${value.b}, ${value.a})`;
 
   return (
-    <StyledColorPicker color={color}>
+    <StyledColorPicker color={value}>
       {label && <p className="colorPicker__label">{label}</p>}
       <div className="colorPicker__wrapper">
         <button
           onClick={() => setVisible(prev => !prev)}
           aria-label="Open color picker"
+          className="colorPicker__open"
         />
+
         {visible && (
-          <div className="colorPicker__content">
-            <ChromePicker
-              color={value}
-              onChangeComplete={color => {
-                console.log(color);
-                if (onChange)
-                  onChange({
-                    rgb: color.rgb,
-                    rgba: `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`,
-                    hex: color.hex
-                  });
-              }}
+          <>
+            <button
+              onClick={() => setVisible(false)}
+              aria-label="Close color picker"
+              className="colorPicker__cover"
             />
-          </div>
+            <div className="colorPicker__content">
+              <ChromePicker
+                disableAlpha
+                color={value}
+                onChangeComplete={color => {
+                  if (onChange) onChange(color.hex);
+                }}
+              />
+            </div>
+          </>
         )}
       </div>
     </StyledColorPicker>
@@ -40,7 +43,7 @@ const ColorPicker = ({ label, onChange, value }) => {
 ColorPicker.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.shape()]).isRequired
+  value: PropTypes.string.isRequired
 };
 
 ColorPicker.defaultProps = {

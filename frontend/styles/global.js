@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.colors.primary};
   }
 
+  main {
+    display: flex;
+  }
+
   html,
   body,
   div,

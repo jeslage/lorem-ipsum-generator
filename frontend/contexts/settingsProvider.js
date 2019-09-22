@@ -83,7 +83,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
   useEffect(() => {
     Router.replace(
       { pathname: "/", query: { ...settings } },
-      `/?config=${Base64.encode(JSON.stringify(settings))}`,
+      `/?c=${Base64.encode(JSON.stringify(settings))}`,
       {
         shallow: true
       }

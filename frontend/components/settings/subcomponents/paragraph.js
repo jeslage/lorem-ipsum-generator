@@ -3,7 +3,8 @@ import React, { useContext } from "react";
 import { SettingsContext } from "../../../contexts/settingsProvider";
 
 import Counter from "../../counter/counter";
-// import Code from "../../code/code";
+import Code from "../../code/code";
+import ColorPicker from "../../colorpicker/colorpicker";
 import Select from "../../select/select";
 
 const Paragraph = () => {
@@ -18,7 +19,8 @@ const Paragraph = () => {
     size,
     letterSpacing,
     lineHeight,
-    numberOfCharacters
+    numberOfCharacters,
+    color
   } = paragraph;
 
   return (
@@ -67,9 +69,14 @@ const Paragraph = () => {
           updateNestedSettings("paragraph", "letterSpacing", value)
         }
       />
-      {/* <Code
-        code={`p {\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n}`}
-      /> */}
+      <ColorPicker
+        label="Color"
+        value={color.rgb}
+        onChange={value => updateNestedSettings("paragraph", "color", value)}
+      />
+      <Code
+        code={`p {\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color.rgba};\r\n}`}
+      />
     </div>
   );
 };

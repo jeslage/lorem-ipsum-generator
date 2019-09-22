@@ -54,6 +54,10 @@ const StyledCounter = styled.div`
     text-align: center;
     color: inherit;
     background: none;
+
+    &:focus {
+      border: 1px solid #000;
+    }
   }
 `;
 

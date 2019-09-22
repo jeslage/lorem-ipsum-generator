@@ -1,8 +1,23 @@
 import styled from "styled-components";
 
 const StyledCode = styled.div`
-  transition: opacity 0.2s ease-in-out;
-  opacity: ${props => (props.init ? "1" : 0)};
+  .code__showCode {
+    outline: none;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    color: ${props => props.theme.colors.secondary};
+
+    &:active {
+      color: ${props => props.theme.colors.secondary};
+    }
+  }
 
   .code__copyButton {
     position: absolute;
@@ -14,6 +29,11 @@ const StyledCode = styled.div`
     [data-whatinput="touch"] & {
       outline: 0;
     }
+  }
+
+  pre {
+    transition: opacity 0.2s ease-in-out;
+    opacity: ${props => (props.init ? "1" : 0)};
   }
 
   code[class*="language-"],

@@ -20,6 +20,7 @@ const loadLanguage = async language => {
 
 const Code = props => {
   const { language, code } = props;
+  const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
   const [init, setInit] = useState(false);
   const codeBox = React.createRef();
@@ -38,14 +39,23 @@ const Code = props => {
 
   return (
     <StyledCode init={init}>
-      <pre>
-        <button type="button" onClick={copyCode} className="code__copyButton">
-          {copied ? "Copied" : "Copy"}
-        </button>
-        <code className={`language-${language}`} ref={codeBox}>
-          {code}
-        </code>
-      </pre>
+      <button
+        type="button"
+        onClick={() => setShowCode(prev => !prev)}
+        className="code__showCode"
+      >
+        {showCode ? "Hide Code -" : "Show Code +"}
+      </button>
+      {showCode && (
+        <pre>
+          <button type="button" onClick={copyCode} className="code__copyButton">
+            {copied ? "Copied" : "Copy"}
+          </button>
+          <code className={`language-${language}`} ref={codeBox}>
+            {code}
+          </code>
+        </pre>
+      )}
     </StyledCode>
   );
 };

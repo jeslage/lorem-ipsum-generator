@@ -30,9 +30,9 @@ const Text = () => {
       <button type="button" onClick={copyText}>
         {copied ? "Copied" : "Copy"}
       </button>
-      <div ref={textContent}>
+      <div className="text__content" ref={textContent}>
         {[...Array(count)].map((item, index) => (
-          <>
+          <React.Fragment key={index}>
             {headline.visible && index % headline.frequency === 0 && (
               <h2>{getHeadline()}</h2>
             )}
@@ -43,7 +43,7 @@ const Text = () => {
 
             {!headline.visible && subline.visible && <h3>{getSubline()}</h3>}
             <p>{getText()}</p>
-          </>
+          </React.Fragment>
         ))}
       </div>
     </StyledText>

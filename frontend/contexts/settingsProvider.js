@@ -4,43 +4,68 @@ import Router from "next/router";
 import { ThemeProvider } from "styled-components";
 import { Base64 } from "js-base64";
 
-const buildQueryString = obj =>
-  encodeURI(
-    Object.keys(obj)
-      .map(key => {
-        const value =
-          typeof obj[key] === "object" ? JSON.stringify(obj[key]) : obj[key];
-        return `${key}=${value}`;
-      })
-      .join("&")
-  );
+import { fontFamilies } from "../config";
+
+// const buildQueryString = obj =>
+//   encodeURI(
+//     Object.keys(obj)
+//       .map(key => {
+//         const value =
+//           typeof obj[key] === "object" ? JSON.stringify(obj[key]) : obj[key];
+//         return `${key}=${value}`;
+//       })
+//       .join("&")
+//   );
 
 export const SettingsContext = React.createContext();
 
 const SettingsProvider = ({ queryConfig, children }) => {
   const defaultConfig = {
     textType: "loremIpsum",
+    textWidth: 100,
+    backgroundColor: {
+      hex: "#fff",
+      rgba: "rgba(255, 255, 255, 1)",
+      rgb: { r: 255, g: 255, b: 255, a: 1 }
+    },
+    useCustomText: false,
+    customText: "",
     removeSpecialCharacters: false,
     paragraph: {
       fontFamily: "Arial, Helvetica, sans-serif",
       count: 1,
-      numberOfCharacters: 500,
+      numberOfCharacters: 1000,
       size: 20,
       lineHeight: 1.5,
-      letterSpacing: 0
+      letterSpacing: 0,
+      color: {
+        hex: "#000",
+        rgba: "rgba(0, 0, 0, 1)",
+        rgb: { r: 0, g: 0, b: 0, a: 1 }
+      }
     },
     headline: {
       fontFamily: "Arial, Helvetica, sans-serif",
       visible: false,
-      frequency: 1,
+      frequency: 2,
       size: 30,
-      lineHeight: 1.5
+      lineHeight: 1.5,
+      color: {
+        hex: "#000",
+        rgba: "rgba(0, 0, 0, 1)",
+        rgb: { r: 0, g: 0, b: 0, a: 1 }
+      }
     },
     subline: {
       fontFamily: "Arial, Helvetica, sans-serif",
       visible: false,
       size: 24,
-      lineHeight: 1.5
+      lineHeight: 1.5,
+      color: {
+        hex: "#000",
+        rgba: "rgba(0, 0, 0, 1)",
+        rgb: { r: 0, g: 0, b: 0, a: 1 }
+      }
     }
   };
 
@@ -48,6 +73,11 @@ const SettingsProvider = ({ queryConfig, children }) => {
   const [settings, setSettings] = useState({
     // General
     textType: queryConfig.textType || defaultConfig.textType,
+    textWidth: queryConfig.textWidth || defaultConfig.textWidth,
+    backgroundColor:
+      queryConfig.backgroundColor || defaultConfig.backgroundColor,
+    useCustomText: queryConfig.useCustomText || defaultConfig.useCustomText,
+    customText: queryConfig.customText || defaultConfig.customText,
     removeSpecialCharacters:
       queryConfig.removeSpecialCharacters ||
       defaultConfig.removeSpecialCharacters,
@@ -64,41 +94,6 @@ const SettingsProvider = ({ queryConfig, children }) => {
     darkMode: false,
     printTags: false
   });
-
-  // Font families
-  const fontFamilies = [
-    { label: "Arial, Helvetica", value: "Arial, Helvetica, sans-serif" },
-    { label: "Arial Black", value: "'Arial Black', Gadget, sans-serif" },
-    { label: "Comic Sans", value: "'Comic Sans MS', cursive, sans-serif" },
-    { label: "Impact, Charcoal", value: "Impact, Charcoal, sans-serif" },
-    {
-      label: "Lucida Sans, Lucida Grande",
-      value: "'Lucida Sans Unicode', 'Lucida Grande', sans-serif"
-    },
-    { label: "Tahoma, Geneva", value: "Tahoma, Geneva, sans-serif" },
-    {
-      label: "Trebuchet MS, Helvetica",
-      value: "'Trebuchet MS', Helvetica, sans-serif"
-    },
-    { label: "Verdana, Geneva", value: "Verdana, Geneva, sans-serif" },
-    { label: "Georgia", value: "Georgia, serif" },
-    {
-      label: "Palatino, Book Antiqua",
-      value: "'Palatino Linotype', 'Book Antiqua', Palatino, serif"
-    },
-    {
-      label: "Times New Roman, Times",
-      value: "'Times New Roman', Times, serif"
-    },
-    {
-      label: "Courier New, Courier",
-      value: "'Courier New', Courier, monospace"
-    },
-    {
-      label: "Lucida Console, Monaco",
-      value: "'Lucida Console', Monaco, monospace"
-    }
-  ];
 
   // Update route query params based on settings
   useEffect(() => {

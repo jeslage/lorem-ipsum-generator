@@ -6,25 +6,33 @@ const StyledText = styled.div`
   height: 100vh;
   max-height: 100vh;
   overflow-y: auto;
+  background: ${({ theme }) => theme.backgroundColor.rgba};
+
+  .text__content {
+    width: ${({ theme }) => theme.textWidth}%;
+  }
 
   p {
-    font-size: ${props => props.theme.paragraph.size}px;
-    line-height: ${props => props.theme.paragraph.lineHeight};
-    letter-spacing: ${props => props.theme.paragraph.letterSpacing}px;
-    font-family: ${props => props.theme.paragraph.fontFamily};
+    font-size: ${({ theme }) => theme.paragraph.size}px;
+    line-height: ${({ theme }) => theme.paragraph.lineHeight};
+    letter-spacing: ${({ theme }) => theme.paragraph.letterSpacing}px;
+    font-family: ${({ theme }) => theme.paragraph.fontFamily};
+    color: ${({ theme }) => theme.paragraph.color.rgba};
   }
 
   h2 {
-    font-size: ${props => props.theme.headline.size}px;
-    line-height: ${props => props.theme.headline.lineHeight};
-    letter-spacing: ${props => props.theme.headline.letterSpacing}px;
-    font-family: ${props => props.theme.headline.fontFamily};
+    font-size: ${({ theme }) => theme.headline.size}px;
+    line-height: ${({ theme }) => theme.headline.lineHeight};
+    letter-spacing: ${({ theme }) => theme.headline.letterSpacing}px;
+    font-family: ${({ theme }) => theme.headline.fontFamily};
+    color: ${({ theme }) => theme.headline.color.rgba};
   }
 
   h3 {
-    font-size: ${props => props.theme.subline.size}px;
-    line-height: ${props => props.theme.subline.lineHeight};
-    font-family: ${props => props.theme.subline.fontFamily};
+    font-size: ${({ theme }) => theme.subline.size}px;
+    line-height: ${({ theme }) => theme.subline.lineHeight};
+    font-family: ${({ theme }) => theme.subline.fontFamily};
+    color: ${({ theme }) => theme.subline.color.rgba};
   }
 `;
 

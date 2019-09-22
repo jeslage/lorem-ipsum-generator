@@ -5,12 +5,11 @@ const StyledSettings = styled.div`
   height: 100vh;
   max-height: 100vh;
   overflow-y: auto;
-  background: ${props => props.theme.colors.tertiary};
+  background: ${props => props.theme.colors.secondary};
   flex-shrink: 0;
-  border-left: 1px solid ${props => props.theme.colors.secondary};
 
   .accordion__item {
-    border-bottom: 1px solid ${props => props.theme.colors.secondary};
+    border-bottom: 1px solid ${props => props.theme.colors.border};
   }
 
   .accordion__button {
@@ -23,7 +22,6 @@ const StyledSettings = styled.div`
   }
 
   .accordion__heading {
-    text-transform: uppercase;
     font-weight: bold;
   }
 
@@ -40,7 +38,7 @@ const StyledSettings = styled.div`
     svg {
       width: 20px;
       height: 20px;
-      fill: ${props => props.theme.colors.secondary};
+      fill: ${props => props.theme.colors.primary};
     }
   }
 `;

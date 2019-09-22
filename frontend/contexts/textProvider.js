@@ -23,7 +23,7 @@ const TextProvider = ({ children }) => {
 
   const getText = () => {
     const text = useCustomText ? customText : texts[textType].paragraph;
-    let updatedText = text.repeat(10).substring(0, numberOfCharacters);
+    let updatedText = text.repeat(1).substring(0, numberOfCharacters);
 
     if (removeSpecialCharacters) {
       updatedText = deleteSpecialCharacters(updatedText);

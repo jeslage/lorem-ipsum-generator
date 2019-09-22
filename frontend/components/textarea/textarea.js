@@ -8,7 +8,7 @@ const Textarea = ({ label, value, onChange }) => {
     <StyledTextarea>
       {label && <p>{label}</p>}
       <textarea
-        rows="6"
+        rows="10"
         value={value}
         onChange={event => onChange(event.target.value)}
       />

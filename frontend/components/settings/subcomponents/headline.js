@@ -19,7 +19,7 @@ const Headline = () => {
   return (
     <div>
       <Toggle
-        label="Add headlines"
+        label="Enable headlines"
         isActive={visible}
         onChange={bool => updateNestedSettings("headline", "visible", bool)}
       />
@@ -35,7 +35,7 @@ const Headline = () => {
           />
           <Counter
             label="Frequency"
-            description="Headlines will appear every nth paragrah."
+            description="Number of paragraphs between headlines."
             value={frequency}
             onChange={value =>
               updateNestedSettings("headline", "frequency", value)

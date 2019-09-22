@@ -16,27 +16,37 @@ const StyledToggle = styled.div`
     margin: 0;
     padding: 0;
     appearance: none;
-    border: 1px solid #000;
+    border: 1px solid ${props => props.theme.colors.primary};
     width: 60px;
     height: 30px;
     border-radius: 30px;
     cursor: pointer;
-    background-color: ${props => (props.active ? "#bbb" : "#fff")};
+    background-color: ${props =>
+      props.active ? "transparent" : "transparent"};
     will-change: background-color;
     transition: background-color 0.2s ease-in-out;
 
     span {
       position: absolute;
-      top: -1px;
-      left: -1px;
+      top: 4px;
+      left: 4px;
       display: block;
-      width: 30px;
-      height: 30px;
-      border-radius: 30px;
-      background: #000;
-      transform: translateX(${props => (props.active ? "100%" : "0")});
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      background: ${props => props.theme.colors.primary};
+      transform: translateX(${props => (props.active ? "30px" : "0")});
       will-change: transform;
       transition: transform 0.2s ease-in-out;
+
+      svg {
+        fill: ${props => props.theme.colors.secondary};
+        fill-opacity: 0;
+        stroke: ${props => props.theme.colors.secondary};
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
     }
   }
 `;

@@ -19,7 +19,7 @@ const Subline = () => {
   return (
     <div>
       <Toggle
-        label="Add sublines"
+        label="Enable sublines"
         isActive={visible}
         onChange={bool => updateNestedSettings("subline", "visible", bool)}
       />

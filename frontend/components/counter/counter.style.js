@@ -7,11 +7,16 @@ const StyledCounter = styled.div`
 
   .counter__text {
     flex-grow: 2;
-    padding-right: 10px;
+    padding-right: 20px;
+  }
 
-    p {
-      margin: 0;
-    }
+  .counter__label {
+    margin: 0;
+  }
+
+  .counter__description {
+    margin: 0;
+    margin-top: 10px;
   }
 
   .counter__counter {
@@ -24,8 +29,7 @@ const StyledCounter = styled.div`
     margin: 0;
     outline: none;
     background: none;
-    border: none;
-    background: #000;
+    border: 1px solid ${props => props.theme.colors.primary};
     width: 30px;
     height: 30px;
     border-radius: 15px;
@@ -35,31 +39,28 @@ const StyledCounter = styled.div`
     cursor: pointer;
 
     &[disabled] {
-      background: #bbb;
+      opacity: 0.2;
       pointer-events: none;
     }
 
-    &:hover {
-      background: #323232;
-    }
-
     svg {
-      fill: #fff;
+      fill: ${props => props.theme.colors.primary};
       width: 22px;
       height: 22px;
     }
   }
 
   span {
-    margin: 0 15px;
+    margin: 0 5px;
   }
 
   input {
-    border: none;
+    border: 1px solid transparent;
+    border-radius: 30px;
     outline: none;
     display: inline-block;
     max-width: 60px;
-    padding: 0 10px;
+    padding: 5px 10px 4px;
     font-size: inherit;
     font-family: inherit;
     text-align: center;
@@ -67,7 +68,7 @@ const StyledCounter = styled.div`
     background: none;
 
     &:focus {
-      border: 1px solid #000;
+      border-color: ${props => props.theme.colors.primary};
     }
   }
 `;

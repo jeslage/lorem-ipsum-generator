@@ -56,9 +56,9 @@ const Counter = ({
   return (
     <StyledCounter>
       <div className="counter__text">
-        {label && <p>{label}</p>}
+        {label && <p className="counter__label">{label}</p>}
         {description && (
-          <p>
+          <p className="counter__description">
             <small>{description}</small>
           </p>
         )}

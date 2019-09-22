@@ -6,6 +6,7 @@ import * as clipboard from "clipboard-polyfill";
 
 import StyledCode from "./code.style";
 import { visible } from "ansi-colors";
+import Button from "../button/button";
 
 const loadLanguage = async language => {
   if (language === "javascript") {
@@ -42,13 +43,12 @@ const Code = props => {
 
   return (
     <StyledCode init={init}>
-      <button
-        type="button"
+      <Button
         onClick={() => setShowCode(prev => !prev)}
         className="code__showCode"
       >
-        {showCode ? "Hide CSS -" : "Show CSS +"}
-      </button>
+        {showCode ? "Hide CSS" : "Show CSS"}
+      </Button>
       {showCode && (
         <pre>
           <button type="button" onClick={copyCode} className="code__copyButton">

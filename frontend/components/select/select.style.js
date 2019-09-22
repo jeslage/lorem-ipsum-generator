@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledSelect = styled.div`
-  margin: 1.5em 0;
+  margin: 10px 0;
 
   label {
     display: flex;
@@ -16,7 +16,6 @@ const StyledSelect = styled.div`
   select {
     background: none;
     border: none;
-
     outline: none;
     border-radius: 0;
     margin: 0;
@@ -49,7 +48,7 @@ const StyledSelect = styled.div`
       width: 10px;
       height: 2px;
       border-radius: 1px;
-      background: ${props => props.theme.colors.secondary};
+      background: ${props => props.theme.colors.primary};
     }
 
     &:before {

@@ -27,7 +27,27 @@ const Toggle = ({ label, onChange, isActive }) => {
         role="switch"
         aria-checked={active}
       >
-        <span />
+        <span>
+          {!active ? (
+            <svg
+              viewBox="0 0 52 52"
+              focusable="false"
+              aria-hidden="true"
+              role="presentation"
+            >
+              <path d="m19.1 19.1 l14 14 m 0 -14 l -14 14"></path>
+            </svg>
+          ) : (
+            <svg
+              viewBox="0 0 52 52"
+              focusable="false"
+              aria-hidden="true"
+              role="presentation"
+            >
+              <path d="m19.1 25.2 4.7 6.2 12.1-11.2"></path>
+            </svg>
+          )}
+        </span>
       </button>
     </StyledToggle>
   );

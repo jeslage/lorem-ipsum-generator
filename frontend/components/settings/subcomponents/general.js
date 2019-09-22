@@ -8,6 +8,7 @@ import Select from "../../select/select";
 import Counter from "../../counter/counter";
 import Textarea from "../../textarea/textarea";
 import ColorPicker from "../../colorpicker/colorpicker";
+import Button from "../../button/button";
 
 const General = () => {
   const { settings, updateSettings, resetSettings } = useContext(
@@ -26,10 +27,6 @@ const General = () => {
 
   return (
     <div>
-      <button type="button" onClick={resetSettings}>
-        Rest settings
-      </button>
-
       <Select
         options={textTypes}
         initialValue={textType}
@@ -58,7 +55,7 @@ const General = () => {
         onChange={value => updateSettings("backgroundColor", value)}
       />
       <Toggle
-        label="Use custom text"
+        label="Custom text"
         isActive={useCustomText}
         onChange={bool => {
           if (customText === "") {
@@ -71,11 +68,11 @@ const General = () => {
 
       {useCustomText && (
         <Textarea
-          label="Custom text"
           value={customText}
           onChange={value => updateSettings("customText", value)}
         />
       )}
+      <Button onClick={resetSettings}>Rest settings</Button>
     </div>
   );
 };

@@ -17,13 +17,21 @@ const StlyedColorPicker = styled.div`
   }
 
   .colorPicker__open {
-    width: 50px;
-    height: 30px;
     outline: none;
     border: none;
     cursor: pointer;
-    background: ${props => props.color};
-    border: 1px solid ${props => props.theme.colors.secondary};
+    background: none;
+    padding: 5px;
+    width: 60px;
+    border-radius: 30px;
+    border: 1px solid ${props => props.theme.colors.primary};
+
+    span {
+      display: block;
+      border-radius: 30px;
+      background: ${props => props.color};
+      height: 20px;
+    }
   }
 
   .colorPicker__label {

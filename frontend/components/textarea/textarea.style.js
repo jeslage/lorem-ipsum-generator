@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const StyledTextarea = styled.label`
+  display: block;
+  margin-bottom: 1.5em;
+
   textarea {
     width: 100%;
     border: none;
@@ -8,8 +11,9 @@ const StyledTextarea = styled.label`
     resize: none;
     background: none;
     padding: 5px;
-    border: 1px solid ${props => props.theme.colors.secondary};
-    color: ${props => props.theme.colors.secondary};
+    border-radius: 5px;
+    border: 1px solid ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
   }
 `;
 

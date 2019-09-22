@@ -6,8 +6,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
 
-    background: ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.backgroundColor};
+    color: ${props => props.theme.colors.primary};
   }
 
   html,

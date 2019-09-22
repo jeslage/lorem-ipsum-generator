@@ -15,7 +15,9 @@ const ColorPicker = ({ label, onChange, value }) => {
           onClick={() => setVisible(prev => !prev)}
           aria-label="Open color picker"
           className="colorPicker__open"
-        />
+        >
+          <span />
+        </button>
 
         {visible && (
           <>

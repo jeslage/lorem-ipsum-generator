@@ -140,6 +140,54 @@ const Settings = () => {
             <Utility />
           </AccordionItemPanel>
         </AccordionItem>
+
+        <AccordionItem>
+          <AccordionItemHeading>
+            <AccordionItemButton>
+              <AccordionItemState>
+                {({ expanded }) => (
+                  <>
+                    <span>Personal presets</span>
+
+                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                      <rect height="2" rx="1" width="12" x="6" y="11" />
+                      {!expanded && (
+                        <rect height="12" rx="1" width="2" x="11" y="6" />
+                      )}
+                    </svg>
+                  </>
+                )}
+              </AccordionItemState>
+            </AccordionItemButton>
+          </AccordionItemHeading>
+          <AccordionItemPanel>
+            <p>Coming soon...</p>
+          </AccordionItemPanel>
+        </AccordionItem>
+
+        <AccordionItem>
+          <AccordionItemHeading>
+            <AccordionItemButton>
+              <AccordionItemState>
+                {({ expanded }) => (
+                  <>
+                    <span>Community presets</span>
+
+                    <svg viewBox="0 0 24 24" role="img" focusable="false">
+                      <rect height="2" rx="1" width="12" x="6" y="11" />
+                      {!expanded && (
+                        <rect height="12" rx="1" width="2" x="11" y="6" />
+                      )}
+                    </svg>
+                  </>
+                )}
+              </AccordionItemState>
+            </AccordionItemButton>
+          </AccordionItemHeading>
+          <AccordionItemPanel>
+            <p>Coming soon...</p>
+          </AccordionItemPanel>
+        </AccordionItem>
       </Accordion>
     </StyledSettings>
   );

@@ -1,23 +1,9 @@
 import styled from "styled-components";
 
 const StyledCode = styled.div`
-  .code__showCode {
-    outline: none;
-    border: none;
-    background: none;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
-    cursor: pointer;
-    color: ${props => props.theme.colors.secondary};
-
-    &:active {
-      color: ${props => props.theme.colors.secondary};
-    }
-  }
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   .code__copyButton {
     position: absolute;
@@ -48,16 +34,14 @@ const StyledCode = styled.div`
     word-break: normal;
     line-height: 1.5;
     background: #000;
-
     tab-size: 4;
-
     hyphens: none;
   }
 
   /* Code blocks */
   pre[class*="language-"] {
-    padding: 5px;
-    margin: 0.5rem 0;
+    padding: 10px 13px;
+    margin: 0.5em 0;
     overflow: auto;
   }
 

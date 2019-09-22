@@ -126,14 +126,14 @@ const SettingsProvider = ({ queryConfig, children }) => {
   const getColors = () =>
     utility.darkMode
       ? {
-          primary: "#323232",
-          secondary: "#aaa",
-          tertiary: "#222"
+          primary: "#aaa",
+          secondary: "#222",
+          border: "#323232"
         }
       : {
-          primary: "#fff",
-          secondary: "#323232",
-          tertiary: "#E0E0E0"
+          primary: "#323232",
+          secondary: "#E0E0E0",
+          border: "#C9C9C9"
         };
 
   return (

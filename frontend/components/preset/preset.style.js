@@ -38,11 +38,11 @@ const StyledPreset = styled.div`
     padding: 10px;
   }
 
-  p {
+  .preset__paragraph {
     margin: 0;
     white-space: nowrap;
-    font-size: ${({ paragraph }) => paragraph.size};
-    letter-spacing: ${({ paragraph }) => paragraph.letterSpacing};
+    font-size: ${({ paragraph }) => paragraph.size}px;
+    letter-spacing: ${({ paragraph }) => paragraph.letterSpacing}px;
     line-height: ${({ paragraph }) => paragraph.lineHeight};
     color: ${({ paragraph }) => paragraph.color};
     font-family: ${({ paragraph }) => paragraph.fontFamily};
@@ -51,7 +51,7 @@ const StyledPreset = styled.div`
   h2 {
     margin: 0;
     white-space: nowrap;
-    font-size: ${({ headline }) => headline.size};
+    font-size: ${({ headline }) => headline.size}px;
     line-height: ${({ headline }) => headline.lineHeight};
     color: ${({ headline }) => headline.color};
     font-family: ${({ headline }) => headline.fontFamily};
@@ -60,7 +60,7 @@ const StyledPreset = styled.div`
   h3 {
     margin: 0;
     white-space: nowrap;
-    font-size: ${({ subline }) => subline.size};
+    font-size: ${({ subline }) => subline.size}px;
     line-height: ${({ subline }) => subline.lineHeight};
     color: ${({ subline }) => subline.color};
     font-family: ${({ subline }) => subline.fontFamily};

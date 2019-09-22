@@ -44,7 +44,7 @@ const Preset = ({ preset }) => {
       >
         {settings.headline.visible && <h2>Headline</h2>}
         {settings.subline.visible && <h3>Subline</h3>}
-        <p>Paragraph</p>
+        <p className="preset__paragraph">Paragraph</p>
       </button>
     </StyledPreset>
   );

@@ -46,6 +46,7 @@ const StlyedColorPicker = styled.div`
   .colorPicker__content {
     position: absolute;
     right: 0;
+    top: 40px;
     z-index: 2;
   }
 `;

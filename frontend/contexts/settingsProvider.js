@@ -117,6 +117,11 @@ const SettingsProvider = ({ queryConfig, children }) => {
     }));
   };
 
+  // Update all settings
+  const updateAllSettings = obj => {
+    setSettings(obj);
+  };
+
   // Reset text settings
   const resetSettings = () => {
     setSettings(defaultConfig);
@@ -142,6 +147,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
         settings,
         updateSettings,
         updateNestedSettings,
+        updateAllSettings,
         resetSettings,
         fontFamilies,
         updateUtility,

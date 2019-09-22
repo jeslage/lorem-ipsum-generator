@@ -8,18 +8,21 @@ import TextProvider from "../../contexts/textProvider";
 
 import Settings from "../settings/settings";
 import Text from "../text/text";
+import PresetsProvider from "../../contexts/presetsProvider";
 
 const Page = ({ queryConfig }) => {
   return (
     <SettingsProvider queryConfig={queryConfig}>
       <TextProvider>
-        <>
-          <main>
-            <Text />
-            <Settings />
-          </main>
-          <GlobalStyle />
-        </>
+        <PresetsProvider>
+          <>
+            <main>
+              <Text />
+              <Settings />
+            </main>
+            <GlobalStyle />
+          </>
+        </PresetsProvider>
       </TextProvider>
     </SettingsProvider>
   );

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 
 import { SettingsContext } from "../../../contexts/settingsProvider";
 
@@ -7,6 +7,12 @@ import Toggle from "../../toggle/toggle";
 import Select from "../../select/select";
 import Code from "../../code/code";
 import ColorPicker from "../../colorpicker/colorpicker";
+import SvgSprite from "../../svgSprite/svgSprite";
+
+import FontFamilyIcon from "../../../icons/fontFamily.svg";
+import LineHeightIcon from "../../../icons/lineHeight.svg";
+import ColorIcon from "../../../icons/color.svg";
+import FontSizeIcon from "../../../icons/fontSize.svg";
 
 const Subline = () => {
   const { settings, updateNestedSettings, fontFamilies } = useContext(
@@ -14,50 +20,88 @@ const Subline = () => {
   );
 
   const { subline } = settings;
-  const { fontFamily, visible, size, lineHeight, color } = subline;
+  const {
+    fontFamily,
+    visible,
+    frequency,
+    offset,
+    size,
+    lineHeight,
+    color
+  } = subline;
 
-  return (
-    <div>
-      <Toggle
-        label="Enable sublines"
-        isActive={visible}
-        onChange={bool => updateNestedSettings("subline", "visible", bool)}
-      />
-      {visible && (
-        <>
-          <Select
-            options={fontFamilies}
-            initialValue={fontFamily}
-            label="Font Family"
-            onChange={value =>
-              updateNestedSettings("subline", "fontFamily", value)
-            }
-          />
-          <Counter
-            label="Font Size"
-            value={size}
-            onChange={value => updateNestedSettings("subline", "size", value)}
-          />
+  return useMemo(
+    () => (
+      <>
+        <Toggle
+          label="Enable sublines"
+          isActive={visible}
+          onChange={bool => updateNestedSettings("subline", "visible", bool)}
+        />
+        {visible && (
+          <>
+            <Counter
+              label="Frequency"
+              description="Number of paragraphs between sublines."
+              value={frequency}
+              onChange={value =>
+                updateNestedSettings("subline", "frequency", value)
+              }
+            />
+            {frequency !== 1 && (
+              <Counter
+                label="Offset"
+                description="Number of paragraphs before first subline."
+                min={0}
+                value={offset}
+                onChange={value =>
+                  updateNestedSettings("subline", "offset", value)
+                }
+              />
+            )}
 
-          <Counter
-            label="Line Height"
-            value={lineHeight}
-            steps={0.25}
-            onChange={value =>
-              updateNestedSettings("subline", "lineHeight", value)
-            }
-          />
-          <ColorPicker
-            label="Color"
-            value={color}
-            onChange={value => updateNestedSettings("subline", "color", value)}
-          />
-          <Code
-            code={`h3 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n}`}
-          />
-        </>
-      )}
-    </div>
+            <hr />
+            <Select
+              options={fontFamilies}
+              initialValue={fontFamily}
+              iconBefore={<SvgSprite icon={FontFamilyIcon} />}
+              label="Family"
+              onChange={value =>
+                updateNestedSettings("subline", "fontFamily", value)
+              }
+            />
+            <Counter
+              label="Size"
+              iconBefore={<SvgSprite icon={FontSizeIcon} />}
+              value={size}
+              onChange={value => updateNestedSettings("subline", "size", value)}
+            />
+
+            <Counter
+              label="Line Height"
+              iconBefore={<SvgSprite icon={LineHeightIcon} />}
+              value={lineHeight}
+              steps={0.25}
+              onChange={value =>
+                updateNestedSettings("subline", "lineHeight", value)
+              }
+            />
+            <ColorPicker
+              label="Color"
+              iconBefore={<SvgSprite icon={ColorIcon} />}
+              value={color}
+              onChange={value =>
+                updateNestedSettings("subline", "color", value)
+              }
+            />
+            <Code
+              code={`h3 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n}`}
+            />
+          </>
+        )}
+      </>
+    ),
+    [subline]
   );
 };
 

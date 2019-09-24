@@ -31,7 +31,7 @@ const PresetsProvider = ({ children }) => {
       settings
     };
 
-    setPresets(prev => [...prev, obj]);
+    setPresets(prev => [obj, ...prev]);
   };
 
   const removePreset = timestamp => {

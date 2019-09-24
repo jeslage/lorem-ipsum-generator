@@ -4,12 +4,17 @@ import PropTypes from "prop-types";
 
 import StyledColorPicker from "./colorpicker.style";
 
-const ColorPicker = ({ label, onChange, value }) => {
+const ColorPicker = ({ iconBefore, title, label, onChange, value }) => {
   const [visible, setVisible] = useState(false);
 
   return (
     <StyledColorPicker color={value}>
-      {label && <p className="colorPicker__label">{label}</p>}
+      {(label || iconBefore) && (
+        <p className="colorPicker__label" title={title}>
+          {iconBefore && iconBefore}
+          {label && label}
+        </p>
+      )}
       <div className="colorPicker__wrapper">
         <button
           onClick={() => setVisible(prev => !prev)}
@@ -44,12 +49,16 @@ const ColorPicker = ({ label, onChange, value }) => {
 
 ColorPicker.propTypes = {
   label: PropTypes.string,
+  title: PropTypes.string,
+  iconBefore: PropTypes.node,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired
 };
 
 ColorPicker.defaultProps = {
-  label: null
+  label: null,
+  title: null,
+  iconBefore: null
 };
 
-export default ColorPicker;
+export default React.memo(ColorPicker);

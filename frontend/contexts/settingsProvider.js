@@ -27,9 +27,11 @@ const SettingsProvider = ({ queryConfig, children }) => {
     useCustomText: false,
     customText: "",
     removeSpecialCharacters: false,
+    lowercase: false,
+    uppercase: false,
     paragraph: {
       fontFamily: "Arial, Helvetica, sans-serif",
-      count: 1,
+      count: 6,
       numberOfCharacters: 1000,
       size: 20,
       lineHeight: 1.5,
@@ -40,6 +42,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       fontFamily: "Arial, Helvetica, sans-serif",
       visible: false,
       frequency: 2,
+      offset: 0,
       size: 30,
       lineHeight: 1.5,
       color: "#000"
@@ -47,6 +50,8 @@ const SettingsProvider = ({ queryConfig, children }) => {
     subline: {
       fontFamily: "Arial, Helvetica, sans-serif",
       visible: false,
+      frequency: 2,
+      offset: 1,
       size: 24,
       lineHeight: 1.5,
       color: "#000"
@@ -65,6 +70,8 @@ const SettingsProvider = ({ queryConfig, children }) => {
     removeSpecialCharacters:
       queryConfig.removeSpecialCharacters ||
       defaultConfig.removeSpecialCharacters,
+    lowercase: queryConfig.lowercase || defaultConfig.lowercase,
+    uppercase: queryConfig.uppercase || defaultConfig.uppercase,
     // Paragraph settings
     paragraph: queryConfig.paragraph || defaultConfig.paragraph,
     // Headline settings
@@ -133,12 +140,14 @@ const SettingsProvider = ({ queryConfig, children }) => {
       ? {
           primary: "#aaa",
           secondary: "#222",
-          border: "#323232"
+          border: "#323232",
+          background: "#121212"
         }
       : {
           primary: "#323232",
           secondary: "#E0E0E0",
-          border: "#C9C9C9"
+          border: "#C9C9C9",
+          background: "#fff"
         };
 
   return (

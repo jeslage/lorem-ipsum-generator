@@ -7,11 +7,15 @@ import { SettingsContext } from "./settingsProvider";
 
 export const TextContext = React.createContext();
 
+const getRandomValue = arr => arr[Math.floor(Math.random() * arr.length)];
+
 const TextProvider = ({ children }) => {
   const { settings, utility } = useContext(SettingsContext);
   const {
     paragraph: { numberOfCharacters },
     removeSpecialCharacters,
+    lowercase,
+    uppercase,
     textType,
     useCustomText,
     customText
@@ -21,51 +25,56 @@ const TextProvider = ({ children }) => {
   const deleteSpecialCharacters = string =>
     string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
 
-  const getText = () => {
-    const text = useCustomText ? customText : texts[textType].paragraph;
-    const repeatNumber = Math.ceil(numberOfCharacters / text.length);
+  const processText = (text, tag = "p") => {
+    let updatedText = text;
 
-    let updatedText = text
-      .repeat(repeatNumber)
-      .substring(0, numberOfCharacters);
+    if (lowercase) {
+      updatedText = updatedText.toLowerCase();
+    }
+
+    if (uppercase) {
+      updatedText = updatedText.toUpperCase();
+    }
+
+    console.log(getRandomValue(text.split("###")));
+
+    if (updatedText.slice(-1) !== ".") {
+      updatedText = `${updatedText}.`;
+    }
 
     if (removeSpecialCharacters) {
       updatedText = deleteSpecialCharacters(updatedText);
     }
 
     if (printTags) {
-      updatedText = `<p>${updatedText}</p>`;
+      updatedText = `<${tag}>${updatedText}</${tag}>`;
     }
 
     return updatedText;
   };
 
+  const getText = () => {
+    const text = useCustomText ? customText : texts[textType].paragraph;
+    const repeatNumber = Math.ceil(numberOfCharacters / text.length);
+
+    let updatedText = text
+      .repeat(repeatNumber)
+      .substring(0, numberOfCharacters)
+      .trim();
+
+    return processText(updatedText, "p");
+  };
+
   const getHeadline = () => {
     let headline = texts[textType].headline;
 
-    if (removeSpecialCharacters) {
-      headline = deleteSpecialCharacters(headline);
-    }
-
-    if (printTags) {
-      headline = `<h2>${headline}</h2>`;
-    }
-
-    return headline;
+    return processText(headline, "h2");
   };
 
   const getSubline = () => {
     let subline = texts[textType].subline;
 
-    if (removeSpecialCharacters) {
-      subline = deleteSpecialCharacters(subline);
-    }
-
-    if (printTags) {
-      subline = `<h3>${subline}</h3>`;
-    }
-
-    return subline;
+    return processText(subline, "h3");
   };
 
   return (

@@ -8,8 +8,49 @@ const StyledSettings = styled.div`
   background: ${props => props.theme.colors.secondary};
   flex-shrink: 0;
 
+  .settings__bar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: ${props => props.theme.colors.border};
+
+    button {
+      background: none;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 0;
+      padding: 1em 1.5em;
+      color: ${props => props.theme.colors.primary};
+
+      &:hover {
+        background: ${props => props.theme.colors.secondary};
+      }
+
+      &:active {
+        color: inherit;
+      }
+    }
+  }
+
+  hr {
+    margin: 10px 0 20px;
+    border: none;
+    border-top: 1px solid ${props => props.theme.colors.border};
+  }
+
   .accordion__item {
     border-bottom: 1px solid ${props => props.theme.colors.border};
+
+    ${"" /* &:nth-of-type(even) {
+      background: ${props => props.theme.colors.border};
+
+      hr {
+        border-color: ${props => props.theme.colors.secondary};
+      }
+    } */}
   }
 
   .accordion__button {

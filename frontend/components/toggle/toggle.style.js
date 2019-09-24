@@ -5,9 +5,18 @@ const StyledToggle = styled.div`
   align-items: center;
   margin: 1.5em 0;
 
-  p {
+  .toggle__label {
     flex-grow: 2;
     margin: 0;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 20px;
+      height: auto;
+      margin-right: 15px;
+      fill: ${props => props.theme.colors.primary};
+    }
   }
 
   button {

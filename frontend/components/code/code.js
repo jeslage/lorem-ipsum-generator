@@ -35,6 +35,8 @@ const Code = props => {
     Prism.highlightAll();
   }, [showCode]);
 
+  useEffect(() => Prism.highlightAll(), [code]);
+
   const copyCode = () => {
     setCopied(true);
     clipboard.writeText(codeBox.current.innerText);

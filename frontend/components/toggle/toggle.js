@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import StyledToggle from "./toggle.style";
 
-const Toggle = ({ label, onChange, isActive }) => {
+const Toggle = ({ iconBefore, label, onChange, isActive }) => {
   const [active, setActive] = useState(isActive);
 
   const handleChange = () => {
@@ -20,7 +20,12 @@ const Toggle = ({ label, onChange, isActive }) => {
 
   return (
     <StyledToggle active={active}>
-      {label && <p>{label}</p>}
+      {(label || iconBefore) && (
+        <p className="toggle__label">
+          {iconBefore && iconBefore}
+          {label && label}
+        </p>
+      )}
       <button
         onClick={handleChange}
         type="button"
@@ -54,15 +59,17 @@ const Toggle = ({ label, onChange, isActive }) => {
 };
 
 Toggle.propTypes = {
+  iconBefore: PropTypes.node,
   label: PropTypes.string,
   onChange: PropTypes.func,
   isActive: PropTypes.bool
 };
 
 Toggle.defaultProps = {
+  iconBefore: null,
   label: null,
   onChange: undefined,
   isActive: false
 };
 
-export default Toggle;
+export default React.memo(Toggle);

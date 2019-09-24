@@ -12,6 +12,15 @@ const StyledCounter = styled.div`
 
   .counter__label {
     margin: 0;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 20px;
+      height: auto;
+      margin-right: 15px;
+      fill: ${props => props.theme.colors.primary};
+    }
   }
 
   .counter__description {

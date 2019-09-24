@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Head from "next/head";
 
 import GlobalStyle from "../../styles/global";
 
@@ -16,6 +17,9 @@ const Page = ({ queryConfig }) => {
       <TextProvider>
         <PresetsProvider>
           <>
+            <Head>
+              <title>Lorem Ipsum Generator</title>
+            </Head>
             <main>
               <Text />
               <Settings />

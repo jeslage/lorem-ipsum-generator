@@ -31,4 +31,4 @@ Textarea.defaultProps = {
   label: null
 };
 
-export default Textarea;
+export default React.memo(Textarea);

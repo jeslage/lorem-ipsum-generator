@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
+import SvgSprite from "../svgSprite/svgSprite";
+
+import MinusIcon from "../../icons/minus.svg";
+import PlusIcon from "../../icons/plus.svg";
+
 import StyledCounter from "./counter.style";
 
 const Counter = ({
   label,
+  title,
   description,
   value,
   min,
   max,
   steps,
   onChange,
-  suffix
+  suffix,
+  iconBefore
 }) => {
   const [currentValue, setCurrentValue] = useState(parseFloat(value));
 
@@ -53,10 +60,17 @@ const Counter = ({
     }
   };
 
+  console.log("render", label);
+
   return (
     <StyledCounter>
       <div className="counter__text">
-        {label && <p className="counter__label">{label}</p>}
+        {(label || iconBefore) && (
+          <p className="counter__label" title={title}>
+            {iconBefore && iconBefore}
+            {label && label}
+          </p>
+        )}
         {description && (
           <p className="counter__description">
             <small>{description}</small>
@@ -70,9 +84,7 @@ const Counter = ({
           disabled={currentValue === min}
           aria-label="Decrease"
         >
-          <svg viewBox="0 0 24 24" role="img" focusable="false">
-            <rect height="2" rx="1" width="12" x="6" y="11" />
-          </svg>
+          <SvgSprite icon={MinusIcon} />
         </button>
         <span>
           <input
@@ -90,10 +102,7 @@ const Counter = ({
           disabled={currentValue === max}
           aria-label="Increase"
         >
-          <svg viewBox="0 0 24 24" role="img" focusable="false">
-            <rect height="2" rx="1" width="12" x="6" y="11" />
-            <rect height="12" rx="1" width="2" x="11" y="6" />
-          </svg>
+          <SvgSprite icon={PlusIcon} />
         </button>
       </div>
     </StyledCounter>
@@ -102,24 +111,28 @@ const Counter = ({
 
 Counter.propTypes = {
   label: PropTypes.string,
+  title: PropTypes.string,
   description: PropTypes.string,
   value: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
   steps: PropTypes.number,
   onChange: PropTypes.func,
-  suffix: PropTypes.string
+  suffix: PropTypes.string,
+  iconBefore: PropTypes.node
 };
 
 Counter.defaultProps = {
   label: null,
+  title: null,
   description: null,
   value: 0,
   min: 1,
   max: 100,
   steps: 1,
   onChange: undefined,
-  suffix: null
+  suffix: null,
+  iconBefore: null
 };
 
-export default Counter;
+export default React.memo(Counter);

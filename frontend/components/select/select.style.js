@@ -9,8 +9,18 @@ const StyledSelect = styled.div`
     position: relative;
   }
 
-  span {
+  .select__label {
     flex-grow: 2;
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 20px;
+      height: auto;
+      margin-right: 15px;
+      fill: ${props => props.theme.colors.primary};
+    }
   }
 
   select {
@@ -37,7 +47,8 @@ const StyledSelect = styled.div`
     position: absolute;
     width: 10px;
     height: 10px;
-    top: 7px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 5px;
 
     &:before,

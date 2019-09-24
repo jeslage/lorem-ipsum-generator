@@ -14,10 +14,10 @@ import Headline from "./subcomponents/headline";
 import Subline from "./subcomponents/subline";
 import Utility from "./subcomponents/utility";
 import General from "./subcomponents/general";
-import Advanced from "./subcomponents/advanced";
 import Presets from "./subcomponents/presets";
 
 import StyledSettings from "./settings.style";
+import Bar from "./subcomponents/bar";
 
 const Settings = () => {
   const items = [
@@ -25,13 +25,15 @@ const Settings = () => {
     { label: "Paragraph", content: <Paragraph /> },
     { label: "Headline", content: <Headline /> },
     { label: "Subline", content: <Subline /> },
-    { label: "Advanced", content: <Advanced /> },
     { label: "Utility", content: <Utility /> },
     { label: "Presets", content: <Presets /> }
   ];
   return (
     <StyledSettings>
-      <Accordion allowZeroExpanded allowMultipleExpanded preExpanded={["0"]}>
+      <div className="settings__bar">
+        <Bar />
+      </div>
+      <Accordion allowZeroExpanded allowMultipleExpanded>
         {items.map((item, index) => (
           <AccordionItem key={item.label} uuid={`${index}`}>
             <AccordionItemHeading>

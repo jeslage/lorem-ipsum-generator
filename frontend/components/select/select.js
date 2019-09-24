@@ -3,7 +3,14 @@ import PropTypes from "prop-types";
 
 import StyledSelect from "./select.style";
 
-const Select = ({ options, initialValue, label, onChange }) => {
+const Select = ({
+  options,
+  iconBefore,
+  initialValue,
+  label,
+  title,
+  onChange
+}) => {
   const [currentValue, setCurrentValue] = useState(initialValue);
 
   const handleChange = event => {
@@ -23,7 +30,12 @@ const Select = ({ options, initialValue, label, onChange }) => {
   return (
     <StyledSelect>
       <label>
-        {label && <span>{label}</span>}
+        {(label || iconBefore) && (
+          <p className="select__label" title={title}>
+            {iconBefore && iconBefore}
+            {label && label}
+          </p>
+        )}
         <select value={currentValue} onChange={handleChange}>
           {options.map(option => (
             <option value={option.value} key={option.value}>
@@ -39,7 +51,9 @@ const Select = ({ options, initialValue, label, onChange }) => {
 
 Select.propTypes = {
   onChange: PropTypes.func,
+  iconBefore: PropTypes.node,
   label: PropTypes.string,
+  title: PropTypes.string,
   initialValue: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
@@ -51,7 +65,9 @@ Select.propTypes = {
 
 Select.defaultProps = {
   onChange: undefined,
-  label: "Choose an option"
+  iconBefore: null,
+  title: null,
+  label: null
 };
 
-export default Select;
+export default React.memo(Select);

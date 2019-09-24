@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useMemo } from "react";
 import * as clipboard from "clipboard-polyfill";
 
 import { TextContext } from "../../contexts/textProvider";
@@ -25,28 +25,35 @@ const Text = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (
-    <StyledText>
-      <button type="button" onClick={copyText}>
-        {copied ? "Copied" : "Copy"}
-      </button>
-      <div className="text__content" ref={textContent}>
-        {[...Array(count)].map((item, index) => (
-          <React.Fragment key={index}>
-            {headline.visible && index % headline.frequency === 0 && (
-              <h2>{getHeadline()}</h2>
-            )}
+  const renderedText = getText();
+  const renderedHeadline = getHeadline();
+  const renderedSubline = getSubline();
 
-            {subline.visible &&
-              headline.visible &&
-              index % headline.frequency !== 0 && <h3>{getSubline()}</h3>}
+  return useMemo(
+    () => (
+      <StyledText>
+        <button type="button" onClick={copyText}>
+          {copied ? "Copied" : "Copy"}
+        </button>
+        <div className="text__content" ref={textContent}>
+          {[...Array(count)].map((item, index) => (
+            <React.Fragment key={index}>
+              {headline.visible &&
+                index % headline.frequency === 0 &&
+                (index + headline.offset) % headline.frequency === 0 &&
+                index >= headline.offset && <h2>{renderedHeadline}</h2>}
 
-            {!headline.visible && subline.visible && <h3>{getSubline()}</h3>}
-            <p>{getText()}</p>
-          </React.Fragment>
-        ))}
-      </div>
-    </StyledText>
+              {subline.visible &&
+                (index + subline.offset) % subline.frequency === 0 &&
+                index >= subline.offset && <h3>{renderedSubline}</h3>}
+
+              <p>{renderedText}</p>
+            </React.Fragment>
+          ))}
+        </div>
+      </StyledText>
+    ),
+    [count, headline, subline]
   );
 };
 

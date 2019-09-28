@@ -50,7 +50,6 @@ const GlobalStyle = createGlobalStyle`
   input[type='url'] {
     box-sizing: border-box;
   }
-
 `;
 
 export default GlobalStyle;

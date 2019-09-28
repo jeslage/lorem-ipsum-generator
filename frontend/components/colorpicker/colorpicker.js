@@ -61,4 +61,4 @@ ColorPicker.defaultProps = {
   iconBefore: null
 };
 
-export default React.memo(ColorPicker);
+export default ColorPicker;

@@ -13,6 +13,8 @@ import FontFamilyIcon from "../../../icons/fontFamily.svg";
 import LineHeightIcon from "../../../icons/lineHeight.svg";
 import ColorIcon from "../../../icons/color.svg";
 import FontSizeIcon from "../../../icons/fontSize.svg";
+import MarginIcon from "../../../icons/margin.svg";
+import Shorthand from "../../shorthand/shorthand";
 
 const Subline = () => {
   const { settings, updateNestedSettings, fontFamilies } = useContext(
@@ -27,7 +29,8 @@ const Subline = () => {
     offset,
     size,
     lineHeight,
-    color
+    color,
+    margin
   } = subline;
 
   return useMemo(
@@ -94,8 +97,17 @@ const Subline = () => {
                 updateNestedSettings("subline", "color", value)
               }
             />
+
+            <Shorthand
+              iconBefore={<SvgSprite icon={MarginIcon} />}
+              value={margin}
+              label="Margin"
+              onChange={value =>
+                updateNestedSettings("subline", "margin", value)
+              }
+            />
             <Code
-              code={`h3 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n}`}
+              code={`h3 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n}`}
             />
           </>
         )}

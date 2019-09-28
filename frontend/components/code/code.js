@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useToasts } from "react-toast-notifications";
 
 import Prism from "prismjs";
 import * as clipboard from "clipboard-polyfill";
 
 import StyledCode from "./code.style";
-import { visible } from "ansi-colors";
 import Button from "../button/button";
+import SvgSprite from "../svgSprite/svgSprite";
+
+import CopyIcon from "../../icons/copy.svg";
 
 const loadLanguage = async language => {
   if (language === "javascript") {
@@ -21,9 +24,10 @@ const loadLanguage = async language => {
 };
 
 const Code = props => {
+  const { addToast } = useToasts();
+
   const { language, code } = props;
   const [showCode, setShowCode] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [init, setInit] = useState(false);
   const codeBox = React.createRef();
 
@@ -38,9 +42,12 @@ const Code = props => {
   useEffect(() => Prism.highlightAll(), [code]);
 
   const copyCode = () => {
-    setCopied(true);
+    addToast("Copied CSS Successfully", {
+      appearance: "success",
+      autoDismiss: true
+    });
+
     clipboard.writeText(codeBox.current.innerText);
-    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -52,14 +59,22 @@ const Code = props => {
         {showCode ? "Hide CSS" : "Show CSS"}
       </Button>
       {showCode && (
-        <pre>
-          <button type="button" onClick={copyCode} className="code__copyButton">
-            {copied ? "Copied" : "Copy"}
+        <div className="code__content">
+          <button
+            type="button"
+            onClick={copyCode}
+            className="code__copyButton"
+            aria-label="Copy"
+            title="Copy"
+          >
+            <SvgSprite icon={CopyIcon} />
           </button>
-          <code className={`language-${language}`} ref={codeBox}>
-            {code}
-          </code>
-        </pre>
+          <pre>
+            <code className={`language-${language}`} ref={codeBox}>
+              {code}
+            </code>
+          </pre>
+        </div>
       )}
     </StyledCode>
   );

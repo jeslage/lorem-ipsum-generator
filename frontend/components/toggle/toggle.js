@@ -72,4 +72,4 @@ Toggle.defaultProps = {
   isActive: false
 };
 
-export default React.memo(Toggle);
+export default Toggle;

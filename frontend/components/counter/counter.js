@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import SvgSprite from "../svgSprite/svgSprite";
@@ -20,32 +20,16 @@ const Counter = ({
   suffix,
   iconBefore
 }) => {
-  const [currentValue, setCurrentValue] = useState(parseFloat(value));
-
-  useEffect(() => {
-    if (onChange) {
-      let returnValue = currentValue;
-
-      if (currentValue > max) {
-        returnValue = max;
-      } else if (currentValue < min) {
-        returnValue = min;
-      }
-
-      onChange(returnValue);
-    }
-  }, [currentValue]);
-
-  useEffect(() => setCurrentValue(parseFloat(value)), [value]);
+  const updateValue = val => onChange(parseFloat(val));
 
   const handleChange = event => {
     const { value, validity } = event.target;
 
     if (validity.valid) {
       if (value !== "") {
-        setCurrentValue(parseFloat(value));
+        updateValue(parseFloat(value));
       } else {
-        setCurrentValue(0);
+        updateValue(0);
       }
     }
   };
@@ -54,13 +38,11 @@ const Counter = ({
     const { value } = event.target;
 
     if (value > max) {
-      setCurrentValue(max);
+      updateValue(max);
     } else if (value < min) {
-      setCurrentValue(min);
+      updateValue(min);
     }
   };
-
-  console.log("render", label);
 
   return (
     <StyledCounter>
@@ -80,8 +62,8 @@ const Counter = ({
       <div className="counter__counter">
         <button
           type="button"
-          onClick={() => setCurrentValue(prev => prev - steps)}
-          disabled={currentValue === min}
+          onClick={() => updateValue(value - steps)}
+          disabled={value === min}
           aria-label="Decrease"
         >
           <SvgSprite icon={MinusIcon} />
@@ -90,7 +72,7 @@ const Counter = ({
           <input
             type="text"
             pattern="[0-9.]*"
-            value={currentValue}
+            value={value}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -98,8 +80,8 @@ const Counter = ({
         </span>
         <button
           type="button"
-          onClick={() => setCurrentValue(prev => prev + steps)}
-          disabled={currentValue === max}
+          onClick={() => updateValue(value + steps)}
+          disabled={value === max}
           aria-label="Increase"
         >
           <SvgSprite icon={PlusIcon} />
@@ -130,9 +112,9 @@ Counter.defaultProps = {
   min: 1,
   max: 100,
   steps: 1,
-  onChange: undefined,
+  onChange: () => {},
   suffix: null,
   iconBefore: null
 };
 
-export default React.memo(Counter);
+export default Counter;

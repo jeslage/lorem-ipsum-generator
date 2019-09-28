@@ -5,15 +5,31 @@ const StyledCode = styled.div`
   justify-content: center;
   flex-direction: column;
 
+  .code__content {
+    position: relative;
+  }
+
   .code__copyButton {
     position: absolute;
-    top: 10px;
+    z-index: 1;
+    bottom: 15px;
     right: 10px;
     color: #000;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: 0;
 
     [data-whatinput="mouse"] &,
     [data-whatinput="touch"] & {
       outline: 0;
+    }
+
+    svg {
+      width: 15px;
+      height: auto;
+      fill: #f4f4f4;
+      margin-right: 5px;
     }
   }
 

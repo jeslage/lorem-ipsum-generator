@@ -4,6 +4,7 @@ import { SettingsContext } from "../../../contexts/settingsProvider";
 
 import Counter from "../../counter/counter";
 import Code from "../../code/code";
+import Shorthand from "../../shorthand/shorthand";
 import ColorPicker from "../../colorpicker/colorpicker";
 import Select from "../../select/select";
 import SvgSprite from "../../svgSprite/svgSprite";
@@ -13,6 +14,7 @@ import LetterSpacingIcon from "../../../icons/letterSpacing.svg";
 import LineHeightIcon from "../../../icons/lineHeight.svg";
 import ColorIcon from "../../../icons/color.svg";
 import FontSizeIcon from "../../../icons/fontSize.svg";
+import MarginIcon from "../../../icons/margin.svg";
 
 const Paragraph = () => {
   const { settings, updateNestedSettings, fontFamilies } = useContext(
@@ -27,7 +29,8 @@ const Paragraph = () => {
     letterSpacing,
     lineHeight,
     numberOfCharacters,
-    color
+    color,
+    margin
   } = paragraph;
 
   return useMemo(
@@ -90,8 +93,15 @@ const Paragraph = () => {
           value={color}
           onChange={value => updateNestedSettings("paragraph", "color", value)}
         />
+        <Shorthand
+          iconBefore={<SvgSprite icon={MarginIcon} />}
+          value={margin}
+          label="Margin"
+          onChange={value => updateNestedSettings("paragraph", "margin", value)}
+        />
+
         <Code
-          code={`p {\r\n\tfont-family: ${fontFamily};\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n}`}
+          code={`p {\r\n\tfont-family: ${fontFamily};\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n}`}
         />
       </>
     ),

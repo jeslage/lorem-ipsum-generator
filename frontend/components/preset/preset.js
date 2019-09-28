@@ -10,6 +10,7 @@ import SvgSprite from "../svgSprite/svgSprite";
 
 import RemoveIcon from "../../icons/remove.svg";
 import PlusIcon from "../../icons/plus.svg";
+import EditIcon from "../../icons/edit.svg";
 
 const Preset = ({ preset }) => {
   const { removePreset } = useContext(PresetsContext);
@@ -73,6 +74,9 @@ const Preset = ({ preset }) => {
         <div className="preset__buttons">
           <button type="button" onClick={() => updateAllSettings(settings)}>
             <SvgSprite icon={PlusIcon} />
+          </button>
+          <button type="button" onClick={() => updateAllSettings(settings)}>
+            <SvgSprite icon={EditIcon} />
           </button>
           <button
             type="button"

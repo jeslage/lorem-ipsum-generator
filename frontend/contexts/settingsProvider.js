@@ -36,7 +36,13 @@ const SettingsProvider = ({ queryConfig, children }) => {
       size: 20,
       lineHeight: 1.5,
       letterSpacing: 0,
-      color: "#000"
+      color: "#000",
+      margin: {
+        top: 20,
+        right: 0,
+        bottom: 20,
+        left: 0
+      }
     },
     headline: {
       fontFamily: "Arial, Helvetica, sans-serif",
@@ -45,7 +51,13 @@ const SettingsProvider = ({ queryConfig, children }) => {
       offset: 0,
       size: 30,
       lineHeight: 1.5,
-      color: "#000"
+      color: "#000",
+      margin: {
+        top: 20,
+        right: 0,
+        bottom: 20,
+        left: 0
+      }
     },
     subline: {
       fontFamily: "Arial, Helvetica, sans-serif",
@@ -54,7 +66,13 @@ const SettingsProvider = ({ queryConfig, children }) => {
       offset: 1,
       size: 24,
       lineHeight: 1.5,
-      color: "#000"
+      color: "#000",
+      margin: {
+        top: 20,
+        right: 0,
+        bottom: 20,
+        left: 0
+      }
     }
   };
 

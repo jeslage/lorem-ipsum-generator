@@ -36,8 +36,6 @@ const TextProvider = ({ children }) => {
       updatedText = updatedText.toUpperCase();
     }
 
-    console.log(getRandomValue(text.split("###")));
-
     if (updatedText.slice(-1) !== ".") {
       updatedText = `${updatedText}.`;
     }

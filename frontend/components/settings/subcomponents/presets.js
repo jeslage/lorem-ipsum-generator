@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 
 import { PresetsContext } from "../../../contexts/presetsProvider";
 
@@ -8,19 +8,16 @@ import Preset from "../../preset/preset";
 const Presets = () => {
   const { addPreset, presets } = useContext(PresetsContext);
 
-  return useMemo(
-    () => (
-      <>
-        {presets.length > 0 &&
-          presets.map(preset => (
-            <Preset preset={preset} key={preset.dateCreated} />
-          ))}
-        <Button onClick={addPreset}>
-          {presets.length > 0 ? "Add another preset" : "Add your first preset"}
-        </Button>
-      </>
-    ),
-    [presets]
+  return (
+    <>
+      {presets.length > 0 &&
+        presets.map(preset => (
+          <Preset preset={preset} key={preset.dateCreated} />
+        ))}
+      <Button onClick={addPreset}>
+        {presets.length > 0 ? "Add another preset" : "Add your first preset"}
+      </Button>
+    </>
   );
 };
 

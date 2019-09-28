@@ -10,27 +10,22 @@ const StyledSettings = styled.div`
 
   .settings__bar {
     position: sticky;
+    display: flex;
     top: 0;
     z-index: 1;
-    background: ${props => props.theme.colors.border};
+    background: ${props => props.theme.colors.secondary};
+    border-bottom: 1px solid ${props => props.theme.colors.border};
+    padding: 0 1.5em;
 
     button {
-      background: none;
-      outline: none;
-      border: none;
-      cursor: pointer;
-      text-transform: uppercase;
-      font-weight: bold;
-      margin: 0;
-      padding: 1em 1.5em;
-      color: ${props => props.theme.colors.primary};
+      width: 100%;
 
-      &:hover {
-        background: ${props => props.theme.colors.secondary};
+      &:nth-of-type(1) {
+        margin-right: 5px;
       }
 
-      &:active {
-        color: inherit;
+      &:nth-of-type(2) {
+        margin-left: 5px;
       }
     }
   }

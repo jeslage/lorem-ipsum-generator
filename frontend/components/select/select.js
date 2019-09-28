@@ -70,4 +70,4 @@ Select.defaultProps = {
   label: null
 };
 
-export default React.memo(Select);
+export default Select;

@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from "react";
 
+import { TextContext } from "../../../contexts/textProvider";
 import { SettingsContext } from "../../../contexts/settingsProvider";
 
 import Counter from "../../counter/counter";
@@ -8,18 +9,27 @@ import Select from "../../select/select";
 import Code from "../../code/code";
 import ColorPicker from "../../colorpicker/colorpicker";
 import SvgSprite from "../../svgSprite/svgSprite";
+import Shorthand from "../../shorthand/shorthand";
+import Button from "../../button/button";
+import Textarea from "../../textarea/textarea";
 
 import FontFamilyIcon from "../../../icons/fontFamily.svg";
 import LineHeightIcon from "../../../icons/lineHeight.svg";
 import ColorIcon from "../../../icons/color.svg";
 import FontSizeIcon from "../../../icons/fontSize.svg";
 import MarginIcon from "../../../icons/margin.svg";
-import Shorthand from "../../shorthand/shorthand";
 
 const Subline = () => {
-  const { settings, updateNestedSettings, fontFamilies } = useContext(
-    SettingsContext
-  );
+  const {
+    settings,
+    updateNestedSettings,
+    fontFamilies,
+    updateNestedArray,
+    addNestedArray,
+    removeNestedArray
+  } = useContext(SettingsContext);
+  const { textType } = settings;
+  const { texts } = useContext(TextContext);
 
   const { subline } = settings;
   const {
@@ -31,7 +41,9 @@ const Subline = () => {
     lineHeight,
     color,
     margin,
-    numberOfCharacters
+    numberOfCharacters,
+    custom,
+    customText
   } = subline;
 
   return useMemo(
@@ -77,6 +89,41 @@ const Subline = () => {
                 updateNestedSettings("subline", "numberOfCharacters", value)
               }
             />
+
+            <Switch
+              label="Custom sublines"
+              isActive={custom}
+              onChange={bool => {
+                if (customText.length === 0) {
+                  updateNestedSettings(
+                    "subline",
+                    "customText",
+                    texts[textType].subline
+                  );
+                }
+
+                updateNestedSettings("subline", "custom", bool);
+              }}
+            />
+            {custom && (
+              <>
+                {customText.map((text, index) => (
+                  <Textarea
+                    key={index}
+                    value={text}
+                    onChange={value =>
+                      updateNestedArray("subline", "customText", value, index)
+                    }
+                    onRemove={() =>
+                      removeNestedArray("subline", "customText", index)
+                    }
+                  />
+                ))}
+                <Button onClick={() => addNestedArray("subline", "customText")}>
+                  Add subline
+                </Button>
+              </>
+            )}
 
             <hr />
             <Select

@@ -26,7 +26,9 @@ const StyledText = styled.div`
 
   p,
   h2,
-  h3 {
+  h3,
+  ul,
+  ol {
     position: relative;
 
     &:before {
@@ -65,6 +67,32 @@ const StyledText = styled.div`
     &:before {
       content: "<p>";
     }
+  }
+
+  ul,
+  ol {
+    margin: ${({
+      theme: {
+        paragraph: { margin }
+      }
+    }) =>
+      `${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px`};
+  }
+
+  ul:before {
+    content: "<ul>";
+  }
+
+  ol:before {
+    content: "<ol>";
+  }
+
+  li {
+    font-size: ${({ theme }) => theme.paragraph.size}px;
+    line-height: ${({ theme }) => theme.paragraph.lineHeight};
+    letter-spacing: ${({ theme }) => theme.paragraph.letterSpacing}px;
+    font-family: ${({ theme }) => theme.paragraph.fontFamily};
+    color: ${({ theme }) => theme.paragraph.color};
   }
 
   h2 {

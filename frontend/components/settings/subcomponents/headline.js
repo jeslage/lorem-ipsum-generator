@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from "react";
 
 import { SettingsContext } from "../../../contexts/settingsProvider";
+import { TextContext } from "../../../contexts/textProvider";
 
 import Counter from "../../counter/counter";
 import Switch from "../../switch/switch";
@@ -8,18 +9,27 @@ import Select from "../../select/select";
 import Code from "../../code/code";
 import ColorPicker from "../../colorpicker/colorpicker";
 import SvgSprite from "../../svgSprite/svgSprite";
+import Shorthand from "../../shorthand/shorthand";
+import Textarea from "../../textarea/textarea";
+import Button from "../../button/button";
 
 import FontFamilyIcon from "../../../icons/fontFamily.svg";
 import LineHeightIcon from "../../../icons/lineHeight.svg";
 import ColorIcon from "../../../icons/color.svg";
 import FontSizeIcon from "../../../icons/fontSize.svg";
 import MarginIcon from "../../../icons/margin.svg";
-import Shorthand from "../../shorthand/shorthand";
 
 const Headline = () => {
-  const { settings, updateNestedSettings, fontFamilies } = useContext(
-    SettingsContext
-  );
+  const {
+    settings,
+    updateNestedSettings,
+    fontFamilies,
+    updateNestedArray,
+    addNestedArray,
+    removeNestedArray
+  } = useContext(SettingsContext);
+  const { textType } = settings;
+  const { texts } = useContext(TextContext);
 
   const { headline } = settings;
   const {
@@ -31,7 +41,9 @@ const Headline = () => {
     frequency,
     color,
     margin,
-    numberOfCharacters
+    numberOfCharacters,
+    custom,
+    customText
   } = headline;
 
   return useMemo(
@@ -77,6 +89,43 @@ const Headline = () => {
                 updateNestedSettings("headline", "numberOfCharacters", value)
               }
             />
+
+            <Switch
+              label="Custom headlines"
+              isActive={custom}
+              onChange={bool => {
+                if (customText.length === 0) {
+                  updateNestedSettings(
+                    "headline",
+                    "customText",
+                    texts[textType].headline
+                  );
+                }
+
+                updateNestedSettings("headline", "custom", bool);
+              }}
+            />
+            {custom && (
+              <>
+                {customText.map((text, index) => (
+                  <Textarea
+                    key={index}
+                    value={text}
+                    onChange={value =>
+                      updateNestedArray("headline", "customText", value, index)
+                    }
+                    onRemove={() =>
+                      removeNestedArray("headline", "customText", index)
+                    }
+                  />
+                ))}
+                <Button
+                  onClick={() => addNestedArray("headline", "customText")}
+                >
+                  Add headline
+                </Button>
+              </>
+            )}
 
             <hr />
             <Select

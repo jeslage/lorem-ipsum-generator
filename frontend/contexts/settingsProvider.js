@@ -79,6 +79,12 @@ const SettingsProvider = ({ queryConfig, children }) => {
       },
       custom: false,
       customText: []
+    },
+    list: {
+      visible: false,
+      frequency: 2,
+      offset: 1,
+      orderedList: false
     }
   };
 
@@ -101,7 +107,9 @@ const SettingsProvider = ({ queryConfig, children }) => {
     // Headline settings
     headline: queryConfig.headline || defaultConfig.headline,
     // Subline settings
-    subline: queryConfig.subline || defaultConfig.subline
+    subline: queryConfig.subline || defaultConfig.subline,
+    // List settings
+    list: queryConfig.list || defaultConfig.list
   });
 
   const [utility, setUtility] = useState({

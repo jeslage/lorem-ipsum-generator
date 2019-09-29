@@ -7,9 +7,11 @@ import StyledText from "./text.style";
 
 const Text = () => {
   const { settings } = useContext(SettingsContext);
-  const { paragraph, headline, subline } = settings;
+  const { paragraph, headline, subline, list } = settings;
 
   const { getText } = useContext(TextContext);
+
+  const ListTag = list.orderedList ? "ol" : "ul";
 
   return (
     <StyledText>
@@ -25,6 +27,17 @@ const Text = () => {
               index >= subline.offset && <h3>{getText("subline", "h3")}</h3>}
 
             <p>{getText("paragraph", "p")}</p>
+
+            {list.visible &&
+              (index - 1 + list.offset) % list.frequency === 0 &&
+              index >= list.offset && (
+                <ListTag>
+                  <li>Lorem ipsum dolor</li>
+                  <li>Lorem ipsum dolor</li>
+                  <li>Lorem ipsum dolor</li>
+                  <li>Lorem ipsum dolor</li>
+                </ListTag>
+              )}
           </React.Fragment>
         ))}
       </div>

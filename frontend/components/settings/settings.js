@@ -18,6 +18,7 @@ import Utility from "./subcomponents/utility";
 import General from "./subcomponents/general";
 import Presets from "./subcomponents/presets";
 import Bar from "./subcomponents/bar";
+import List from "./subcomponents/list";
 
 import StyledSettings from "./settings.style";
 
@@ -30,6 +31,7 @@ const Settings = () => {
     { label: "Paragraph", content: <Paragraph /> },
     { label: "Headline", content: <Headline /> },
     { label: "Subline", content: <Subline /> },
+    { label: "Lists", content: <List /> },
     { label: "Utility", content: <Utility /> },
     { label: "Presets", content: <Presets /> }
   ];

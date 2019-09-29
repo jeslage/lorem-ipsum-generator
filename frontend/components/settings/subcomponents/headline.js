@@ -3,7 +3,7 @@ import React, { useContext, useMemo } from "react";
 import { SettingsContext } from "../../../contexts/settingsProvider";
 
 import Counter from "../../counter/counter";
-import Toggle from "../../toggle/toggle";
+import Switch from "../../switch/switch";
 import Select from "../../select/select";
 import Code from "../../code/code";
 import ColorPicker from "../../colorpicker/colorpicker";
@@ -30,13 +30,14 @@ const Headline = () => {
     offset,
     frequency,
     color,
-    margin
+    margin,
+    numberOfCharacters
   } = headline;
 
   return useMemo(
     () => (
       <>
-        <Toggle
+        <Switch
           label="Enable headlines"
           isActive={visible}
           onChange={bool => updateNestedSettings("headline", "visible", bool)}
@@ -47,9 +48,13 @@ const Headline = () => {
               label="Frequency"
               description="Number of paragraphs between headlines."
               value={frequency}
-              onChange={value =>
-                updateNestedSettings("headline", "frequency", value)
-              }
+              onChange={value => {
+                updateNestedSettings("headline", "frequency", value);
+
+                if (value === 1) {
+                  updateNestedSettings("headline", "offset", 0);
+                }
+              }}
             />
             {frequency !== 1 && (
               <Counter
@@ -62,6 +67,16 @@ const Headline = () => {
                 }
               />
             )}
+            <Counter
+              label="Characters"
+              min={20}
+              max={200}
+              steps={1}
+              value={numberOfCharacters}
+              onChange={value =>
+                updateNestedSettings("headline", "numberOfCharacters", value)
+              }
+            />
 
             <hr />
             <Select

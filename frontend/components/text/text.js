@@ -7,33 +7,24 @@ import StyledText from "./text.style";
 
 const Text = () => {
   const { settings } = useContext(SettingsContext);
-  const {
-    paragraph: { count },
-    headline,
-    subline
-  } = settings;
+  const { paragraph, headline, subline } = settings;
 
-  const { getText, getHeadline, getSubline } = useContext(TextContext);
-
-  const renderedText = getText();
-  const renderedHeadline = getHeadline();
-  const renderedSubline = getSubline();
+  const { getText } = useContext(TextContext);
 
   return (
     <StyledText>
       <div className="text__content" id="textContent">
-        {[...Array(count)].map((item, index) => (
+        {[...Array(paragraph.count)].map((item, index) => (
           <React.Fragment key={index}>
             {headline.visible &&
-              index % headline.frequency === 0 &&
               (index + headline.offset) % headline.frequency === 0 &&
-              index >= headline.offset && <h2>{renderedHeadline}</h2>}
+              index >= headline.offset && <h2>{getText("headline", "h2")}</h2>}
 
             {subline.visible &&
               (index + subline.offset) % subline.frequency === 0 &&
-              index >= subline.offset && <h3>{renderedSubline}</h3>}
+              index >= subline.offset && <h3>{getText("subline", "h3")}</h3>}
 
-            <p>{renderedText}</p>
+            <p>{getText("paragraph", "p")}</p>
           </React.Fragment>
         ))}
       </div>

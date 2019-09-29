@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import StyledTextarea from "./textarea.style";
 
-const Textarea = ({ label, value, onChange }) => {
+const Textarea = ({ label, value, onChange, onRemove }) => {
   return (
     <StyledTextarea>
       {label && <p>{label}</p>}
@@ -12,11 +12,14 @@ const Textarea = ({ label, value, onChange }) => {
         value={value}
         onChange={event => onChange(event.target.value)}
       />
-      <span>
-        <small>
-          {value.length} {value.length === 1 ? "character" : "characters"}
-        </small>
-      </span>
+      <div className="textarea__meta">
+        <span className="textarea__characters">
+          <small>
+            {value.length} {value.length === 1 ? "character" : "characters"}
+          </small>
+        </span>
+        {onRemove && <button onClick={() => onRemove()}>Remove</button>}
+      </div>
     </StyledTextarea>
   );
 };
@@ -24,11 +27,13 @@ const Textarea = ({ label, value, onChange }) => {
 Textarea.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  onRemove: PropTypes.func
 };
 
 Textarea.defaultProps = {
-  label: null
+  label: null,
+  onRemove: undefined
 };
 
 export default Textarea;

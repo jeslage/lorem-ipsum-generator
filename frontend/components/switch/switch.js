@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import StyledToggle from "./toggle.style";
+import StyledSwitch from "./switch.style";
 
-const Toggle = ({ iconBefore, label, onChange, isActive }) => {
+const Switch = ({ iconBefore, label, onChange, isActive }) => {
   const [active, setActive] = useState(isActive);
 
   const handleChange = () => {
@@ -19,9 +19,9 @@ const Toggle = ({ iconBefore, label, onChange, isActive }) => {
   useEffect(() => setActive(isActive), [isActive]);
 
   return (
-    <StyledToggle active={active}>
+    <StyledSwitch active={active}>
       {(label || iconBefore) && (
-        <p className="toggle__label">
+        <p className="switch__label">
           {iconBefore && iconBefore}
           {label && label}
         </p>
@@ -54,22 +54,22 @@ const Toggle = ({ iconBefore, label, onChange, isActive }) => {
           )}
         </span>
       </button>
-    </StyledToggle>
+    </StyledSwitch>
   );
 };
 
-Toggle.propTypes = {
+Switch.propTypes = {
   iconBefore: PropTypes.node,
   label: PropTypes.string,
   onChange: PropTypes.func,
   isActive: PropTypes.bool
 };
 
-Toggle.defaultProps = {
+Switch.defaultProps = {
   iconBefore: null,
   label: null,
   onChange: undefined,
   isActive: false
 };
 
-export default Toggle;
+export default Switch;

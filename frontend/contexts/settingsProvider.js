@@ -24,8 +24,6 @@ const SettingsProvider = ({ queryConfig, children }) => {
     textType: "loremIpsum",
     textWidth: 100,
     backgroundColor: "#fff",
-    useCustomText: false,
-    customText: "",
     removeSpecialCharacters: false,
     lowercase: false,
     uppercase: false,
@@ -42,11 +40,14 @@ const SettingsProvider = ({ queryConfig, children }) => {
         right: 0,
         bottom: 20,
         left: 0
-      }
+      },
+      custom: false,
+      customText: []
     },
     headline: {
       fontFamily: "Arial, Helvetica, sans-serif",
       visible: false,
+      numberOfCharacters: 50,
       frequency: 2,
       offset: 0,
       size: 30,
@@ -57,11 +58,14 @@ const SettingsProvider = ({ queryConfig, children }) => {
         right: 0,
         bottom: 20,
         left: 0
-      }
+      },
+      custom: false,
+      customText: []
     },
     subline: {
       fontFamily: "Arial, Helvetica, sans-serif",
       visible: false,
+      numberOfCharacters: 50,
       frequency: 2,
       offset: 1,
       size: 24,
@@ -72,7 +76,9 @@ const SettingsProvider = ({ queryConfig, children }) => {
         right: 0,
         bottom: 20,
         left: 0
-      }
+      },
+      custom: false,
+      customText: []
     }
   };
 
@@ -142,6 +148,40 @@ const SettingsProvider = ({ queryConfig, children }) => {
     }));
   };
 
+  const updateNestedArray = (key, subKey, value, index) => {
+    const updatedArray = settings[key][subKey].slice(0);
+    updatedArray[index] = value;
+    setSettings(prev => ({
+      ...prev,
+      [key]: {
+        ...prev[key],
+        [subKey]: updatedArray
+      }
+    }));
+  };
+
+  const removeNestedArray = (key, subKey, index) => {
+    const newArray = settings[key][subKey].filter((item, i) => i !== index);
+
+    setSettings(prev => ({
+      ...prev,
+      [key]: {
+        ...prev[key],
+        [subKey]: newArray.length === 0 ? ["Insert custom text"] : newArray
+      }
+    }));
+  };
+
+  const addNestedArray = (key, subKey) => {
+    setSettings(prev => ({
+      ...prev,
+      [key]: {
+        ...prev[key],
+        [subKey]: [...settings[key][subKey], ""]
+      }
+    }));
+  };
+
   // Update all settings
   const updateAllSettings = obj => {
     setSettings(obj);
@@ -178,7 +218,10 @@ const SettingsProvider = ({ queryConfig, children }) => {
         resetSettings,
         fontFamilies,
         updateUtility,
-        utility
+        utility,
+        updateNestedArray,
+        removeNestedArray,
+        addNestedArray
       }}
     >
       <ThemeProvider theme={{ ...settings, colors: getColors() }}>

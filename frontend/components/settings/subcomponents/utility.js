@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from "react";
 
 import { SettingsContext } from "../../../contexts/settingsProvider";
 
-import Toggle from "../../toggle/toggle";
+import Switch from "../../switch/switch";
 import SvgSprite from "../../svgSprite/svgSprite";
 
 import DarkModeIcon from "../../../icons/darkMode.svg";
@@ -16,14 +16,14 @@ const Utility = () => {
   return useMemo(
     () => (
       <>
-        <Toggle
+        <Switch
           iconBefore={<SvgSprite icon={DarkModeIcon} />}
           label="Dark mode"
           isActive={darkMode}
           onChange={bool => updateUtility("darkMode", bool)}
         />
 
-        <Toggle
+        <Switch
           label="Print HTML tags"
           iconBefore={<SvgSprite icon={TagsIcon} />}
           isActive={printTags}

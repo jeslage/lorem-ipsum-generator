@@ -24,6 +24,7 @@ const StyledSelect = styled.div`
   }
 
   select {
+    width: 100%;
     background: none;
     border: none;
     outline: none;

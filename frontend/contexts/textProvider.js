@@ -11,74 +11,52 @@ const getRandomValue = arr => arr[Math.floor(Math.random() * arr.length)];
 
 const TextProvider = ({ children }) => {
   const { settings, utility } = useContext(SettingsContext);
-  const {
-    paragraph: { numberOfCharacters },
-    removeSpecialCharacters,
-    lowercase,
-    uppercase,
-    textType,
-    useCustomText,
-    customText
-  } = settings;
+  const { removeSpecialCharacters, lowercase, uppercase, textType } = settings;
   const { printTags } = utility;
+
+  const index = {
+    paragraph: 0,
+    headline: 0,
+    subline: 0
+  };
 
   const deleteSpecialCharacters = string =>
     string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
 
-  const processText = (text, tag = "p") => {
-    let updatedText = text;
+  const getText = (key, tag) => {
+    const textsArray = settings[key].custom
+      ? settings[key].customText
+      : texts[textType][key];
+    let text = "";
 
-    if (lowercase) {
-      updatedText = updatedText.toLowerCase();
+    if (textsArray[index[key]]) {
+      text = textsArray[index[key]];
+      index[key] = index[key] + 1;
+    } else {
+      text = textsArray[0];
+      index[key] = 0;
     }
 
-    if (uppercase) {
-      updatedText = updatedText.toUpperCase();
-    }
+    const repeatBy = Math.ceil(settings[key].numberOfCharacters / text.length);
 
-    if (updatedText.slice(-1) !== ".") {
+    let updatedText = `${text} `
+      .repeat(repeatBy)
+      .substring(0, settings[key].numberOfCharacters)
+      .trim();
+
+    if (lowercase) updatedText = updatedText.toLowerCase();
+    if (uppercase) updatedText = updatedText.toUpperCase();
+    if (key === "paragraph" && updatedText.slice(-1) !== ".")
       updatedText = `${updatedText}.`;
-    }
-
-    if (removeSpecialCharacters) {
+    if (removeSpecialCharacters)
       updatedText = deleteSpecialCharacters(updatedText);
-    }
-
-    if (printTags) {
-      updatedText = `<${tag}>${updatedText}</${tag}>`;
-    }
+    if (printTags) updatedText = `<${tag}>${updatedText}</${tag}>`;
 
     return updatedText;
   };
 
-  const getText = () => {
-    const text = useCustomText ? customText : texts[textType].paragraph;
-    const repeatNumber = Math.ceil(numberOfCharacters / text.length);
-
-    let updatedText = text
-      .repeat(repeatNumber)
-      .substring(0, numberOfCharacters)
-      .trim();
-
-    return processText(updatedText, "p");
-  };
-
-  const getHeadline = () => {
-    let headline = texts[textType].headline;
-
-    return processText(headline, "h2");
-  };
-
-  const getSubline = () => {
-    let subline = texts[textType].subline;
-
-    return processText(subline, "h3");
-  };
-
   return (
-    <TextContext.Provider
-      value={{ textTypes, texts, getText, getHeadline, getSubline }}
-    >
+    <TextContext.Provider value={{ textTypes, texts, getText }}>
       {children}
     </TextContext.Provider>
   );

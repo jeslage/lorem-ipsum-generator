@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-const StyledToggle = styled.div`
+const StyledSwitch = styled.div`
   display: flex;
   align-items: center;
   margin: 1.5em 0;
 
-  .toggle__label {
+  .switch__label {
     flex-grow: 2;
     margin: 0;
     display: flex;
@@ -60,4 +60,4 @@ const StyledToggle = styled.div`
   }
 `;
 
-export default StyledToggle;
+export default StyledSwitch;

@@ -3,7 +3,7 @@ import React, { useContext, useMemo } from "react";
 import { SettingsContext } from "../../../contexts/settingsProvider";
 
 import Counter from "../../counter/counter";
-import Toggle from "../../toggle/toggle";
+import Switch from "../../switch/switch";
 import Select from "../../select/select";
 import Code from "../../code/code";
 import ColorPicker from "../../colorpicker/colorpicker";
@@ -30,13 +30,14 @@ const Subline = () => {
     size,
     lineHeight,
     color,
-    margin
+    margin,
+    numberOfCharacters
   } = subline;
 
   return useMemo(
     () => (
       <>
-        <Toggle
+        <Switch
           label="Enable sublines"
           isActive={visible}
           onChange={bool => updateNestedSettings("subline", "visible", bool)}
@@ -47,9 +48,13 @@ const Subline = () => {
               label="Frequency"
               description="Number of paragraphs between sublines."
               value={frequency}
-              onChange={value =>
-                updateNestedSettings("subline", "frequency", value)
-              }
+              onChange={value => {
+                updateNestedSettings("subline", "frequency", value);
+
+                if (value === 1) {
+                  updateNestedSettings("subline", "offset", 0);
+                }
+              }}
             />
             {frequency !== 1 && (
               <Counter
@@ -62,6 +67,16 @@ const Subline = () => {
                 }
               />
             )}
+            <Counter
+              label="Characters"
+              min={20}
+              max={200}
+              steps={1}
+              value={numberOfCharacters}
+              onChange={value =>
+                updateNestedSettings("subline", "numberOfCharacters", value)
+              }
+            />
 
             <hr />
             <Select

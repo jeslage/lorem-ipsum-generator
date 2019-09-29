@@ -1,12 +1,16 @@
 import React, { useContext, useMemo } from "react";
 
 import { SettingsContext } from "../../../contexts/settingsProvider";
+import { TextContext } from "../../../contexts/textProvider";
 
 import Counter from "../../counter/counter";
 import Code from "../../code/code";
 import Shorthand from "../../shorthand/shorthand";
 import ColorPicker from "../../colorpicker/colorpicker";
 import Select from "../../select/select";
+import Switch from "../../switch/switch";
+import Textarea from "../../textarea/textarea";
+import Button from "../../button/button";
 import SvgSprite from "../../svgSprite/svgSprite";
 
 import FontFamilyIcon from "../../../icons/fontFamily.svg";
@@ -17,11 +21,17 @@ import FontSizeIcon from "../../../icons/fontSize.svg";
 import MarginIcon from "../../../icons/margin.svg";
 
 const Paragraph = () => {
-  const { settings, updateNestedSettings, fontFamilies } = useContext(
-    SettingsContext
-  );
+  const {
+    settings,
+    updateNestedSettings,
+    fontFamilies,
+    updateNestedArray,
+    removeNestedArray,
+    addNestedArray
+  } = useContext(SettingsContext);
+  const { texts } = useContext(TextContext);
 
-  const { paragraph } = settings;
+  const { paragraph, textType } = settings;
   const {
     fontFamily,
     count,
@@ -30,7 +40,9 @@ const Paragraph = () => {
     lineHeight,
     numberOfCharacters,
     color,
-    margin
+    margin,
+    custom,
+    customText
   } = paragraph;
 
   return useMemo(
@@ -45,12 +57,47 @@ const Paragraph = () => {
           label="Characters"
           min={50}
           max={9999}
-          steps={50}
+          steps={20}
           value={numberOfCharacters}
           onChange={value =>
             updateNestedSettings("paragraph", "numberOfCharacters", value)
           }
         />
+
+        <Switch
+          label="Custom paragraphs"
+          isActive={custom}
+          onChange={bool => {
+            if (customText.length === 0) {
+              updateNestedSettings(
+                "paragraph",
+                "customText",
+                texts[textType].paragraph
+              );
+            }
+
+            updateNestedSettings("paragraph", "custom", bool);
+          }}
+        />
+        {custom && (
+          <>
+            {customText.map((text, index) => (
+              <Textarea
+                key={index}
+                value={text}
+                onChange={value =>
+                  updateNestedArray("paragraph", "customText", value, index)
+                }
+                onRemove={() =>
+                  removeNestedArray("paragraph", "customText", index)
+                }
+              />
+            ))}
+            <Button onClick={() => addNestedArray("paragraph", "customText")}>
+              Add paragraph
+            </Button>
+          </>
+        )}
 
         <hr />
 

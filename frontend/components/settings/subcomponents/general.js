@@ -6,7 +6,7 @@ import { TextContext } from "../../../contexts/textProvider";
 import Select from "../../select/select";
 import Counter from "../../counter/counter";
 import ColorPicker from "../../colorpicker/colorpicker";
-import Toggle from "../../toggle/toggle";
+import Switch from "../../switch/switch";
 import SvgSprite from "../../svgSprite/svgSprite";
 import Textarea from "../../textarea/textarea";
 
@@ -16,10 +16,11 @@ import LowercaseIcon from "../../../icons/lowercase.svg";
 import ColorIcon from "../../../icons/color.svg";
 import TextTypeIcon from "../../../icons/textType.svg";
 import RemoveSpecialCharactersIcon from "../../../icons/removeSpecialCharacters.svg";
+import Button from "../../button/button";
 
 const General = () => {
   const { settings, updateSettings } = useContext(SettingsContext);
-  const { textTypes, texts } = useContext(TextContext);
+  const { textTypes } = useContext(TextContext);
 
   const {
     textType,
@@ -43,25 +44,6 @@ const General = () => {
           onChange={value => updateSettings("textType", value)}
         />
 
-        <Toggle
-          label="Custom text"
-          isActive={useCustomText}
-          onChange={bool => {
-            if (customText === "") {
-              updateSettings("customText", texts[textType].paragraph);
-            }
-
-            updateSettings("useCustomText", bool);
-          }}
-        />
-
-        {useCustomText && (
-          <Textarea
-            value={customText}
-            onChange={value => updateSettings("customText", value)}
-          />
-        )}
-
         <hr />
 
         <Counter
@@ -82,7 +64,7 @@ const General = () => {
           onChange={value => updateSettings("backgroundColor", value)}
         />
 
-        <Toggle
+        <Switch
           label="Lowercase"
           iconBefore={<SvgSprite icon={LowercaseIcon} />}
           isActive={lowercase}
@@ -94,7 +76,7 @@ const General = () => {
           }}
         />
 
-        <Toggle
+        <Switch
           label="Uppercase"
           iconBefore={<SvgSprite icon={UppercaseIcon} />}
           isActive={uppercase}
@@ -105,7 +87,7 @@ const General = () => {
             }
           }}
         />
-        <Toggle
+        <Switch
           label="Remove special characters"
           iconBefore={<SvgSprite icon={RemoveSpecialCharactersIcon} />}
           isActive={removeSpecialCharacters}

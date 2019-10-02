@@ -24,8 +24,7 @@ const Preset = ({ preset }) => {
     subline,
     paragraph,
     backgroundColor,
-    textType,
-    useCustomText
+    textType
   } = settings;
 
   const date = new Date(dateCreated);
@@ -97,9 +96,7 @@ const Preset = ({ preset }) => {
           </tr>
           <tr>
             <td className="preset__label">Text type</td>
-            <td className="preset__value">
-              {useCustomText ? "Custom" : updatedTextType.label}
-            </td>
+            <td className="preset__value">{updatedTextType.label}</td>
           </tr>
         </tbody>
       </table>

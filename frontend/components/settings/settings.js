@@ -7,6 +7,7 @@ import {
   AccordionItemPanel,
   AccordionItemState
 } from "react-accessible-accordion";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 import SvgSprite from "../svgSprite/svgSprite";
 
@@ -40,26 +41,57 @@ const Settings = () => {
       <div className="settings__bar">
         <Bar />
       </div>
-      <Accordion allowZeroExpanded allowMultipleExpanded>
-        {items.map((item, index) => (
-          <AccordionItem key={item.label} uuid={`${index}`}>
-            <AccordionItemHeading>
-              <AccordionItemButton>
-                <AccordionItemState>
-                  {({ expanded }) => (
-                    <>
-                      <span>{item.label}</span>
+      <Tabs>
+        <TabList>
+          <Tab>Text</Tab>
+          <Tab>Styling</Tab>
+        </TabList>
 
-                      <SvgSprite icon={expanded ? MinusIcon : PlusIcon} />
-                    </>
-                  )}
-                </AccordionItemState>
-              </AccordionItemButton>
-            </AccordionItemHeading>
-            <AccordionItemPanel>{item.content}</AccordionItemPanel>
-          </AccordionItem>
-        ))}
-      </Accordion>
+        <TabPanel>
+          <Accordion allowZeroExpanded allowMultipleExpanded>
+            {items.map((item, index) => (
+              <AccordionItem key={item.label} uuid={`${index}`}>
+                <AccordionItemHeading>
+                  <AccordionItemButton>
+                    <AccordionItemState>
+                      {({ expanded }) => (
+                        <>
+                          <span>{item.label}</span>
+
+                          <SvgSprite icon={expanded ? MinusIcon : PlusIcon} />
+                        </>
+                      )}
+                    </AccordionItemState>
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>{item.content}</AccordionItemPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </TabPanel>
+        <TabPanel>
+          <Accordion allowZeroExpanded allowMultipleExpanded>
+            {items.map((item, index) => (
+              <AccordionItem key={item.label} uuid={`${index}`}>
+                <AccordionItemHeading>
+                  <AccordionItemButton>
+                    <AccordionItemState>
+                      {({ expanded }) => (
+                        <>
+                          <span>{item.label}aa</span>
+
+                          <SvgSprite icon={expanded ? MinusIcon : PlusIcon} />
+                        </>
+                      )}
+                    </AccordionItemState>
+                  </AccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>{item.content}</AccordionItemPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </TabPanel>
+      </Tabs>
     </StyledSettings>
   );
 };

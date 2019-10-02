@@ -77,6 +77,37 @@ const StyledSettings = styled.div`
       fill: ${props => props.theme.colors.primary};
     }
   }
+
+  .react-tabs__tab-list {
+    position: sticky;
+    top: 60px;
+    border-bottom: 1px solid ${props => props.theme.colors.border};
+    margin: 0;
+    padding: 0;
+    background: ${props => props.theme.colors.secondary};
+    z-index: 9;
+  }
+
+  .react-tabs__tab {
+    display: inline-block;
+    font-weight: bold;
+    position: relative;
+    list-style: none;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+  }
+
+  .react-tabs__tab--selected {
+    background: ${props => props.theme.colors.border};
+  }
+
+  .react-tabs__tab-panel {
+    display: none;
+  }
+
+  .react-tabs__tab-panel--selected {
+    display: block;
+  }
 `;
 
 export default StyledSettings;

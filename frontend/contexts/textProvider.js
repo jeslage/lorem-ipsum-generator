@@ -24,10 +24,11 @@ const TextProvider = ({ children }) => {
     string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
 
   const getText = (key, tag) => {
+    let text = "";
+
     const textsArray = settings[key].custom
       ? settings[key].customText
       : texts[textType][key];
-    let text = "";
 
     if (textsArray[index[key]]) {
       text = textsArray[index[key]];
@@ -37,7 +38,9 @@ const TextProvider = ({ children }) => {
       index[key] = 0;
     }
 
-    const repeatBy = Math.ceil(settings[key].numberOfCharacters / text.length);
+    const repeatBy = Math.ceil(
+      settings[key].numberOfCharacters / text.length === 0 ? 1 : text.length
+    );
 
     let updatedText = `${text} `
       .repeat(repeatBy)
@@ -46,10 +49,13 @@ const TextProvider = ({ children }) => {
 
     if (lowercase) updatedText = updatedText.toLowerCase();
     if (uppercase) updatedText = updatedText.toUpperCase();
+
     if (key === "paragraph" && updatedText.slice(-1) !== ".")
       updatedText = `${updatedText}.`;
+
     if (removeSpecialCharacters)
       updatedText = deleteSpecialCharacters(updatedText);
+
     if (printTags) updatedText = `<${tag}>${updatedText}</${tag}>`;
 
     return updatedText;

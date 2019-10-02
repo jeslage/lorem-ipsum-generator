@@ -40,6 +40,7 @@ const StyledText = styled.div`
       font-weight: normal;
       margin: 0;
       top: 50%;
+      color: #000;
       transform: translateY(-50%) rotate(-90deg);
     }
 

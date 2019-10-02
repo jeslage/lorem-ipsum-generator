@@ -69,11 +69,9 @@ const Paragraph = () => {
           isActive={custom}
           onChange={bool => {
             if (customText.length === 0) {
-              updateNestedSettings(
-                "paragraph",
-                "customText",
-                texts[textType].paragraph
-              );
+              updateNestedSettings("paragraph", "customText", [
+                texts[textType].paragraph[0]
+              ]);
             }
 
             updateNestedSettings("paragraph", "custom", bool);

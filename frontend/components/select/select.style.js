@@ -19,7 +19,7 @@ const StyledSelect = styled.div`
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.primary};
+      fill: ${props => props.theme.colors.border};
     }
   }
 
@@ -60,7 +60,7 @@ const StyledSelect = styled.div`
       width: 10px;
       height: 2px;
       border-radius: 1px;
-      background: ${props => props.theme.colors.primary};
+      background: ${props => props.theme.colors.color};
     }
 
     &:before {

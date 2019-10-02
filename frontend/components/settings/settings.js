@@ -33,18 +33,14 @@ const Settings = () => {
     { label: "Headline", content: <Headline /> },
     { label: "Subline", content: <Subline /> },
     { label: "Lists", content: <List /> },
-    { label: "Utility", content: <Utility /> },
-    { label: "Presets", content: <Presets /> }
+    { label: "Utility", content: <Utility /> }
   ];
   return (
     <StyledSettings>
-      <div className="settings__bar">
-        <Bar />
-      </div>
       <Tabs>
         <TabList>
           <Tab>Text</Tab>
-          <Tab>Styling</Tab>
+          <Tab>Presets</Tab>
         </TabList>
 
         <TabPanel>
@@ -68,28 +64,13 @@ const Settings = () => {
               </AccordionItem>
             ))}
           </Accordion>
+
+          <div className="settings__bar">
+            <Bar />
+          </div>
         </TabPanel>
         <TabPanel>
-          <Accordion allowZeroExpanded allowMultipleExpanded>
-            {items.map((item, index) => (
-              <AccordionItem key={item.label} uuid={`${index}`}>
-                <AccordionItemHeading>
-                  <AccordionItemButton>
-                    <AccordionItemState>
-                      {({ expanded }) => (
-                        <>
-                          <span>{item.label}aa</span>
-
-                          <SvgSprite icon={expanded ? MinusIcon : PlusIcon} />
-                        </>
-                      )}
-                    </AccordionItemState>
-                  </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel>{item.content}</AccordionItemPanel>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <Presets />
         </TabPanel>
       </Tabs>
     </StyledSettings>

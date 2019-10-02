@@ -1,17 +1,20 @@
 import { createGlobalStyle } from "styled-components";
+import { mq } from "./tools";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: system-ui;
     margin: 0;
     padding: 0;
 
     background: ${props => props.theme.backgroundColor};
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.color};
   }
 
   main {
-    display: flex;
+    ${mq("m")} {
+      display: flex;
+    }
   }
 
   html,

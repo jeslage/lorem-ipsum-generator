@@ -19,7 +19,7 @@ const StyledCounter = styled.div`
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.primary};
+      fill: ${props => props.theme.colors.border};
     }
   }
 
@@ -38,7 +38,7 @@ const StyledCounter = styled.div`
     margin: 0;
     outline: none;
     background: none;
-    border: 1px solid ${props => props.theme.colors.primary};
+    border: 1px solid ${props => props.theme.colors.color};
     width: 30px;
     height: 30px;
     border-radius: 15px;
@@ -53,7 +53,7 @@ const StyledCounter = styled.div`
     }
 
     svg {
-      fill: ${props => props.theme.colors.primary};
+      fill: ${props => props.theme.colors.color};
       width: 22px;
       height: 22px;
     }
@@ -77,7 +77,7 @@ const StyledCounter = styled.div`
     background: none;
 
     &:focus {
-      border-color: ${props => props.theme.colors.primary};
+      border-color: ${props => props.theme.colors.color};
     }
   }
 `;

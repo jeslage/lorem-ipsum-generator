@@ -105,16 +105,16 @@ Counter.propTypes = {
 };
 
 Counter.defaultProps = {
-  label: null,
-  title: null,
-  description: null,
+  label: "",
+  title: "",
+  description: "",
   value: 0,
   min: 1,
   max: 100,
   steps: 1,
   onChange: () => {},
-  suffix: null,
-  iconBefore: null
+  suffix: "",
+  iconBefore: ""
 };
 
 export default Counter;

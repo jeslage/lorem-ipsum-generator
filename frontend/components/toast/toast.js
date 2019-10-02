@@ -6,9 +6,9 @@ import CheckIcon from "../../icons/check.svg";
 
 const StyledToast = styled.div`
   width: 340px;
-  background: ${({ theme }) => theme.colors.secondary};
+  background: ${({ theme }) => theme.colors.active};
   box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.2);
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.color};
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@ const StyledToast = styled.div`
     padding: 20px 15px;
     display: flex;
     justify-content: center;
-    background: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.color};
   }
 
   span {
@@ -35,7 +35,7 @@ const StyledToast = styled.div`
   svg {
     width: 15px;
     height: 15px;
-    fill: ${({ theme }) => theme.colors.secondary};
+    fill: ${({ theme }) => theme.colors.background};
   }
 `;
 

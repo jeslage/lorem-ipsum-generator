@@ -1,36 +1,38 @@
 import styled, { css } from "styled-components";
 
 const StyledPreset = styled.div`
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-end;
 
   button {
     background: none;
     outline: none;
     border: none;
+    margin: 0;
+    padding: 0;
     appearance: none;
     cursor: pointer;
-    padding: 0;
-    margin: 0 10px;
-    color: inherit;
-    text-transform: uppercase;
-    font-weight: bold;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    border: 1px solid ${props => props.theme.colors.secondary};
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  }
+
+  .preset__use {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
+
+  .preset__remove {
+    margin-top: 10px;
 
     svg {
-      fill: ${props => props.theme.colors.secondary};
-      width: 22px;
-      height: 22px;
-    }
-
-    &.preset__remove svg {
+      fill: ${props => props.theme.colors.color};
       width: 15px;
       height: 15px;
     }
@@ -45,26 +47,6 @@ const StyledPreset = styled.div`
     background-color: ${({ backgroundColor }) => backgroundColor};
     overflow: hidden;
     padding: 10px 20px;
-
-    .preset__buttons {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      transition: opacity 0.2s ease-in-out;
-      opacity: 0;
-      position: absolute;
-      border-radius: 5px 5px 0 0;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: ${props => props.theme.colors.primary};
-      color: ${props => props.theme.colors.secondary};
-    }
-
-    &:hover .preset__buttons {
-      opacity: 1;
-    }
   }
 
   .preset__text {
@@ -126,22 +108,23 @@ const StyledPreset = styled.div`
     font-size: 10px;
     text-transform: uppercase;
     font-weight: bold;
-    color: ${props => props.theme.colors.primary};
-    border-right: 1px solid ${props => props.theme.colors.secondary};
+    text-align: left;
+    color: ${props => props.theme.colors.color};
+    border-right: 1px solid ${props => props.theme.colors.background};
   }
 
   .preset__value {
     text-align: right;
     font-size: 14px;
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.color};
   }
 
   table {
     border-spacing: 0;
     border-collapse: collapse;
     width: 100%;
-    background: ${props => props.theme.colors.background};
-    border-top: 1px solid ${props => props.theme.colors.secondary};
+    background: ${props => props.theme.colors.active};
+    border-top: 1px solid ${props => props.theme.colors.background};
 
     tr,
     td {
@@ -157,7 +140,7 @@ const StyledPreset = styled.div`
     tr:first-of-type {
       .preset__label,
       .preset__value {
-        border-bottom: 1px solid ${props => props.theme.colors.secondary};
+        border-bottom: 1px solid ${props => props.theme.colors.background};
       }
     }
   }

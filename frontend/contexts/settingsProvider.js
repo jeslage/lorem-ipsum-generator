@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 import { Base64 } from "js-base64";
 
@@ -28,7 +28,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
     lowercase: false,
     uppercase: false,
     paragraph: {
-      fontFamily: "Arial, Helvetica, sans-serif",
+      fontFamily: fontFamilies[0].value,
       count: 6,
       numberOfCharacters: 1000,
       size: 20,
@@ -45,7 +45,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       customText: []
     },
     headline: {
-      fontFamily: "Arial, Helvetica, sans-serif",
+      fontFamily: fontFamilies[0].value,
       visible: false,
       numberOfCharacters: 50,
       frequency: 2,
@@ -63,7 +63,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       customText: []
     },
     subline: {
-      fontFamily: "Arial, Helvetica, sans-serif",
+      fontFamily: fontFamilies[0].value,
       visible: false,
       numberOfCharacters: 50,
       frequency: 2,
@@ -114,19 +114,22 @@ const SettingsProvider = ({ queryConfig, children }) => {
 
   const [utility, setUtility] = useState({
     // Styling
-    darkMode: false,
+    darkMode: true,
     printTags: false
   });
 
+  const router = useRouter();
+
   // Update route query params based on settings
   useEffect(() => {
-    Router.replace(
-      { pathname: "/", query: { ...settings } },
-      `/?c=${Base64.encode(JSON.stringify(settings))}`,
-      {
-        shallow: true
-      }
-    );
+    router &&
+      router.replace(
+        { pathname: "/", query: { ...settings } },
+        `/?c=${Base64.encode(JSON.stringify(settings))}`,
+        {
+          shallow: true
+        }
+      );
   }, [settings]);
 
   // Update utility value
@@ -204,16 +207,18 @@ const SettingsProvider = ({ queryConfig, children }) => {
   const getColors = () =>
     utility.darkMode
       ? {
-          primary: "#aaa",
-          secondary: "#222",
-          border: "#323232",
-          background: "#121212"
+          color: "#c9c9c9",
+          background: "#202020",
+          border: "#808080",
+          hover: "#181818",
+          active: "#080808"
         }
       : {
-          primary: "#323232",
-          secondary: "#E0E0E0",
-          border: "#C9C9C9",
-          background: "#fff"
+          color: "#323232",
+          background: "#E0E0E0",
+          border: "#3b3b3b",
+          hover: "#e8e8e8",
+          active: "#fff"
         };
 
   return (

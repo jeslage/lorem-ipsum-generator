@@ -19,7 +19,7 @@ const StyledShorthand = styled.div`
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.primary};
+      fill: ${props => props.theme.colors.border};
     }
   }
 
@@ -34,7 +34,7 @@ const StyledShorthand = styled.div`
   }
 
   input {
-    border: 1px solid ${props => props.theme.colors.primary};
+    border: 1px solid ${props => props.theme.colors.color};
     border-radius: 30px;
     outline: none;
     display: inline-block;

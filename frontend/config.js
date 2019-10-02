@@ -58,6 +58,11 @@ export const texts = {
 };
 
 export const fontFamilies = [
+  {
+    label: "System UI",
+    value:
+      "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif"
+  },
   { label: "Arial, Helvetica", value: "Arial, Helvetica, sans-serif" },
   { label: "Arial Black", value: "'Arial Black', Gadget, sans-serif" },
   { label: "Comic Sans", value: "'Comic Sans MS', cursive, sans-serif" },

@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import StyledTextarea from "./textarea.style";
+import SvgSprite from "../svgSprite/svgSprite";
+
+import RemoveIcon from "../../icons/remove.svg";
 
 const Textarea = ({ label, value, onChange, onRemove }) => {
   return (
@@ -18,7 +21,11 @@ const Textarea = ({ label, value, onChange, onRemove }) => {
             {value.length} {value.length === 1 ? "character" : "characters"}
           </small>
         </span>
-        {onRemove && <button onClick={() => onRemove()}>Remove</button>}
+        {onRemove && (
+          <button onClick={() => onRemove()}>
+            <SvgSprite icon={RemoveIcon} />
+          </button>
+        )}
       </div>
     </StyledTextarea>
   );

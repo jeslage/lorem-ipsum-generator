@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  small {
+    font-size: 11px;
+  }
+
   html,
   body,
   div,

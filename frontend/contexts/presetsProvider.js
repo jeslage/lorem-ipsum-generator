@@ -1,29 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Base64 } from "js-base64";
+import Cookies from "js-cookie";
+
 import { SettingsContext } from "./settingsProvider";
 
 export const PresetsContext = React.createContext();
 
-const PresetsProvider = ({ children }) => {
-  const [presets, setPresets] = useState([]);
+const PresetsProvider = ({ children, initialPresets }) => {
+  const [presets, setPresets] = useState(
+    initialPresets ? JSON.parse(Base64.decode(initialPresets)) : []
+  );
   const { settings } = useContext(SettingsContext);
 
   useEffect(() => {
-    const storageItems = window.localStorage.getItem("presets");
-    if (storageItems) {
-      setPresets(JSON.parse(Base64.decode(storageItems)));
-    }
-  }, []);
-
-  useEffect(
-    () =>
-      window.localStorage.setItem(
-        "presets",
-        Base64.encode(JSON.stringify(presets))
-      ),
-    [presets]
-  );
+    Cookies.set("presets", Base64.encode(JSON.stringify(presets)));
+  }, [presets]);
 
   const addPreset = () => {
     const obj = {

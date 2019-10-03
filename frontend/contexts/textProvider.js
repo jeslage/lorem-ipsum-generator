@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
-import { textTypes, texts } from "../config";
+import { textTypes, texts } from "../config/text";
 
 import { SettingsContext } from "./settingsProvider";
 
 export const TextContext = React.createContext();
 
-const getRandomValue = arr => arr[Math.floor(Math.random() * arr.length)];
+// const getRandomValue = arr => arr[Math.floor(Math.random() * arr.length)];
 
 const TextProvider = ({ children }) => {
   const { settings, utility } = useContext(SettingsContext);
   const { removeSpecialCharacters, lowercase, uppercase, textType } = settings;
-  const { printTags } = utility;
+  const { printTags, printInlineStyles } = utility;
 
   const index = {
     paragraph: 0,
@@ -22,6 +22,13 @@ const TextProvider = ({ children }) => {
 
   const deleteSpecialCharacters = string =>
     string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
+
+  const getInlineStyles = type => `
+    font-family: ${type.fontFamily};
+    font-size: ${type.size}px;
+    line-height: ${type.lineHeight};
+    color: ${type.color};
+`;
 
   const getText = (key, tag) => {
     let text = "";
@@ -56,13 +63,52 @@ const TextProvider = ({ children }) => {
     if (removeSpecialCharacters)
       updatedText = deleteSpecialCharacters(updatedText);
 
-    if (printTags) updatedText = `<${tag}>${updatedText}</${tag}>`;
+    if (printTags) {
+      updatedText = printInlineStyles
+        ? `<${tag} style="${getInlineStyles(
+            settings[key]
+          ).trim()}">${updatedText}</${tag}>`
+        : `<${tag}>${updatedText}</${tag}>`;
+    }
 
     return updatedText;
   };
 
+  const getList = () => {
+    const ListTag = settings.list.orderedList ? "ol" : "ul";
+
+    const list = (
+      <>
+        {printTags && (
+          <p className="text__tag">
+            {`<${ListTag}${
+              printInlineStyles
+                ? ` style="${getInlineStyles(settings.paragraph).trim()}"`
+                : ""
+            }>`}
+          </p>
+        )}
+        <ListTag>
+          {texts[textType].list.map(item => {
+            let updatedItem = item;
+            if (lowercase) updatedItem = updatedItem.toLowerCase();
+            if (uppercase) updatedItem = updatedItem.toUpperCase();
+            if (removeSpecialCharacters)
+              updatedItem = updatedIeleteSpecialCharacters(item);
+
+            if (printTags) updatedItem = `<li>${item}</li>`;
+            return <li>{updatedItem}</li>;
+          })}
+        </ListTag>
+        {printTags && <p className="text__tag">{`</${ListTag}>`}</p>}
+      </>
+    );
+
+    return list;
+  };
+
   return (
-    <TextContext.Provider value={{ textTypes, texts, getText }}>
+    <TextContext.Provider value={{ textTypes, texts, getText, getList }}>
       {children}
     </TextContext.Provider>
   );

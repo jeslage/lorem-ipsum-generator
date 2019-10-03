@@ -1,3 +1,3 @@
-import Button from "../../components/button/button";
+import Button from "../../components/atoms/button/button";
 
 export default <Button>Test</Button>;

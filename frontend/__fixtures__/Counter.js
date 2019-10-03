@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Counter from "../components/counter/counter";
+import Counter from "../components/atoms/counter/counter";
 
 export default {
   Default: <Counter label="test" />,

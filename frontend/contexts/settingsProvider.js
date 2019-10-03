@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 import { Base64 } from "js-base64";
 
-import { fontFamilies } from "../config";
+import { fontFamilies } from "../config/fontFamilies";
 
 // const buildQueryString = obj =>
 //   encodeURI(
@@ -115,7 +115,8 @@ const SettingsProvider = ({ queryConfig, children }) => {
   const [utility, setUtility] = useState({
     // Styling
     darkMode: true,
-    printTags: false
+    printTags: false,
+    printInlineStyles: false
   });
 
   const router = useRouter();
@@ -217,8 +218,8 @@ const SettingsProvider = ({ queryConfig, children }) => {
           color: "#323232",
           background: "#E0E0E0",
           border: "#3b3b3b",
-          hover: "#e8e8e8",
-          active: "#fff"
+          hover: "#d6d6d6",
+          active: "#e8e8e8"
         };
 
   return (

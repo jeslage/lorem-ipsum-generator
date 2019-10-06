@@ -15,6 +15,7 @@
 
         main {
             width: {{$settings["textWidth"]}};
+            text-transform: {{$settings["textTransform"]}};
         }
 
         p, ol, ul {
@@ -23,6 +24,7 @@
             letter-spacing: {{$settings["paragraph"]["letterSpacing"]}}px;
             line-height: {{$settings["paragraph"]["lineHeight"]}};
             color: {{$settings["paragraph"]["color"]}};
+            text-align: {{$settings["paragraph"]["textAlign"]}};
             margin: {{$settings["paragraph"]["margin"]["top"]}}px {{$settings["paragraph"]["margin"]["right"]}}px {{$settings["paragraph"]["margin"]["bottom"]}}px {{$settings["paragraph"]["margin"]["left"]}}px;
         }
 
@@ -32,6 +34,7 @@
             font-size: {{$settings["headline"]["size"]}}px;
             line-height: {{$settings["headline"]["lineHeight"]}};
             color: {{$settings["headline"]["color"]}};
+            text-align: {{$settings["headline"]["textAlign"]}};
             margin: {{$settings["headline"]["margin"]["top"]}}px {{$settings["headline"]["margin"]["right"]}}px {{$settings["headline"]["margin"]["bottom"]}}px {{$settings["headline"]["margin"]["left"]}}px;
         }
         @endif
@@ -42,6 +45,7 @@
             font-size: {{$settings["subline"]["size"]}}px;
             line-height: {{$settings["subline"]["lineHeight"]}};
             color: {{$settings["subline"]["color"]}};
+            text-align: {{$settings["subline"]["textAlign"]}};
             margin: {{$settings["subline"]["margin"]["top"]}}px {{$settings["subline"]["margin"]["right"]}}px {{$settings["subline"]["margin"]["bottom"]}}px {{$settings["subline"]["margin"]["left"]}}px;
         }
         @endif

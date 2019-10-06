@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    const ADMIN_ROLE = 'admin';
+    const DEFAULT_ROLE = 'user';
+
+    public function isAdmin()
+    {
+        return $this->role === self::ADMIN_ROLE;
+    }
 }

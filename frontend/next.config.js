@@ -15,6 +15,14 @@ const nextConfig = compose(withSourceMaps)({
       loader: "svg-sprite-loader"
     });
 
+    config.module.rules.push({
+      test: /\.graphql$/,
+      loader: "webpack-graphql-loader",
+      options: {
+        output: "document"
+      }
+    });
+
     return config;
   }
 });

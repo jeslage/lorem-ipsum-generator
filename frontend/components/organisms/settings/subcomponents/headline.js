@@ -8,16 +8,20 @@ import Switch from "../../../atoms/switch/switch";
 import Select from "../../../atoms/select/select";
 import Code from "../../../atoms/code/code";
 import ColorPicker from "../../../atoms/colorpicker/colorpicker";
-import SvgSprite from "../../../atoms/svgSprite/svgSprite";
 import Shorthand from "../../../atoms/shorthand/shorthand";
 import Textarea from "../../../atoms/textarea/textarea";
 import Button from "../../../atoms/button/button";
+import Range from "../../../atoms/range/range";
+import RadioGroup from "../../../atoms/radioGroup/radioGroup";
 
 import FontFamilyIcon from "../../../icons/fontFamily.svg";
 import LineHeightIcon from "../../../icons/lineHeight.svg";
 import ColorIcon from "../../../icons/color.svg";
 import FontSizeIcon from "../../../icons/fontSize.svg";
 import MarginIcon from "../../../icons/margin.svg";
+import LeftAlignIcon from "../../../icons/leftAlign.svg";
+import CenterAlignIcon from "../../../icons/centerAlign.svg";
+import RightAlignIcon from "../../../icons/rightAlign.svg";
 
 const Headline = () => {
   const {
@@ -41,6 +45,7 @@ const Headline = () => {
     frequency,
     color,
     margin,
+    textAlign,
     numberOfCharacters,
     custom,
     customText
@@ -131,16 +136,17 @@ const Headline = () => {
             <Select
               options={fontFamilies}
               initialValue={fontFamily}
-              iconBefore={<SvgSprite icon={FontFamilyIcon} />}
+              iconBefore={FontFamilyIcon}
               label="Family"
               onChange={value =>
                 updateNestedSettings("headline", "fontFamily", value)
               }
             />
-            <Counter
+            <Range
               label="Size"
-              iconBefore={<SvgSprite icon={FontSizeIcon} />}
+              iconBefore={FontSizeIcon}
               value={size}
+              suffix="px"
               onChange={value =>
                 updateNestedSettings("headline", "size", value)
               }
@@ -148,7 +154,7 @@ const Headline = () => {
 
             <Counter
               label="Line Height"
-              iconBefore={<SvgSprite icon={LineHeightIcon} />}
+              iconBefore={LineHeightIcon}
               value={lineHeight}
               steps={0.25}
               onChange={value =>
@@ -157,22 +163,38 @@ const Headline = () => {
             />
             <ColorPicker
               label="Color"
-              iconBefore={<SvgSprite icon={ColorIcon} />}
+              iconBefore={ColorIcon}
               value={color}
               onChange={value =>
                 updateNestedSettings("headline", "color", value)
               }
             />
             <Shorthand
-              iconBefore={<SvgSprite icon={MarginIcon} />}
+              iconBefore={MarginIcon}
               value={margin}
               label="Margin"
               onChange={value =>
                 updateNestedSettings("headline", "margin", value)
               }
             />
+
+            <RadioGroup
+              label="Text align"
+              value={textAlign}
+              name="headline-textalign"
+              iconBefore={LeftAlignIcon}
+              options={[
+                { value: "left", icon: LeftAlignIcon },
+                { value: "center", icon: CenterAlignIcon },
+                { value: "right", icon: RightAlignIcon }
+              ]}
+              onChange={value =>
+                updateNestedSettings("headline", "textAlign", value)
+              }
+            />
+
             <Code
-              code={`h2 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n}`}
+              code={`h2 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n\ttext-align: ${textAlign};\r\n}`}
             />
           </>
         )}

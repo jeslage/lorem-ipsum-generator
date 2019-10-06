@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import PropTypes from "prop-types";
 
 import { textTypes, texts } from "../config/text";
@@ -10,8 +10,9 @@ export const TextContext = React.createContext();
 // const getRandomValue = arr => arr[Math.floor(Math.random() * arr.length)];
 
 const TextProvider = ({ children }) => {
+  const textContainer = useRef();
   const { settings, utility } = useContext(SettingsContext);
-  const { removeSpecialCharacters, lowercase, uppercase, textType } = settings;
+  const { removeSpecialCharacters, textTransform, textType } = settings;
   const { printTags, printInlineStyles } = utility;
 
   const index = {
@@ -54,8 +55,8 @@ const TextProvider = ({ children }) => {
       .substring(0, settings[key].numberOfCharacters)
       .trim();
 
-    if (lowercase) updatedText = updatedText.toLowerCase();
-    if (uppercase) updatedText = updatedText.toUpperCase();
+    if (textTransform === "lowercase") updatedText = updatedText.toLowerCase();
+    if (textTransform === "uppercase") updatedText = updatedText.toUpperCase();
 
     if (key === "paragraph" && updatedText.slice(-1) !== ".")
       updatedText = `${updatedText}.`;
@@ -89,15 +90,17 @@ const TextProvider = ({ children }) => {
           </p>
         )}
         <ListTag>
-          {texts[textType].list.map(item => {
+          {texts[textType].list.map((item, i) => {
             let updatedItem = item;
-            if (lowercase) updatedItem = updatedItem.toLowerCase();
-            if (uppercase) updatedItem = updatedItem.toUpperCase();
+            if (textTransform === "lowercase")
+              updatedItem = updatedItem.toLowerCase();
+            if (textTransform === "uppercase")
+              updatedItem = updatedItem.toUpperCase();
             if (removeSpecialCharacters)
-              updatedItem = updatedIeleteSpecialCharacters(item);
+              updatedItem = deleteSpecialCharacters(item);
 
             if (printTags) updatedItem = `<li>${item}</li>`;
-            return <li>{updatedItem}</li>;
+            return <li key={i}>{updatedItem}</li>;
           })}
         </ListTag>
         {printTags && <p className="text__tag">{`</${ListTag}>`}</p>}
@@ -108,7 +111,9 @@ const TextProvider = ({ children }) => {
   };
 
   return (
-    <TextContext.Provider value={{ textTypes, texts, getText, getList }}>
+    <TextContext.Provider
+      value={{ textContainer, textTypes, texts, getText, getList }}
+    >
       {children}
     </TextContext.Provider>
   );

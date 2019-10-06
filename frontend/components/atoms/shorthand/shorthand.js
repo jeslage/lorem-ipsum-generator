@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import SvgSprite from "../svgSprite/svgSprite";
+
 import StyledShorthand from "./shorthand.style";
 
 const Shorthand = ({
@@ -49,7 +51,7 @@ const Shorthand = ({
       <div className="shorthand__text">
         {(label || iconBefore) && (
           <p className="shorthand__label" title={title}>
-            {iconBefore && iconBefore}
+            {iconBefore && <SvgSprite icon={iconBefore} />}
             {label && label}
           </p>
         )}
@@ -115,7 +117,7 @@ Shorthand.propTypes = {
     right: PropTypes.number
   }),
   onChange: PropTypes.func,
-  iconBefore: PropTypes.node
+  iconBefore: PropTypes.shape()
 };
 
 Shorthand.defaultProps = {

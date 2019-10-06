@@ -32,12 +32,10 @@ const Bar = () => {
 
   return (
     <>
-      <Button onClick={copyText}>
-        <SvgSprite icon={CopyIcon} />
+      <Button onClick={copyText} iconBefore={CopyIcon}>
         Copy
       </Button>
-      <Button onClick={reset}>
-        <SvgSprite icon={RemoveIcon} />
+      <Button onClick={reset} iconBefore={RemoveIcon}>
         Reset settings
       </Button>
     </>

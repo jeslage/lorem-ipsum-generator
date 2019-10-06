@@ -21,7 +21,9 @@ const StyledPreset = styled.div`
     display: block;
     width: 100%;
     border-radius: 5px;
-    transition: transform 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    cursor: ${props => (props.isDragging ? "grabbing" : "grab")};
+    opacity: ${props => (props.isDragging ? "0.1" : "1")};
 
     &:hover {
       transform: scale(1.01);
@@ -50,17 +52,7 @@ const StyledPreset = styled.div`
   }
 
   .preset__text {
-    ${props =>
-      props.lowercase &&
-      css`
-        text-transform: lowercase;
-      `}
-
-    ${props =>
-      props.uppercase &&
-      css`
-        text-transform: uppercase;
-      `}
+    text-transform: ${props => props.textTransform};
   }
 
   .preset__paragraph {
@@ -96,11 +88,12 @@ const StyledPreset = styled.div`
     margin: 10px 0;
 
     small {
+      display: block;
       font-family: Helvetica, Arial, sans-serif;
       font-size: 10px;
       text-transform: uppercase;
       font-weight: normal;
-      margin-left: 10px;
+      margin-bottom: 5px;
     }
   }
 

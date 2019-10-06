@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
-import { Base64 } from "js-base64";
 
 import { fontFamilies } from "../config/fontFamilies";
+import { HistoryContext } from "./historyProvider";
+
+import { encode64 } from "../helper";
 
 // const buildQueryString = obj =>
 //   encodeURI(
@@ -20,13 +22,14 @@ import { fontFamilies } from "../config/fontFamilies";
 export const SettingsContext = React.createContext();
 
 const SettingsProvider = ({ queryConfig, children }) => {
+  const { addToHistory } = useContext(HistoryContext);
+
   const defaultConfig = {
     textType: "loremIpsum",
     textWidth: 100,
     backgroundColor: "#fff",
     removeSpecialCharacters: false,
-    lowercase: false,
-    uppercase: false,
+    textTransform: "none",
     paragraph: {
       fontFamily: fontFamilies[0].value,
       count: 6,
@@ -35,6 +38,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       lineHeight: 1.5,
       letterSpacing: 0,
       color: "#000",
+      textAlign: "left",
       margin: {
         top: 20,
         right: 0,
@@ -53,6 +57,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       size: 30,
       lineHeight: 1.5,
       color: "#000",
+      textAlign: "left",
       margin: {
         top: 20,
         right: 0,
@@ -71,6 +76,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       size: 24,
       lineHeight: 1.5,
       color: "#000",
+      textAlign: "left",
       margin: {
         top: 20,
         right: 0,
@@ -93,15 +99,14 @@ const SettingsProvider = ({ queryConfig, children }) => {
     // General
     textType: queryConfig.textType || defaultConfig.textType,
     textWidth: queryConfig.textWidth || defaultConfig.textWidth,
+    textTransform: queryConfig.textTransform || defaultConfig.textTransform,
+
     backgroundColor:
       queryConfig.backgroundColor || defaultConfig.backgroundColor,
-    useCustomText: queryConfig.useCustomText || defaultConfig.useCustomText,
-    customText: queryConfig.customText || defaultConfig.customText,
     removeSpecialCharacters:
       queryConfig.removeSpecialCharacters ||
       defaultConfig.removeSpecialCharacters,
-    lowercase: queryConfig.lowercase || defaultConfig.lowercase,
-    uppercase: queryConfig.uppercase || defaultConfig.uppercase,
+
     // Paragraph settings
     paragraph: queryConfig.paragraph || defaultConfig.paragraph,
     // Headline settings
@@ -113,13 +118,23 @@ const SettingsProvider = ({ queryConfig, children }) => {
   });
 
   const [utility, setUtility] = useState({
-    // Styling
     darkMode: true,
     printTags: false,
     printInlineStyles: false
   });
 
   const router = useRouter();
+
+  useEffect(
+    () =>
+      addToHistory({
+        parentKey: null,
+        key: "initialSettings",
+        value: null,
+        settings: encode64(settings)
+      }),
+    []
+  );
 
   // Update route query params based on settings
   useEffect(() => {
@@ -142,22 +157,35 @@ const SettingsProvider = ({ queryConfig, children }) => {
   };
 
   // Update settings value
-  const updateSettings = (key, value) => {
-    setSettings(prev => ({
-      ...prev,
-      [key]: value
-    }));
+  const updateSettings = (key, value, changeHistory = true) => {
+    const newSettings = settings;
+    newSettings[key] = value;
+
+    if (changeHistory)
+      addToHistory({
+        parentKey: null,
+        key,
+        value,
+        settings: encode64(newSettings)
+      });
+
+    setSettings(newSettings);
   };
 
   // Update nested settings value
-  const updateNestedSettings = (key, subKey, value) => {
-    setSettings(prev => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        [subKey]: value
-      }
-    }));
+  const updateNestedSettings = (key, subKey, value, changeHistory = true) => {
+    const newSettings = settings;
+    newSettings[key][subKey] = value;
+
+    if (changeHistory)
+      addToHistory({
+        parentKey: key,
+        key: subKey,
+        value,
+        settings: encode64(newSettings)
+      });
+
+    setSettings(newSettings);
   };
 
   const updateNestedArray = (key, subKey, value, index) => {
@@ -195,12 +223,27 @@ const SettingsProvider = ({ queryConfig, children }) => {
   };
 
   // Update all settings
-  const updateAllSettings = obj => {
+  const updateAllSettings = (obj, changeHistory = true) => {
+    if (changeHistory)
+      addToHistory({
+        parentKey: null,
+        key: "allSettings",
+        value: null,
+        settings: encode64(obj)
+      });
+
     setSettings(obj);
   };
 
   // Reset text settings
   const resetSettings = () => {
+    addToHistory({
+      parentKey: null,
+      key: "resetSettings",
+      value: null,
+      settings: encode64(defaultConfig)
+    });
+
     setSettings(defaultConfig);
   };
 
@@ -219,7 +262,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
           background: "#E0E0E0",
           border: "#3b3b3b",
           hover: "#d6d6d6",
-          active: "#e8e8e8"
+          active: "#c8c8c8"
         };
 
   return (

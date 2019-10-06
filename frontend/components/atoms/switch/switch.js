@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
+import SvgSprite from "../svgSprite/svgSprite";
+
 import StyledSwitch from "./switch.style";
 
 const Switch = ({ iconBefore, label, onChange, isActive }) => {
@@ -22,7 +24,7 @@ const Switch = ({ iconBefore, label, onChange, isActive }) => {
     <StyledSwitch active={active}>
       {(label || iconBefore) && (
         <p className="switch__label">
-          {iconBefore && iconBefore}
+          {iconBefore && <SvgSprite icon={iconBefore} />}
           {label && label}
         </p>
       )}
@@ -59,7 +61,7 @@ const Switch = ({ iconBefore, label, onChange, isActive }) => {
 };
 
 Switch.propTypes = {
-  iconBefore: PropTypes.node,
+  iconBefore: PropTypes.shape(),
   label: PropTypes.string,
   onChange: PropTypes.func,
   isActive: PropTypes.bool

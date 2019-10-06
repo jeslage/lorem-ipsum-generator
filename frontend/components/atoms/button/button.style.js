@@ -22,11 +22,22 @@ const StyledButton = styled.button`
     color: ${props => props.theme.colors.color};
   }
 
+  &[disabled] {
+    opacity: 0.3;
+  }
+
   svg {
     height: 15px;
     width: auto;
-    margin-right: 10px;
     fill: ${props => props.theme.colors.color};
+
+    &.button__icon-before {
+      margin-right: 10px;
+    }
+
+    &.button__icon-after {
+      margin-left: 10px;
+    }
   }
 `;
 

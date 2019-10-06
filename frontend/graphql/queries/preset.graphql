@@ -1,0 +1,9 @@
+query Preset($id: Int!) {
+  presets(id: $id) {
+    dateCreated
+    name
+    description
+    settings
+    id
+  }
+}

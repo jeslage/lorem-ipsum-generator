@@ -7,8 +7,7 @@ import Select from "../../../atoms/select/select";
 import Counter from "../../../atoms/counter/counter";
 import ColorPicker from "../../../atoms/colorpicker/colorpicker";
 import Switch from "../../../atoms/switch/switch";
-import SvgSprite from "../../../atoms/svgSprite/svgSprite";
-import Textarea from "../../../atoms/textarea/textarea";
+import RadioGroup from "../../../atoms/radioGroup/radioGroup";
 
 import TextWidthIcon from "../../../icons/textWidth.svg";
 import UppercaseIcon from "../../../icons/uppercase.svg";
@@ -16,7 +15,7 @@ import LowercaseIcon from "../../../icons/lowercase.svg";
 import ColorIcon from "../../../icons/color.svg";
 import TextTypeIcon from "../../../icons/textType.svg";
 import RemoveSpecialCharactersIcon from "../../../icons/removeSpecialCharacters.svg";
-import Button from "../../../atoms/button/button";
+import MixedcaseIcon from "../../../icons/mixedcase.svg";
 
 const General = () => {
   const { settings, updateSettings } = useContext(SettingsContext);
@@ -25,9 +24,8 @@ const General = () => {
   const {
     textType,
     textWidth,
+    textTransform,
     backgroundColor,
-    lowercase,
-    uppercase,
     useCustomText,
     customText,
     removeSpecialCharacters
@@ -40,7 +38,7 @@ const General = () => {
           options={textTypes}
           initialValue={textType}
           label="Genre"
-          iconBefore={<SvgSprite icon={TextTypeIcon} />}
+          iconBefore={TextTypeIcon}
           onChange={value => updateSettings("textType", value)}
         />
 
@@ -48,7 +46,7 @@ const General = () => {
 
         <Counter
           label="Width"
-          iconBefore={<SvgSprite icon={TextWidthIcon} />}
+          iconBefore={TextWidthIcon}
           min={10}
           max={100}
           value={textWidth}
@@ -59,48 +57,37 @@ const General = () => {
 
         <ColorPicker
           label="Background color"
-          iconBefore={<SvgSprite icon={ColorIcon} />}
+          iconBefore={ColorIcon}
           value={backgroundColor}
           onChange={value => updateSettings("backgroundColor", value)}
         />
 
         <Switch
-          label="Lowercase"
-          iconBefore={<SvgSprite icon={LowercaseIcon} />}
-          isActive={lowercase}
-          onChange={bool => {
-            updateSettings("lowercase", bool);
-            if (bool) {
-              updateSettings("uppercase", false);
-            }
-          }}
-        />
-
-        <Switch
-          label="Uppercase"
-          iconBefore={<SvgSprite icon={UppercaseIcon} />}
-          isActive={uppercase}
-          onChange={bool => {
-            updateSettings("uppercase", bool);
-            if (bool) {
-              updateSettings("lowercase", false);
-            }
-          }}
-        />
-        <Switch
           label="Remove special characters"
-          iconBefore={<SvgSprite icon={RemoveSpecialCharactersIcon} />}
+          iconBefore={RemoveSpecialCharactersIcon}
           isActive={removeSpecialCharacters}
           onChange={bool => updateSettings("removeSpecialCharacters", bool)}
+        />
+
+        <RadioGroup
+          label="Text transform"
+          value={textTransform}
+          name="general-textTransform"
+          iconBefore={MixedcaseIcon}
+          options={[
+            { value: "none", icon: MixedcaseIcon },
+            { value: "uppercase", icon: UppercaseIcon },
+            { value: "lowercase", icon: LowercaseIcon }
+          ]}
+          onChange={value => updateSettings("textTransform", value)}
         />
       </>
     ),
     [
       textType,
       textWidth,
+      textTransform,
       backgroundColor,
-      lowercase,
-      uppercase,
       useCustomText,
       customText,
       removeSpecialCharacters

@@ -11,7 +11,8 @@ import Select from "../../../atoms/select/select";
 import Switch from "../../../atoms/switch/switch";
 import Textarea from "../../../atoms/textarea/textarea";
 import Button from "../../../atoms/button/button";
-import SvgSprite from "../../../atoms/svgSprite/svgSprite";
+import Range from "../../../atoms/range/range";
+import RadioGroup from "../../../atoms/radioGroup/radioGroup";
 
 import FontFamilyIcon from "../../../icons/fontFamily.svg";
 import LetterSpacingIcon from "../../../icons/letterSpacing.svg";
@@ -19,6 +20,9 @@ import LineHeightIcon from "../../../icons/lineHeight.svg";
 import ColorIcon from "../../../icons/color.svg";
 import FontSizeIcon from "../../../icons/fontSize.svg";
 import MarginIcon from "../../../icons/margin.svg";
+import LeftAlignIcon from "../../../icons/leftAlign.svg";
+import CenterAlignIcon from "../../../icons/centerAlign.svg";
+import RightAlignIcon from "../../../icons/rightAlign.svg";
 
 const Paragraph = () => {
   const {
@@ -41,6 +45,7 @@ const Paragraph = () => {
     numberOfCharacters,
     color,
     margin,
+    textAlign,
     custom,
     customText
   } = paragraph;
@@ -102,20 +107,21 @@ const Paragraph = () => {
         <Select
           options={fontFamilies}
           initialValue={fontFamily}
-          iconBefore={<SvgSprite icon={FontFamilyIcon} />}
+          iconBefore={FontFamilyIcon}
           label="Font"
           onChange={value =>
             updateNestedSettings("paragraph", "fontFamily", value)
           }
         />
-        <Counter
-          label="Font size"
-          iconBefore={<SvgSprite icon={FontSizeIcon} />}
+        <Range
+          label="Size"
+          iconBefore={FontSizeIcon}
           value={size}
+          suffix="px"
           onChange={value => updateNestedSettings("paragraph", "size", value)}
         />
         <Counter
-          iconBefore={<SvgSprite icon={LineHeightIcon} />}
+          iconBefore={LineHeightIcon}
           label="Line Height"
           value={lineHeight}
           steps={0.25}
@@ -123,9 +129,10 @@ const Paragraph = () => {
             updateNestedSettings("paragraph", "lineHeight", value)
           }
         />
+
         <Counter
           label="Letter spacing"
-          iconBefore={<SvgSprite icon={LetterSpacingIcon} />}
+          iconBefore={LetterSpacingIcon}
           value={letterSpacing}
           min={0}
           onChange={value =>
@@ -133,20 +140,35 @@ const Paragraph = () => {
           }
         />
         <ColorPicker
-          iconBefore={<SvgSprite icon={ColorIcon} />}
+          iconBefore={ColorIcon}
           label="Color"
           value={color}
           onChange={value => updateNestedSettings("paragraph", "color", value)}
         />
         <Shorthand
-          iconBefore={<SvgSprite icon={MarginIcon} />}
+          iconBefore={MarginIcon}
           value={margin}
           label="Margin"
           onChange={value => updateNestedSettings("paragraph", "margin", value)}
         />
 
+        <RadioGroup
+          label="Text align"
+          value={textAlign}
+          name="paragraph-textalign"
+          iconBefore={LeftAlignIcon}
+          options={[
+            { value: "left", icon: LeftAlignIcon },
+            { value: "center", icon: CenterAlignIcon },
+            { value: "right", icon: RightAlignIcon }
+          ]}
+          onChange={value =>
+            updateNestedSettings("paragraph", "textAlign", value)
+          }
+        />
+
         <Code
-          code={`p {\r\n\tfont-family: ${fontFamily};\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n}`}
+          code={`p {\r\n\tfont-family: ${fontFamily};\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n\text-align: ${textAlign};\r\n}`}
         />
       </>
     ),

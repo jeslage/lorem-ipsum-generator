@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
+import SvgSprite from "../svgSprite/svgSprite";
+
 import StyledSelect from "./select.style";
 
 const Select = ({
@@ -32,7 +34,7 @@ const Select = ({
       <label>
         {(label || iconBefore) && (
           <p className="select__label" title={title}>
-            {iconBefore && iconBefore}
+            {iconBefore && <SvgSprite icon={iconBefore} />}
             {label && label}
           </p>
         )}
@@ -51,7 +53,7 @@ const Select = ({
 
 Select.propTypes = {
   onChange: PropTypes.func,
-  iconBefore: PropTypes.node,
+  iconBefore: PropTypes.shape(),
   label: PropTypes.string,
   title: PropTypes.string,
   initialValue: PropTypes.string.isRequired,

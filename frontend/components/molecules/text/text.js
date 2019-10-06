@@ -3,9 +3,11 @@ import React, { useContext } from "react";
 import { TextContext } from "../../../contexts/textProvider";
 import { SettingsContext } from "../../../contexts/settingsProvider";
 
+import Dropzone from "../dropzone/dropzone";
+
 import StyledText from "./text.style";
 
-const Text = () => {
+const Text = props => {
   const { settings, utility } = useContext(SettingsContext);
   const {
     paragraph,
@@ -17,13 +19,14 @@ const Text = () => {
   } = settings;
   const { printInlineStyles } = utility;
 
-  const { getText, getList } = useContext(TextContext);
+  const { textContainer, getText, getList } = useContext(TextContext);
 
   return (
-    <StyledText>
-      <div className="text__content" id="textContent">
+    <StyledText {...props}>
+      <Dropzone />
+      <div className="text__content" id="textContent" ref={textContainer}>
         {printInlineStyles && (
-          <p className="text__tag">{`<div style="width: ${textWidth}%; background-color: ${backgroundColor};">`}</p>
+          <p className="text__tag">{`<main style="width: ${textWidth}%; background-color: ${backgroundColor};">`}</p>
         )}
         {[...Array(paragraph.count)].map((item, index) => (
           <React.Fragment key={index}>
@@ -43,7 +46,7 @@ const Text = () => {
               getList()}
           </React.Fragment>
         ))}
-        {printInlineStyles && <p className="text__tag">{"</div>"}</p>}
+        {printInlineStyles && <p className="text__tag">{"</main>"}</p>}
       </div>
     </StyledText>
   );

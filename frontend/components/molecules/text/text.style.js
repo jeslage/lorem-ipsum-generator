@@ -6,14 +6,15 @@ const getStyling = obj => `
   ${obj.letterSpacing ? `letter-spacing: ${obj.letterSpacing}px` : ""};
   font-family: ${obj.fontFamily};
   color: ${obj.color};
+  ${obj.textAlign ? `text-align: ${obj.textAlign}` : ""};
   margin: ${obj.margin.top}px ${obj.margin.right}px ${obj.margin.bottom}px ${
   obj.margin.left
-}px
+}px;
+
 `;
 
 const StyledText = styled.div`
   padding: 40px;
-  flex-grow: 2;
   height: 100vh;
   max-height: 100vh;
   overflow-y: auto;

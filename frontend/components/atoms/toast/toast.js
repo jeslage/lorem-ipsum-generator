@@ -43,7 +43,7 @@ const Toast = ({ appearance, children, ...props }) => {
   return (
     <StyledToast appearance={appearance} {...props}>
       <div className="toast__icon">
-        <SvgSprite icon={CheckIcon} />
+        <SvgSprite icon={appearance === "error" ? CheckIcon : CheckIcon} />
       </div>
       <span>{children}</span>
     </StyledToast>

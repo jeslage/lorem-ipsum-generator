@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { ChromePicker } from "react-color";
 import PropTypes from "prop-types";
 
+import SvgSprite from "../svgSprite/svgSprite";
+
 import StyledColorPicker from "./colorpicker.style";
 
 const ColorPicker = ({ iconBefore, title, label, onChange, value }) => {
@@ -11,7 +13,7 @@ const ColorPicker = ({ iconBefore, title, label, onChange, value }) => {
     <StyledColorPicker color={value}>
       {(label || iconBefore) && (
         <p className="colorPicker__label" title={title}>
-          {iconBefore && iconBefore}
+          {iconBefore && <SvgSprite icon={iconBefore} />}
           {label && label}
         </p>
       )}
@@ -50,7 +52,7 @@ const ColorPicker = ({ iconBefore, title, label, onChange, value }) => {
 ColorPicker.propTypes = {
   label: PropTypes.string,
   title: PropTypes.string,
-  iconBefore: PropTypes.node,
+  iconBefore: PropTypes.shape(),
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired
 };

@@ -49,7 +49,7 @@ const Counter = ({
       <div className="counter__text">
         {(label || iconBefore) && (
           <p className="counter__label" title={title}>
-            {iconBefore && iconBefore}
+            {iconBefore && <SvgSprite icon={iconBefore} />}
             {label && label}
           </p>
         )}
@@ -101,7 +101,7 @@ Counter.propTypes = {
   steps: PropTypes.number,
   onChange: PropTypes.func,
   suffix: PropTypes.string,
-  iconBefore: PropTypes.node
+  iconBefore: PropTypes.shape()
 };
 
 Counter.defaultProps = {
@@ -114,7 +114,7 @@ Counter.defaultProps = {
   steps: 1,
   onChange: () => {},
   suffix: "",
-  iconBefore: ""
+  iconBefore: null
 };
 
 export default Counter;

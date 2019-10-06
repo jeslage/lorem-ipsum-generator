@@ -1,44 +1,46 @@
 import React from "react";
-import Head from "next/head";
 import { Base64 } from "js-base64";
 import nextCookie from "next-cookies";
-
 import { ToastProvider } from "react-toast-notifications";
+import { DndProvider } from "react-dnd-cjs";
+import HTML5Backend from "react-dnd-html5-backend-cjs";
+
+import { decode64 } from "../helper";
+
+import { withApollo } from "../graphql/apollo";
 
 import GlobalStyle from "../styles/global";
 
 import SettingsProvider from "../contexts/settingsProvider";
 import TextProvider from "../contexts/textProvider";
 import PresetsProvider from "../contexts/presetsProvider";
+import HistoryProvider from "../contexts/historyProvider";
 
-import Settings from "../components/organisms/settings/settings";
-import Text from "../components/molecules/text/text";
 import Toast from "../components/atoms/toast/toast";
+import Home from "../components/pages/home/home";
 
 const IndexPage = ({ queryConfig, presets }) => {
   return (
-    <SettingsProvider queryConfig={queryConfig}>
-      <TextProvider>
-        <PresetsProvider initialPresets={presets}>
-          <ToastProvider
-            autoDismissTimeout={2000}
-            placement="bottom-center"
-            components={{ Toast: Toast }}
-          >
-            <>
-              <Head>
-                <title>Lorem Ipsum Generator</title>
-              </Head>
-              <main>
-                <Text />
-                <Settings />
-              </main>
-              <GlobalStyle />
-            </>
-          </ToastProvider>
-        </PresetsProvider>
-      </TextProvider>
-    </SettingsProvider>
+    <DndProvider backend={HTML5Backend}>
+      <HistoryProvider>
+        <SettingsProvider queryConfig={queryConfig}>
+          <TextProvider>
+            <PresetsProvider initialPresets={presets}>
+              <ToastProvider
+                autoDismissTimeout={2000}
+                placement="bottom-center"
+                components={{ Toast: Toast }}
+              >
+                <>
+                  <Home />
+                  <GlobalStyle />
+                </>
+              </ToastProvider>
+            </PresetsProvider>
+          </TextProvider>
+        </SettingsProvider>
+      </HistoryProvider>
+    </DndProvider>
   );
 };
 
@@ -50,10 +52,10 @@ IndexPage.getInitialProps = async ctx => {
   let config = {};
 
   if (query.c) {
-    config = JSON.parse(Base64.decode(query.c));
+    config = decode64(query.c);
   }
 
   return { queryConfig: config, presets };
 };
 
-export default IndexPage;
+export default withApollo(IndexPage);

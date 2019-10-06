@@ -65,8 +65,8 @@ const StyledCounter = styled.div`
   }
 
   input {
-    border: 1px solid transparent;
-    border-radius: 30px;
+    border: none;
+    border-bottom: 1px solid transparent;
     outline: none;
     display: inline-block;
     max-width: 60px;

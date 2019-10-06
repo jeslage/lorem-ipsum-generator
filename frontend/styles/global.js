@@ -1,20 +1,13 @@
 import { createGlobalStyle } from "styled-components";
-import { mq } from "./tools";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: system-ui;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
     margin: 0;
     padding: 0;
 
     background: ${props => props.theme.backgroundColor};
     color: ${props => props.theme.colors.color};
-  }
-
-  main {
-    ${mq("m")} {
-      display: flex;
-    }
   }
 
   small {

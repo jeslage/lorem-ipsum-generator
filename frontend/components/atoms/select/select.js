@@ -11,6 +11,7 @@ const Select = ({
   initialValue,
   label,
   title,
+  name,
   onChange
 }) => {
   const [currentValue, setCurrentValue] = useState(initialValue);
@@ -38,7 +39,7 @@ const Select = ({
             {label && label}
           </p>
         )}
-        <select value={currentValue} onChange={handleChange}>
+        <select value={currentValue} onChange={handleChange} name={name}>
           {options.map(option => (
             <option value={option.value} key={option.value}>
               {option.label || option.value}
@@ -53,6 +54,7 @@ const Select = ({
 
 Select.propTypes = {
   onChange: PropTypes.func,
+  name: PropTypes.string,
   iconBefore: PropTypes.shape(),
   label: PropTypes.string,
   title: PropTypes.string,
@@ -66,6 +68,7 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
+  name: null,
   onChange: undefined,
   iconBefore: null,
   title: null,

@@ -53,7 +53,7 @@ const Preset = ({ settings, dateCreated, onDrop, onRemove, likes }) => {
       <div ref={drag} className="preset__use">
         <div className="preset__content">
           <div className="preset__text">
-            {headline.visible && (
+            {headline.enabled && (
               <h2>
                 <small>
                   Headline | FS: {headline.size} / LH: {headline.lineHeight}
@@ -63,7 +63,7 @@ const Preset = ({ settings, dateCreated, onDrop, onRemove, likes }) => {
                   : texts[textType].headline[0].substring(0, 60)}
               </h2>
             )}
-            {subline.visible && (
+            {subline.enabled && (
               <h3>
                 <small>
                   Subline | FS: {subline.size} / LH: {subline.lineHeight}

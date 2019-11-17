@@ -128,9 +128,18 @@ function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode: typeof window === "undefined", // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: "/graphql", // Server URL (must be absolute)
-      credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
-      fetch
+      uri:
+        process.env.NODE_ENV === "development"
+          ? "/graphql"
+          : "http://api.johanneseslage.de/graphql", // Server URL (must be absolute)
+      credentials: "include", // Additional fetch() options like `credentials` or `headers`
+      headers: {
+        "Access-Control-Allow-Origin": "*" //Required for CORS support to work
+      },
+      fetch,
+      fetchOptions: {
+        mode: "no-cors"
+      }
     }),
     cache: new InMemoryCache().restore(initialState)
   });

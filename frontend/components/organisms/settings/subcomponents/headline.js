@@ -37,7 +37,7 @@ const Headline = () => {
 
   const { headline } = settings;
   const {
-    visible,
+    enabled,
     fontFamily,
     size,
     lineHeight,
@@ -56,10 +56,10 @@ const Headline = () => {
       <>
         <Switch
           label="Enable headlines"
-          isActive={visible}
-          onChange={bool => updateNestedSettings("headline", "visible", bool)}
+          isActive={enabled}
+          onChange={bool => updateNestedSettings("headline", "enabled", bool)}
         />
-        {visible && (
+        {enabled && (
           <>
             <Counter
               label="Frequency"

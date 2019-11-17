@@ -28,6 +28,8 @@ const TextProvider = ({ children }) => {
     font-family: ${type.fontFamily};
     font-size: ${type.size}px;
     line-height: ${type.lineHeight};
+    ${type.letterSpacing ? `letter-spacing: ${type.letterSpacing}px;` : ""}
+    text-align: ${type.textAlign};
     color: ${type.color};
 `;
 

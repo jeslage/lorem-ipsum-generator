@@ -21,6 +21,11 @@ const HistoryProvider = ({ children }) => {
     if (callback) callback(history[index]);
   };
 
+  const resetHistory = () => {
+    setHistory([]);
+    setHistoryIndex(0);
+  };
+
   const historyForward = callback => {
     const newIndex = historyIndex + 1;
 
@@ -48,6 +53,7 @@ const HistoryProvider = ({ children }) => {
         historyIndex,
         historyBack,
         updateHistoryIndex,
+        resetHistory,
         historyForward
       }}
     >

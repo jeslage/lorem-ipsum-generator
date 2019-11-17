@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 
-import { encode64, decode64 } from "../helper";
+import { encodeConfig, decodeConfig } from "../helper";
 
 import { SettingsContext } from "./settingsProvider";
 
@@ -10,13 +10,13 @@ export const PresetsContext = React.createContext();
 
 const PresetsProvider = ({ children, initialPresets }) => {
   const [presets, setPresets] = useState(
-    initialPresets ? decode64(initialPresets) : []
+    initialPresets ? decodeConfig(initialPresets) : []
   );
 
   const { settings } = useContext(SettingsContext);
 
   useEffect(() => {
-    Cookies.set("presets", encode64(presets));
+    Cookies.set("presets", encodeConfig(presets));
   }, [presets]);
 
   const addPreset = () => {

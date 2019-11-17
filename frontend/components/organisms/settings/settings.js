@@ -38,7 +38,7 @@ const Settings = () => {
   return (
     <StyledSettings>
       <div className="settings__accordion">
-        <Accordion allowZeroExpanded preExpanded={["0"]}>
+        <Accordion allowZeroExpanded allowMultipleExpanded>
           {items.map((item, index) => (
             <AccordionItem key={item.label} uuid={`${index}`}>
               <AccordionItemHeading>

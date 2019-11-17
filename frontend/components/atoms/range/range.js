@@ -42,6 +42,21 @@ const Range = ({
     }
   };
 
+  const handleKeyDown = event => {
+    const {
+      key,
+      target: { value }
+    } = event;
+
+    const number = parseFloat(value);
+
+    if (key === "ArrowUp" || key === "ArrowRight") {
+      updateValue(number + 1 <= max ? number + 1 : max);
+    } else if (key === "ArrowDown" || key === "ArrowLeft") {
+      updateValue(number - 1 >= min ? number - 1 : min);
+    }
+  };
+
   return (
     <StyledRange>
       <label>
@@ -59,6 +74,7 @@ const Range = ({
             value={value}
             onChange={handleChange}
             onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
           />
           {suffix}
         </span>
@@ -82,13 +98,14 @@ Range.propTypes = {
   label: PropTypes.string,
   title: PropTypes.string,
   suffix: PropTypes.string,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
   steps: PropTypes.number
 };
 
 Range.defaultProps = {
+  value: 0,
   onChange: undefined,
   iconBefore: null,
   title: null,

@@ -37,7 +37,6 @@ const StyledHistory = styled.div`
     &.current {
       background: ${props => props.theme.colors.active};
       border: none;
-      font-weight: bold;
     }
 
     span:nth-of-type(1) {
@@ -47,15 +46,6 @@ const StyledHistory = styled.div`
 
   .history__buttons {
     display: flex;
-    padding: 0.5em 1.5em;
-
-    button:nth-of-type(1) {
-      margin-right: 5px;
-    }
-
-    button:nth-of-type(2) {
-      margin-left: 5px;
-    }
   }
 
   .history__toggle {

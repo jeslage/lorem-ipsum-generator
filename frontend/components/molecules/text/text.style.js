@@ -42,37 +42,10 @@ const StyledText = styled.div`
   ul,
   ol {
     position: relative;
-
-    &:before {
-      visibility: hidden;
-      position: absolute;
-      left: -30px;
-      font-size: 12px;
-      line-height: 1;
-      font-weight: normal;
-      margin: 0;
-      top: 50%;
-      color: #000;
-      transform: translateY(-50%) rotate(-90deg);
-    }
-
-    &:hover {
-      &:before {
-        visibility: visible;
-      }
-    }
   }
 
   p {
     ${({ theme }) => getStyling(theme.paragraph)}
-
-    &:before {
-      content: "<p>";
-    }
-
-    &.text__tag:before {
-      display: none;
-    }
   }
 
   ul,
@@ -80,30 +53,12 @@ const StyledText = styled.div`
     ${({ theme }) => getStyling(theme.paragraph)}
   }
 
-  ul:before {
-    content: "<ul>";
-  }
-
-  ol:before {
-    content: "<ol>";
-  }
-
   h2 {
     ${({ theme }) => getStyling(theme.headline)}
-
-    &:before {
-      content: "<h2>";
-      left: -32px;
-    }
   }
 
   h3 {
     ${({ theme }) => getStyling(theme.subline)}
-
-    &:before {
-      content: "<h3>";
-      left: -32px;
-    }
   }
 `;
 

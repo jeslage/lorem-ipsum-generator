@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledButton = styled.button`
   display: flex;
@@ -39,6 +39,14 @@ const StyledButton = styled.button`
       margin-left: 10px;
     }
   }
+
+  ${props =>
+    props.secondary &&
+    css`
+      border: none;
+      border-radius: 0;
+      margin: 0;
+    `}
 `;
 
 export default StyledButton;

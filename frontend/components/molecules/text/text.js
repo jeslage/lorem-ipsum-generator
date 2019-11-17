@@ -6,6 +6,7 @@ import { SettingsContext } from "../../../contexts/settingsProvider";
 import Dropzone from "../dropzone/dropzone";
 
 import StyledText from "./text.style";
+import InlineSetting from "./subcomponents/inlineSetting/inlineSetting";
 
 const Text = props => {
   const { settings, utility } = useContext(SettingsContext);
@@ -30,20 +31,31 @@ const Text = props => {
         )}
         {[...Array(paragraph.count)].map((item, index) => (
           <React.Fragment key={index}>
-            {headline.visible &&
+            {headline.enabled &&
               (index + headline.offset) % headline.frequency === 0 &&
-              index >= headline.offset && <h2>{getText("headline", "h2")}</h2>}
+              index >= headline.offset && (
+                <InlineSetting setting="headline">
+                  <h2>{getText("headline", "h2")}</h2>
+                </InlineSetting>
+              )}
 
-            {subline.visible &&
+            {subline.enabled &&
               (index + subline.offset) % subline.frequency === 0 &&
-              index >= subline.offset && <h3>{getText("subline", "h3")}</h3>}
+              index >= subline.offset && (
+                <InlineSetting setting="subline">
+                  <h3>{getText("subline", "h3")}</h3>
+                </InlineSetting>
+              )}
 
-            <p>{getText("paragraph", "p")}</p>
+            <InlineSetting setting="paragraph">
+              <p>{getText("paragraph", "p")}</p>
+            </InlineSetting>
 
-            {list.visible &&
+            {list.enabled &&
               (index - 1 + list.offset) % list.frequency === 0 &&
-              index >= list.offset &&
-              getList()}
+              index >= list.offset && (
+                <InlineSetting setting="list">{getList()}</InlineSetting>
+              )}
           </React.Fragment>
         ))}
         {printInlineStyles && <p className="text__tag">{"</main>"}</p>}

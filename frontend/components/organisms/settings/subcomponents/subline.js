@@ -8,6 +8,7 @@ import Switch from "../../../atoms/switch/switch";
 import Select from "../../../atoms/select/select";
 import Code from "../../../atoms/code/code";
 import ColorPicker from "../../../atoms/colorpicker/colorpicker";
+
 import Shorthand from "../../../atoms/shorthand/shorthand";
 import Button from "../../../atoms/button/button";
 import Textarea from "../../../atoms/textarea/textarea";
@@ -38,7 +39,7 @@ const Subline = () => {
   const { subline } = settings;
   const {
     fontFamily,
-    visible,
+    enabled,
     frequency,
     offset,
     size,
@@ -56,10 +57,10 @@ const Subline = () => {
       <>
         <Switch
           label="Enable sublines"
-          isActive={visible}
-          onChange={bool => updateNestedSettings("subline", "visible", bool)}
+          isActive={enabled}
+          onChange={bool => updateNestedSettings("subline", "enabled", bool)}
         />
-        {visible && (
+        {enabled && (
           <>
             <Counter
               label="Frequency"

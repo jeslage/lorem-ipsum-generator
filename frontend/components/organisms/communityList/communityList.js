@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { useToasts } from "react-toast-notifications";
 
-import { decode64 } from "../../../helper";
+import { decodeConfig } from "../../../helper";
 
 import ALL_PRESETS from "../../../graphql/queries/allPresets.graphql";
 import CREATE_PRESET from "../../../graphql/mutations/addPreset.graphql";
@@ -39,7 +39,7 @@ const CommunityList = () => {
               data.presets.map(item => (
                 <Preset
                   className="communityList__preset"
-                  settings={decode64(item.settings)}
+                  settings={decodeConfig(item.settings)}
                   dateCreated={parseFloat(item.dateCreated)}
                   key={item.id}
                   likes={item.likes}

@@ -15,26 +15,31 @@ const CreateHtmlButton = () => {
   const { printTags, printInlineStyles } = utility;
 
   const handleDownload = async () => {
-    const htmlText = textContainer.current
-      ? textContainer.current.innerHTML
-      : "";
-
     if (printInlineStyles) {
       await updateUtility("printInlineStyles", false);
     }
-    if (printTags) {
-      await updateUtility("printTags", false);
+    if (!printTags) {
+      await updateUtility("printTags", true);
     }
 
     setCreate(true);
 
-    await fetch("/create-html", {
-      method: "POST",
-      body: JSON.stringify({ ...settings, htmlText }),
-      headers: {
-        "Content-Type": "application/json"
+    const htmlText = textContainer.current
+      ? textContainer.current.textContent
+      : "";
+
+    await fetch(
+      process.env.NODE_ENV === "development"
+        ? "/create-html"
+        : "http://api.johanneseslage.de/create-html",
+      {
+        method: "POST",
+        body: JSON.stringify({ ...settings, htmlText }),
+        headers: {
+          "Content-Type": "application/json"
+        }
       }
-    })
+    )
       .then(response => response.blob())
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
@@ -63,6 +68,8 @@ const CreateHtmlButton = () => {
           autoDismiss: true
         });
       });
+
+    await updateUtility("printTags", false);
   };
 
   return (

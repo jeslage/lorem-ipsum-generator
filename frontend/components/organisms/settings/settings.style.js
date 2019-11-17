@@ -40,11 +40,10 @@ const StyledSettings = styled.div`
   }
 
   .accordion__item {
-    ${"" /* border-bottom: 1px solid ${props => props.theme.colors.border}; */}
+    padding: 0;
   }
 
-  .accordion__button,
-  .settings__wrapper {
+  .accordion__button {
     padding: 1em 1.5em;
   }
 

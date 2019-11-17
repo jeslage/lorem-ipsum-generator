@@ -15,6 +15,7 @@ const StyledCounter = styled.div`
     display: flex;
     font-size: 14px;
     align-items: center;
+    color: ${props => props.theme.colors.color};
 
     svg {
       width: 20px;

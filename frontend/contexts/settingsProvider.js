@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { fontFamilies } from "../config/fontFamilies";
 import { HistoryContext } from "./historyProvider";
 
-import { encode64 } from "../helper";
+import { encodeConfig } from "../helper";
 
 // const buildQueryString = obj =>
 //   encodeURI(
@@ -50,7 +50,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
     },
     headline: {
       fontFamily: fontFamilies[0].value,
-      visible: false,
+      enabled: false,
       numberOfCharacters: 50,
       frequency: 2,
       offset: 0,
@@ -69,7 +69,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
     },
     subline: {
       fontFamily: fontFamilies[0].value,
-      visible: false,
+      enabled: false,
       numberOfCharacters: 50,
       frequency: 2,
       offset: 1,
@@ -87,7 +87,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       customText: []
     },
     list: {
-      visible: false,
+      enabled: false,
       frequency: 2,
       offset: 1,
       orderedList: false
@@ -125,23 +125,21 @@ const SettingsProvider = ({ queryConfig, children }) => {
 
   const router = useRouter();
 
-  useEffect(
-    () =>
-      addToHistory({
-        parentKey: null,
-        key: "initialSettings",
-        value: null,
-        settings: encode64(settings)
-      }),
-    []
-  );
+  useEffect(() => {
+    addToHistory({
+      parentKey: null,
+      key: "initialSettings",
+      value: null,
+      settings: encodeConfig(settings)
+    });
+  }, []);
 
   // Update route query params based on settings
   useEffect(() => {
     router &&
       router.replace(
         { pathname: "/", query: { ...settings } },
-        `/?c=${Base64.encode(JSON.stringify(settings))}`,
+        `/?c=${encodeConfig(settings)}`,
         {
           shallow: true
         }
@@ -158,34 +156,39 @@ const SettingsProvider = ({ queryConfig, children }) => {
 
   // Update settings value
   const updateSettings = (key, value, changeHistory = true) => {
-    const newSettings = settings;
-    newSettings[key] = value;
+    setSettings(prev => {
+      const newSettings = { ...prev, [key]: value };
 
-    if (changeHistory)
-      addToHistory({
-        parentKey: null,
-        key,
-        value,
-        settings: encode64(newSettings)
-      });
+      if (changeHistory)
+        addToHistory({
+          parentKey: null,
+          key,
+          value,
+          settings: encodeConfig(newSettings)
+        });
 
-    setSettings(newSettings);
+      return newSettings;
+    });
   };
 
   // Update nested settings value
   const updateNestedSettings = (key, subKey, value, changeHistory = true) => {
-    const newSettings = settings;
-    newSettings[key][subKey] = value;
+    setSettings(prev => {
+      const newSettings = {
+        ...prev,
+        [key]: { ...prev[key], [subKey]: value }
+      };
 
-    if (changeHistory)
-      addToHistory({
-        parentKey: key,
-        key: subKey,
-        value,
-        settings: encode64(newSettings)
-      });
+      if (changeHistory)
+        addToHistory({
+          parentKey: key,
+          key: subKey,
+          value,
+          settings: encodeConfig(newSettings)
+        });
 
-    setSettings(newSettings);
+      return newSettings;
+    });
   };
 
   const updateNestedArray = (key, subKey, value, index) => {
@@ -229,7 +232,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
         parentKey: null,
         key: "allSettings",
         value: null,
-        settings: encode64(obj)
+        settings: encodeConfig(obj)
       });
 
     setSettings(obj);
@@ -241,7 +244,7 @@ const SettingsProvider = ({ queryConfig, children }) => {
       parentKey: null,
       key: "resetSettings",
       value: null,
-      settings: encode64(defaultConfig)
+      settings: encodeConfig(defaultConfig)
     });
 
     setSettings(defaultConfig);

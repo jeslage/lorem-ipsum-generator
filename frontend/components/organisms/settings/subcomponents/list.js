@@ -9,17 +9,17 @@ const List = () => {
   const { settings, updateNestedSettings } = useContext(SettingsContext);
 
   const { list } = settings;
-  const { visible, offset, frequency, orderedList } = list;
+  const { enabled, offset, frequency, orderedList } = list;
 
   return useMemo(
     () => (
       <>
         <Switch
           label="Enable lists"
-          isActive={visible}
-          onChange={bool => updateNestedSettings("list", "visible", bool)}
+          isActive={enabled}
+          onChange={bool => updateNestedSettings("list", "enabled", bool)}
         />
-        {visible && (
+        {enabled && (
           <>
             <Counter
               label="Frequency"

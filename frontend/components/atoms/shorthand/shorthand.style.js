@@ -47,6 +47,10 @@ const StyledShorthand = styled.div`
     text-align: center;
     color: inherit;
     background: none;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 `;
 

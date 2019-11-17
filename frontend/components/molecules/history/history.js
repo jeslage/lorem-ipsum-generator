@@ -1,6 +1,6 @@
 import React, { useContext, useState, useCallback } from "react";
 
-import { decode64 } from "../../../helper";
+import { decodeConfig } from "../../../helper";
 
 import { HistoryContext } from "../../../contexts/historyProvider";
 import { SettingsContext } from "../../../contexts/settingsProvider";
@@ -38,7 +38,7 @@ const History = () => {
   const { updateAllSettings } = useContext(SettingsContext);
 
   const handleHistoryChange = item => {
-    updateAllSettings(decode64(item.settings), false);
+    updateAllSettings(decodeConfig(item.settings), false);
   };
 
   const splitCamelCase = string =>
@@ -61,16 +61,17 @@ const History = () => {
               disabled={historyIndex === 0}
               onClick={() => historyBack(handleHistoryChange)}
               iconBefore={UndoIcon}
-            >
-              Undo
-            </Button>
+              secondary
+              title="Undo"
+            />
+
             <Button
               disabled={history.length === historyIndex + 1}
               iconAfter={RedoIcon}
+              secondary
               onClick={() => historyForward(handleHistoryChange)}
-            >
-              Redo
-            </Button>
+              title="Redo"
+            />
           </div>
           <div className="history__list" ref={listRef}>
             {history.length > 0 ? (
@@ -87,10 +88,8 @@ const History = () => {
                       }
                     >
                       <span>
-                        {item.parentKey ? (
+                        {item.parentKey && (
                           <>{splitCamelCase(item.parentKey)} &rarr; </>
-                        ) : (
-                          ""
                         )}
                         {splitCamelCase(item.key)}
                       </span>

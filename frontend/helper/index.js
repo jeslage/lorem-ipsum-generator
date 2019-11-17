@@ -1,4 +1,4 @@
-import { Base64 } from "js-base64";
+import lzString from "lz-string";
 
 export const hexToRgbA = (hex, alpha) => {
   var c;
@@ -20,5 +20,7 @@ export const hexToRgbA = (hex, alpha) => {
   throw new Error("Bad Hex");
 };
 
-export const encode64 = obj => Base64.encode(JSON.stringify(obj));
-export const decode64 = obj => JSON.parse(Base64.decode(obj));
+export const encodeConfig = obj =>
+  lzString.compressToEncodedURIComponent(JSON.stringify(obj));
+export const decodeConfig = obj =>
+  JSON.parse(lzString.decompressFromEncodedURIComponent(obj));

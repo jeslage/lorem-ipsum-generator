@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mq } from "../../../styles/tools";
+import { mq } from "@styles/tools";
 
 const StyledSidebar = styled.aside`
   position: fixed;

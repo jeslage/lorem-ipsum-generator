@@ -2,9 +2,10 @@ import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
 
-import Sidebar from "../../organisms/sidebar/sidebar";
-import Text from "../../molecules/text/text";
-import { mq } from "../../../styles/tools";
+import Sidebar from "@organisms/sidebar/sidebar";
+import Text from "@molecules/text/text";
+
+import { mq } from "@styles/tools";
 
 const StyledHome = styled.main`
   ${mq("m")} {

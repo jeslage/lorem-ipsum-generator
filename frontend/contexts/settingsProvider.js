@@ -3,21 +3,10 @@ import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 
-import { fontFamilies } from "../config/fontFamilies";
+import { fontFamilies } from "@config/fontFamilies";
 import { HistoryContext } from "./historyProvider";
 
-import { encodeConfig } from "../helper";
-
-// const buildQueryString = obj =>
-//   encodeURI(
-//     Object.keys(obj)
-//       .map(key => {
-//         const value =
-//           typeof obj[key] === "object" ? JSON.stringify(obj[key]) : obj[key];
-//         return `${key}=${value}`;
-//       })
-//       .join("&")
-//   );
+import { encodeConfig } from "@helper";
 
 export const SettingsContext = React.createContext();
 

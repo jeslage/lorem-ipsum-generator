@@ -2,19 +2,20 @@ import React, { useContext } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { useToasts } from "react-toast-notifications";
 
-import { decodeConfig } from "../../../helper";
+import { encodeConfig, decodeConfig } from "@helper";
 
-import ALL_PRESETS from "../../../graphql/queries/allPresets.graphql";
-import CREATE_PRESET from "../../../graphql/mutations/addPreset.graphql";
-import DELETE_PRESET from "../../../graphql/mutations/deletePreset.graphql";
+import ALL_PRESETS from "@graphql/queries/allPresets.graphql";
+import CREATE_PRESET from "@graphql/mutations/addPreset.graphql";
+import DELETE_PRESET from "@graphql/mutations/deletePreset.graphql";
 
-import { SettingsContext } from "../../../contexts/settingsProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "../../atoms/button/button";
-import LoadingIndicator from "../../atoms/loadingIndicator/loadingIndicator";
-import Preset from "../../molecules/preset/preset";
+import Button from "@atoms/button/button";
+import LoadingIndicator from "@atoms/loadingIndicator/loadingIndicator";
+import Preset from "@molecules/preset/preset";
 
-import CopyIcon from "../../icons/copy.svg";
+import CopyIcon from "@icons/copy.svg";
+
 import StyledCommunityList from "./communityList.style";
 
 const CommunityList = () => {
@@ -48,7 +49,7 @@ const CommunityList = () => {
                       appearance: "success",
                       autoDismiss: true
                     });
-                    updateAllSettings(JSON.parse(Base64.decode(item.settings)));
+                    updateAllSettings(decodeConfig(item.settings));
                   }}
                   onRemove={() => {
                     addToast("Preset removed successfully", {
@@ -76,7 +77,7 @@ const CommunityList = () => {
                 description: "Das ist eine Beschreibung",
                 dateCreated: Date.now().toString(),
                 textType,
-                settings: Base64.encode(JSON.stringify(settings))
+                settings: encodeConfig(settings)
               }
             })
           }

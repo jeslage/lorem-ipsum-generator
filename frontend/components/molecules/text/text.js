@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 
-import { TextContext } from "../../../contexts/textProvider";
-import { SettingsContext } from "../../../contexts/settingsProvider";
+import { TextContext } from "@contexts/textProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
 
-import Dropzone from "../dropzone/dropzone";
+import Dropzone from "@molecules/dropzone/dropzone";
 
 import StyledText from "./text.style";
 import InlineSetting from "./subcomponents/inlineSetting/inlineSetting";

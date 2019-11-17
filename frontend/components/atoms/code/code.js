@@ -6,10 +6,10 @@ import Prism from "prismjs";
 import * as clipboard from "clipboard-polyfill";
 
 import StyledCode from "./code.style";
-import Button from "../button/button";
-import SvgSprite from "../svgSprite/svgSprite";
 
-import CopyIcon from "../../icons/copy.svg";
+import Button from "@atoms/button/button";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
+import CopyIcon from "@icons/copy.svg";
 
 const loadLanguage = async language => {
   if (language === "javascript") {

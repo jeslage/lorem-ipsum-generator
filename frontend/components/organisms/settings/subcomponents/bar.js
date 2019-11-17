@@ -2,13 +2,12 @@ import React, { useContext } from "react";
 import * as clipboard from "clipboard-polyfill";
 import { useToasts } from "react-toast-notifications";
 
-import { SettingsContext } from "../../../../contexts/settingsProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "../../../atoms/button/button";
-import SvgSprite from "../../../atoms/svgSprite/svgSprite";
+import Button from "@atoms/button/button";
 
-import CopyIcon from "../../../icons/copy.svg";
-import RemoveIcon from "../../../icons/remove.svg";
+import CopyIcon from "@icons/copy.svg";
+import RemoveIcon from "@icons/remove.svg";
 
 const Bar = () => {
   const { addToast } = useToasts();

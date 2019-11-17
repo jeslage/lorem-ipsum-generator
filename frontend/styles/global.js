@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     ${props =>
       props.isStyleguide &&
       css`
-        background: #e0e0e0;
+        background: ${props => props.theme.colors.background};
       `}
   }
 

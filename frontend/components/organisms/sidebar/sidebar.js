@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from "react-tabs";
 
@@ -8,10 +8,9 @@ import PresetList from "../presetList/presetList";
 import CommunityList from "../communityList/communityList";
 
 import StyledSidebar from "./sidebar.style";
-import About from "../about/about";
+import About from "@organisms/about/about";
 
 const Sidebar = props => {
-  const [wide, setWide] = useState(false);
   const items = [
     { label: "Settings", content: <Settings /> },
     { label: "Presets", content: <PresetList /> },

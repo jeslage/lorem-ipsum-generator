@@ -1,28 +1,28 @@
 import React, { useContext, useMemo } from "react";
 
-import { TextContext } from "../../../../contexts/textProvider";
-import { SettingsContext } from "../../../../contexts/settingsProvider";
+import { TextContext } from "@contexts/textProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
 
-import Counter from "../../../atoms/counter/counter";
-import Switch from "../../../atoms/switch/switch";
-import Select from "../../../atoms/select/select";
-import Code from "../../../atoms/code/code";
-import ColorPicker from "../../../atoms/colorpicker/colorpicker";
+import Counter from "@atoms/counter/counter";
+import Switch from "@atoms/switch/switch";
+import Select from "@atoms/select/select";
+import Code from "@atoms/code/code";
+import ColorPicker from "@atoms/colorpicker/colorpicker";
 
-import Shorthand from "../../../atoms/shorthand/shorthand";
-import Button from "../../../atoms/button/button";
-import Textarea from "../../../atoms/textarea/textarea";
-import Range from "../../../atoms/range/range";
-import RadioGroup from "../../../atoms/radioGroup/radioGroup";
+import Shorthand from "@atoms/shorthand/shorthand";
+import Button from "@atoms/button/button";
+import Textarea from "@atoms/textarea/textarea";
+import Range from "@atoms/range/range";
+import RadioGroup from "@atoms/radioGroup/radioGroup";
 
-import FontFamilyIcon from "../../../icons/fontFamily.svg";
-import LineHeightIcon from "../../../icons/lineHeight.svg";
-import ColorIcon from "../../../icons/color.svg";
-import FontSizeIcon from "../../../icons/fontSize.svg";
-import MarginIcon from "../../../icons/margin.svg";
-import LeftAlignIcon from "../../../icons/leftAlign.svg";
-import CenterAlignIcon from "../../../icons/centerAlign.svg";
-import RightAlignIcon from "../../../icons/rightAlign.svg";
+import FontFamilyIcon from "@icons/fontFamily.svg";
+import LineHeightIcon from "@icons/lineHeight.svg";
+import ColorIcon from "@icons/color.svg";
+import FontSizeIcon from "@icons/fontSize.svg";
+import MarginIcon from "@icons/margin.svg";
+import LeftAlignIcon from "@icons/leftAlign.svg";
+import CenterAlignIcon from "@icons/centerAlign.svg";
+import RightAlignIcon from "@icons/rightAlign.svg";
 
 const Subline = () => {
   const {

@@ -1,21 +1,21 @@
 import React, { useContext, useMemo } from "react";
 
-import { SettingsContext } from "../../../../contexts/settingsProvider";
-import { TextContext } from "../../../../contexts/textProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
+import { TextContext } from "@contexts/textProvider";
 
-import Select from "../../../atoms/select/select";
-import Counter from "../../../atoms/counter/counter";
-import ColorPicker from "../../../atoms/colorpicker/colorpicker";
-import Switch from "../../../atoms/switch/switch";
-import RadioGroup from "../../../atoms/radioGroup/radioGroup";
+import Select from "@atoms/select/select";
+import Counter from "@atoms/counter/counter";
+import ColorPicker from "@atoms/colorpicker/colorpicker";
+import Switch from "@atoms/switch/switch";
+import RadioGroup from "@atoms/radioGroup/radioGroup";
 
-import TextWidthIcon from "../../../icons/textWidth.svg";
-import UppercaseIcon from "../../../icons/uppercase.svg";
-import LowercaseIcon from "../../../icons/lowercase.svg";
-import ColorIcon from "../../../icons/color.svg";
-import TextTypeIcon from "../../../icons/textType.svg";
-import RemoveSpecialCharactersIcon from "../../../icons/removeSpecialCharacters.svg";
-import MixedcaseIcon from "../../../icons/mixedcase.svg";
+import TextWidthIcon from "@icons/textWidth.svg";
+import UppercaseIcon from "@icons/uppercase.svg";
+import LowercaseIcon from "@icons/lowercase.svg";
+import ColorIcon from "@icons/color.svg";
+import TextTypeIcon from "@icons/textType.svg";
+import RemoveSpecialCharactersIcon from "@icons/removeSpecialCharacters.svg";
+import MixedcaseIcon from "@icons/mixedcase.svg";
 
 const General = () => {
   const { settings, updateSettings } = useContext(SettingsContext);

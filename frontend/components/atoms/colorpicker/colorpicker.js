@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChromePicker } from "react-color";
 import PropTypes from "prop-types";
 
-import SvgSprite from "../svgSprite/svgSprite";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
 
 import StyledColorPicker from "./colorpicker.style";
 

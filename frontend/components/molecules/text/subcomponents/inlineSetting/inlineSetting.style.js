@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { hexToRgbA } from "../../../../../helper";
+import { hexToRgbA } from "@helper";
 
 const StyledInlineSetting = styled.div`
   position: relative;

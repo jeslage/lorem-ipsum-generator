@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import StyledTextarea from "./textarea.style";
-import SvgSprite from "../svgSprite/svgSprite";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
 
 import RemoveIcon from "../../icons/remove.svg";
 

@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useToasts } from "react-toast-notifications";
 
-import { SettingsContext } from "../../../contexts/settingsProvider";
-import { TextContext } from "../../../contexts/textProvider";
-import Button from "../../atoms/button/button";
+import { SettingsContext } from "@contexts/settingsProvider";
+import { TextContext } from "@contexts/textProvider";
+
+import Button from "@atoms/button/button";
 
 const CreateHtmlButton = () => {
   const { addToast } = useToasts();

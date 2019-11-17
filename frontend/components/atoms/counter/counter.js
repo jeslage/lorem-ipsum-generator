@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
-import SvgSprite from "../svgSprite/svgSprite";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
 
-import MinusIcon from "../../icons/minus.svg";
-import PlusIcon from "../../icons/plus.svg";
+import MinusIcon from "@icons/minus.svg";
+import PlusIcon from "@icons/plus.svg";
 
 import StyledCounter from "./counter.style";
 

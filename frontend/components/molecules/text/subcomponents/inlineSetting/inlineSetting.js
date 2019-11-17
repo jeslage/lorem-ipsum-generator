@@ -1,25 +1,25 @@
 import React, { useState, useContext } from "react";
 
-import { SettingsContext } from "../../../../../contexts/settingsProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
 
-import Range from "../../../../atoms/range/range";
-import Select from "../../../../atoms/select/select";
-import SvgSprite from "../../../../atoms/svgSprite/svgSprite";
-import Switch from "../../../../atoms/switch/switch";
-import Counter from "../../../../atoms/counter/counter";
-import ColorPicker from "../../../../atoms/colorpicker/colorpicker";
-import RadioGroup from "../../../../atoms/radioGroup/radioGroup";
+import Range from "@atoms/range/range";
+import Select from "@atoms/select/select";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
+import Switch from "@atoms/switch/switch";
+import Counter from "@atoms/counter/counter";
+import ColorPicker from "@atoms/colorpicker/colorpicker";
+import RadioGroup from "@atoms/radioGroup/radioGroup";
+import Shorthand from "@atoms/shorthand/shorthand";
 
-import SettingIcon from "../../../../icons/settings.svg";
-import FontFamilyIcon from "../../../../icons/fontFamily.svg";
-import FontSizeIcon from "../../../../icons/fontSize.svg";
-import LineHeightIcon from "../../../../icons/lineHeight.svg";
-import ColorIcon from "../../../../icons/color.svg";
-import MarginIcon from "../../../../icons/margin.svg";
-import LeftAlignIcon from "../../../../icons/leftAlign.svg";
-import CenterAlignIcon from "../../../../icons/centerAlign.svg";
-import RightAlignIcon from "../../../../icons/rightAlign.svg";
-import Shorthand from "../../../../atoms/shorthand/shorthand";
+import SettingIcon from "@icons/settings.svg";
+import FontFamilyIcon from "@icons/fontFamily.svg";
+import FontSizeIcon from "@icons/fontSize.svg";
+import LineHeightIcon from "@icons/lineHeight.svg";
+import ColorIcon from "@icons/color.svg";
+import MarginIcon from "@icons/margin.svg";
+import LeftAlignIcon from "@icons/leftAlign.svg";
+import CenterAlignIcon from "@icons/centerAlign.svg";
+import RightAlignIcon from "@icons/rightAlign.svg";
 
 import StyledInlineSetting from "./inlineSetting.style";
 

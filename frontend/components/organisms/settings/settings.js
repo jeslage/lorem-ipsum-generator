@@ -8,8 +8,8 @@ import {
   AccordionItemState
 } from "react-accessible-accordion";
 
-import SvgSprite from "../../atoms/svgSprite/svgSprite";
-import History from "../../molecules/history/history";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
+import History from "@molecules/history/history";
 
 // Subcomponents
 import Paragraph from "./subcomponents/paragraph";
@@ -22,8 +22,8 @@ import List from "./subcomponents/list";
 
 import StyledSettings from "./settings.style";
 
-import MinusIcon from "../../icons/minus.svg";
-import PlusIcon from "../../icons/plus.svg";
+import MinusIcon from "@icons/minus.svg";
+import PlusIcon from "@icons/plus.svg";
 
 const Settings = () => {
   const items = [

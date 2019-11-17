@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import { useDrag } from "react-dnd-cjs";
 import PropTypes from "prop-types";
 
-import { textTypes } from "../../../config/text";
+import { textTypes } from "@config/text";
 
-import { TextContext } from "../../../contexts/textProvider";
+import { TextContext } from "@contexts/textProvider";
 
-import SvgSprite from "../../atoms/svgSprite/svgSprite";
-import RemoveIcon from "../../icons/remove.svg";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
+import RemoveIcon from "@icons/remove.svg";
 
 import StyledPreset from "./preset.style";
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { hexToRgbA } from "../../../helper";
+import { hexToRgbA } from "@helper";
 
 const StyledDropzone = styled.div`
   height: 100vh;

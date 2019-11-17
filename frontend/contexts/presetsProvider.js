@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 
-import { encodeConfig, decodeConfig } from "../helper";
+import { encodeConfig, decodeConfig } from "@helper";
 
 import { SettingsContext } from "./settingsProvider";
 

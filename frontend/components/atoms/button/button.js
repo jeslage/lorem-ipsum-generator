@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import StyledButton from "./button.style";
-import SvgSprite from "../svgSprite/svgSprite";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
 
 const Button = ({ children, iconBefore, iconAfter, ...props }) => (
   <StyledButton type="button" {...props}>

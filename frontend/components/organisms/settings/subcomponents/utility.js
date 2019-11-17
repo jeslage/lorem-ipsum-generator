@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 
-import { SettingsContext } from "../../../../contexts/settingsProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
 
-import Switch from "../../../atoms/switch/switch";
-import CreateHtmlButton from "../../../molecules/createHtmlButton/createHtmlButton";
+import Switch from "@atoms/switch/switch";
+import CreateHtmlButton from "@molecules/createHtmlButton/createHtmlButton";
 
-import TagsIcon from "../../../icons/tags.svg";
-import StylingIcon from "../../../icons/css.svg";
+import TagsIcon from "@icons/tags.svg";
+import StylingIcon from "@icons/css.svg";
 
 const Utility = () => {
   const { utility, updateUtility } = useContext(SettingsContext);

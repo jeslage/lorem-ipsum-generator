@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from "react";
 import PropTypes from "prop-types";
 
-import { textTypes, texts } from "../config/text";
+import { textTypes, texts } from "@config/text";
 
 import { SettingsContext } from "./settingsProvider";
 

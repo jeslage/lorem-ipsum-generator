@@ -1,18 +1,19 @@
 import React, { useContext, useState, useCallback } from "react";
 
-import { decodeConfig } from "../../../helper";
+import { decodeConfig } from "@helper";
 
-import { HistoryContext } from "../../../contexts/historyProvider";
-import { SettingsContext } from "../../../contexts/settingsProvider";
+import { HistoryContext } from "@contexts/historyProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "../../atoms/button/button";
-import SvgSprite from "../../atoms/svgSprite/svgSprite";
+import Button from "@atoms/button/button";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
+
+import MinusIcon from "@icons/minus.svg";
+import PlusIcon from "@icons/plus.svg";
+import UndoIcon from "@icons/undo.svg";
+import RedoIcon from "@icons/redo.svg";
+
 import StyledHistory from "./history.style";
-
-import MinusIcon from "../../icons/minus.svg";
-import PlusIcon from "../../icons/plus.svg";
-import UndoIcon from "../../icons/undo.svg";
-import RedoIcon from "../../icons/redo.svg";
 
 const History = () => {
   const [visible, setVisible] = useState(false);

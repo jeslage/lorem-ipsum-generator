@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import SvgSprite from "../svgSprite/svgSprite";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
 
 import StyledRange from "./range.style";
 

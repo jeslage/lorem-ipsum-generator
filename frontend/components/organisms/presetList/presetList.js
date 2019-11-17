@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import { useToasts } from "react-toast-notifications";
 
-import { PresetsContext } from "../../../contexts/presetsProvider";
-import { SettingsContext } from "../../../contexts/settingsProvider";
+import { PresetsContext } from "@contexts/presetsProvider";
+import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "../../atoms/button/button";
-import Preset from "../../molecules/preset/preset";
-import SvgSprite from "../../atoms/svgSprite/svgSprite";
+import Button from "@atoms/button/button";
+import Preset from "@molecules/preset/preset";
 
-import CopyIcon from "../../icons/copy.svg";
+import CopyIcon from "@icons/copy.svg";
 import StyledPresetList from "./presetList.style";
 
 const PresetList = () => {

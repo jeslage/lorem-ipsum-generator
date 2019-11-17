@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import SvgSprite from "../svgSprite/svgSprite";
-import CheckIcon from "../../icons/check.svg";
+import SvgSprite from "@atoms/svgSprite/svgSprite";
+import CheckIcon from "@icons/check.svg";
 
 const StyledToast = styled.div`
   width: 340px;

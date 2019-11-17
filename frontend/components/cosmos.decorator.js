@@ -4,6 +4,7 @@ import { DndProvider } from "react-dnd-cjs";
 import HTML5Backend from "react-dnd-html5-backend-cjs";
 
 import GlobalStyle from "@styles/global";
+import { withApollo } from "@graphql/apollo";
 
 import SettingsProvider from "@contexts/settingsProvider";
 import TextProvider from "@contexts/textProvider";
@@ -12,7 +13,7 @@ import HistoryProvider from "@contexts/historyProvider";
 
 import Toast from "@atoms/toast/toast";
 
-export default ({ children }) => (
+export default withApollo(({ children }) => (
   <DndProvider backend={HTML5Backend}>
     <HistoryProvider>
       <SettingsProvider>
@@ -33,4 +34,4 @@ export default ({ children }) => (
       </SettingsProvider>
     </HistoryProvider>
   </DndProvider>
-);
+));

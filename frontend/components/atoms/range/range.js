@@ -11,6 +11,7 @@ const Range = ({
   label,
   title,
   onChange,
+  doubleClickValue,
   min,
   max,
   steps,
@@ -24,21 +25,15 @@ const Range = ({
     const { value, validity } = event.target;
 
     if (validity.valid) {
-      if (value !== "") {
-        updateValue(parseFloat(value));
+      if (value > max) {
+        updateValue(max);
+      } else if (value < min) {
+        updateValue(min);
+      } else if (value !== "") {
+        updateValue(value);
       } else {
         updateValue(0);
       }
-    }
-  };
-
-  const handleBlur = event => {
-    const { value } = event.target;
-
-    if (value > max) {
-      updateValue(max);
-    } else if (value < min) {
-      updateValue(min);
     }
   };
 
@@ -73,7 +68,6 @@ const Range = ({
             pattern="[0-9.]*"
             value={value}
             onChange={handleChange}
-            onBlur={handleBlur}
             onKeyDown={handleKeyDown}
           />
           {suffix}
@@ -85,6 +79,11 @@ const Range = ({
           min={min}
           max={max}
           value={value}
+          onDoubleClick={() => {
+            if (typeof doubleClickValue === "number") {
+              updateValue(doubleClickValue);
+            }
+          }}
           onChange={e => updateValue(e.target.value)}
         />
       </label>
@@ -94,6 +93,7 @@ const Range = ({
 
 Range.propTypes = {
   onChange: PropTypes.func,
+  doubleClickValue: PropTypes.number,
   iconBefore: PropTypes.shape(),
   label: PropTypes.string,
   title: PropTypes.string,
@@ -107,11 +107,12 @@ Range.propTypes = {
 Range.defaultProps = {
   value: 0,
   onChange: undefined,
+  doubleClickValue: null,
   iconBefore: null,
   title: null,
   label: null,
   suffix: "",
-  min: 1,
+  min: 0,
   max: 100,
   steps: 1
 };

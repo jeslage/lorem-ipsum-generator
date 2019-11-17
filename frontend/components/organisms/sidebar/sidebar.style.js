@@ -10,6 +10,7 @@ const StyledSidebar = styled.aside`
   transition: width 0.2s ease-in-out;
   background: ${props => props.theme.colors.background};
   overflow: hidden;
+  border-left: 1px solid ${props => props.theme.colors.active};
 
   ${mq("m")} {
     position: relative;

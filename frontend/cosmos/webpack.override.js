@@ -14,6 +14,13 @@ module.exports = (config, env) => {
       rules: [
         ...config.module.rules,
         {
+          test: /\.graphql$/,
+          loader: "webpack-graphql-loader",
+          options: {
+            output: "document"
+          }
+        },
+        {
           test: /\.js?$/,
           exclude: /node_modules/,
           use: [

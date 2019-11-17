@@ -5,9 +5,7 @@ import { DndProvider } from "react-dnd-cjs";
 import HTML5Backend from "react-dnd-html5-backend-cjs";
 
 import { decodeConfig } from "@helper";
-
 import { withApollo } from "@graphql/apollo";
-
 import GlobalStyle from "@styles/global";
 
 import SettingsProvider from "@contexts/settingsProvider";

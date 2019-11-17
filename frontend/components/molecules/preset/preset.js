@@ -41,6 +41,7 @@ const Preset = ({ settings, dateCreated, onDrop, onRemove, likes }) => {
   const month = date.getMonth();
 
   const updatedTextType = textTypes.filter(type => type.value === textType)[0];
+
   return (
     <StyledPreset
       textTransform={textTransform}
@@ -50,7 +51,7 @@ const Preset = ({ settings, dateCreated, onDrop, onRemove, likes }) => {
       backgroundColor={backgroundColor}
       isDragging={isDragging}
     >
-      <div ref={drag} className="preset__use">
+      <div ref={drag} className="preset__card">
         <div className="preset__content">
           <div className="preset__text">
             {headline.enabled && (
@@ -83,38 +84,23 @@ const Preset = ({ settings, dateCreated, onDrop, onRemove, likes }) => {
                 : texts[textType].paragraph[0].substring(0, 60)}{" "}
             </p>
           </div>
+          <div className="preset__meta">
+            <span>
+              {day}.{month < 9 ? `0${month + 1}` : month + 1}.{year} |{" "}
+              {updatedTextType.label} {likes !== null ? `| ${likes}` : ""}
+            </span>
+            <button
+              type="button"
+              className="preset__remove"
+              onClick={() => {
+                if (onRemove) onRemove();
+              }}
+            >
+              <SvgSprite icon={RemoveIcon} />
+            </button>
+          </div>
         </div>
-        <table>
-          <tbody>
-            <tr>
-              <td className="preset__label">Created</td>
-              <td className="preset__value">
-                {day}.{month < 10 ? `0${month}` : month}.{year}
-              </td>
-            </tr>
-            <tr>
-              <td className="preset__label">Text type</td>
-              <td className="preset__value">{updatedTextType.label}</td>
-            </tr>
-            {likes !== null ? (
-              <tr>
-                <td className="preset__label">Likes</td>
-                <td className="preset__value">{likes}</td>
-              </tr>
-            ) : null}
-          </tbody>
-        </table>
       </div>
-
-      <button
-        type="button"
-        className="preset__remove"
-        onClick={() => {
-          if (onRemove) onRemove();
-        }}
-      >
-        <SvgSprite icon={RemoveIcon} />
-      </button>
     </StyledPreset>
   );
 };

@@ -6,17 +6,7 @@ const StyledPreset = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  button {
-    background: none;
-    outline: none;
-    border: none;
-    margin: 0;
-    padding: 0;
-    appearance: none;
-    cursor: pointer;
-  }
-
-  .preset__use {
+  .preset__card {
     overflow: hidden;
     display: block;
     width: 100%;
@@ -27,16 +17,6 @@ const StyledPreset = styled.div`
 
     &:hover {
       transform: scale(1.01);
-    }
-  }
-
-  .preset__remove {
-    margin-top: 10px;
-
-    svg {
-      fill: ${props => props.theme.colors.color};
-      width: 15px;
-      height: 15px;
     }
   }
 
@@ -97,44 +77,45 @@ const StyledPreset = styled.div`
     }
   }
 
-  .preset__label {
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-align: left;
-    color: ${props => props.theme.colors.color};
-    border-right: 1px solid ${props => props.theme.colors.background};
+  .preset__meta {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 0;
+
+    span {
+      opacity: 0.5;
+      flex-grow: 2;
+      color: ${({ paragraph }) => paragraph.color};
+      text-transform: uppercase;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 10px;
+    }
   }
 
-  .preset__value {
-    text-align: right;
-    font-size: 14px;
-    color: ${props => props.theme.colors.color};
-  }
+  .preset__remove {
+    background: none;
+    outline: none;
+    border: 1px solid ${({ paragraph }) => paragraph.color};
+    margin: 0;
+    padding: 0;
+    appearance: none;
+    cursor: pointer;
+    opacity: 0.5;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  table {
-    border-spacing: 0;
-    border-collapse: collapse;
-    width: 100%;
-    background: ${props => props.theme.colors.active};
-    border-top: 1px solid ${props => props.theme.colors.background};
-
-    tr,
-    td {
-      margin: 0;
-      outline: none;
-      border: 0;
+    &:hover {
+      opacity: 1;
     }
 
-    td {
-      padding: 10px 20px;
-    }
-
-    tr:first-of-type {
-      .preset__label,
-      .preset__value {
-        border-bottom: 1px solid ${props => props.theme.colors.background};
-      }
+    svg {
+      fill: ${({ paragraph }) => paragraph.color};
+      width: 10px;
+      height: 10px;
     }
   }
 `;

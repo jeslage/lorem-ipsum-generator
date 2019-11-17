@@ -28,7 +28,7 @@
             margin: {{$settings["paragraph"]["margin"]["top"]}}px {{$settings["paragraph"]["margin"]["right"]}}px {{$settings["paragraph"]["margin"]["bottom"]}}px {{$settings["paragraph"]["margin"]["left"]}}px;
         }
 
-        @if ($settings["headline"]["visible"])
+        @if ($settings["headline"]["enabled"])
         h2 {
             font-family: {!! $settings["headline"]["fontFamily"] !!};
             font-size: {{$settings["headline"]["size"]}}px;
@@ -39,7 +39,7 @@
         }
         @endif
 
-        @if ($settings["subline"]["visible"])
+        @if ($settings["subline"]["enabled"])
         h3 {
             font-family: {!! $settings["subline"]["fontFamily"] !!};
             font-size: {{$settings["subline"]["size"]}}px;

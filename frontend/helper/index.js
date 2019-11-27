@@ -24,3 +24,13 @@ export const encodeConfig = obj =>
   lzString.compressToEncodedURIComponent(JSON.stringify(obj));
 export const decodeConfig = obj =>
   JSON.parse(lzString.decompressFromEncodedURIComponent(obj));
+
+export const convertArrayToObject = (array, key) => {
+  const initialValue = {};
+  return array.reduce((obj, item) => {
+    return {
+      ...obj,
+      [item[key]]: item
+    };
+  }, initialValue);
+};

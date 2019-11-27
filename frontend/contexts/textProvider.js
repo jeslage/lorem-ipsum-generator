@@ -1,19 +1,30 @@
 import React, { useContext, useRef } from "react";
 import PropTypes from "prop-types";
 
-import { textTypes, texts } from "@config/text";
+import textConfig from "@config/text";
 
 import { SettingsContext } from "./settingsProvider";
+import { convertArrayToObject } from "../helper";
 
 export const TextContext = React.createContext();
-
-// const getRandomValue = arr => arr[Math.floor(Math.random() * arr.length)];
 
 const TextProvider = ({ children }) => {
   const textContainer = useRef();
   const { settings, utility } = useContext(SettingsContext);
   const { removeSpecialCharacters, textTransform, textType } = settings;
   const { printTags, printInlineStyles } = utility;
+
+  const textTypes = textConfig.map(({ value, label }) => ({ value, label }));
+  const texts = convertArrayToObject(
+    textConfig.map(({ value, paragraph, headline, subline, list }) => ({
+      value,
+      paragraph,
+      headline,
+      subline,
+      list
+    })),
+    "value"
+  );
 
   const index = {
     paragraph: 0,

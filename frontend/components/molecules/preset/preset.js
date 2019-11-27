@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import { useDrag } from "react-dnd-cjs";
 import PropTypes from "prop-types";
 
-import { textTypes } from "@config/text";
-
 import { TextContext } from "@contexts/textProvider";
 
 import SvgSprite from "@atoms/svgSprite/svgSprite";
@@ -24,7 +22,7 @@ const Preset = ({ settings, dateCreated, onDrop, onRemove, likes }) => {
       isDragging: monitor.isDragging()
     })
   });
-  const { texts } = useContext(TextContext);
+  const { texts, textTypes } = useContext(TextContext);
 
   const {
     textTransform,

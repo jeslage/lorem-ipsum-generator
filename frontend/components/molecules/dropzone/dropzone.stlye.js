@@ -18,6 +18,7 @@ const StyledDropzone = styled.div`
   color: ${props => props.theme.colors.active};
   opacity: ${props => (props.canDrop ? "1" : "0")};
   pointer-events: ${props => (props.canDrop ? "auto" : "none")};
+  text-align: center;
 
   span {
     font-size: 80px;

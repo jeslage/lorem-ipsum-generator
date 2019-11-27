@@ -74,9 +74,11 @@ const Paragraph = () => {
           isActive={custom}
           onChange={bool => {
             if (customText.length === 0) {
-              updateNestedSettings("paragraph", "customText", [
-                texts[textType].paragraph[0]
-              ]);
+              updateNestedSettings(
+                "paragraph",
+                "customText",
+                texts[textType].paragraph
+              );
             }
 
             updateNestedSettings("paragraph", "custom", bool);
@@ -168,7 +170,7 @@ const Paragraph = () => {
         />
 
         <Code
-          code={`p {\r\n\tfont-family: ${fontFamily};\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n\text-align: ${textAlign};\r\n}`}
+          code={`p {\r\n\tfont-family: ${fontFamily};\r\n\tfont-size: ${size}px;\r\n\tletter-spacing: ${letterSpacing}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n\ttext-align: ${textAlign};\r\n}`}
         />
       </>
     ),

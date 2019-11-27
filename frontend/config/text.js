@@ -1,7 +1,9 @@
 export const textTypes = [
   { label: "Lorem Ipsum", value: "loremIpsum" },
   { label: "Ich bin ein Berliner - Kennedy", value: "kennedySpeech" },
-  { label: "Yes we can - Obama", value: "victorySpeech" }
+  { label: "Yes we can - Obama", value: "victorySpeech" },
+  { label: "Trump Ipsum", value: "trumpIpsum" },
+  { label: "Hipster Ipsum", value: "hipsterIpsum" }
 ];
 
 export const texts = {
@@ -56,6 +58,46 @@ export const texts = {
     ],
     headline: ["Yes we can", "Yes we can"],
     subline: ["Yes we can", "Yes we can"],
+    list: ["Punkt 1", "Punkt 2", "Punkt 3"]
+  },
+  trumpIpsum: {
+    paragraph: [
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? Lorem Ispum is a choke artist. It chokes! We are going to make placeholder text great again. Greater than ever before. I have a 10 year old son. He has words. He is so good with these words it's unbelievable. An ‘extremely credible source’ has called my office and told me that Barack Obama’s placeholder text is a fraud. You're telling the enemy exactly what you're going to do. No wonder you've been fighting Lorem Ipsum your entire adult life. That other text? Sadly, it’s no longer a 10. He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured.",
+      "You know, it really doesn’t matter what you write as long as you’ve got a young, and beautiful, piece of text. An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. An ‘extremely credible source’ has called my office and told me that Barack Obama’s placeholder text is a fraud. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? The best taco bowls are made in Trump Tower Grill. I love Hispanics! The other thing with Lorem Ipsum is that you have to take out its family. I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words.",
+      "I don't think anybody knows it was Russia that wrote Lorem Ipsum, but I don't know, maybe it was. It could be Russia, but it could also be China. It could also be lots of other people. It also could be some wordsmith sitting on their bed that weights 400 pounds. Ok? My text is long and beautiful, as, it has been well documented, are various other parts of my website. I know words. I have the best words. Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? I don't think anybody knows it was Russia that wrote Lorem Ipsum, but I don't know, maybe it was. It could be Russia, but it could also be China. It could also be lots of other people. It also could be some wordsmith sitting on their bed that weights 400 pounds. Ok? An ‘extremely credible source’ has called my office and told me that Barack Obama’s placeholder text is a fraud. Lorem Ipsum is unattractive, both inside and out. I fully understand why it’s former users left it for something else. They made a good decision.",
+      "You know, it really doesn’t matter what you write as long as you’ve got a young, and beautiful, piece of text. I think my strongest asset maybe by far is my temperament. I have a placeholding temperament. Lorem Ipsum best not make any more threats to your website. It will be met with fire and fury like the world has never seen. An ‘extremely credible source’ has called my office and told me that Barack Obama’s placeholder text is a fraud. It’s about making placeholder text great again. That’s what people want, they want placeholder text to be great again. When other websites give you text, they’re not sending the best. They’re not sending you, they’re sending words that have lots of problems and they’re bringing those problems with us. They’re bringing mistakes. They’re bringing misspellings. They’re typists… And some, I assume, are good words. I know words. I have the best words."
+    ],
+    headline: [
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?",
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?"
+    ],
+    subline: [
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?",
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?"
+    ],
+    list: ["Punkt 1", "Punkt 2", "Punkt 3"]
+  },
+  hipsterIpsum: {
+    paragraph: [
+      "Wolf typewriter squid fixie, sartorial helvetica affogato tote bag normcore williamsburg kombucha freegan pickled put a bird on it 90's. Salvia pour-over cliche hot chicken banh mi. Synth viral whatever schlitz lumbersexual lomo brooklyn authentic +1 selfies. Kinfolk unicorn green juice blog four loko, swag prism shoreditch hashtag meh. Live-edge meh bitters taxidermy ramps meggings poke 90's crucifix cray cornhole copper mug everyday carry slow-carb. Ugh etsy crucifix, beard photo booth narwhal authentic brooklyn chia normcore.",
+      "Cardigan blue bottle succulents twee hexagon swag. Vice slow-carb chartreuse ugh, thundercats DIY mustache kogi vinyl. Adaptogen hot chicken tbh prism food truck, helvetica slow-carb waistcoat lomo succulents pinterest poke. Keffiyeh mumblecore tofu PBR&B normcore helvetica. Shoreditch craft beer tattooed venmo. Echo park semiotics gastropub meggings.",
+      "Migas edison bulb bushwick microdosing before they sold out, street art kitsch vegan kogi fashion axe single-origin coffee enamel pin bespoke taiyaki. Godard palo santo schlitz small batch enamel pin irony locavore kitsch asymmetrical microdosing YOLO woke tofu. Keffiyeh offal neutra, succulents next level forage adaptogen heirloom williamsburg iceland hammock jean shorts. Forage heirloom activated charcoal roof party sustainable fixie jianbing celiac williamsburg subway tile trust fund crucifix.",
+      "Sustainable sartorial fingerstache snackwave. Photo booth tbh chartreuse master cleanse pug cold-pressed slow-carb cloud bread occupy. Banjo cardigan pabst, cornhole try-hard bicycle rights next level jean shorts tacos sriracha. Activated charcoal mixtape cronut celiac organic skateboard farm-to-table butcher ugh freegan meditation pork belly la croix taxidermy. Kale chips adaptogen tumblr XOXO lyft fanny pack chillwave swag raw denim readymade chambray flexitarian humblebrag hell of.",
+      "You probably haven't heard of them unicorn sustainable, iPhone ugh kitsch photo booth. Actually raw denim vape, green juice mixtape before they sold out shabby chic neutra poutine. Enamel pin tousled hammock, 3 wolf moon fashion axe kale chips messenger bag health goth stumptown man bun pitchfork shoreditch asymmetrical. Meh authentic tacos crucifix, tbh gentrify blue bottle. Pabst vape kinfolk heirloom cardigan.",
+      "Echo park pok pok direct trade subway tile hoodie, celiac succulents tumeric pitchfork shoreditch butcher. Gochujang pitchfork forage PBR&B williamsburg, normcore man braid tilde waistcoat tattooed pinterest. Pickled franzen kombucha, organic chillwave seitan cred cray gentrify lomo. Chartreuse street art YOLO pickled keffiyeh succulents gastropub jean shorts. Fingerstache tofu banh mi, jean shorts hell of cliche literally lyft chicharrones chillwave jianbing. Keytar irony twee beard PBR&B. Drinking vinegar aesthetic ramps meh humblebrag narwhal.",
+      "Cardigan adaptogen fingerstache helvetica 8-bit williamsburg jean shorts. Affogato fashion axe kinfolk lo-fi etsy mixtape poutine trust fund. Hell of synth trust fund, ramps subway tile forage pabst. Shoreditch williamsburg master cleanse succulents skateboard selvage semiotics.",
+      "Distillery tattooed typewriter vexillologist, artisan truffaut cornhole. Vegan brunch twee, wayfarers cold-pressed gluten-free intelligentsia everyday carry affogato activated charcoal fanny pack snackwave locavore. Tumeric migas you probably haven't heard of them, letterpress intelligentsia 90's blue bottle post-ironic vinyl pabst gentrify kogi beard farm-to-table hot chicken. Hashtag raclette adaptogen, tbh microdosing poke chicharrones forage distillery put a bird on it viral palo santo portland.",
+      "Synth YOLO master cleanse lomo literally marfa brunch vegan. Authentic unicorn edison bulb fashion axe dreamcatcher, kale chips meh green juice mumblecore beard PBR&B pug meditation flannel williamsburg. Pickled hexagon pork belly mumblecore meditation venmo street art thundercats fixie occupy brunch air plant deep v biodiesel. Salvia artisan fam cray vape helvetica beard brunch celiac bespoke. Venmo single-origin coffee meh farm-to-table.",
+      "Enamel pin literally dreamcatcher typewriter direct trade celiac. Live-edge letterpress subway tile typewriter. Post-ironic normcore DIY cred kinfolk palo santo echo park vice tattooed meggings prism street art retro. Succulents snackwave try-hard food truck fingerstache truffaut pour-over mustache twee yr hexagon locavore organic irony."
+    ],
+    headline: [
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?",
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?"
+    ],
+    subline: [
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?",
+      "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right?"
+    ],
     list: ["Punkt 1", "Punkt 2", "Punkt 3"]
   }
 };

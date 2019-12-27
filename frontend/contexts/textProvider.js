@@ -8,34 +8,22 @@ import { convertArrayToObject } from "../helper";
 
 export const TextContext = React.createContext();
 
-const TextProvider = ({ children }) => {
-  const textContainer = useRef();
-  const { settings, utility } = useContext(SettingsContext);
-  const { removeSpecialCharacters, textTransform, textType } = settings;
-  const { printTags, printInlineStyles } = utility;
+const textTypes = textConfig.map(({ value, label }) => ({ value, label }));
+const texts = convertArrayToObject(
+  textConfig.map(({ value, paragraph, headline, subline, list }) => ({
+    value,
+    paragraph,
+    headline,
+    subline,
+    list
+  })),
+  "value"
+);
 
-  const textTypes = textConfig.map(({ value, label }) => ({ value, label }));
-  const texts = convertArrayToObject(
-    textConfig.map(({ value, paragraph, headline, subline, list }) => ({
-      value,
-      paragraph,
-      headline,
-      subline,
-      list
-    })),
-    "value"
-  );
+const deleteSpecialCharacters = string =>
+  string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
 
-  const index = {
-    paragraph: 0,
-    headline: 0,
-    subline: 0
-  };
-
-  const deleteSpecialCharacters = string =>
-    string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
-
-  const getInlineStyles = type => `
+const getInlineStyles = type => `
     font-family: ${type.fontFamily};
     font-size: ${type.size}px;
     line-height: ${type.lineHeight};
@@ -43,6 +31,18 @@ const TextProvider = ({ children }) => {
     text-align: ${type.textAlign};
     color: ${type.color};
 `;
+
+const TextProvider = ({ children }) => {
+  const textContainer = useRef();
+  const { settings, utility } = useContext(SettingsContext);
+  const { removeSpecialCharacters, textTransform, textType } = settings;
+  const { printTags, printInlineStyles } = utility;
+
+  const index = {
+    paragraph: 0,
+    headline: 0,
+    subline: 0
+  };
 
   const getText = (key, tag) => {
     let text = "";

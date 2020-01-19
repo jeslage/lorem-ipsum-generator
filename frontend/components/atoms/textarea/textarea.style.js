@@ -21,8 +21,8 @@ const StyledTextarea = styled.label`
     background: none;
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.primary};
+    border: 1px solid ${props => props.theme.colors.color};
+    color: ${props => props.theme.colors.color};
   }
 
   button {
@@ -38,7 +38,7 @@ const StyledTextarea = styled.label`
     svg {
       width: 15px;
       height: 15px;
-      fill: ${props => props.theme.colors.primary};
+      fill: ${props => props.theme.colors.color};
     }
   }
 `;

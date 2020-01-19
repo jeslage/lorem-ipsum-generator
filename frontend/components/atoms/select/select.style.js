@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { getBoxShadow } from "@helper";
 const StyledSelect = styled.div`
   margin: 1.5em 0;
 
@@ -21,11 +20,12 @@ const StyledSelect = styled.div`
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.tertiary};
+      fill: ${props => props.theme.colors.border};
     }
   }
 
   select {
+    width: 100%;
     background: none;
     border: none;
     outline: none;
@@ -37,10 +37,8 @@ const StyledSelect = styled.div`
     font-family: inherit;
     text-align-last: right;
     direction: rtl;
-    padding: 9px 15px 11px;
-    padding-right: 45px;
-    border-radius: 30px;
-    ${getBoxShadow}
+    padding: 5px;
+    padding-right: 35px;
   }
 
   select::-ms-expand {
@@ -53,8 +51,7 @@ const StyledSelect = styled.div`
     height: 10px;
     top: 50%;
     transform: translateY(-50%);
-    right: 15px;
-    margin-top: -1px;
+    right: 5px;
 
     &:before,
     &:after {
@@ -64,7 +61,7 @@ const StyledSelect = styled.div`
       width: 10px;
       height: 2px;
       border-radius: 1px;
-      background: ${props => props.theme.colors.primary};
+      background: ${props => props.theme.colors.color};
     }
 
     &:before {

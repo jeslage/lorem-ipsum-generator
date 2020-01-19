@@ -15,11 +15,11 @@ const StyledButton = styled.button`
   cursor: pointer;
   border-radius: 30px;
   width: 100%;
-  border: 1px solid ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.primary};
+  border: 1px solid ${props => props.theme.colors.color};
+  color: ${props => props.theme.colors.color};
 
   &:active {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.color};
   }
 
   &[disabled] {
@@ -29,7 +29,7 @@ const StyledButton = styled.button`
   svg {
     height: 15px;
     width: auto;
-    fill: ${props => props.theme.colors.primary};
+    fill: ${props => props.theme.colors.color};
 
     &.button__icon-before {
       margin-right: 10px;

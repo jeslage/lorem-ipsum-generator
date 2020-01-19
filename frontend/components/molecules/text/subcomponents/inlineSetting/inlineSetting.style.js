@@ -30,7 +30,7 @@ const StyledInlineSetting = styled.div`
     margin: 0;
     padding: 0.8em;
     background: ${props => hexToRgbA(props.theme.colors.hover, 0.98)};
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.color};
 
     ${props =>
       props.isOpen &&

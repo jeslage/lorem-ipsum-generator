@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { getBoxShadow } from "@helper";
 
 const StyledRadioGroup = styled.div`
   display: flex;
@@ -18,7 +17,7 @@ const StyledRadioGroup = styled.div`
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.tertiary};
+      fill: ${props => props.theme.colors.border};
     }
   }
 
@@ -26,23 +25,19 @@ const StyledRadioGroup = styled.div`
     display: flex;
     align-items: center;
     padding: 5px;
-    margin: 0;
+    margin: 0 0 0 10px;
     border-radius: 5px;
     opacity: 0.5;
 
     svg {
       width: 20px;
       height: auto;
-      fill: ${props => props.theme.colors.primary};
+      fill: ${props => props.theme.colors.color};
     }
   }
 
   .radioGroup__radio {
     cursor: pointer;
-    margin-left: 10px;
-    border-radius: 15px;
-    padding: 2px 5px;
-    ${getBoxShadow}
 
     input {
       display: none;

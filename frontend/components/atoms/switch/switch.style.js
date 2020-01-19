@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { getBoxShadow } from "@helper";
 const StyledSwitch = styled.div`
   display: flex;
   align-items: center;
@@ -12,13 +11,13 @@ const StyledSwitch = styled.div`
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.color};
 
     svg {
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.tertiary};
+      fill: ${props => props.theme.colors.border};
     }
   }
 
@@ -28,6 +27,7 @@ const StyledSwitch = styled.div`
     margin: 0;
     padding: 0;
     appearance: none;
+    border: 1px solid ${props => props.theme.colors.color};
     width: 60px;
     height: 30px;
     border-radius: 30px;
@@ -36,8 +36,6 @@ const StyledSwitch = styled.div`
       props.active ? "transparent" : "transparent"};
     will-change: background-color;
     transition: background-color 0.2s ease-in-out;
-    border: 1px solid ${props => props.theme.colors.primary};
-    ${getBoxShadow}
 
     span {
       position: absolute;
@@ -47,15 +45,15 @@ const StyledSwitch = styled.div`
       width: 20px;
       height: 20px;
       border-radius: 20px;
-      background: ${props => props.theme.colors.primary};
+      background: ${props => props.theme.colors.color};
       transform: translateX(${props => (props.active ? "30px" : "0")});
       will-change: transform;
       transition: transform 0.2s ease-in-out;
 
       svg {
-        fill: ${props => props.theme.colors.secondary};
+        fill: ${props => props.theme.colors.background};
         fill-opacity: 0;
-        stroke: ${props => props.theme.colors.secondary};
+        stroke: ${props => props.theme.colors.background};
         stroke-width: 3;
         stroke-linecap: round;
         stroke-linejoin: round;

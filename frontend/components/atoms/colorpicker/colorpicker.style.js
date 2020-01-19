@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { getBoxShadow } from "@helper";
+
 const StlyedColorPicker = styled.div`
   display: flex;
   align-items: center;
@@ -24,7 +26,7 @@ const StlyedColorPicker = styled.div`
     padding: 5px;
     width: 60px;
     border-radius: 30px;
-    border: 1px solid ${props => props.theme.colors.color};
+    ${getBoxShadow}
 
     span {
       display: block;
@@ -45,7 +47,7 @@ const StlyedColorPicker = styled.div`
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.border};
+      fill: ${props => props.theme.colors.tertiary};
     }
   }
 

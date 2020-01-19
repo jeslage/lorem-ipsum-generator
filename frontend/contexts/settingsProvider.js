@@ -241,18 +241,18 @@ const SettingsProvider = ({ queryConfig, children }) => {
 
   // Color theme settings
   const getColors = () =>
-    utility.darkMode
+    !utility.darkMode
       ? {
-          color: "#c9c9c9",
-          background: "#202020",
-          border: "#808080",
+          primary: "#c9c9c9",
+          secondary: "#202020",
+          tertiary: "#808080",
           hover: "#181818",
           active: "#080808"
         }
       : {
-          color: "#323232",
-          background: "#E0E0E0",
-          border: "#3b3b3b",
+          primary: "#323232",
+          secondary: "#E0E0E0",
+          tertiary: "#3b3b3b",
           hover: "#d6d6d6",
           active: "#c8c8c8"
         };

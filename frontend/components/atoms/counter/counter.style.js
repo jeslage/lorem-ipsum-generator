@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { getBoxShadow } from "@helper";
+
 const StyledCounter = styled.div`
   display: flex;
   align-items: center;
@@ -15,13 +17,13 @@ const StyledCounter = styled.div`
     display: flex;
     font-size: 14px;
     align-items: center;
-    color: ${props => props.theme.colors.color};
+    color: ${props => props.theme.colors.primary};
 
     svg {
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.border};
+      fill: ${props => props.theme.colors.tertiary};
     }
   }
 
@@ -39,8 +41,8 @@ const StyledCounter = styled.div`
     padding: 0;
     margin: 0;
     outline: none;
-    background: none;
-    border: 1px solid ${props => props.theme.colors.color};
+    background: ${props => props.theme.colors.secondary};
+
     width: 30px;
     height: 30px;
     border-radius: 15px;
@@ -48,6 +50,12 @@ const StyledCounter = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    ${getBoxShadow}
+
+    &:hover {
+      background: ${props => props.theme.colors.hover};
+    }
 
     &[disabled] {
       opacity: 0.2;
@@ -55,7 +63,7 @@ const StyledCounter = styled.div`
     }
 
     svg {
-      fill: ${props => props.theme.colors.color};
+      fill: ${props => props.theme.colors.primary};
       width: 22px;
       height: 22px;
     }
@@ -71,16 +79,15 @@ const StyledCounter = styled.div`
     outline: none;
     display: inline-block;
     max-width: 60px;
+    height: 30px;
     font-size: 14px;
-    padding: 5px 10px 4px;
+    padding: 3px 10px 6px;
     font-family: inherit;
     text-align: center;
     color: inherit;
     background: none;
-
-    &:focus {
-      border-color: ${props => props.theme.colors.color};
-    }
+    border-radius: 15px;
+    ${getBoxShadow}
   }
 `;
 

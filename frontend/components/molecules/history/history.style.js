@@ -25,7 +25,7 @@ const StyledHistory = styled.div`
     cursor: pointer;
     padding: 10px 2em;
     margin: 0;
-    color: ${props => props.theme.colors.color};
+    color: ${props => props.theme.colors.primary};
     text-align: left;
     background: ${props => props.theme.colors.hover};
     border-bottom: 1px solid ${props => props.theme.colors.active};
@@ -62,7 +62,7 @@ const StyledHistory = styled.div`
     font-weight: bold;
     font-size: 11px;
     text-transform: uppercase;
-    color: ${props => props.theme.colors.color};
+    color: ${props => props.theme.colors.primary};
     background: ${props => props.theme.colors.active};
     margin: 0;
 
@@ -70,7 +70,7 @@ const StyledHistory = styled.div`
       height: 15px;
       width: 15px;
       margin-right: 5px;
-      fill: ${props => props.theme.colors.color};
+      fill: ${props => props.theme.colors.primary};
     }
   }
 `;

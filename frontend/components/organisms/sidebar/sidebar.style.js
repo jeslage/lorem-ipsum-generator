@@ -8,7 +8,7 @@ const StyledSidebar = styled.aside`
   width: 90%;
   max-width: 385px;
   transition: width 0.2s ease-in-out;
-  background: ${props => props.theme.colors.background};
+  background: ${props => props.theme.colors.secondary};
   overflow: hidden;
   border-left: 1px solid ${props => props.theme.colors.active};
 

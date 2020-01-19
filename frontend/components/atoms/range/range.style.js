@@ -15,13 +15,13 @@ const StyledRange = styled.div`
     display: flex;
     font-size: 14px;
     align-items: center;
-    color: ${props => props.theme.colors.color};
+    color: ${props => props.theme.colors.primary};
 
     svg {
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.border};
+      fill: ${props => props.theme.colors.tertiary};
     }
   }
 

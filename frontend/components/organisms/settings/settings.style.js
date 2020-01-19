@@ -73,7 +73,7 @@ const StyledSettings = styled.div`
     svg {
       width: 20px;
       height: 20px;
-      fill: ${props => props.theme.colors.color};
+      fill: ${props => props.theme.colors.primary};
     }
   }
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { getBoxShadow } from "@helper";
 
 const StyledShorthand = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const StyledShorthand = styled.div`
       width: 20px;
       height: auto;
       margin-right: 15px;
-      fill: ${props => props.theme.colors.border};
+      fill: ${props => props.theme.colors.tertiary};
     }
   }
 
@@ -35,7 +36,6 @@ const StyledShorthand = styled.div`
   }
 
   input {
-    border: 1px solid ${props => props.theme.colors.color};
     border-radius: 30px;
     outline: none;
     display: inline-block;
@@ -47,6 +47,7 @@ const StyledShorthand = styled.div`
     text-align: center;
     color: inherit;
     background: none;
+    ${getBoxShadow}
 
     &:last-of-type {
       margin-right: 0;

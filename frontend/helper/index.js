@@ -34,3 +34,10 @@ export const convertArrayToObject = (array, key) => {
     };
   }, initialValue);
 };
+
+export const getBoxShadow = () => ({ theme }) => `
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 2px 2px 3px 0
+      ${hexToRgbA(theme.colors.active, 0.9)},
+    -2px -2px 3px 0 rgba(255, 255, 255, 1);
+`;

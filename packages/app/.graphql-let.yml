@@ -1,0 +1,8 @@
+generateDir: generated
+schema: http://craft-typescript.localhost/api
+documents: "graphql/queries/**/*.graphql"
+plugins:
+  - typescript
+  - typescript-operations
+  - typescript-react-apollo
+respectGitIgnore: true

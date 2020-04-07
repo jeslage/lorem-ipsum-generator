@@ -1,23 +1,44 @@
+import { NextPage, NextPageContext } from "next";
 import React from "react";
 import Head from "next/head";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import {
+  InMemoryCache,
+  NormalizedCacheObject,
+  IntrospectionFragmentMatcher
+} from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
-import fetch from "isomorphic-unfetch";
 
-let apolloClient = null;
+import introspectionQueryResultData from "./schema.json";
+
+type TApolloClient = ApolloClient<NormalizedCacheObject>;
+
+type InitialProps = {
+  apolloClient: TApolloClient;
+  apolloState: any;
+} & Record<string, any>;
+
+export type WithApolloPageContext = {
+  apolloClient: TApolloClient;
+} & NextPageContext;
+
+let globalApolloClient: TApolloClient;
 
 /**
  * Creates and provides the apolloContext
  * to a next.js PageTree. Use it by wrapping
  * your PageComponent via HOC pattern.
- * @param {Function|Class} PageComponent
- * @param {Object} [config]
- * @param {Boolean} [config.ssr=true]
  */
-export function withApollo(PageComponent, { ssr = true } = {}) {
-  const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
+export default function withApollo(
+  PageComponent: NextPage,
+  { ssr = true } = {}
+) {
+  const WithApollo = ({
+    apolloClient,
+    apolloState,
+    ...pageProps
+  }: InitialProps) => {
     const client = apolloClient || initApolloClient(apolloState);
     return (
       <ApolloProvider client={client}>
@@ -39,7 +60,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
   }
 
   if (ssr || PageComponent.getInitialProps) {
-    WithApollo.getInitialProps = async ctx => {
+    WithApollo.getInitialProps = async (ctx: WithApolloPageContext) => {
       const { AppTree } = ctx;
 
       // Initialize ApolloClient, add it to the ctx object so
@@ -104,7 +125,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
  * Creates or reuses apollo client in the browser.
  * @param  {Object} initialState
  */
-function initApolloClient(initialState) {
+function initApolloClient(initialState?: any) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (typeof window === "undefined") {
@@ -112,11 +133,11 @@ function initApolloClient(initialState) {
   }
 
   // Reuse client on the client-side
-  if (!apolloClient) {
-    apolloClient = createApolloClient(initialState);
+  if (!globalApolloClient) {
+    globalApolloClient = createApolloClient(initialState);
   }
 
-  return apolloClient;
+  return globalApolloClient;
 }
 
 /**
@@ -124,23 +145,21 @@ function initApolloClient(initialState) {
  * @param  {Object} [initialState={}]
  */
 function createApolloClient(initialState = {}) {
+  const ssrMode = typeof window === "undefined";
+
+  const fragmentMatcher = new IntrospectionFragmentMatcher({
+    introspectionQueryResultData
+  });
+
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   return new ApolloClient({
-    ssrMode: typeof window === "undefined", // Disables forceFetch on the server (so queries are only run once)
+    ssrMode,
     link: new HttpLink({
-      uri:
-        process.env.NODE_ENV === "development"
-          ? "/graphql"
-          : "http://api.johanneseslage.de/graphql", // Server URL (must be absolute)
-      credentials: "include", // Additional fetch() options like `credentials` or `headers`
-      headers: {
-        "Access-Control-Allow-Origin": "*" //Required for CORS support to work
-      },
-      fetch,
-      fetchOptions: {
-        mode: "no-cors"
-      }
+      uri: "http://craft-typescript.localhost/api", // Server URL (must be absolute)
+      credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+      fetch
     }),
-    cache: new InMemoryCache().restore(initialState)
+
+    cache: new InMemoryCache({ fragmentMatcher }).restore(initialState || {})
   });
 }

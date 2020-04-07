@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { SwitchProps } from "./switch";
 
-const StyledSwitch = styled.div`
+type StyledSwitchProps = Pick<SwitchProps, "isActive">;
+
+const StyledSwitch = styled.div<StyledSwitchProps>`
   display: flex;
   align-items: center;
   margin: 1.5em 0;
@@ -33,7 +36,7 @@ const StyledSwitch = styled.div`
     border-radius: 30px;
     cursor: pointer;
     background-color: ${props =>
-      props.active ? "transparent" : "transparent"};
+      props.isActive ? "transparent" : "transparent"};
     will-change: background-color;
     transition: background-color 0.2s ease-in-out;
 
@@ -46,7 +49,7 @@ const StyledSwitch = styled.div`
       height: 20px;
       border-radius: 20px;
       background: ${props => props.theme.colors.color};
-      transform: translateX(${props => (props.active ? "30px" : "0")});
+      transform: translateX(${props => (props.isActive ? "30px" : "0")});
       will-change: transform;
       transition: transform 0.2s ease-in-out;
 

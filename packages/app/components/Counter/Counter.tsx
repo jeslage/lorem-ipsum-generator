@@ -2,8 +2,10 @@ import React, { FC } from "react";
 
 import StyledCounter from "./Counter.style";
 
+import Icon, { IconTypes } from "../Icon";
+
 export interface CounterProps {
-  iconBefore?: any;
+  iconBefore?: IconTypes;
   label: string;
   onChange?: (val: number) => void;
   value: number;
@@ -57,7 +59,7 @@ const Counter: FC<CounterProps> = ({
       <div className="counter__text">
         {(label || iconBefore) && (
           <p className="counter__label">
-            {iconBefore}
+            {iconBefore && <Icon type={iconBefore} />}
             {label && label}
           </p>
         )}

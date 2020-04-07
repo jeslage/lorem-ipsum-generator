@@ -2,9 +2,10 @@ import React, { useState, FC } from "react";
 import { ChromePicker } from "react-color";
 
 import StyledColorPicker from "./ColorPicker.style";
+import Icon, { IconTypes } from "../Icon";
 
 export interface ColorPickerProps {
-  iconBefore?: JSX.Element;
+  iconBefore?: IconTypes;
   title?: string;
   label?: string;
   value: any;
@@ -25,7 +26,7 @@ const ColorPicker: FC<ColorPickerProps> = ({
     <StyledColorPicker color={value}>
       {(label || iconBefore) && (
         <p className="colorPicker__label" title={title}>
-          {iconBefore}
+          {iconBefore && <Icon type={iconBefore} />}
           {label && label}
         </p>
       )}

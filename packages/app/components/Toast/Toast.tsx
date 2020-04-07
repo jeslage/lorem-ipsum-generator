@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 
-import SvgSprite from "@atoms/SvgSprite";
-import CheckIcon from "@icons/check.svg";
+import Icon from "../Icon";
+import { ToastProps } from "react-toast-notifications";
 
 const StyledToast = styled.div`
   width: 340px;
@@ -39,15 +39,13 @@ const StyledToast = styled.div`
   }
 `;
 
-const Toast = ({ appearance, children, ...props }) => {
-  return (
-    <StyledToast appearance={appearance} {...props}>
-      <div className="toast__icon">
-        <SvgSprite icon={appearance === "error" ? CheckIcon : CheckIcon} />
-      </div>
-      <span>{children}</span>
-    </StyledToast>
-  );
-};
+const Toast: FC<ToastProps> = ({ appearance, children }) => (
+  <StyledToast>
+    <div className="toast__icon">
+      <Icon type={appearance === "error" ? "check" : "check"} />
+    </div>
+    <span>{children}</span>
+  </StyledToast>
+);
 
 export default Toast;

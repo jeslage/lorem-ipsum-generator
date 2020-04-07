@@ -4,9 +4,9 @@ import { SettingsContext } from "@contexts/settingsProvider";
 import { TextContext } from "@contexts/textProvider";
 
 import Select from "@atoms/select/select";
-import Counter from "@atoms/Counter";
-import ColorPicker from "@atoms/ColorPicker";
-import Switch from "@atoms/switch/switch";
+import Counter from "@components/Counter";
+import ColorPicker from "@components/ColorPicker";
+import Switch from "@components/Switch";
 import RadioGroup from "@atoms/radioGroup/radioGroup";
 
 import UppercaseIcon from "@icons/uppercase.svg";

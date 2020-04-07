@@ -5,7 +5,7 @@ import { decodeConfig } from "@helper";
 import { HistoryContext } from "@contexts/historyProvider";
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "@atoms/Button";
+import Button from "@components/Button";
 import SvgSprite from "@atoms/SvgSprite";
 
 import MinusIcon from "@icons/minus.svg";

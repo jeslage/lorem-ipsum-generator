@@ -1,15 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import SvgSprite from "@atoms/SvgSprite";
+import Icon, { IconTypes } from "../Icon";
 
-import StyledSwitch from "./switch.style";
+import StyledSwitch from "./Switch.style";
 
-const Switch = ({ iconBefore, label, onChange, isActive, ...props }) => (
-  <StyledSwitch active={isActive} {...props}>
+export interface SwitchProps {
+  iconBefore?: IconTypes;
+  isActive?: boolean;
+  label?: string;
+  onChange: (value: boolean) => void;
+}
+
+const Switch: FC<SwitchProps> = ({ iconBefore, label, onChange, isActive }) => (
+  <StyledSwitch isActive={isActive}>
     {(label || iconBefore) && (
       <p className="switch__label">
-        {iconBefore && <SvgSprite icon={iconBefore} />}
+        {iconBefore && <Icon type={iconBefore} />}
         {label && label}
       </p>
     )}
@@ -45,19 +51,5 @@ const Switch = ({ iconBefore, label, onChange, isActive, ...props }) => (
     </button>
   </StyledSwitch>
 );
-
-Switch.propTypes = {
-  iconBefore: PropTypes.shape(),
-  label: PropTypes.string,
-  onChange: PropTypes.func,
-  isActive: PropTypes.bool
-};
-
-Switch.defaultProps = {
-  iconBefore: null,
-  label: null,
-  onChange: undefined,
-  isActive: false
-};
 
 export default Switch;

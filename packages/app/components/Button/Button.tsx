@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 
 import StyledButton from "./Button.style";
-import SvgSprite from "../SvgSprite";
+
+import Icon, { IconTypes } from "../Icon";
 
 export interface ButtonProps {
-  iconBefore?: any;
-  iconAfter?: any;
+  iconBefore?: IconTypes;
+  iconAfter?: IconTypes;
   variant?: "primary" | "secondary";
   className?: string;
   onClick?: (e: React.MouseEvent) => void;
@@ -27,11 +28,9 @@ const Button: FC<ButtonProps> = ({
     onClick={onClick}
     {...props}
   >
-    {iconBefore && (
-      <SvgSprite icon={iconBefore} className="button__icon-before" />
-    )}
+    {iconBefore && <Icon type={iconBefore} className="button__icon-before" />}
     {children}
-    {iconAfter && <SvgSprite icon={iconAfter} className="button__icon-after" />}
+    {iconAfter && <Icon type={iconAfter} className="button__icon-after" />}
   </StyledButton>
 );
 

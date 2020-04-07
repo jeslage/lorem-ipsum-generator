@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Switch from "@atoms/switch/switch";
+import Switch from "@components/Switch";
 import CreateHtmlButton from "@molecules/createHtmlButton/createHtmlButton";
 
 import TagsIcon from "@icons/tags.svg";

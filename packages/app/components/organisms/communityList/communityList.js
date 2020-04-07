@@ -10,8 +10,8 @@ import { encodeConfig, decodeConfig } from "@helper";
 
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "@atoms/Button";
-import LoadingIndicator from "@atoms/loadingIndicator/loadingIndicator";
+import Button from "@components/Button";
+import LoadingIndicator from "@components/LoadingIndicator";
 import Preset from "@molecules/preset/preset";
 
 import CopyIcon from "@icons/copy.svg";

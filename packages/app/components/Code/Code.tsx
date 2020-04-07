@@ -7,7 +7,7 @@ import * as clipboard from "clipboard-polyfill";
 import StyledCode from "./Code.style";
 
 import Button from "../Button";
-import CopyIcon from "../../icons/CopyIcon";
+import CopyIcon from "../icons/CopyIcon";
 
 const loadLanguage = async (language: "javascript" | "css") => {
   if (language === "javascript") {

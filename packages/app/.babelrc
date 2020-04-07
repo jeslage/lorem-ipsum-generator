@@ -10,6 +10,7 @@
           "@helper": "./helper",
           "@config": "./config",
           "@graphql": "./graphql",
+          "@components": "./components",
           "@icons": "./components/icons",
           "@atoms": "./components/atoms",
           "@molecules": "./components/molecules",

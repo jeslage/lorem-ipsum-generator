@@ -4,7 +4,7 @@ import { useToasts } from "react-toast-notifications";
 import { SettingsContext } from "@contexts/settingsProvider";
 import { TextContext } from "@contexts/textProvider";
 
-import Button from "@atoms/Button";
+import Button from "@components/Button";
 
 const CreateHtmlButton = () => {
   const { addToast } = useToasts();

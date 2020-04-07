@@ -2,8 +2,8 @@ import React, { useContext, useMemo } from "react";
 
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Counter from "@atoms/Counter";
-import Switch from "@atoms/switch/switch";
+import Counter from "@components/Counter";
+import Switch from "@components/Switch";
 
 const List = () => {
   const { settings, updateNestedSettings } = useContext(SettingsContext);

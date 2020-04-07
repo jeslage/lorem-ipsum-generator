@@ -16,7 +16,7 @@ import {
   HistoryProvider
 } from "../contexts";
 
-import Toast from "../components/atoms/toast/toast";
+import Toast from "../components/Toast";
 import Home from "../components/pages/home/home";
 
 type IndexPageProps = {

@@ -3,15 +3,15 @@ import React, { useContext, useMemo } from "react";
 import { TextContext } from "@contexts/textProvider";
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Counter from "@atoms/Counter";
-import Switch from "@atoms/switch/switch";
+import Counter from "@components/Counter";
+import Switch from "@components/Switch";
 import Select from "@atoms/select/select";
-import Code from "@atoms/Code";
-import ColorPicker from "@atoms/ColorPicker";
+import Code from "@components/Code";
+import ColorPicker from "@components/ColorPicker";
 
 import Shorthand from "@atoms/shorthand/shorthand";
-import Button from "@atoms/Button";
-import Textarea from "@atoms/textarea/textarea";
+import Button from "@components/Button";
+import Textarea from "@components/Textarea";
 import Range from "@atoms/range/range";
 import RadioGroup from "@atoms/radioGroup/radioGroup";
 

@@ -3,14 +3,14 @@ import React, { useContext, useMemo } from "react";
 import { SettingsContext } from "@contexts/settingsProvider";
 import { TextContext } from "@contexts/textProvider";
 
-import Counter from "@atoms/Counter";
-import Code from "@atoms/Code";
+import Counter from "@components/Counter";
+import Code from "@components/Code";
 import Shorthand from "@atoms/shorthand/shorthand";
-import ColorPicker from "@atoms/ColorPicker";
+import ColorPicker from "@components/ColorPicker";
 import Select from "@atoms/select/select";
-import Switch from "@atoms/switch/switch";
-import Textarea from "@atoms/textarea/textarea";
-import Button from "@atoms/Button";
+import Switch from "@components/Switch";
+import Textarea from "@components/Textarea";
+import Button from "@components/Button";
 import Range from "@atoms/range/range";
 import RadioGroup from "@atoms/radioGroup/radioGroup";
 

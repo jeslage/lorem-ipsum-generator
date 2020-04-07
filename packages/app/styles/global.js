@@ -7,12 +7,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background: ${props => props.theme.backgroundColor};
     color: ${props => props.theme.colors.color};
-
-    ${props =>
-      props.isStyleguide &&
-      css`
-        background: ${props => props.theme.colors.background};
-      `}
   }
 
   small {

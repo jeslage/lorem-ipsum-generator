@@ -1,17 +1,19 @@
 import { useValue } from "react-cosmos/fixture";
 
 import Counter from "./Counter";
-import ColorIcon from "../../icons/ColorIcon";
 
 export default {
-  Default: <Counter label="test" />,
+  Default: (
+    <Counter label="test" value={2} onChange={value => console.log(value)} />
+  ),
   "With state": () => {
-    const [count, setCount] = useValue("count", { defaultValue: 2 });
+    const [count, setCount] = useValue<number>("count", { defaultValue: 2 });
+
     return (
       <Counter
         label="Counter with state"
         value={count}
-        iconBefore={ColorIcon}
+        iconBefore="color"
         onChange={value => setCount(value)}
       />
     );

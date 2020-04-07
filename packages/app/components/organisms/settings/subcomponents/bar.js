@@ -4,7 +4,7 @@ import { useToasts } from "react-toast-notifications";
 
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "@atoms/Button";
+import Button from "@components/Button";
 
 import CopyIcon from "@icons/copy.svg";
 import RemoveIcon from "@icons/remove.svg";

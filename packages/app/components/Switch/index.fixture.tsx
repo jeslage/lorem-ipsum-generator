@@ -1,17 +1,26 @@
 import { useValue } from "react-cosmos/fixture";
 
-import Switch from "./switch";
-import ColorIcon from "../../icons/color.svg";
+import Switch from "./Switch";
 
 export default {
-  Default: <Switch label="Label" iconBefore={ColorIcon} isActive={true} />,
+  Default: (
+    <Switch
+      label="Label"
+      iconBefore="color"
+      isActive
+      onChange={() => console.log("Changed")}
+    />
+  ),
   "With state": () => {
-    const [active, setActive] = useValue("active", { defaultValue: false });
+    const [active, setActive] = useValue<boolean>("active", {
+      defaultValue: false
+    });
+
     return (
       <Switch
         isActive={active}
         label="Label"
-        iconBefore={ColorIcon}
+        iconBefore="color"
         onChange={bool => setActive(bool)}
       />
     );

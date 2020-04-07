@@ -3,11 +3,11 @@ import React, { useContext, useMemo } from "react";
 import { SettingsContext } from "@contexts/settingsProvider";
 import { TextContext } from "@contexts/textProvider";
 
-import Select from "@atoms/select/select";
+import Select from "@components/Select";
 import Counter from "@components/Counter";
 import ColorPicker from "@components/ColorPicker";
 import Switch from "@components/Switch";
-import RadioGroup from "@atoms/radioGroup/radioGroup";
+import RadioGroup from "@components/RadioGroup";
 
 import UppercaseIcon from "@icons/uppercase.svg";
 import LowercaseIcon from "@icons/lowercase.svg";

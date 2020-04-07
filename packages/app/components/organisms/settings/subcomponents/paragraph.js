@@ -7,12 +7,12 @@ import Counter from "@components/Counter";
 import Code from "@components/Code";
 import Shorthand from "@atoms/shorthand/shorthand";
 import ColorPicker from "@components/ColorPicker";
-import Select from "@atoms/select/select";
+import Select from "@components/Select";
 import Switch from "@components/Switch";
 import Textarea from "@components/Textarea";
 import Button from "@components/Button";
-import Range from "@atoms/range/range";
-import RadioGroup from "@atoms/radioGroup/radioGroup";
+import Range from "@components/Range";
+import RadioGroup from "../../../RadioGroup";
 
 import FontFamilyIcon from "@icons/fontFamily.svg";
 import ColorIcon from "@icons/color.svg";

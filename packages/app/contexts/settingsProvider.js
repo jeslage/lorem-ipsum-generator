@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 
 import { fontFamilies } from "@config/fontFamilies";
-import { HistoryContext } from "./historyProvider";
+import { HistoryContext } from "./HistoryProvider";
 
 import { encodeConfig } from "@helper";
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SwitchProps } from "./switch";
+import { SwitchProps } from "./Switch";
 
 type StyledSwitchProps = Pick<SwitchProps, "isActive">;
 

@@ -6,7 +6,7 @@ import Icon, { IconTypes } from "../Icon";
 
 export interface CounterProps {
   iconBefore?: IconTypes;
-  label: string;
+  label?: string;
   onChange?: (val: number) => void;
   value: number;
   description?: string;

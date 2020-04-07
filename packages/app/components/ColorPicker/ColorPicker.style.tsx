@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StlyedColorPicker = styled.div`
+const StyledColorpicker = styled.div`
   display: flex;
   align-items: center;
   margin: 1.5em 0;
@@ -61,4 +61,4 @@ const StlyedColorPicker = styled.div`
   }
 `;
 
-export default StlyedColorPicker;
+export default StyledColorpicker;

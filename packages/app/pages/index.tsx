@@ -4,10 +4,15 @@ import cookies from "next-cookies";
 import { ToastProvider } from "react-toast-notifications";
 import { DndProvider } from "react-dnd-cjs";
 import HTML5Backend from "react-dnd-html5-backend-cjs";
+import Head from "next/head";
+import styled from "styled-components";
 
 import { decodeConfig } from "../helper";
+
 import withApollo from "../graphql/with-apollo";
 import GlobalStyle from "../styles/global";
+
+import { mq } from "../styles/tools";
 
 import {
   SettingsProvider,
@@ -17,37 +22,56 @@ import {
 } from "../contexts";
 
 import Toast from "../components/Toast";
-import Home from "../components/pages/home/home";
+import Text from "../components/Text";
+import Sidebar from "../components/Sidebar";
 
 type IndexPageProps = {
   queryConfig?: any;
   presets?: string;
 };
 
-const IndexPage: NextPage<IndexPageProps> = ({ queryConfig, presets }) => {
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <HistoryProvider>
-        <SettingsProvider queryConfig={queryConfig}>
-          <TextProvider>
-            <PresetsProvider initialPresets={presets}>
-              <ToastProvider
-                autoDismissTimeout={2000}
-                placement="bottom-center"
-                components={{ Toast: Toast }}
-              >
-                <>
-                  <Home />
-                  <GlobalStyle />
-                </>
-              </ToastProvider>
-            </PresetsProvider>
-          </TextProvider>
-        </SettingsProvider>
-      </HistoryProvider>
-    </DndProvider>
-  );
-};
+const StyledHome = styled.main`
+  ${mq("m")} {
+    display: flex;
+  }
+
+  .home__text {
+    flex-grow: 2;
+  }
+
+  .home__sidebar {
+    flex-shrink: 0;
+  }
+`;
+
+const IndexPage: NextPage<IndexPageProps> = ({ queryConfig, presets }) => (
+  <DndProvider backend={HTML5Backend}>
+    <HistoryProvider>
+      <SettingsProvider queryConfig={queryConfig}>
+        <TextProvider>
+          <PresetsProvider initialPresets={presets}>
+            <ToastProvider
+              autoDismissTimeout={2000}
+              placement="bottom-center"
+              components={{ Toast: Toast }}
+            >
+              <>
+                <Head>
+                  <title>Lorem Ipsum Generator</title>
+                </Head>
+                <StyledHome>
+                  <Text className="home__text" />
+                  <Sidebar className="home__sidebar" />
+                </StyledHome>
+                <GlobalStyle />
+              </>
+            </ToastProvider>
+          </PresetsProvider>
+        </TextProvider>
+      </SettingsProvider>
+    </HistoryProvider>
+  </DndProvider>
+);
 
 IndexPage.getInitialProps = async (ctx: NextPageContext) => {
   const { presets } = cookies(ctx);
@@ -60,7 +84,6 @@ IndexPage.getInitialProps = async (ctx: NextPageContext) => {
     config = decodeConfig(query.c);
   }
 
-  console.log(config);
   return { queryConfig: config, presets };
 };
 

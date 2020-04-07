@@ -5,15 +5,15 @@ import { SettingsContext } from "@contexts/settingsProvider";
 
 import Counter from "@components/Counter";
 import Switch from "@components/Switch";
-import Select from "@atoms/select/select";
+import Select from "@components/Select";
 import Code from "@components/Code";
 import ColorPicker from "@components/ColorPicker";
 
 import Shorthand from "@atoms/shorthand/shorthand";
 import Button from "@components/Button";
 import Textarea from "@components/Textarea";
-import Range from "@atoms/range/range";
-import RadioGroup from "@atoms/radioGroup/radioGroup";
+import Range from "@components/Range";
+import RadioGroup from "../../../RadioGroup";
 
 import FontFamilyIcon from "@icons/fontFamily.svg";
 import ColorIcon from "@icons/color.svg";

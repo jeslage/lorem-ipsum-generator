@@ -33,14 +33,14 @@ const StyledButton = styled.button<StyledButtonProps>`
     height: 15px;
     width: auto;
     fill: ${props => props.theme.colors.color};
+  }
 
-    &.button__icon-before {
-      margin-right: 10px;
-    }
+  .button__icon-before {
+    margin-right: 10px;
+  }
 
-    &.button__icon-after {
-      margin-left: 10px;
-    }
+  .button__icon-after {
+    margin-left: 10px;
   }
 
   ${props =>

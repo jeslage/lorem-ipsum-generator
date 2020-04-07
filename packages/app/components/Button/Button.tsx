@@ -9,6 +9,8 @@ export interface ButtonProps {
   iconAfter?: IconTypes;
   variant?: "primary" | "secondary";
   className?: string;
+  disabled?: boolean;
+  title?: string;
   onClick?: (e: React.MouseEvent) => void;
 }
 
@@ -17,8 +19,10 @@ const Button: FC<ButtonProps> = ({
   iconBefore,
   iconAfter,
   variant = "primary",
+  disabled = false,
   onClick,
   className,
+  title,
   ...props
 }) => (
   <StyledButton
@@ -26,11 +30,21 @@ const Button: FC<ButtonProps> = ({
     variant={variant}
     className={className}
     onClick={onClick}
+    disabled={disabled}
+    title={title}
     {...props}
   >
-    {iconBefore && <Icon type={iconBefore} className="button__icon-before" />}
+    {iconBefore && (
+      <span className="button__icon-before">
+        <Icon type={iconBefore} />
+      </span>
+    )}
     {children}
-    {iconAfter && <Icon type={iconAfter} className="button__icon-after" />}
+    {iconAfter && (
+      <span className="button__icon-after">
+        <Icon type={iconAfter} />
+      </span>
+    )}
   </StyledButton>
 );
 

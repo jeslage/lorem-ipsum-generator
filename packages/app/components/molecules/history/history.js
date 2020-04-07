@@ -5,8 +5,8 @@ import { decodeConfig } from "@helper";
 import { HistoryContext } from "@contexts/historyProvider";
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "@atoms/button/button";
-import SvgSprite from "@atoms/svgSprite/svgSprite";
+import Button from "@atoms/Button";
+import SvgSprite from "@atoms/SvgSprite";
 
 import MinusIcon from "@icons/minus.svg";
 import PlusIcon from "@icons/plus.svg";
@@ -62,14 +62,14 @@ const History = () => {
               disabled={historyIndex === 0}
               onClick={() => historyBack(handleHistoryChange)}
               iconBefore={UndoIcon}
-              secondary
+              variant="secondary"
               title="Undo"
             />
 
             <Button
               disabled={history.length === historyIndex + 1}
               iconAfter={RedoIcon}
-              secondary
+              variant="secondary"
               onClick={() => historyForward(handleHistoryChange)}
               title="Redo"
             />

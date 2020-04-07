@@ -1,5 +1,5 @@
 generateDir: generated
-schema: http://craft-typescript.localhost/api
+schema: http://localhost:8000/graphql
 documents: "graphql/queries/**/*.graphql"
 plugins:
   - typescript

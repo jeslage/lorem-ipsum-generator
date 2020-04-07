@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import SvgSprite from "@atoms/svgSprite/svgSprite";
+import SvgSprite from "@atoms/SvgSprite";
 
 import StyledSwitch from "./switch.style";
 

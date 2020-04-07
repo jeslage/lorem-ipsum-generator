@@ -1,13 +1,17 @@
 {
-  "name": "with-typescript-graphql",
+  "name": "@lorem-ipsum-generator/app",
   "version": "0.1.0",
   "author": "",
   "license": "ISC",
   "scripts": {
     "codegen": "graphql-let",
-    "dev": "yarn codegen && next",
+    "dev": "next",
     "build": "yarn codegen && next build",
-    "start": "next start"
+    "build-schema": "node ./graphql/buildSchema.js",
+    "start": "next start",
+    "export": "next build && next export",
+    "deploy": "now --name lorem-ipsum-generator",
+    "cosmos": "cosmos --config cosmos/cosmos.config.json"
   },
   "dependencies": {
     "@apollo/react-common": "^3.1.3",

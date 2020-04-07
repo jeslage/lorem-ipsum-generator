@@ -1,28 +1,35 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-import SvgSprite from "@atoms/svgSprite/svgSprite";
+import StyledCounter from "./Counter.style";
 
-import MinusIcon from "@icons/minus.svg";
-import PlusIcon from "@icons/plus.svg";
+export interface CounterProps {
+  iconBefore?: any;
+  label: string;
+  onChange?: (val: number) => void;
+  value: number;
+  description?: string;
+  min?: number;
+  max?: number;
+  steps?: number;
+  suffix?: string | undefined;
+}
 
-import StyledCounter from "./counter.style";
-
-const Counter = ({
+const Counter: FC<CounterProps> = ({
   label,
-  title,
   description,
   value,
-  min,
-  max,
-  steps,
+  min = 0,
+  max = 100,
+  steps = 1,
   onChange,
   suffix,
   iconBefore
 }) => {
-  const updateValue = val => onChange(parseFloat(val));
+  const updateValue = (val: number) => {
+    if (onChange) onChange(val);
+  };
 
-  const handleChange = event => {
+  const handleChange = (event: { target: HTMLInputElement }) => {
     const { value, validity } = event.target;
 
     if (validity.valid) {
@@ -34,12 +41,13 @@ const Counter = ({
     }
   };
 
-  const handleBlur = event => {
+  const handleBlur = (event: { target: HTMLInputElement }) => {
     const { value } = event.target;
+    const numberValue: number | string = parseFloat(value);
 
-    if (value > max) {
+    if (numberValue > max) {
       updateValue(max);
-    } else if (value < min) {
+    } else if (numberValue < min) {
       updateValue(min);
     }
   };
@@ -48,8 +56,8 @@ const Counter = ({
     <StyledCounter>
       <div className="counter__text">
         {(label || iconBefore) && (
-          <p className="counter__label" title={title}>
-            {iconBefore && <SvgSprite icon={iconBefore} />}
+          <p className="counter__label">
+            {iconBefore}
             {label && label}
           </p>
         )}
@@ -66,7 +74,9 @@ const Counter = ({
           disabled={value === min}
           aria-label="Decrease"
         >
-          <SvgSprite icon={MinusIcon} />
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <rect height="2" rx="1" width="12" x="6" y="11" />
+          </svg>
         </button>
         <span>
           <input
@@ -84,37 +94,14 @@ const Counter = ({
           disabled={value === max}
           aria-label="Increase"
         >
-          <SvgSprite icon={PlusIcon} />
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <rect height="2" rx="1" width="12" x="6" y="11" />
+            <rect height="12" rx="1" width="2" x="11" y="6" />
+          </svg>
         </button>
       </div>
     </StyledCounter>
   );
-};
-
-Counter.propTypes = {
-  label: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  value: PropTypes.number,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  steps: PropTypes.number,
-  onChange: PropTypes.func,
-  suffix: PropTypes.string,
-  iconBefore: PropTypes.shape()
-};
-
-Counter.defaultProps = {
-  label: "",
-  title: "",
-  description: "",
-  value: 0,
-  min: 1,
-  max: 100,
-  steps: 1,
-  onChange: () => {},
-  suffix: "",
-  iconBefore: null
 };
 
 export default Counter;

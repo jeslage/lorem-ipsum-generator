@@ -1,22 +1,30 @@
 import React from "react";
+import { NextPage, NextPageContext } from "next";
 import cookies from "next-cookies";
 import { ToastProvider } from "react-toast-notifications";
 import { DndProvider } from "react-dnd-cjs";
 import HTML5Backend from "react-dnd-html5-backend-cjs";
 
-import { decodeConfig } from "@helper";
-import { withApollo } from "@graphql/apollo";
-import GlobalStyle from "@styles/global";
+import { decodeConfig } from "../helper";
+import withApollo from "../graphql/with-apollo";
+import GlobalStyle from "../styles/global";
 
-import SettingsProvider from "@contexts/settingsProvider";
-import TextProvider from "@contexts/textProvider";
-import PresetsProvider from "@contexts/presetsProvider";
-import HistoryProvider from "@contexts/historyProvider";
+import {
+  SettingsProvider,
+  TextProvider,
+  PresetsProvider,
+  HistoryProvider
+} from "../contexts";
 
-import Toast from "@atoms/toast/toast";
-import Home from "@pages/home/home";
+import Toast from "../components/atoms/toast/toast";
+import Home from "../components/pages/home/home";
 
-const IndexPage = ({ queryConfig, presets }) => {
+type IndexPageProps = {
+  queryConfig?: any;
+  presets?: string;
+};
+
+const IndexPage: NextPage<IndexPageProps> = ({ queryConfig, presets }) => {
   return (
     <DndProvider backend={HTML5Backend}>
       <HistoryProvider>
@@ -41,7 +49,7 @@ const IndexPage = ({ queryConfig, presets }) => {
   );
 };
 
-IndexPage.getInitialProps = async ctx => {
+IndexPage.getInitialProps = async (ctx: NextPageContext) => {
   const { presets } = cookies(ctx);
 
   const { query } = ctx;
@@ -52,6 +60,7 @@ IndexPage.getInitialProps = async ctx => {
     config = decodeConfig(query.c);
   }
 
+  console.log(config);
   return { queryConfig: config, presets };
 };
 

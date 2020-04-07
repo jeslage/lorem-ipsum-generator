@@ -3,20 +3,19 @@ import React, { useContext, useMemo } from "react";
 import { TextContext } from "@contexts/textProvider";
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Counter from "@atoms/counter/counter";
+import Counter from "@atoms/Counter";
 import Switch from "@atoms/switch/switch";
 import Select from "@atoms/select/select";
-import Code from "@atoms/code/code";
-import ColorPicker from "@atoms/colorpicker/colorpicker";
+import Code from "@atoms/Code";
+import ColorPicker from "@atoms/ColorPicker";
 
 import Shorthand from "@atoms/shorthand/shorthand";
-import Button from "@atoms/button/button";
+import Button from "@atoms/Button";
 import Textarea from "@atoms/textarea/textarea";
 import Range from "@atoms/range/range";
 import RadioGroup from "@atoms/radioGroup/radioGroup";
 
 import FontFamilyIcon from "@icons/fontFamily.svg";
-import LineHeightIcon from "@icons/lineHeight.svg";
 import ColorIcon from "@icons/color.svg";
 import FontSizeIcon from "@icons/fontSize.svg";
 import MarginIcon from "@icons/margin.svg";
@@ -151,7 +150,6 @@ const Subline = () => {
 
             <Counter
               label="Line Height"
-              iconBefore={LineHeightIcon}
               value={lineHeight}
               steps={0.25}
               onChange={value =>
@@ -160,7 +158,6 @@ const Subline = () => {
             />
             <ColorPicker
               label="Color"
-              iconBefore={ColorIcon}
               value={color}
               onChange={value =>
                 updateNestedSettings("subline", "color", value)

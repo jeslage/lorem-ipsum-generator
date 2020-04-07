@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 
 const fs = require("fs");
 
-const url = "http://craft-typescript.localhost/api";
+const url = "http://localhost:8000/graphql";
 
 fetch(url, {
   method: "POST",
@@ -40,7 +40,7 @@ fetch(url, {
     result.data.__schema.types = filteredData;
 
     fs.writeFileSync(
-      "./lib/schema.json",
+      "./graphql/schema.json",
       JSON.stringify(result.data, null, 2),
       err => {
         if (err) {

@@ -16,7 +16,21 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "@styles/*": ["./styles"],
+      "@helper/*": ["./helper"],
+      "@config/*": ["./config"],
+      "@graphql/*": ["./graphql"],
+      "@icons/*": ["./components/icons"],
+      "@atoms/*": ["./components/atoms"],
+      "@molecules/*": ["./components/molecules"],
+      "@organisms/*": ["./components/organisms"],
+      "@pages/*": ["./components/pages"],
+      "@contexts/*": ["./contexts"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]

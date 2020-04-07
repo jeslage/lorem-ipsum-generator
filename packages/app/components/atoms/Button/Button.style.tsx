@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
+import { ButtonProps } from "./Button";
 
-const StyledButton = styled.button`
+type StyledButtonProps = Pick<ButtonProps, "variant">;
+
+const StyledButton = styled.button<StyledButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,7 +44,7 @@ const StyledButton = styled.button`
   }
 
   ${props =>
-    props.secondary &&
+    props.variant === "secondary" &&
     css`
       border: none;
       border-radius: 0;

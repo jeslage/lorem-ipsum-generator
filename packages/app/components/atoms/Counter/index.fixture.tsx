@@ -1,7 +1,7 @@
 import { useValue } from "react-cosmos/fixture";
 
-import Counter from "./counter";
-import ColorIcon from "../../icons/color.svg";
+import Counter from "./Counter";
+import ColorIcon from "../../icons/ColorIcon";
 
 export default {
   Default: <Counter label="test" />,

@@ -3,20 +3,18 @@ import React, { useContext, useMemo } from "react";
 import { SettingsContext } from "@contexts/settingsProvider";
 import { TextContext } from "@contexts/textProvider";
 
-import Counter from "@atoms/counter/counter";
-import Code from "@atoms/code/code";
+import Counter from "@atoms/Counter";
+import Code from "@atoms/Code";
 import Shorthand from "@atoms/shorthand/shorthand";
-import ColorPicker from "@atoms/colorpicker/colorpicker";
+import ColorPicker from "@atoms/ColorPicker";
 import Select from "@atoms/select/select";
 import Switch from "@atoms/switch/switch";
 import Textarea from "@atoms/textarea/textarea";
-import Button from "@atoms/button/button";
+import Button from "@atoms/Button";
 import Range from "@atoms/range/range";
 import RadioGroup from "@atoms/radioGroup/radioGroup";
 
 import FontFamilyIcon from "@icons/fontFamily.svg";
-import LetterSpacingIcon from "@icons/letterSpacing.svg";
-import LineHeightIcon from "@icons/lineHeight.svg";
 import ColorIcon from "@icons/color.svg";
 import FontSizeIcon from "@icons/fontSize.svg";
 import MarginIcon from "@icons/margin.svg";
@@ -123,7 +121,6 @@ const Paragraph = () => {
           onChange={value => updateNestedSettings("paragraph", "size", value)}
         />
         <Counter
-          iconBefore={LineHeightIcon}
           label="Line Height"
           value={lineHeight}
           steps={0.25}
@@ -134,7 +131,6 @@ const Paragraph = () => {
 
         <Counter
           label="Letter spacing"
-          iconBefore={LetterSpacingIcon}
           value={letterSpacing}
           min={0}
           onChange={value =>
@@ -142,7 +138,6 @@ const Paragraph = () => {
           }
         />
         <ColorPicker
-          iconBefore={ColorIcon}
           label="Color"
           value={color}
           onChange={value => updateNestedSettings("paragraph", "color", value)}

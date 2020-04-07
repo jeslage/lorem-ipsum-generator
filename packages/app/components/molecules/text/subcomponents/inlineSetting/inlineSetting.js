@@ -4,10 +4,10 @@ import { SettingsContext } from "@contexts/settingsProvider";
 
 import Range from "@atoms/range/range";
 import Select from "@atoms/select/select";
-import SvgSprite from "@atoms/svgSprite/svgSprite";
+import SvgSprite from "@atoms/SvgSprite";
 import Switch from "@atoms/switch/switch";
-import Counter from "@atoms/counter/counter";
-import ColorPicker from "@atoms/colorpicker/colorpicker";
+import Counter from "@atoms/Counter";
+import ColorPicker from "@atoms/ColorPicker";
 import RadioGroup from "@atoms/radioGroup/radioGroup";
 import Shorthand from "@atoms/shorthand/shorthand";
 
@@ -85,7 +85,6 @@ const InlineSetting = ({ setting, children }) => {
                   />
 
                   <ColorPicker
-                    iconBefore={ColorIcon}
                     value={settings[setting].color}
                     onChange={value =>
                       updateNestedSettings(setting, "color", value)

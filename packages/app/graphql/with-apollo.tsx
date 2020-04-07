@@ -9,6 +9,7 @@ import {
   IntrospectionFragmentMatcher
 } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
+import fetch from "isomorphic-unfetch";
 
 import introspectionQueryResultData from "./schema.json";
 
@@ -155,7 +156,7 @@ function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode,
     link: new HttpLink({
-      uri: "http://craft-typescript.localhost/api", // Server URL (must be absolute)
+      uri: "http://localhost:8000/graphql", // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
       fetch
     }),

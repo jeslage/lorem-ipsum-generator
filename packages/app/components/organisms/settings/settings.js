@@ -8,7 +8,7 @@ import {
   AccordionItemState
 } from "react-accessible-accordion";
 
-import SvgSprite from "@atoms/svgSprite/svgSprite";
+import SvgSprite from "@atoms/SvgSprite";
 import History from "@molecules/history/history";
 
 // Subcomponents

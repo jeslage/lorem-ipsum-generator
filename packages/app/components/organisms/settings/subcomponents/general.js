@@ -4,12 +4,11 @@ import { SettingsContext } from "@contexts/settingsProvider";
 import { TextContext } from "@contexts/textProvider";
 
 import Select from "@atoms/select/select";
-import Counter from "@atoms/counter/counter";
-import ColorPicker from "@atoms/colorpicker/colorpicker";
+import Counter from "@atoms/Counter";
+import ColorPicker from "@atoms/ColorPicker";
 import Switch from "@atoms/switch/switch";
 import RadioGroup from "@atoms/radioGroup/radioGroup";
 
-import TextWidthIcon from "@icons/textWidth.svg";
 import UppercaseIcon from "@icons/uppercase.svg";
 import LowercaseIcon from "@icons/lowercase.svg";
 import ColorIcon from "@icons/color.svg";
@@ -46,7 +45,6 @@ const General = () => {
 
         <Counter
           label="Width"
-          iconBefore={TextWidthIcon}
           min={10}
           max={100}
           value={textWidth}
@@ -57,7 +55,6 @@ const General = () => {
 
         <ColorPicker
           label="Background color"
-          iconBefore={ColorIcon}
           value={backgroundColor}
           onChange={value => updateSettings("backgroundColor", value)}
         />

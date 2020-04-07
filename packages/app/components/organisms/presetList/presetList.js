@@ -4,7 +4,7 @@ import { useToasts } from "react-toast-notifications";
 import { PresetsContext } from "@contexts/presetsProvider";
 import { SettingsContext } from "@contexts/settingsProvider";
 
-import Button from "@atoms/button/button";
+import Button from "@atoms/Button";
 import Preset from "@molecules/preset/preset";
 
 import CopyIcon from "@icons/copy.svg";

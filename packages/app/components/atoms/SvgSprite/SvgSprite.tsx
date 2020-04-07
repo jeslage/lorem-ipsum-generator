@@ -1,11 +1,25 @@
-import PropTypes from "prop-types";
 import React from "react";
+import { FC } from "react";
 
-const SvgSprite = ({ icon, width, height, ...props }) => {
+export interface SvgSpriteProps {
+  icon: any;
+  width?: string | number;
+  height?: string | number;
+  className?: string;
+}
+
+const SvgSprite: FC<SvgSpriteProps> = ({
+  icon,
+  width,
+  height,
+  className,
+  ...props
+}) => {
   const [viewBoxWidth, viewBoxHeight] = icon.viewBox.split(" ").splice(2, 2);
 
   return (
     <svg
+      className={className}
       width={width || viewBoxWidth}
       height={height || viewBoxHeight}
       viewBox={icon.viewBox}
@@ -15,17 +29,6 @@ const SvgSprite = ({ icon, width, height, ...props }) => {
       <use xlinkHref={`#${icon.id}`} />
     </svg>
   );
-};
-
-SvgSprite.propTypes = {
-  icon: PropTypes.shape().isRequired,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};
-
-SvgSprite.defaultProps = {
-  width: null,
-  height: null
 };
 
 export default SvgSprite;

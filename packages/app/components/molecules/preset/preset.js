@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { TextContext } from "@contexts/textProvider";
 
-import SvgSprite from "@atoms/svgSprite/svgSprite";
+import SvgSprite from "@atoms/SvgSprite";
 import RemoveIcon from "@icons/remove.svg";
 
 import StyledPreset from "./preset.style";

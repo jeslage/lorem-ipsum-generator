@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const StyledCode = styled.div`
+type StyledCodeProps = {
+  readonly init: boolean;
+};
+
+const StyledCode = styled.div<StyledCodeProps>`
   display: flex;
   justify-content: center;
   flex-direction: column;

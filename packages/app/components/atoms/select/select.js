@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import SvgSprite from "@atoms/svgSprite/svgSprite";
+import SvgSprite from "@atoms/SvgSprite";
 
 import StyledSelect from "./select.style";
 

@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState, useRef, FC } from "react";
 import { useToasts } from "react-toast-notifications";
 
 import Prism from "prismjs";
 import * as clipboard from "clipboard-polyfill";
 
-import StyledCode from "./code.style";
+import StyledCode from "./Code.style";
 
-import Button from "@atoms/button/button";
-import SvgSprite from "@atoms/svgSprite/svgSprite";
-import CopyIcon from "@icons/copy.svg";
+import Button from "../Button";
+import CopyIcon from "../../icons/CopyIcon";
 
-const loadLanguage = async language => {
+const loadLanguage = async (language: "javascript" | "css") => {
   if (language === "javascript") {
     await import(
       /* webpackChunkName: "code-js" */ "prismjs/components/prism-javascript"
@@ -23,13 +21,17 @@ const loadLanguage = async language => {
   }
 };
 
-const Code = props => {
+export interface CodeProps {
+  language?: "javascript" | "css";
+  code: string;
+}
+
+const Code: FC<CodeProps> = ({ language = "css", code }) => {
   const { addToast } = useToasts();
 
-  const { language, code } = props;
   const [showCode, setShowCode] = useState(false);
   const [init, setInit] = useState(false);
-  const codeBox = React.createRef();
+  const codeBox = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!init && showCode) {
@@ -47,7 +49,9 @@ const Code = props => {
       autoDismiss: true
     });
 
-    clipboard.writeText(codeBox.current.innerText);
+    if (codeBox.current) {
+      clipboard.writeText(codeBox.current.innerText);
+    }
   };
 
   return (
@@ -67,7 +71,7 @@ const Code = props => {
             aria-label="Copy"
             title="Copy"
           >
-            <SvgSprite icon={CopyIcon} />
+            <CopyIcon />
           </button>
           <pre>
             <code className={`language-${language}`} ref={codeBox}>
@@ -78,17 +82,6 @@ const Code = props => {
       )}
     </StyledCode>
   );
-};
-
-Code.propTypes = {
-  /** Code */
-  code: PropTypes.string.isRequired,
-  /** Code Language */
-  language: PropTypes.oneOf(["javascript", "css"])
-};
-
-Code.defaultProps = {
-  language: "css"
 };
 
 export default Code;

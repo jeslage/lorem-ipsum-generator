@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { ChromePicker } from "react-color";
-import PropTypes from "prop-types";
 
-import SvgSprite from "@atoms/svgSprite/svgSprite";
+import StyledColorPicker from "./ColorPicker.style";
 
-import StyledColorPicker from "./colorpicker.style";
+export interface ColorPickerProps {
+  iconBefore?: JSX.Element;
+  title?: string;
+  label?: string;
+  value: any;
+  className?: string;
+  onChange?: (value: string) => void;
+}
 
-const ColorPicker = ({ iconBefore, title, label, onChange, value }) => {
+const ColorPicker: FC<ColorPickerProps> = ({
+  iconBefore,
+  title,
+  label,
+  onChange,
+  value
+}) => {
   const [visible, setVisible] = useState(false);
 
   return (
     <StyledColorPicker color={value}>
       {(label || iconBefore) && (
         <p className="colorPicker__label" title={title}>
-          {iconBefore && <SvgSprite icon={iconBefore} />}
+          {iconBefore}
           {label && label}
         </p>
       )}
@@ -47,20 +59,6 @@ const ColorPicker = ({ iconBefore, title, label, onChange, value }) => {
       </div>
     </StyledColorPicker>
   );
-};
-
-ColorPicker.propTypes = {
-  label: PropTypes.string,
-  title: PropTypes.string,
-  iconBefore: PropTypes.shape(),
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired
-};
-
-ColorPicker.defaultProps = {
-  label: null,
-  title: null,
-  iconBefore: null
 };
 
 export default ColorPicker;

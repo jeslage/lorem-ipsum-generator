@@ -1,9 +1,9 @@
 import React, { useContext, useMemo } from "react";
 
-import { SettingsContext } from "@contexts/settingsProvider";
+import { SettingsContext } from "../../../contexts";
 
-import Counter from "@components/Counter";
-import Switch from "@components/Switch";
+import Counter from "../../Counter";
+import Switch from "../../Switch";
 
 const List = () => {
   const { settings, updateNestedSettings } = useContext(SettingsContext);
@@ -33,6 +33,7 @@ const List = () => {
                 }
               }}
             />
+
             {frequency !== 1 && (
               <Counter
                 label="Offset"
@@ -44,6 +45,7 @@ const List = () => {
                 }
               />
             )}
+
             <Switch
               label="Ordered List"
               isActive={orderedList}

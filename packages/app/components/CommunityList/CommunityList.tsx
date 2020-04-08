@@ -4,9 +4,9 @@ import React from "react";
 
 // import { encodeConfig, decodeConfig } from "../../helper";
 
-// import ALL_PRESETS from "@graphql/queries/allPresets.graphql";
-// import CREATE_PRESET from "@graphql/mutations/addPreset.graphql";
-// import DELETE_PRESET from "@graphql/mutations/deletePreset.graphql";
+// import ALL_PRESETS from "../../graphql/queries/allPresets.graphql";
+// import CREATE_PRESET from "../../graphql/mutations/addPreset.graphql";
+// import DELETE_PRESET from "../../graphql/mutations/deletePreset.graphql";
 
 // import { SettingsContext } from "../../contexts/settingsProvider";
 

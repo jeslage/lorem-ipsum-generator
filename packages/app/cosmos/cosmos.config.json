@@ -2,7 +2,9 @@
   "rootDir": "..",
   "publicPath": "static",
   "publicUrl": "/static/",
-  "watchDirs": ["components"],
+  "watchDirs": [
+    "components"
+  ],
   "webpack": {
     "overridePath": "cosmos/webpack.override.js"
   }

@@ -17,21 +17,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "noImplicitAny": false,
-    "baseUrl": ".",
-    "paths": {
-      "@styles/*": ["./styles"],
-      "@helper/*": ["./helper"],
-      "@config/*": ["./config"],
-      "@graphql/*": ["./graphql"],
-      "@components/*": ["./components"],
-      "@icons/*": ["./components/icons"],
-      "@atoms/*": ["./components/atoms"],
-      "@molecules/*": ["./components/molecules"],
-      "@organisms/*": ["./components/organisms"],
-      "@pages/*": ["./components/pages"],
-      "@contexts/*": ["./contexts"]
-    }
+    "noImplicitAny": false
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]

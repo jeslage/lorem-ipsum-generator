@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from "react-tabs";
 
 // Subcomponents
-import Settings from "../organisms/settings/settings";
+import Settings from "../Settings";
 import PresetList from "../PresetList";
 import CommunityList from "../CommunityList";
 

@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from "react";
 import PropTypes from "prop-types";
 
-import textConfig from "@config/text";
+import textConfig from "../config/text";
 
 import { SettingsContext } from "./settingsProvider";
 import { convertArrayToObject } from "../helper";

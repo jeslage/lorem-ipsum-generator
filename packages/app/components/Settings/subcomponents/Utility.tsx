@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 
-import { SettingsContext } from "@contexts/settingsProvider";
+import { SettingsContext } from "../../../contexts";
 
-import Switch from "@components/Switch";
-import CreateHtmlButton from "@components/CreateHtmlButton";
-
-import TagsIcon from "@icons/tags.svg";
-import StylingIcon from "@icons/css.svg";
+import Switch from "../../Switch";
+import CreateHtmlButton from "../../CreateHtmlButton";
 
 const Utility = () => {
   const { utility, updateUtility } = useContext(SettingsContext);
@@ -17,7 +14,7 @@ const Utility = () => {
     <>
       <Switch
         label="Print HTML tags"
-        iconBefore={TagsIcon}
+        iconBefore="color"
         isActive={printTags}
         onChange={bool => {
           updateUtility("printTags", bool);
@@ -30,7 +27,7 @@ const Utility = () => {
       {printTags && (
         <Switch
           label="Print Inline Styles"
-          iconBefore={StylingIcon}
+          iconBefore="color"
           isActive={printInlineStyles}
           onChange={bool => updateUtility("printInlineStyles", bool)}
         />

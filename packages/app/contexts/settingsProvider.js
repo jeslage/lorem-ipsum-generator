@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 
-import { fontFamilies } from "@config/fontFamilies";
+import { fontFamilies } from "../config/fontFamilies";
 import { HistoryContext } from "./HistoryProvider";
 
-import { encodeConfig } from "@helper";
+import { encodeConfig } from "../helper";
 
 export const SettingsContext = React.createContext();
 

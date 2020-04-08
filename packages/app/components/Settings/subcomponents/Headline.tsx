@@ -1,26 +1,17 @@
 import React, { useContext, useMemo } from "react";
 
-import { SettingsContext } from "@contexts/settingsProvider";
-import { TextContext } from "@contexts/textProvider";
+import { SettingsContext, TextContext } from "../../../contexts";
 
-import Counter from "@components/Counter";
-import Switch from "@components/Switch";
-import Select from "@components/Select";
-import Code from "@components/Code";
-import ColorPicker from "@components/ColorPicker";
-import Shorthand from "@atoms/shorthand/shorthand";
-import Textarea from "@components/Textarea";
-import Button from "@components/Button";
-import Range from "@components/Range";
-import RadioGroup from "../../../RadioGroup";
-
-import FontFamilyIcon from "@icons/fontFamily.svg";
-import ColorIcon from "@icons/color.svg";
-import FontSizeIcon from "@icons/fontSize.svg";
-import MarginIcon from "@icons/margin.svg";
-import LeftAlignIcon from "@icons/leftAlign.svg";
-import CenterAlignIcon from "@icons/centerAlign.svg";
-import RightAlignIcon from "@icons/rightAlign.svg";
+import Counter from "../../Counter";
+import Switch from "../../Switch";
+import Select from "../../Select";
+import Code from "../../Code";
+import ColorPicker from "../../ColorPicker";
+import Shorthand from "../../Shorthand";
+import Textarea from "../../Textarea";
+import Button from "../../Button";
+import Range from "../../Range";
+import RadioGroup from "../../RadioGroup";
 
 const Headline = () => {
   const {
@@ -132,18 +123,21 @@ const Headline = () => {
             )}
 
             <hr />
+
             <Select
               options={fontFamilies}
               initialValue={fontFamily}
-              iconBefore={FontFamilyIcon}
+              iconBefore="color"
               label="Family"
+              name="family"
               onChange={value =>
                 updateNestedSettings("headline", "fontFamily", value)
               }
             />
+
             <Range
               label="Size"
-              iconBefore={FontSizeIcon}
+              iconBefore="color"
               value={size}
               suffix="px"
               onChange={value =>
@@ -159,15 +153,18 @@ const Headline = () => {
                 updateNestedSettings("headline", "lineHeight", value)
               }
             />
+
             <ColorPicker
               label="Color"
+              iconBefore="color"
               value={color}
               onChange={value =>
                 updateNestedSettings("headline", "color", value)
               }
             />
+
             <Shorthand
-              iconBefore={MarginIcon}
+              iconBefore="color"
               value={margin}
               label="Margin"
               onChange={value =>
@@ -179,11 +176,11 @@ const Headline = () => {
               label="Text align"
               value={textAlign}
               name="headline-textalign"
-              iconBefore={LeftAlignIcon}
+              iconBefore="color"
               options={[
-                { value: "left", icon: LeftAlignIcon },
-                { value: "center", icon: CenterAlignIcon },
-                { value: "right", icon: RightAlignIcon }
+                { value: "left", icon: "color" },
+                { value: "center", icon: "color" },
+                { value: "right", icon: "color" }
               ]}
               onChange={value =>
                 updateNestedSettings("headline", "textAlign", value)

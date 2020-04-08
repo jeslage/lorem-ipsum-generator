@@ -1,20 +1,12 @@
 import React, { useContext, useMemo } from "react";
 
-import { SettingsContext } from "@contexts/settingsProvider";
-import { TextContext } from "@contexts/textProvider";
+import { TextContext, SettingsContext } from "../../../contexts";
 
-import Select from "@components/Select";
-import Counter from "@components/Counter";
-import ColorPicker from "@components/ColorPicker";
-import Switch from "@components/Switch";
-import RadioGroup from "@components/RadioGroup";
-
-import UppercaseIcon from "@icons/uppercase.svg";
-import LowercaseIcon from "@icons/lowercase.svg";
-import ColorIcon from "@icons/color.svg";
-import TextTypeIcon from "@icons/textType.svg";
-import RemoveSpecialCharactersIcon from "@icons/removeSpecialCharacters.svg";
-import MixedcaseIcon from "@icons/mixedcase.svg";
+import Select from "../../Select";
+import Counter from "../../Counter";
+import ColorPicker from "../../ColorPicker";
+import Switch from "../../Switch";
+import RadioGroup from "../../RadioGroup";
 
 const General = () => {
   const { settings, updateSettings } = useContext(SettingsContext);
@@ -37,7 +29,8 @@ const General = () => {
           options={textTypes}
           initialValue={textType}
           label="Genre"
-          iconBefore={TextTypeIcon}
+          name="genre"
+          iconBefore="color"
           onChange={value => updateSettings("textType", value)}
         />
 
@@ -55,13 +48,14 @@ const General = () => {
 
         <ColorPicker
           label="Background color"
+          iconBefore="color"
           value={backgroundColor}
           onChange={value => updateSettings("backgroundColor", value)}
         />
 
         <Switch
           label="Remove special characters"
-          iconBefore={RemoveSpecialCharactersIcon}
+          iconBefore="color"
           isActive={removeSpecialCharacters}
           onChange={bool => updateSettings("removeSpecialCharacters", bool)}
         />
@@ -70,11 +64,11 @@ const General = () => {
           label="Text transform"
           value={textTransform}
           name="general-textTransform"
-          iconBefore={MixedcaseIcon}
+          iconBefore="color"
           options={[
-            { value: "none", icon: MixedcaseIcon },
-            { value: "uppercase", icon: UppercaseIcon },
-            { value: "lowercase", icon: LowercaseIcon }
+            { value: "none", icon: "color" },
+            { value: "uppercase", icon: "color" },
+            { value: "lowercase", icon: "color" }
           ]}
           onChange={value => updateSettings("textTransform", value)}
         />

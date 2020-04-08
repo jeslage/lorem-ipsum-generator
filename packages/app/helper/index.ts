@@ -1,6 +1,6 @@
 import lzString from "lz-string";
 
-export const hexToRgbA = (hex, alpha) => {
+export const hexToRgbA = (hex: string, alpha: number): string => {
   var c;
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
     c = hex.substring(1).split("");
@@ -23,9 +23,9 @@ export const hexToRgbA = (hex, alpha) => {
 export const encodeConfig = obj =>
   lzString.compressToEncodedURIComponent(JSON.stringify(obj));
 export const decodeConfig = obj =>
-  JSON.parse(lzString.decompressFromEncodedURIComponent(obj));
+  JSON.parse(lzString.decompressFromEncodedURIComponent(obj) || "");
 
-export const convertArrayToObject = (array, key) => {
+export const convertArrayToObject = (array: any[], key: string) => {
   const initialValue = {};
   return array.reduce((obj, item) => {
     return {

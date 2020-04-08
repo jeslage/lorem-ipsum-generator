@@ -8,19 +8,19 @@ import {
   AccordionItemState
 } from "react-accessible-accordion";
 
-import Icon from "../../Icon";
-import History from "../../History";
+import Icon from "../Icon";
+import History from "../History";
 
 // Subcomponents
-import Paragraph from "./subcomponents/paragraph";
-import Headline from "./subcomponents/headline";
-import Subline from "./subcomponents/subline";
-import Utility from "./subcomponents/utility";
-import General from "./subcomponents/general";
-import Bar from "./subcomponents/bar";
-import List from "./subcomponents/list";
+import Paragraph from "./subcomponents/Paragraph";
+import Headline from "./subcomponents/Headline";
+import Subline from "./subcomponents/Subline";
+import Utility from "./subcomponents/Utility";
+import General from "./subcomponents/General";
+import Bar from "./subcomponents/Bar";
+import List from "./subcomponents/List";
 
-import StyledSettings from "./settings.style";
+import StyledSettings from "./Settings.style";
 
 const Settings = () => {
   const items = [

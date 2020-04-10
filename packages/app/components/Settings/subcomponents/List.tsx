@@ -1,8 +1,7 @@
 import React, { useContext, useMemo } from "react";
 
-import { SettingsContext } from "../../../contexts";
-
 import Counter from "../../Counter";
+import { SettingsContext } from "../../../contexts";
 import Switch from "../../Switch";
 
 const List = () => {

@@ -1,17 +1,16 @@
 import React, { useContext, useMemo } from "react";
-
 import { SettingsContext, TextContext } from "../../../contexts";
 
-import Counter from "../../Counter";
-import Switch from "../../Switch";
-import Select from "../../Select";
+import Button from "../../Button";
 import Code from "../../Code";
 import ColorPicker from "../../ColorPicker";
-import Shorthand from "../../Shorthand";
-import Textarea from "../../Textarea";
-import Button from "../../Button";
-import Range from "../../Range";
+import Counter from "../../Counter";
 import RadioGroup from "../../RadioGroup";
+import Range from "../../Range";
+import Select from "../../Select";
+import Shorthand from "../../Shorthand";
+import Switch from "../../Switch";
+import Textarea from "../../Textarea";
 
 const Headline = () => {
   const {
@@ -127,7 +126,7 @@ const Headline = () => {
             <Select
               options={fontFamilies}
               initialValue={fontFamily}
-              iconBefore="color"
+              iconBefore="fontFamily"
               label="Family"
               name="family"
               onChange={value =>
@@ -137,7 +136,7 @@ const Headline = () => {
 
             <Range
               label="Size"
-              iconBefore="color"
+              iconBefore="fontSize"
               value={size}
               suffix="px"
               onChange={value =>
@@ -147,6 +146,7 @@ const Headline = () => {
 
             <Counter
               label="Line Height"
+              iconBefore="lineHeight"
               value={lineHeight}
               steps={0.25}
               onChange={value =>
@@ -164,7 +164,7 @@ const Headline = () => {
             />
 
             <Shorthand
-              iconBefore="color"
+              iconBefore="margin"
               value={margin}
               label="Margin"
               onChange={value =>
@@ -176,11 +176,11 @@ const Headline = () => {
               label="Text align"
               value={textAlign}
               name="headline-textalign"
-              iconBefore="color"
+              iconBefore="leftAlign"
               options={[
-                { value: "left", icon: "color" },
-                { value: "center", icon: "color" },
-                { value: "right", icon: "color" }
+                { value: "left", icon: "leftAlign" },
+                { value: "center", icon: "centerAlign" },
+                { value: "right", icon: "rightAlign" }
               ]}
               onChange={value =>
                 updateNestedSettings("headline", "textAlign", value)

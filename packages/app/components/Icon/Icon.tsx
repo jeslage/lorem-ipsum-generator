@@ -1,47 +1,14 @@
 import React, { FC } from "react";
+import * as icons from "./icons";
 
-import {
-  Color,
-  LineHeight,
-  Check,
-  Remove,
-  Settings,
-  Minus,
-  Plus,
-  Redo,
-  Undo,
-  Copy
-} from "./icons";
-
-export type IconTypes =
-  | "color"
-  | "lineHeight"
-  | "check"
-  | "remove"
-  | "settings"
-  | "minus"
-  | "plus"
-  | "undo"
-  | "redo"
-  | "copy";
+export type IconTypes = keyof typeof icons;
 
 export interface IconProps {
   type: IconTypes;
 }
 
-const icons = {
-  color: <Color />,
-  lineHeight: <LineHeight />,
-  check: <Check />,
-  remove: <Remove />,
-  settings: <Settings />,
-  minus: <Minus />,
-  plus: <Plus />,
-  undo: <Undo />,
-  redo: <Redo />,
-  copy: <Copy />
-};
+const getIcon = (type: IconTypes) => icons[type];
 
-const Icon: FC<IconProps> = ({ type }) => <>{icons[type]}</>;
+const Icon: FC<IconProps> = ({ type }) => <>{getIcon(type)}</>;
 
 export default Icon;

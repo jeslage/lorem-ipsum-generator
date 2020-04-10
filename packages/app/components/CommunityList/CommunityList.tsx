@@ -81,7 +81,7 @@ const CommunityList = () => {
   //             }
   //           })
   //         }
-  //         iconBefore={CopyIcon}
+  //         iconBefore="copy"
   //       >
   //         {loading ? "Loading preset" : "Add another preset"}
   //       </Button>

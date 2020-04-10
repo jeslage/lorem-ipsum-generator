@@ -18,9 +18,9 @@ import Toast from "./Toast";
 export default withApollo(({ children }) => (
   <DndProvider backend={HTML5Backend}>
     <HistoryProvider>
-      <SettingsProvider queryConfig={{}}>
+      <SettingsProvider queryConfig={{ backgroundColor: "#323232" }}>
         <TextProvider>
-          <PresetsProvider initialPresets={null}>
+          <PresetsProvider>
             <ToastProvider
               autoDismissTimeout={2000}
               placement="bottom-center"

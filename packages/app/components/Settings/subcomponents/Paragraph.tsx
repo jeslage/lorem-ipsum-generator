@@ -1,17 +1,16 @@
 import React, { useContext, useMemo } from "react";
-
 import { SettingsContext, TextContext } from "../../../contexts";
 
-import Counter from "../../Counter";
+import Button from "../../Button";
 import Code from "../../Code";
-import Shorthand from "../../Shorthand";
 import ColorPicker from "../../ColorPicker";
+import Counter from "../../Counter";
+import RadioGroup from "../../RadioGroup";
+import Range from "../../Range";
 import Select from "../../Select";
+import Shorthand from "../../Shorthand";
 import Switch from "../../Switch";
 import Textarea from "../../Textarea";
-import Button from "../../Button";
-import Range from "../../Range";
-import RadioGroup from "../../RadioGroup";
 
 const Paragraph = () => {
   const {
@@ -98,22 +97,25 @@ const Paragraph = () => {
         <Select
           options={fontFamilies}
           initialValue={fontFamily}
-          iconBefore="color"
+          iconBefore="fontFamily"
           label="Font"
           name="fontFamily"
           onChange={value =>
             updateNestedSettings("paragraph", "fontFamily", value)
           }
         />
+
         <Range
           label="Size"
-          iconBefore="color"
+          iconBefore="fontSize"
           value={size}
           suffix="px"
           onChange={value => updateNestedSettings("paragraph", "size", value)}
         />
+
         <Counter
           label="Line Height"
+          iconBefore="lineHeight"
           value={lineHeight}
           steps={0.25}
           onChange={value =>
@@ -123,19 +125,23 @@ const Paragraph = () => {
 
         <Counter
           label="Letter spacing"
+          iconBefore="letterSpacing"
           value={letterSpacing}
           min={0}
           onChange={value =>
             updateNestedSettings("paragraph", "letterSpacing", value)
           }
         />
+
         <ColorPicker
           label="Color"
+          iconBefore="color"
           value={color}
           onChange={value => updateNestedSettings("paragraph", "color", value)}
         />
+
         <Shorthand
-          iconBefore="color"
+          iconBefore="margin"
           value={margin}
           label="Margin"
           onChange={value => updateNestedSettings("paragraph", "margin", value)}
@@ -145,11 +151,11 @@ const Paragraph = () => {
           label="Text align"
           value={textAlign}
           name="paragraph-textalign"
-          iconBefore="color"
+          iconBefore="leftAlign"
           options={[
-            { value: "left", icon: "color" },
-            { value: "center", icon: "color" },
-            { value: "right", icon: "color" }
+            { value: "left", icon: "leftAlign" },
+            { value: "center", icon: "centerAlign" },
+            { value: "right", icon: "rightAlign" }
           ]}
           onChange={value =>
             updateNestedSettings("paragraph", "textAlign", value)

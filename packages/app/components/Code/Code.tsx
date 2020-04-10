@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useRef, FC } from "react";
-import { useToasts } from "react-toast-notifications";
-
-import Prism from "prismjs";
+import React, { FC, useEffect, useRef, useState } from "react";
 import * as clipboard from "clipboard-polyfill";
-
-import StyledCode from "./Code.style";
+import { useToasts } from "react-toast-notifications";
+import Prism from "prismjs";
 
 import Button from "../Button";
-import CopyIcon from "../icons/CopyIcon";
+import Icon from "../Icon";
+import StyledCode from "./Code.style";
 
 const loadLanguage = async (language: "javascript" | "css") => {
   if (language === "javascript") {
@@ -71,7 +69,7 @@ const Code: FC<CodeProps> = ({ language = "css", code }) => {
             aria-label="Copy"
             title="Copy"
           >
-            <CopyIcon />
+            <Icon type="copy" />
           </button>
           <pre>
             <code className={`language-${language}`} ref={codeBox}>

@@ -6,7 +6,7 @@ import StyledRange from "./Range.style";
 
 export interface RangeProps {
   iconBefore?: IconTypes;
-  value: number;
+  value?: number;
   label?: string;
   onChange?: (value: number) => void;
   doubleClickValue?: number;
@@ -17,7 +17,7 @@ export interface RangeProps {
 }
 const Range: FC<RangeProps> = ({
   iconBefore,
-  value,
+  value = 50,
   label,
   onChange,
   doubleClickValue,

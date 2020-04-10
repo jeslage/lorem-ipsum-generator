@@ -1,17 +1,16 @@
 import React, { useContext, useMemo } from "react";
+import { SettingsContext, TextContext } from "../../../contexts";
 
-import { TextContext, SettingsContext } from "../../../contexts";
-
-import Counter from "../../Counter";
-import Switch from "../../Switch";
-import Select from "../../Select";
+import Button from "../../Button";
 import Code from "../../Code";
 import ColorPicker from "../../ColorPicker";
-import Shorthand from "../../Shorthand";
-import Button from "../../Button";
-import Textarea from "../../Textarea";
-import Range from "../../Range";
+import Counter from "../../Counter";
 import RadioGroup from "../../RadioGroup";
+import Range from "../../Range";
+import Select from "../../Select";
+import Shorthand from "../../Shorthand";
+import Switch from "../../Switch";
+import Textarea from "../../Textarea";
 
 const Subline = () => {
   const {
@@ -124,7 +123,7 @@ const Subline = () => {
             <Select
               options={fontFamilies}
               initialValue={fontFamily}
-              iconBefore="color"
+              iconBefore="fontFamily"
               label="Family"
               name="sublineFontFamily"
               onChange={value =>
@@ -134,7 +133,7 @@ const Subline = () => {
             <Range
               label="Size"
               suffix="px"
-              iconBefore="color"
+              iconBefore="fontSize"
               value={size}
               onChange={value => updateNestedSettings("subline", "size", value)}
             />
@@ -142,6 +141,7 @@ const Subline = () => {
             <Counter
               label="Line Height"
               value={lineHeight}
+              iconBefore="lineHeight"
               steps={0.25}
               onChange={value =>
                 updateNestedSettings("subline", "lineHeight", value)
@@ -149,6 +149,7 @@ const Subline = () => {
             />
             <ColorPicker
               label="Color"
+              iconBefore="color"
               value={color}
               onChange={value =>
                 updateNestedSettings("subline", "color", value)
@@ -156,7 +157,7 @@ const Subline = () => {
             />
 
             <Shorthand
-              iconBefore="color"
+              iconBefore="margin"
               value={margin}
               label="Margin"
               onChange={value =>
@@ -168,11 +169,11 @@ const Subline = () => {
               label="Text align"
               value={textAlign}
               name="subline-textalign"
-              iconBefore="color"
+              iconBefore="leftAlign"
               options={[
-                { value: "left", icon: "color" },
-                { value: "center", icon: "color" },
-                { value: "right", icon: "color" }
+                { value: "left", icon: "leftAlign" },
+                { value: "center", icon: "centerAlign" },
+                { value: "right", icon: "rightAlign" }
               ]}
               onChange={value =>
                 updateNestedSettings("subline", "textAlign", value)

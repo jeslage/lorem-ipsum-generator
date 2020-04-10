@@ -1,12 +1,11 @@
 import React, { useContext, useMemo } from "react";
+import { SettingsContext, TextContext } from "../../../contexts";
 
-import { TextContext, SettingsContext } from "../../../contexts";
-
-import Select from "../../Select";
-import Counter from "../../Counter";
 import ColorPicker from "../../ColorPicker";
-import Switch from "../../Switch";
+import Counter from "../../Counter";
 import RadioGroup from "../../RadioGroup";
+import Select from "../../Select";
+import Switch from "../../Switch";
 
 const General = () => {
   const { settings, updateSettings } = useContext(SettingsContext);
@@ -28,7 +27,7 @@ const General = () => {
           initialValue={textType}
           label="Genre"
           name="genre"
-          iconBefore="color"
+          iconBefore="textType"
           onChange={value => updateSettings("textType", value)}
         />
 
@@ -38,6 +37,7 @@ const General = () => {
           label="Width"
           min={10}
           max={100}
+          iconBefore="textWidth"
           value={textWidth}
           steps={5}
           suffix="%"
@@ -53,7 +53,7 @@ const General = () => {
 
         <Switch
           label="Remove special characters"
-          iconBefore="color"
+          iconBefore="removeSpecialCharacters"
           isActive={removeSpecialCharacters}
           onChange={bool => updateSettings("removeSpecialCharacters", bool)}
         />
@@ -62,7 +62,7 @@ const General = () => {
           label="Text transform"
           value={textTransform}
           name="general-textTransform"
-          iconBefore="color"
+          iconBefore="mixedcase"
           options={[
             { value: "none", icon: "color" },
             { value: "uppercase", icon: "color" },

@@ -20,6 +20,7 @@ export interface PresetProps {
   onDrop?: () => void;
   onRemove?: () => void;
   likes?: number;
+  className?: string;
 }
 
 const Preset: FC<PresetProps> = ({
@@ -27,7 +28,8 @@ const Preset: FC<PresetProps> = ({
   dateCreated,
   onDrop,
   onRemove,
-  likes
+  likes,
+  className
 }) => {
   const [{ isDragging }, drag] = useDrag({
     item: { name: "Preset", type: "preset" },
@@ -68,6 +70,7 @@ const Preset: FC<PresetProps> = ({
       paragraph={paragraph}
       backgroundColor={backgroundColor}
       isDragging={isDragging}
+      className={className}
     >
       <div ref={drag} className="preset__card">
         <div className="preset__content">

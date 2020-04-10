@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Presets {
+  dateCreated DateTime? @default(now())
+  description String?
+  id          Int       @default(autoincrement()) @id
+  likes       Int?      @default(0)
+  name        String
+  published   Boolean?  @default(false)
+  settings    String
+  textType    String
+}

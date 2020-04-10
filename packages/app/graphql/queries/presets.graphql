@@ -1,0 +1,10 @@
+query Presets {
+  presets {
+    id
+    name
+    description
+    dateCreated
+    settings
+    likes
+  }
+}

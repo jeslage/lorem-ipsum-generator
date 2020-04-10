@@ -156,7 +156,7 @@ function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode,
     link: new HttpLink({
-      uri: "http://localhost:8000/graphql", // Server URL (must be absolute)
+      uri: "http://localhost:8000", // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
       fetch
     }),

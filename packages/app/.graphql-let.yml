@@ -1,6 +1,6 @@
 generateDir: generated
-schema: http://localhost:8000/graphql
-documents: "graphql/queries/**/*.graphql"
+schema: http://localhost:8000/
+documents: "graphql/**/*.graphql"
 plugins:
   - typescript
   - typescript-operations

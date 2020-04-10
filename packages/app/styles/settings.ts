@@ -7,7 +7,7 @@ const colors = {
   yellow: "#e1b33c",
   green: "#4bbab7",
   salmon: "#f7bdb2",
-  blue: "#444c9b"
+  blue: "#444c9b",
 };
 
 // Breakpoints
@@ -17,15 +17,15 @@ const breakpoints = {
   m: "768px",
   l: "940px",
   xl: "1280px",
-  xxl: "1441px"
+  xxl: "1441px",
 };
 
 // Spacings
 const spacings = {
-  s: "20px",
-  m: "30px",
-  l: "40px",
-  xl: "60px"
+  s: 20,
+  m: 30,
+  l: 40,
+  xl: 60,
 };
 
 // Grid
@@ -33,7 +33,7 @@ const maxWidth = "1120px";
 const grid = {
   columns: 12,
   gutters: 10,
-  debugColors: "hsla(100, 100%, 50%, 0.2)"
+  debugColors: "hsla(100, 100%, 50%, 0.2)",
 };
 
 export { breakpoints, colors, grid, maxWidth, spacings };

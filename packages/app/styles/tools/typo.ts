@@ -1,5 +1,3 @@
-import { px2rem, mq } from "./utility";
-
 /**
  * Set the fluid font size
  *
@@ -16,10 +14,10 @@ import { px2rem, mq } from "./utility";
  * @returns {string} Corresponding styled-component CSS
  */
 export const fluidFontSize = (
-  minFontSize,
-  maxFontSize,
-  scaleFrom,
-  scaleUntil,
+  minFontSize: number,
+  maxFontSize: number,
+  scaleFrom: number,
+  scaleUntil: number,
   vw = 100
 ) => `
   font-size: ${minFontSize}px;

@@ -1,15 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, useContext, FC } from "react";
 import Cookies from "js-cookie";
 
-import { encodeConfig, decodeConfig } from "../helper";
+import { encodeConfig, decodeConfig } from "../../helper";
 
-import { SettingsContext } from "./SettingsProvider";
+import { SettingsContext } from "../SettingsProvider";
 
-export const PresetsContext = React.createContext();
+import {
+  PresetsContextProps,
+  PresetsProviderProps,
+  Preset
+} from "./definitions";
 
-const PresetsProvider = ({ children, initialPresets }) => {
-  const [presets, setPresets] = useState(
+export const PresetsContext = React.createContext<PresetsContextProps>({
+  presets: [],
+  addPreset: () => {},
+  removePreset: () => {}
+});
+
+const PresetsProvider: FC<PresetsProviderProps> = ({
+  children,
+  initialPresets
+}) => {
+  const [presets, setPresets] = useState<Preset[]>(
     initialPresets ? decodeConfig(initialPresets) : []
   );
 
@@ -42,12 +54,6 @@ const PresetsProvider = ({ children, initialPresets }) => {
     </PresetsContext.Provider>
   );
 };
-
-PresetsProvider.propTypes = {
-  children: PropTypes.node.isRequired
-};
-
-PresetsProvider.defaultProps = {};
 
 export const PresetsConsumer = PresetsContext.Consumer;
 

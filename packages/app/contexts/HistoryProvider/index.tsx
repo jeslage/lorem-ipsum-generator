@@ -1,23 +1,7 @@
 import React, { useState } from "react";
+import { HistoryObject, HistoryContextProps } from "./definitions";
 
-export type HistoryObject = {
-  parentKey: string | null;
-  key: string;
-  value: any;
-  settings: string;
-};
-
-export interface HistoryContextProps {
-  history: HistoryObject[];
-  addToHistory: (obj: HistoryObject) => void;
-  historyIndex: number;
-  historyBack: (callback: any) => void;
-  updateHistoryIndex: (index: number, callback: any) => void;
-  resetHistory: () => void;
-  historyForward: (callback: any) => void;
-}
-
-const defaultProps = {
+export const HistoryContext = React.createContext<HistoryContextProps>({
   history: [],
   addToHistory: () => {},
   historyIndex: -1,
@@ -25,14 +9,10 @@ const defaultProps = {
   updateHistoryIndex: () => {},
   resetHistory: () => {},
   historyForward: () => {}
-};
-
-export const HistoryContext = React.createContext<HistoryContextProps>(
-  defaultProps
-);
+});
 
 const HistoryProvider = ({ children }) => {
-  const [history, setHistory] = useState<any[]>([]);
+  const [history, setHistory] = useState<HistoryObject[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
 
   const addToHistory = obj => {

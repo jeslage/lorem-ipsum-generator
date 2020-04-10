@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useToasts } from "react-toast-notifications";
 
-import { SettingsContext, TextContext } from "../../contexts";
+import { SettingsContext } from "../../contexts";
 
 import Button from "../Button";
 
@@ -10,7 +10,6 @@ const CreateHtmlButton = () => {
 
   const [create, setCreate] = useState(false);
   const { settings, utility, updateUtility } = useContext(SettingsContext);
-  const { textContainer } = useContext(TextContext);
 
   const { printTags, printInlineStyles } = utility;
 
@@ -24,9 +23,8 @@ const CreateHtmlButton = () => {
 
     setCreate(true);
 
-    const htmlText = textContainer.current
-      ? textContainer.current.textContent
-      : "";
+    const textContainer = document.getElementById("textContent");
+    const htmlText = textContainer ? textContainer.textContent : "";
 
     await fetch(
       process.env.NODE_ENV === "development"

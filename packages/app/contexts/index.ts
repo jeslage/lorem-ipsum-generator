@@ -8,13 +8,13 @@ export {
   default as TextProvider,
   TextConsumer,
   TextContext
-} from "./textProvider";
+} from "./TextProvider";
 
 export {
   default as PresetsProvider,
   PresetsConsumer,
   PresetsContext
-} from "./presetsProvider";
+} from "./PresetsProvider";
 
 export {
   default as HistoryProvider,

@@ -7,7 +7,10 @@ import { breakpoints, colors } from "../settings";
  * @returns {string} Media query definition
  * @example ${mq('m', 'max')} { css styles go here };
  */
-export function mq(mediaQuery, minMax = "min") {
+export function mq(
+  mediaQuery: keyof typeof breakpoints,
+  minMax: "min" | "max" = "min"
+) {
   if (typeof mediaQuery !== "number" && typeof mediaQuery !== "string") {
     throw new Error("mediaQuery must be a string or number");
   }
@@ -28,10 +31,11 @@ export function mq(mediaQuery, minMax = "min") {
  * @returns {string} Resulting color from configuration file
  * @example color: ${color('white')};
  */
-export function color(id = "#000") {
+export function color(id: keyof typeof colors = "black") {
   if (!Object.prototype.hasOwnProperty.call(colors, id)) {
     throw new Error(`Color ${id} not known`);
   }
+
   return colors[id];
 }
 
@@ -58,4 +62,4 @@ export function btnReset() {
  * @returns {string}
  * @example ${px2rem(25)}
  */
-export const px2rem = px => `${px / 16}rem`;
+export const px2rem = (px: number) => `${px / 16}rem`;

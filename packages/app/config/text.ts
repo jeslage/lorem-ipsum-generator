@@ -1,4 +1,13 @@
-export default [
+export type TextObject = {
+  label: string;
+  value: string;
+  paragraph: string[];
+  headline: string[];
+  subline: string[];
+  list: string[];
+};
+
+const textConfig: TextObject[] = [
   {
     label: "Lorem Ipsum",
     value: "loremIpsum",
@@ -128,3 +137,5 @@ export default [
     list: ["Punkt 1", "Punkt 2", "Punkt 3"]
   }
 ];
+
+export default textConfig;

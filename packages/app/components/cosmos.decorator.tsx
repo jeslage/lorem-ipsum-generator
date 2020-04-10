@@ -18,7 +18,7 @@ import Toast from "./Toast";
 export default withApollo(({ children }) => (
   <DndProvider backend={HTML5Backend}>
     <HistoryProvider>
-      <SettingsProvider queryConfig={null}>
+      <SettingsProvider queryConfig={{}}>
         <TextProvider>
           <PresetsProvider initialPresets={null}>
             <ToastProvider

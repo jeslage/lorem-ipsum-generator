@@ -23,12 +23,12 @@ const Text: FC<TextProps> = ({ className }) => {
   } = settings;
   const { printInlineStyles } = utility;
 
-  const { textContainer, getText, getList } = useContext(TextContext);
+  const { getText, getList } = useContext(TextContext);
 
   return (
     <StyledText className={className}>
       <Dropzone />
-      <div className="text__content" id="textContent" ref={textContainer}>
+      <div className="text__content" id="textContent">
         {printInlineStyles && (
           <p className="text__tag">{`<main style="width: ${textWidth}%; background-color: ${backgroundColor};">`}</p>
         )}

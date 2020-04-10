@@ -8,10 +8,6 @@ import { px2rem } from "./utility";
  * @example padding: ${space('m')};
  */
 
-export default function space(id) {
-  const spacing = px2rem(
-    Object.prototype.hasOwnProperty.call(spacings, id) ? spacings[id] : id
-  );
-
-  return spacing;
+export default function space(id: keyof typeof spacings) {
+  return px2rem(spacings[id]);
 }

@@ -1,12 +1,22 @@
-import React, { useContext, useRef } from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 
-import textConfig from "../config/text";
+import textConfig from "../../config/text";
 
-import { SettingsContext } from "./SettingsProvider";
-import { convertArrayToObject } from "../helper";
+import { SettingsContext } from "../SettingsProvider";
+import { convertArrayToObject } from "../../helper";
 
-export const TextContext = React.createContext();
+import { TextContextProps } from "./definitions";
+
+export const TextContext = React.createContext<TextContextProps>({
+  textTypes: [],
+  texts: {},
+  getList: () => (
+    <ul>
+      <li>List</li>
+    </ul>
+  ),
+  getText: () => "Text"
+});
 
 const textTypes = textConfig.map(({ value, label }) => ({ value, label }));
 const texts = convertArrayToObject(
@@ -33,7 +43,6 @@ const getInlineStyles = type => `
 `;
 
 const TextProvider = ({ children }) => {
-  const textContainer = useRef();
   const { settings, utility } = useContext(SettingsContext);
   const { removeSpecialCharacters, textTransform, textType } = settings;
   const { printTags, printInlineStyles } = utility;
@@ -44,7 +53,7 @@ const TextProvider = ({ children }) => {
     subline: 0
   };
 
-  const getText = (key, tag) => {
+  const getText = (key: string, tag: string): string => {
     let text = "";
 
     const textsArray = settings[key].custom
@@ -88,7 +97,7 @@ const TextProvider = ({ children }) => {
     return updatedText;
   };
 
-  const getList = () => {
+  const getList = (): JSX.Element => {
     const ListTag = settings.list.orderedList ? "ol" : "ul";
 
     const list = (
@@ -124,19 +133,11 @@ const TextProvider = ({ children }) => {
   };
 
   return (
-    <TextContext.Provider
-      value={{ textContainer, textTypes, texts, getText, getList }}
-    >
+    <TextContext.Provider value={{ textTypes, texts, getText, getList }}>
       {children}
     </TextContext.Provider>
   );
 };
-
-TextProvider.propTypes = {
-  children: PropTypes.node.isRequired
-};
-
-TextProvider.defaultProps = {};
 
 export const TextConsumer = TextContext.Consumer;
 

@@ -1,98 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, FC } from "react";
 
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 
-import { fontFamilies } from "../config/fontFamilies";
-import { HistoryContext } from "./HistoryProvider";
+import { fontFamilies } from "../../config/fontFamilies";
+import { HistoryContext } from "../HistoryProvider";
 
-import { encodeConfig } from "../helper";
-
-export interface SettingsObject {
-  textType: string;
-  textWidth: number;
-  backgroundColor: string;
-  removeSpecialCharacters: boolean;
-  textTransform: string;
-  paragraph: {
-    fontFamily: string;
-    count: number;
-    numberOfCharacters: number;
-    size: number;
-    lineHeight: number;
-    letterSpacing: number;
-    color: string;
-    textAlign: string;
-    margin: {
-      top: number;
-      right: number;
-      bottom: number;
-      left: number;
-    };
-    custom: boolean;
-    customText: string[];
-  };
-  headline: {
-    fontFamily: string;
-    enabled: boolean;
-    numberOfCharacters: number;
-    frequency: number;
-    offset: number;
-    size: number;
-    lineHeight: number;
-    color: string;
-    textAlign: string;
-    margin: {
-      top: number;
-      right: number;
-      bottom: number;
-      left: number;
-    };
-    custom: boolean;
-    customText: string[];
-  };
-  subline: {
-    fontFamily: string;
-    enabled: boolean;
-    numberOfCharacters: number;
-    frequency: number;
-    offset: number;
-    size: number;
-    lineHeight: number;
-    color: string;
-    textAlign: string;
-    margin: {
-      top: number;
-      right: number;
-      bottom: number;
-      left: number;
-    };
-    custom: boolean;
-    customText: string[];
-  };
-  list: {
-    enabled: boolean;
-    frequency: number;
-    offset: number;
-    orderedList: boolean;
-  };
-}
-
-export interface ThemeObject extends SettingsObject {
-  colors: {
-    color: string;
-    background: string;
-    border: string;
-    hover: string;
-    active: string;
-  };
-}
-
-export interface UtilityObject {
-  darkMode: boolean;
-  printTags: boolean;
-  printInlineStyles: boolean;
-}
+import { encodeConfig } from "../../helper";
+import {
+  SettingsObject,
+  ThemeObject,
+  UtilityObject,
+  SettingsContextProps,
+  SettingsProviderProps
+} from "./definitions";
 
 const defaultConfig: SettingsObject = {
   textType: "loremIpsum",
@@ -170,25 +91,6 @@ const defaultUtility: UtilityObject = {
   printInlineStyles: false
 };
 
-type FontFamily = {
-  label: string;
-  value: string;
-};
-
-export interface SettingsContextProps {
-  settings: SettingsObject;
-  fontFamilies: FontFamily[];
-  utility: UtilityObject;
-  addNestedArray: any;
-  updateSettings: any;
-  updateNestedSettings: any;
-  updateAllSettings: any;
-  updateUtility: any;
-  updateNestedArray: any;
-  removeNestedArray: any;
-  resetSettings: any;
-}
-
 const defaultContextProps: SettingsContextProps = {
   utility: defaultUtility,
   settings: defaultConfig,
@@ -207,31 +109,39 @@ export const SettingsContext = React.createContext<SettingsContextProps>(
   defaultContextProps
 );
 
-const SettingsProvider = ({ queryConfig, children }) => {
+const SettingsProvider: FC<SettingsProviderProps> = ({
+  queryConfig,
+  children
+}) => {
   const { addToHistory } = useContext(HistoryContext);
 
   // Build initial settings state
-  const [settings, setSettings] = useState<SettingsObject>({
-    // General
-    textType: queryConfig.textType || defaultConfig.textType,
-    textWidth: queryConfig.textWidth || defaultConfig.textWidth,
-    textTransform: queryConfig.textTransform || defaultConfig.textTransform,
+  const [settings, setSettings] = useState<SettingsObject>(
+    queryConfig
+      ? {
+          // General
+          textType: queryConfig.textType || defaultConfig.textType,
+          textWidth: queryConfig.textWidth || defaultConfig.textWidth,
+          textTransform:
+            queryConfig.textTransform || defaultConfig.textTransform,
 
-    backgroundColor:
-      queryConfig.backgroundColor || defaultConfig.backgroundColor,
-    removeSpecialCharacters:
-      queryConfig.removeSpecialCharacters ||
-      defaultConfig.removeSpecialCharacters,
+          backgroundColor:
+            queryConfig.backgroundColor || defaultConfig.backgroundColor,
+          removeSpecialCharacters:
+            queryConfig.removeSpecialCharacters ||
+            defaultConfig.removeSpecialCharacters,
 
-    // Paragraph settings
-    paragraph: queryConfig.paragraph || defaultConfig.paragraph,
-    // Headline settings
-    headline: queryConfig.headline || defaultConfig.headline,
-    // Subline settings
-    subline: queryConfig.subline || defaultConfig.subline,
-    // List settings
-    list: queryConfig.list || defaultConfig.list
-  });
+          // Paragraph settings
+          paragraph: queryConfig.paragraph || defaultConfig.paragraph,
+          // Headline settings
+          headline: queryConfig.headline || defaultConfig.headline,
+          // Subline settings
+          subline: queryConfig.subline || defaultConfig.subline,
+          // List settings
+          list: queryConfig.list || defaultConfig.list
+        }
+      : defaultConfig
+  );
 
   const [utility, setUtility] = useState(defaultUtility);
 

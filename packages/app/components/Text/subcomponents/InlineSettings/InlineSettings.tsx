@@ -1,6 +1,6 @@
 import React, { useState, useContext, FC } from "react";
 
-import { SettingsContext } from "../../../../contexts/settingsProvider";
+import { SettingsContext } from "../../../../contexts";
 
 import Range from "../../../Range";
 import Select from "../../../Select";

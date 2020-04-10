@@ -8,7 +8,7 @@ import React from "react";
 // import CREATE_PRESET from "../../graphql/mutations/addPreset.graphql";
 // import DELETE_PRESET from "../../graphql/mutations/deletePreset.graphql";
 
-// import { SettingsContext } from "../../contexts/settingsProvider";
+// import { SettingsContext } from "../../contexts/SettingsProvider";
 
 // import Button from "../Button";
 // import LoadingIndicator from "../LoadingIndicator";

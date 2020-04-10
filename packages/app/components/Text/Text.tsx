@@ -1,7 +1,6 @@
 import React, { useContext, FC } from "react";
 
-import { TextContext } from "../../contexts/textProvider";
-import { SettingsContext } from "../../contexts/settingsProvider";
+import { TextContext, SettingsContext } from "../../contexts";
 
 import Dropzone from "../Dropzone";
 

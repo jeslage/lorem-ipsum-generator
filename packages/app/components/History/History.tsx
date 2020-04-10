@@ -2,8 +2,7 @@ import React, { useContext, useState, useCallback } from "react";
 
 import { decodeConfig } from "../../helper";
 
-import { HistoryContext } from "../../contexts";
-import { SettingsContext } from "../../contexts/settingsProvider";
+import { HistoryContext, SettingsContext } from "../../contexts";
 
 import Button from "../Button";
 import Icon from "../Icon";

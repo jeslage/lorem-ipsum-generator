@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useToasts } from "react-toast-notifications";
 
-import { SettingsContext } from "../../contexts/settingsProvider";
-import { TextContext } from "../../contexts/textProvider";
+import { SettingsContext, TextContext } from "../../contexts";
 
 import Button from "../Button";
 

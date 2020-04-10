@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 import { encodeConfig, decodeConfig } from "../helper";
 
-import { SettingsContext } from "./settingsProvider";
+import { SettingsContext } from "./SettingsProvider";
 
 export const PresetsContext = React.createContext();
 

@@ -17,8 +17,6 @@ const General = () => {
     textWidth,
     textTransform,
     backgroundColor,
-    useCustomText,
-    customText,
     removeSpecialCharacters
   } = settings;
 
@@ -79,8 +77,6 @@ const General = () => {
       textWidth,
       textTransform,
       backgroundColor,
-      useCustomText,
-      customText,
       removeSpecialCharacters
     ]
   );

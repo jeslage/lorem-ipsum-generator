@@ -2,7 +2,7 @@ export {
   default as SettingsProvider,
   SettingsConsumer,
   SettingsContext
-} from "./settingsProvider";
+} from "./SettingsProvider";
 
 export {
   default as TextProvider,

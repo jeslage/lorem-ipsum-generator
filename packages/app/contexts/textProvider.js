@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import textConfig from "../config/text";
 
-import { SettingsContext } from "./settingsProvider";
+import { SettingsContext } from "./SettingsProvider";
 import { convertArrayToObject } from "../helper";
 
 export const TextContext = React.createContext();

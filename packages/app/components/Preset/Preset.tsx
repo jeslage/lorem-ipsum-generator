@@ -1,7 +1,7 @@
 import React, { useContext, FC } from "react";
 import { useDrag } from "react-dnd-cjs";
 
-import { TextContext } from "../../contexts/textProvider";
+import { TextContext } from "../../contexts";
 
 import Icon from "../Icon";
 

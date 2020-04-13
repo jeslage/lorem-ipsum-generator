@@ -16,11 +16,6 @@ module.exports = compose(withSourceMaps)({
       loader: "graphql-tag/loader"
     });
 
-    config.module.rules.push({
-      test: /\.svg$/,
-      loader: "svg-sprite-loader"
-    });
-
     return config;
   }
 });

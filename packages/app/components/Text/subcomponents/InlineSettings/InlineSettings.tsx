@@ -56,6 +56,7 @@ const InlineSettings: FC<InlineSettingsProps> = ({ type, children }) => {
                   <Select
                     name="fontFamily"
                     options={fontFamilies}
+                    iconBefore="fontFamily"
                     initialValue={settings[type].fontFamily}
                     onChange={value =>
                       updateNestedSettings(type, "fontFamily", value)
@@ -64,6 +65,7 @@ const InlineSettings: FC<InlineSettingsProps> = ({ type, children }) => {
                   <Range
                     value={settings[type].size}
                     suffix="px"
+                    iconBefore="fontSize"
                     onChange={value =>
                       updateNestedSettings(type, "size", value)
                     }
@@ -87,6 +89,7 @@ const InlineSettings: FC<InlineSettingsProps> = ({ type, children }) => {
                   />
                   <Shorthand
                     value={settings[type].margin}
+                    iconBefore="margin"
                     onChange={value =>
                       updateNestedSettings(type, "margin", value)
                     }
@@ -95,10 +98,11 @@ const InlineSettings: FC<InlineSettingsProps> = ({ type, children }) => {
                   <RadioGroup
                     value={settings[type].textAlign}
                     name="textalign"
+                    iconBefore="leftAlign"
                     options={[
-                      { value: "left", icon: "lineHeight" },
-                      { value: "center", icon: "lineHeight" },
-                      { value: "right", icon: "lineHeight" }
+                      { value: "left", icon: "leftAlign" },
+                      { value: "center", icon: "centerAlign" },
+                      { value: "right", icon: "rightAlign" }
                     ]}
                     onChange={value =>
                       updateNestedSettings(type, "textAlign", value)

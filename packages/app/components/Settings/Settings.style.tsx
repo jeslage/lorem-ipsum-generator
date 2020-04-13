@@ -21,7 +21,7 @@ const StyledSettings = styled.div`
     display: flex;
 
     button {
-      width: 100%;
+      margin: 10px 0;
 
       &:nth-of-type(1) {
         margin-right: 5px;

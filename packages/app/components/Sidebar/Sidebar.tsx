@@ -4,7 +4,7 @@ import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from "react-tabs";
 // Subcomponents
 import Settings from "../Settings";
 import PresetList from "../PresetList";
-import CommunityList from "../CommunityList";
+import FeaturedList from "../FeaturedList";
 
 import About from "../About";
 
@@ -18,7 +18,7 @@ const Sidebar: FC<SidebarProps> = ({ className }) => {
   const items = [
     { label: "Settings", content: <Settings /> },
     { label: "Presets", content: <PresetList /> },
-    { label: "Featured", content: <CommunityList /> },
+    { label: "Featured", content: <FeaturedList /> },
     { label: "About", content: <About /> }
   ];
 

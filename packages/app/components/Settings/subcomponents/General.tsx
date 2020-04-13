@@ -64,9 +64,9 @@ const General = () => {
           name="general-textTransform"
           iconBefore="mixedcase"
           options={[
-            { value: "none", icon: "color" },
-            { value: "uppercase", icon: "color" },
-            { value: "lowercase", icon: "color" }
+            { value: "none", icon: "mixedcase" },
+            { value: "uppercase", icon: "uppercase" },
+            { value: "lowercase", icon: "lowercase" }
           ]}
           onChange={value => updateSettings("textTransform", value)}
         />

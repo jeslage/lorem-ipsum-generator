@@ -2,8 +2,6 @@ import React, { useContext, FC } from "react";
 
 import { TextContext, SettingsContext } from "../../contexts";
 
-import Dropzone from "../Dropzone";
-
 import StyledText from "./Text.style";
 import InlineSettings from "./subcomponents/InlineSettings/InlineSettings";
 
@@ -27,7 +25,6 @@ const Text: FC<TextProps> = ({ className }) => {
 
   return (
     <StyledText className={className}>
-      <Dropzone />
       <div className="text__content" id="textContent">
         {printInlineStyles && (
           <p className="text__tag">{`<main style="width: ${textWidth}%; background-color: ${backgroundColor};">`}</p>

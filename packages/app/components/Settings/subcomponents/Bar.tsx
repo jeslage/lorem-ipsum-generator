@@ -5,6 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import { SettingsContext } from "../../../contexts";
 
 import Button from "../../Button";
+import IconButton from "../../IconButton";
 
 const Bar = () => {
   const { addToast } = useToasts();
@@ -32,11 +33,15 @@ const Bar = () => {
   return (
     <>
       <Button onClick={copyText} iconBefore="copy">
-        Copy
+        Copy Text
       </Button>
-      <Button onClick={reset} iconBefore="remove">
-        Reset settings
-      </Button>
+      <IconButton
+        onClick={reset}
+        icon="remove"
+        label="Reset settings"
+        variant="outlined"
+        size="large"
+      />
     </>
   );
 };

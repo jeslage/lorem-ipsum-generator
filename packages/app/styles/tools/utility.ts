@@ -31,7 +31,7 @@ export function mq(
  * @returns {string} Resulting color from configuration file
  * @example color: ${color('white')};
  */
-export function color(id: keyof typeof colors = "black") {
+export function color(id: keyof typeof colors = "background") {
   if (!Object.prototype.hasOwnProperty.call(colors, id)) {
     throw new Error(`Color ${id} not known`);
   }

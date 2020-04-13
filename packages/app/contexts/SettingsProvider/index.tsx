@@ -15,7 +15,9 @@ import {
   SettingsProviderProps
 } from "./definitions";
 
-const defaultConfig: SettingsObject = {
+import { colors } from "../../styles/settings";
+
+export const defaultConfig: SettingsObject = {
   textType: "loremIpsum",
   textWidth: 100,
   backgroundColor: "#fff",
@@ -85,8 +87,12 @@ const defaultConfig: SettingsObject = {
   }
 };
 
+export const getTheme = (settings?: SettingsObject): ThemeObject => ({
+  ...(settings || defaultConfig),
+  colors
+});
+
 const defaultUtility: UtilityObject = {
-  darkMode: true,
   printTags: false,
   printInlineStyles: false
 };
@@ -113,6 +119,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
   queryConfig,
   children
 }) => {
+  const router = useRouter();
   const { addToHistory } = useContext(HistoryContext);
 
   // Build initial settings state
@@ -145,8 +152,6 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
 
   const [utility, setUtility] = useState(defaultUtility);
 
-  const router = useRouter();
-
   useEffect(() => {
     // Add initial settings to history object
     addToHistory({
@@ -159,7 +164,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
 
   // Update route query params based on settings
   useEffect(() => {
-    router &&
+    if (router && router.pathname === "/") {
       router.replace(
         { pathname: "/", query: { settings: encodeConfig(settings) } },
         `/?c=${encodeConfig(settings)}`,
@@ -167,6 +172,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
           shallow: true
         }
       );
+    }
   }, [settings]);
 
   // Update utility value
@@ -183,19 +189,18 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
     value: string | number,
     changeHistory = true
   ) => {
-    setSettings(prev => {
-      const newSettings = { ...prev, [key]: value };
+    const newSettings = { ...settings, [key]: value };
 
-      if (changeHistory)
-        addToHistory({
-          parentKey: null,
-          key,
-          value,
-          settings: encodeConfig(newSettings)
-        });
+    setSettings(newSettings);
 
-      return newSettings;
-    });
+    if (changeHistory) {
+      addToHistory({
+        parentKey: null,
+        key,
+        value,
+        settings: encodeConfig(newSettings)
+      });
+    }
   };
 
   // Update nested settings value
@@ -287,25 +292,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
     setSettings(defaultConfig);
   };
 
-  // Color theme settings
-  const getColors = () =>
-    utility.darkMode
-      ? {
-          color: "#c9c9c9",
-          background: "#202020",
-          border: "#808080",
-          hover: "#181818",
-          active: "#080808"
-        }
-      : {
-          color: "#323232",
-          background: "#E0E0E0",
-          border: "#3b3b3b",
-          hover: "#d6d6d6",
-          active: "#c8c8c8"
-        };
-
-  const theme: ThemeObject = { ...settings, colors: getColors() };
+  const theme = getTheme(settings);
 
   return (
     <SettingsContext.Provider

@@ -1,24 +1,31 @@
 import React, { useContext, FC } from "react";
-import { useDrag } from "react-dnd-cjs";
 
 import { TextContext } from "../../contexts";
 
-import Icon from "../Icon";
-
 import StyledPreset from "./Preset.style";
 
+import PresetOptions from "./subcomponents/PresetOptions";
+
+import { IconTypes } from "../Icon";
+
+import { SettingsObject } from "../../contexts/SettingsProvider/definitions";
+import { decodeConfig } from "../../helper";
+
+export type PresetOptionsType = {
+  label: string;
+  callback: () => void;
+  icon: IconTypes;
+};
+
 export interface PresetProps {
-  settings: {
-    textTransform: string;
-    headline: any;
-    subline: any;
-    paragraph: any;
-    backgroundColor: string;
-    textType: string;
-  };
+  settings: string | SettingsObject;
   dateCreated: number;
-  onDrop?: () => void;
-  onRemove?: () => void;
+  onClick?: () => void;
+  options?: PresetOptionsType[];
+  additionalOptions?: Array<{
+    label: string;
+    callback: () => void;
+  }>;
   likes?: number;
   className?: string;
 }
@@ -26,25 +33,16 @@ export interface PresetProps {
 const Preset: FC<PresetProps> = ({
   settings,
   dateCreated,
-  onDrop,
-  onRemove,
+  onClick,
+  options,
+  additionalOptions,
   likes,
   className
 }) => {
-  const [{ isDragging }, drag] = useDrag({
-    item: { name: "Preset", type: "preset" },
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult();
-      if (item && dropResult && onDrop) {
-        onDrop();
-      }
-    },
-    collect: monitor => ({
-      isDragging: monitor.isDragging()
-    })
-  });
-
   const { texts, textTypes } = useContext(TextContext);
+
+  const decodedSettings: SettingsObject =
+    typeof settings === "string" ? decodeConfig(settings) : settings;
 
   const {
     textTransform,
@@ -53,7 +51,7 @@ const Preset: FC<PresetProps> = ({
     paragraph,
     backgroundColor,
     textType
-  } = settings;
+  } = decodedSettings;
 
   const date = new Date(dateCreated);
   const year = date.getFullYear();
@@ -69,56 +67,49 @@ const Preset: FC<PresetProps> = ({
       subline={subline}
       paragraph={paragraph}
       backgroundColor={backgroundColor}
-      isDragging={isDragging}
       className={className}
     >
-      <div ref={drag} className="preset__card">
+      <div className="preset__card">
         <div className="preset__content">
-          <div className="preset__text">
-            {headline.enabled && (
+          <button
+            className="preset__text"
+            onClick={onClick}
+            aria-label="Update settings"
+          >
+            {headline && headline.enabled && (
               <h2>
-                <small>
-                  Headline | FS: {headline.size} / LH: {headline.lineHeight}
-                </small>
                 {headline.custom
                   ? headline.customText[0].substring(0, 60)
                   : texts[textType].headline[0].substring(0, 60)}
               </h2>
             )}
-            {subline.enabled && (
+            {subline && subline.enabled && (
               <h3>
-                <small>
-                  Subline | FS: {subline.size} / LH: {subline.lineHeight}
-                </small>
                 {subline.custom
                   ? subline.customText[0].substring(0, 60)
                   : texts[textType].subline[0].substring(0, 60)}{" "}
               </h3>
             )}
-            <p className="preset__paragraph">
-              <small>
-                Paragraph | FS: {paragraph.size} / LH: {paragraph.lineHeight} /
-                LS: {paragraph.letterSpacing}
-              </small>
-              {paragraph.custom
-                ? paragraph.customText[0].substring(0, 60)
-                : texts[textType].paragraph[0].substring(0, 60)}{" "}
-            </p>
-          </div>
+            {paragraph && (
+              <p className="preset__paragraph">
+                {paragraph.custom
+                  ? paragraph.customText[0].substring(0, 60)
+                  : texts[textType].paragraph[0].substring(0, 60)}{" "}
+              </p>
+            )}
+          </button>
           <div className="preset__meta">
-            <span>
+            <span className="preset__meta-text">
               {day}.{month < 9 ? `0${month + 1}` : month + 1}.{year} |{" "}
-              {updatedTextType.label} {likes !== null ? `| ${likes}` : ""}
+              {updatedTextType.label}
+              {likes ? ` | ${likes} ${likes === 1 ? "like" : "likes"}` : ""}
             </span>
-            <button
-              type="button"
-              className="preset__remove"
-              onClick={() => {
-                if (onRemove) onRemove();
-              }}
-            >
-              <Icon type="remove" />
-            </button>
+
+            <PresetOptions
+              options={options}
+              additionalOptions={additionalOptions}
+              className="preset__options"
+            />
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import lzString from "lz-string";
+import { NextPageContext } from "next";
 
 export const hexToRgbA = (hex: string, alpha: number): string => {
   var c;
@@ -33,4 +34,13 @@ export const convertArrayToObject = (array: any[], key: string) => {
       [item[key]]: item
     };
   }, initialValue);
+};
+
+export const redirect = (ctx: NextPageContext, path: string) => {
+  if (ctx.res) {
+    ctx.res.writeHead(302, { Location: path });
+    ctx.res.end();
+  } else {
+    document.location.pathname = path;
+  }
 };

@@ -1,0 +1,5 @@
+mutation UnpublishPreset($id: ID!) {
+  unpublishPreset(id: $id) {
+    id
+  }
+}

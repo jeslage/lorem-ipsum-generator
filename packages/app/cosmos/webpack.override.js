@@ -14,13 +14,6 @@ module.exports = (config, env) => {
       rules: [
         ...config.module.rules,
         {
-          test: /\.graphql$/,
-          loader: "webpack-graphql-loader",
-          options: {
-            output: "document"
-          }
-        },
-        {
           test: /\.js?$/,
           exclude: /node_modules/,
           use: [
@@ -29,9 +22,17 @@ module.exports = (config, env) => {
             }
           ]
         },
+
         {
-          test: /\.svg$/,
-          loader: "svg-sprite-loader"
+          test: /\.graphql$/,
+          exclude: /node_modules/,
+          use: [{ loader: "babel-loader" }, { loader: "graphql-let/loader" }]
+        },
+
+        {
+          test: /\.graphqls$/,
+          exclude: /node_modules/,
+          loader: "graphql-tag/loader"
         }
       ]
     },

@@ -1,71 +1,79 @@
+export type ParagraphSettings = {
+  fontFamily: string;
+  count: number;
+  numberOfCharacters: number;
+  size: number;
+  lineHeight: number;
+  letterSpacing: number;
+  color: string;
+  textAlign: string;
+  margin: {
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+  };
+  custom: boolean;
+  customText: string[];
+};
+
+export type HeadlineSettings = {
+  fontFamily: string;
+  enabled: boolean;
+  numberOfCharacters: number;
+  frequency: number;
+  offset: number;
+  size: number;
+  lineHeight: number;
+  color: string;
+  textAlign: string;
+  margin: {
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+  };
+  custom: boolean;
+  customText: string[];
+};
+
+export type SublineSettings = {
+  fontFamily: string;
+  enabled: boolean;
+  numberOfCharacters: number;
+  frequency: number;
+  offset: number;
+  size: number;
+  lineHeight: number;
+  color: string;
+  textAlign: string;
+  margin: {
+    top: number;
+    right: number;
+    bottom: number;
+    left: number;
+  };
+  custom: boolean;
+  customText: string[];
+};
+
+export type ListSettings = {
+  enabled: boolean;
+  frequency: number;
+  offset: number;
+  orderedList: boolean;
+};
+
 export interface SettingsObject {
   textType: string;
   textWidth: number;
   backgroundColor: string;
   removeSpecialCharacters: boolean;
   textTransform: string;
-  paragraph: {
-    fontFamily: string;
-    count: number;
-    numberOfCharacters: number;
-    size: number;
-    lineHeight: number;
-    letterSpacing: number;
-    color: string;
-    textAlign: string;
-    margin: {
-      top: number;
-      right: number;
-      bottom: number;
-      left: number;
-    };
-    custom: boolean;
-    customText: string[];
-  };
-  headline: {
-    fontFamily: string;
-    enabled: boolean;
-    numberOfCharacters: number;
-    frequency: number;
-    offset: number;
-    size: number;
-    lineHeight: number;
-    color: string;
-    textAlign: string;
-    margin: {
-      top: number;
-      right: number;
-      bottom: number;
-      left: number;
-    };
-    custom: boolean;
-    customText: string[];
-  };
-  subline: {
-    fontFamily: string;
-    enabled: boolean;
-    numberOfCharacters: number;
-    frequency: number;
-    offset: number;
-    size: number;
-    lineHeight: number;
-    color: string;
-    textAlign: string;
-    margin: {
-      top: number;
-      right: number;
-      bottom: number;
-      left: number;
-    };
-    custom: boolean;
-    customText: string[];
-  };
-  list: {
-    enabled: boolean;
-    frequency: number;
-    offset: number;
-    orderedList: boolean;
-  };
+  paragraph: ParagraphSettings;
+  headline: HeadlineSettings;
+  subline: SublineSettings;
+  list: ListSettings;
 }
 
 export interface ThemeObject extends SettingsObject {
@@ -79,7 +87,6 @@ export interface ThemeObject extends SettingsObject {
 }
 
 export interface UtilityObject {
-  darkMode: boolean;
   printTags: boolean;
   printInlineStyles: boolean;
 }

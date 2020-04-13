@@ -1,5 +1,10 @@
 export const centerAlign = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    height="20"
+    viewBox="0 0 25 20"
+  >
     <g transform="translate(-541 -26)">
       <rect width="14" height="4" rx="2" transform="translate(547 26)" />
       <rect width="25" height="4" rx="2" transform="translate(541 34)" />
@@ -69,6 +74,17 @@ export const darkMode = (
   </svg>
 );
 
+export const dots = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="22"
+    height="6"
+    viewBox="0 0 22 6"
+  >
+    <path d="M16 3a3 3 0 113 3 3 3 0 01-3-3zM8 3a3 3 0 113 3 3 3 0 01-3-3zM0 3a3 3 0 113 3 3 3 0 01-3-3z" />
+  </svg>
+);
+
 export const edit = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +118,35 @@ export const fontSize = (
   </svg>
 );
 
+export const heart = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    width="512"
+    height="512"
+  >
+    <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+  </svg>
+);
+
+export const heartOutline = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    width="512"
+    height="512"
+  >
+    <path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path>
+  </svg>
+);
+
 export const leftAlign = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    height="20"
+    viewBox="0 0 25 20"
+  >
     <g transform="translate(-541 -26)">
       <rect width="9" height="4" rx="2" transform="translate(541 26)" />
       <rect width="25" height="4" rx="2" transform="translate(541 34)" />
@@ -222,7 +265,12 @@ export const removeSpecialCharacters = (
 );
 
 export const rightAlign = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    height="20"
+    viewBox="0 0 25 20"
+  >
     <g transform="translate(-541 -26)">
       <rect width="14" height="4" rx="2" transform="translate(552 26)" />
       <rect width="25" height="4" rx="2" transform="translate(541 34)" />
@@ -237,6 +285,17 @@ export const settings = (
       fill="currentColor"
       d="M496 384H160v-16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v16H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h80v16c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-16h336c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm0-160h-80v-16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v16H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h336v16c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-16h80c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm0-160H288V48c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v16H16C7.2 64 0 71.2 0 80v32c0 8.8 7.2 16 16 16h208v16c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-16h208c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16z"
     ></path>
+  </svg>
+);
+
+export const share = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    width="512"
+    height="512"
+  >
+    <path d="M503.691 189.836L327.687 37.851C312.281 24.546 288 35.347 288 56.015v80.053C127.371 137.907 0 170.1 0 322.326c0 61.441 39.581 122.309 83.333 154.132 13.653 9.931 33.111-2.533 28.077-18.631C66.066 312.814 132.917 274.316 288 272.085V360c0 20.7 24.3 31.453 39.687 18.164l176.004-152c11.071-9.562 11.086-26.753 0-36.328z"></path>
   </svg>
 );
 

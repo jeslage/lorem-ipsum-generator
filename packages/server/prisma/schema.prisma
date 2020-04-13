@@ -7,13 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Presets {
+model Preset {
   dateCreated DateTime? @default(now())
-  description String?
   id          Int       @default(autoincrement()) @id
   likes       Int?      @default(0)
-  name        String
   published   Boolean?  @default(false)
   settings    String
+  shortId     String?   @unique
   textType    String
+}
+
+model User {
+  email    String @unique
+  id       Int    @id
+  password String
+  username String @unique
 }

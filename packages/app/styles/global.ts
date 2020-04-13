@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
     margin: 0;
     padding: 0;
-    background: ${(props) => props.theme.backgroundColor};
-    color: ${(props) => props.theme.colors.color};
+    background: ${props => props.theme.colors.background};
+    color: ${props => props.theme.colors.color};
   }
 
   small {

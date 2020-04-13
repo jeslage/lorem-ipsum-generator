@@ -1,6 +1,5 @@
 mutation DeletePreset($id: ID!) {
   deletePreset(id: $id) {
     id
-    name
   }
 }

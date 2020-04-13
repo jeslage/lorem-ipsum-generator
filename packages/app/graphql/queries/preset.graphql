@@ -1,0 +1,9 @@
+query Preset($id: ID, $shortId: String) {
+  preset(id: $id, shortId: $shortId) {
+    id
+    dateCreated
+    settings
+    likes
+    shortId
+  }
+}

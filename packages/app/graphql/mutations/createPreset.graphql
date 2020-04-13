@@ -1,0 +1,6 @@
+mutation AddPreset($textType: String!, $settings: String!) {
+  createPreset(textType: $textType, settings: $settings) {
+    id
+    dateCreated
+  }
+}

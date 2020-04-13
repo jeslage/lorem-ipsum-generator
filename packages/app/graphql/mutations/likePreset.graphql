@@ -1,0 +1,5 @@
+mutation LikePreset($id: ID!, $likes: Int!) {
+  likePreset(id: $id, likes: $likes) {
+    id
+  }
+}

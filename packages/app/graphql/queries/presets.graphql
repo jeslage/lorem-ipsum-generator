@@ -1,0 +1,10 @@
+query Presets($published: Boolean) {
+  presets(published: $published) {
+    id
+    dateCreated
+    settings
+    likes
+    shortId
+    published
+  }
+}

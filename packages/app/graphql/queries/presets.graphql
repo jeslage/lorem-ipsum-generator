@@ -6,5 +6,6 @@ query Presets($published: Boolean) {
     likes
     shortId
     published
+    textType
   }
 }

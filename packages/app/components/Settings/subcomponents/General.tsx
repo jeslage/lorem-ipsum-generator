@@ -3,7 +3,6 @@ import { SettingsContext, TextContext } from "../../../contexts";
 
 import ColorPicker from "../../ColorPicker";
 import Counter from "../../Counter";
-import RadioGroup from "../../RadioGroup";
 import Select from "../../Select";
 import Switch from "../../Switch";
 
@@ -14,7 +13,6 @@ const General = () => {
   const {
     textType,
     textWidth,
-    textTransform,
     backgroundColor,
     removeSpecialCharacters
   } = settings;
@@ -57,28 +55,9 @@ const General = () => {
           isActive={removeSpecialCharacters}
           onChange={bool => updateSettings("removeSpecialCharacters", bool)}
         />
-
-        <RadioGroup
-          label="Text transform"
-          value={textTransform}
-          name="general-textTransform"
-          iconBefore="mixedcase"
-          options={[
-            { value: "none", icon: "mixedcase" },
-            { value: "uppercase", icon: "uppercase" },
-            { value: "lowercase", icon: "lowercase" }
-          ]}
-          onChange={value => updateSettings("textTransform", value)}
-        />
       </>
     ),
-    [
-      textType,
-      textWidth,
-      textTransform,
-      backgroundColor,
-      removeSpecialCharacters
-    ]
+    [textType, textWidth, backgroundColor, removeSpecialCharacters]
   );
 };
 

@@ -10,14 +10,26 @@ import { usePublishPresetMutation } from "../graphql/mutations/publishPreset.gra
 import { useUnpublishPresetMutation } from "../graphql/mutations/unpublishPreset.graphql";
 
 import Preset from "../components/Preset";
+import Button from "../components/Button";
 
 const StyledDashboard = styled.div`
+  padding: 20px;
+
+  .dashboard__options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+    button {
+      width: auto;
+    }
+  }
+
   .dashboard__presets {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-gap: 20px;
     align-items: stretch;
-    margin: 20px;
   }
 
   .dashboard__preset {
@@ -28,42 +40,82 @@ const StyledDashboard = styled.div`
 `;
 
 const DashboardPage: NextPage = () => {
-  const { data } = usePresetsQuery();
+  const { data, refetch } = usePresetsQuery();
   const [publishPresetMutation] = usePublishPresetMutation();
   const [unpublishPresetMutation] = useUnpublishPresetMutation();
 
+  const unpublishedPresets = data?.presets.filter(item => !item.published);
+  const publishedPresets = data?.presets.filter(item => item.published);
+
+  const handleClick = item => {
+    if (typeof window !== "undefined") {
+      const win = window.open(
+        `http://localhost:3000/${item.shortId || `?c=${item.settings}`}`,
+        "_blank"
+      );
+
+      win?.focus();
+    }
+  };
+
   return (
     <StyledDashboard>
-      <button type="button" onClick={() => logout()}>
-        Logout
-      </button>
+      <div className="dashboard__options">
+        <Button onClick={() => logout()}>Logout</Button>
+      </div>
+
+      <p>Published</p>
       <div className="dashboard__presets">
-        {data &&
-          data.presets.length > 0 &&
-          data.presets.map(item => (
+        {publishedPresets &&
+          publishedPresets.length > 0 &&
+          publishedPresets.map(item => (
             <Preset
               key={item.id}
               className="dashboard__preset"
               settings={item.settings}
               dateCreated={parseFloat(item.dateCreated)}
+              likes={item.likes}
+              onClick={() => handleClick(item)}
               options={[
-                item.published
-                  ? {
-                      label: "Unpublish",
-                      icon: "minus",
-                      callback: () =>
-                        unpublishPresetMutation({
-                          variables: { id: item.id }
-                        })
-                    }
-                  : {
-                      label: "Publish",
-                      icon: "plus",
-                      callback: () =>
-                        publishPresetMutation({
-                          variables: { id: item.id }
-                        })
-                    }
+                {
+                  label: "Unpublish",
+                  icon: "minus",
+                  callback: async () => {
+                    await unpublishPresetMutation({
+                      variables: { id: item.id }
+                    });
+                    refetch();
+                  }
+                }
+              ]}
+            />
+          ))}
+      </div>
+
+      <p>Unpublished</p>
+      <div className="dashboard__presets">
+        {unpublishedPresets &&
+          unpublishedPresets.length > 0 &&
+          unpublishedPresets.map(item => (
+            <Preset
+              key={item.id}
+              className="dashboard__preset"
+              settings={item.settings}
+              dateCreated={parseFloat(item.dateCreated)}
+              likes={item.likes}
+              onClick={() => handleClick(item)}
+              options={[
+                {
+                  label: "Publish",
+                  icon: "plus",
+                  callback: async () => {
+                    await publishPresetMutation({
+                      variables: { id: item.id }
+                    });
+
+                    refetch();
+                  }
+                }
               ]}
             />
           ))}

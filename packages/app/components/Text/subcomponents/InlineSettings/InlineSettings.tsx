@@ -108,6 +108,20 @@ const InlineSettings: FC<InlineSettingsProps> = ({ type, children }) => {
                       updateNestedSettings(type, "textAlign", value)
                     }
                   />
+
+                  <RadioGroup
+                    value={settings[type].textTransform}
+                    name="texttransform"
+                    iconBefore="mixedcase"
+                    options={[
+                      { value: "none", icon: "mixedcase" },
+                      { value: "uppercase", icon: "uppercase" },
+                      { value: "lowercase", icon: "lowercase" }
+                    ]}
+                    onChange={value =>
+                      updateNestedSettings(type, "textTransform", value)
+                    }
+                  />
                 </>
               )}
             </div>

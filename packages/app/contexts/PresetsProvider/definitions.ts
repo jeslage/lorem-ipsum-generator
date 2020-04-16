@@ -6,9 +6,10 @@ export type Preset = {
 };
 
 export interface PresetsContextProps {
+  featuredPresets: any[] | undefined;
   presets: Preset[];
   likedPresets: string[];
-  addPreset: () => void;
+  addPreset: (value?: string) => void;
   removePreset: (timestamp: number) => void;
   likePreset: (id: string, likes: number) => void;
   unlikePreset: (id: string, likes: number) => void;

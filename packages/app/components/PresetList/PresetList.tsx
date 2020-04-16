@@ -45,7 +45,7 @@ const PresetList = () => {
             />
           ))
         ) : (
-          <Button onClick={addPreset} iconBefore="plus">
+          <Button onClick={() => addPreset()} iconBefore="plus">
             Add your first preset
           </Button>
         )}
@@ -53,7 +53,7 @@ const PresetList = () => {
 
       {presets.length > 0 ? (
         <div className="presetList__bar">
-          <Button onClick={addPreset} iconBefore="plus">
+          <Button onClick={() => addPreset()} iconBefore="plus">
             Add another preset
           </Button>
         </div>

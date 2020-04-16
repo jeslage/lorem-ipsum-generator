@@ -6,10 +6,13 @@ import { Context } from "./context";
 
 const resolvers: IResolvers = {
   Query: {
-    presets: (_, args, ctx: Context) => {
-      return ctx.prisma.preset.findMany({
-        where: { published: args.published }
+    presets: async (_, args, ctx: Context) => {
+      const presets = await ctx.prisma.preset.findMany({
+        where: { published: args.published },
+        skip: args.skip
       });
+
+      return args.limit ? presets.slice(0, args.limit) : presets;
     },
     preset: (_, args, ctx: Context) => {
       if (args.id) {

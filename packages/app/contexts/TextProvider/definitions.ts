@@ -8,6 +8,6 @@ export interface TextContextProps {
       "paragraph" | "headline" | "subline" | "list"
     >;
   };
-  getText: (key: string, tag: string) => string;
+  getText: (key: "paragraph" | "headline" | "subline", tag: string) => string;
   getList: () => JSX.Element;
 }

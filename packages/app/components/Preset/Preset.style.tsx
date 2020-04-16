@@ -6,7 +6,6 @@ import {
 } from "../../contexts/SettingsProvider/definitions";
 
 type StyledPresetProps = {
-  readonly textTransform: string;
   readonly backgroundColor: string;
   readonly paragraph: ParagraphSettings;
   readonly headline: HeadlineSettings;
@@ -17,6 +16,7 @@ const StyledPreset = styled.div<StyledPresetProps>`
   margin: 20px 0;
   flex-wrap: wrap;
   display: flex;
+  min-height: 200px;
   justify-content: flex-end;
 
   .preset__card {
@@ -33,13 +33,11 @@ const StyledPreset = styled.div<StyledPresetProps>`
     margin: 0;
     font-size: inherit;
     background-color: ${({ backgroundColor }) => backgroundColor};
-    overflow: hidden;
     display: flex;
     flex-direction: column;
   }
 
   .preset__text {
-    text-transform: ${props => props.textTransform};
     padding: 10px 20px;
     appearance: none;
     border: 0;
@@ -50,6 +48,8 @@ const StyledPreset = styled.div<StyledPresetProps>`
     flex-grow: 2;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    border-bottom: 1px solid ${props => props.theme.colors.background};
   }
 
   .preset__paragraph {
@@ -57,6 +57,7 @@ const StyledPreset = styled.div<StyledPresetProps>`
     white-space: nowrap;
     font-size: ${({ paragraph }) => paragraph.size}px;
     line-height: 1;
+    text-transform: ${({ paragraph }) => paragraph.textTransform};
     color: ${({ paragraph }) => paragraph.color};
     font-family: ${({ paragraph }) => paragraph.fontFamily};
   }
@@ -66,6 +67,7 @@ const StyledPreset = styled.div<StyledPresetProps>`
     white-space: nowrap;
     font-size: ${({ headline }) => headline.size}px;
     line-height: 1;
+    text-transform: ${({ headline }) => headline.textTransform};
     color: ${({ headline }) => headline.color};
     font-family: ${({ headline }) => headline.fontFamily};
   }
@@ -75,6 +77,7 @@ const StyledPreset = styled.div<StyledPresetProps>`
     white-space: nowrap;
     font-size: ${({ subline }) => subline.size}px;
     line-height: 1;
+    text-transform: ${({ subline }) => subline.textTransform};
     color: ${({ subline }) => subline.color};
     font-family: ${({ subline }) => subline.fontFamily};
   }
@@ -97,7 +100,7 @@ const StyledPreset = styled.div<StyledPresetProps>`
   .preset__meta {
     display: flex;
     align-items: center;
-    padding: 0px 20px 10px;
+    padding: 10px 20px 10px;
   }
 
   .preset__meta-text {

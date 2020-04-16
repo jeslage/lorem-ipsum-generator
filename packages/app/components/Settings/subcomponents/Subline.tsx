@@ -35,6 +35,7 @@ const Subline = () => {
     color,
     margin,
     textAlign,
+    textTransform,
     numberOfCharacters,
     custom,
     customText
@@ -179,6 +180,22 @@ const Subline = () => {
                 updateNestedSettings("subline", "textAlign", value)
               }
             />
+
+            <RadioGroup
+              label="Text transform"
+              value={textTransform}
+              name="subline-texttransform"
+              iconBefore="mixedcase"
+              options={[
+                { value: "none", icon: "mixedcase" },
+                { value: "uppercase", icon: "uppercase" },
+                { value: "lowercase", icon: "lowercase" }
+              ]}
+              onChange={value =>
+                updateNestedSettings("subline", "textTransform", value)
+              }
+            />
+
             <Code
               code={`h3 {\r\n\tfont-size: ${size}px;\r\n\tline-height: ${lineHeight};\r\n\tcolor: ${color};\r\n\tmargin: ${margin.top}px ${margin.right}px ${margin.bottom}px ${margin.left}px;\r\n\ttext-align: ${textAlign};\r\n}`}
             />

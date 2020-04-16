@@ -34,6 +34,7 @@ const Paragraph = () => {
     color,
     margin,
     textAlign,
+    textTransform,
     custom,
     customText
   } = paragraph;
@@ -159,6 +160,21 @@ const Paragraph = () => {
           ]}
           onChange={value =>
             updateNestedSettings("paragraph", "textAlign", value)
+          }
+        />
+
+        <RadioGroup
+          label="Text transform"
+          value={textTransform}
+          name="paragraph-texttransform"
+          iconBefore="mixedcase"
+          options={[
+            { value: "none", icon: "mixedcase" },
+            { value: "uppercase", icon: "uppercase" },
+            { value: "lowercase", icon: "lowercase" }
+          ]}
+          onChange={value =>
+            updateNestedSettings("paragraph", "textTransform", value)
           }
         />
 

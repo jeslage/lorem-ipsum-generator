@@ -41,6 +41,7 @@ const PresetOptions: FC<PresetOptionsProps> = ({
             icon="dots"
             label="Additional Options"
             onClick={() => setVisible(prev => !prev)}
+            className="presetOptions__additional-toggle"
           />
           {visible && (
             <div

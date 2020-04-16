@@ -1,6 +1,6 @@
 const typeDefs = `
   type Query {
-    presets(published: Boolean): [Preset!]!
+    presets(published: Boolean, limit: Int, skip: Int): [Preset!]!
     preset(id: ID, shortId: String): Preset
   }
 

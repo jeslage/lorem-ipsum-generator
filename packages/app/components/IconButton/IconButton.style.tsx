@@ -19,8 +19,9 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   background: ${props => props.theme.colors.background};
   transition: background 0.2s ease-in-out;
 
-  &:active {
-    color: ${props => props.theme.colors.color};
+  &:active,
+  &:focus {
+    color: ${props => props.theme.colors.hover};
   }
 
   &:hover {
@@ -48,8 +49,7 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   }
 
   svg {
-    height: auto;
-    max-height: 15px;
+    height: 15px;
     width: 15px;
     fill: ${props => props.theme.colors.color};
   }

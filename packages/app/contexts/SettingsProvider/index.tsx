@@ -22,7 +22,6 @@ export const defaultConfig: SettingsObject = {
   textWidth: 100,
   backgroundColor: "#fff",
   removeSpecialCharacters: false,
-  textTransform: "none",
   paragraph: {
     fontFamily: fontFamilies[0].value,
     count: 6,
@@ -30,6 +29,7 @@ export const defaultConfig: SettingsObject = {
     size: 20,
     lineHeight: 1.5,
     letterSpacing: 0,
+    textTransform: "none",
     color: "#000",
     textAlign: "left",
     margin: {
@@ -49,6 +49,7 @@ export const defaultConfig: SettingsObject = {
     offset: 0,
     size: 30,
     lineHeight: 1.5,
+    textTransform: "none",
     color: "#000",
     textAlign: "left",
     margin: {
@@ -68,6 +69,7 @@ export const defaultConfig: SettingsObject = {
     offset: 1,
     size: 24,
     lineHeight: 1.5,
+    textTransform: "none",
     color: "#000",
     textAlign: "left",
     margin: {
@@ -129,8 +131,6 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
           // General
           textType: queryConfig.textType || defaultConfig.textType,
           textWidth: queryConfig.textWidth || defaultConfig.textWidth,
-          textTransform:
-            queryConfig.textTransform || defaultConfig.textTransform,
 
           backgroundColor:
             queryConfig.backgroundColor || defaultConfig.backgroundColor,
@@ -210,39 +210,51 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
     value: string | number,
     changeHistory = true
   ) => {
-    setSettings(prev => {
-      const newSettings = {
-        ...prev,
-        [key]: { ...prev[key], [subKey]: value }
-      };
+    const newSettings = {
+      ...settings,
+      [key]: { ...settings[key], [subKey]: value }
+    };
 
-      if (changeHistory)
-        addToHistory({
-          parentKey: key,
-          key: subKey,
-          value,
-          settings: encodeConfig(newSettings)
-        });
+    setSettings(newSettings);
 
-      return newSettings;
-    });
+    if (changeHistory) {
+      addToHistory({
+        parentKey: key,
+        key: subKey,
+        value,
+        settings: encodeConfig(newSettings)
+      });
+    }
   };
 
-  const updateNestedArray = (
+  const updateNestedArray = async (
     key: string,
     subKey: string,
     value: string | number,
-    index: number
+    index: number,
+    changeHistory = true
   ) => {
     const updatedArray = settings[key][subKey].slice(0);
     updatedArray[index] = value;
-    setSettings(prev => ({
-      ...prev,
+
+    const newSettings = {
+      ...settings,
       [key]: {
-        ...prev[key],
+        ...settings[key],
         [subKey]: updatedArray
       }
-    }));
+    };
+
+    setSettings(newSettings);
+
+    if (changeHistory) {
+      addToHistory({
+        parentKey: key,
+        key: subKey,
+        value: null,
+        settings: encodeConfig(newSettings)
+      });
+    }
   };
 
   const removeNestedArray = (key: string, subKey: string, index: number) => {
@@ -269,13 +281,14 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
 
   // Update all settings
   const updateAllSettings = (obj: SettingsObject, changeHistory = true) => {
-    if (changeHistory)
+    if (changeHistory) {
       addToHistory({
         parentKey: null,
         key: "allSettings",
         value: null,
         settings: encodeConfig(obj)
       });
+    }
 
     setSettings(obj);
   };

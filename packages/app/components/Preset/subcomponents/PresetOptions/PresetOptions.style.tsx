@@ -8,18 +8,25 @@ const StyledPresetOptions = styled.div`
     margin-left: 0.5rem;
   }
 
+  .presetOptions__additional-toggle  {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+
   .presetOptions__list {
     position: absolute;
     display: flex;
     flex-direction: column;
-    top: 100%;
+    bottom: calc(100% + 10px);
     margin-top: 5px;
     width: 150px;
     right: 0;
-    background: ${props => props.theme.colors.color};
-    color: ${props => props.theme.colors.hover};
+    background: ${props => props.theme.colors.hover};
+    color: ${props => props.theme.colors.color};
     z-index: 999;
     border-radius: 5px;
+    border: 1px solid ${props => props.theme.colors.background};
     overflow: hidden;
 
     button {
@@ -30,13 +37,19 @@ const StyledPresetOptions = styled.div`
       border: none;
       background: none;
       cursor: pointer;
-      padding: 10px;
+      padding: 15px;
       text-align: left;
       color: inherit;
       font-weight: bold;
+      margin: 0;
+      border-bottom: 1px solid ${props => props.theme.colors.hover};
+
+      &:last-of-type {
+        border-bottom: none;
+      }
 
       &:hover {
-        background: ${props => props.theme.colors.border};
+        background: ${props => props.theme.colors.active};
       }
     }
   }

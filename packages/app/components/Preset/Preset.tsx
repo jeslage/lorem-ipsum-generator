@@ -11,6 +11,16 @@ import { IconTypes } from "../Icon";
 import { SettingsObject } from "../../contexts/SettingsProvider/definitions";
 import { decodeConfig } from "../../helper";
 
+const getDate = dateCreated => {
+  const date = new Date(dateCreated);
+
+  const year = date.getFullYear();
+  const day = date.getDate();
+  const month = date.getMonth();
+
+  return `${day}.${month < 9 ? `0${month + 1}` : month + 1}.${year}`;
+};
+
 export type PresetOptionsType = {
   label: string;
   callback: () => void;
@@ -19,7 +29,7 @@ export type PresetOptionsType = {
 
 export interface PresetProps {
   settings: string | SettingsObject;
-  dateCreated: number;
+  dateCreated?: number;
   onClick?: () => void;
   options?: PresetOptionsType[];
   additionalOptions?: Array<{
@@ -45,7 +55,6 @@ const Preset: FC<PresetProps> = ({
     typeof settings === "string" ? decodeConfig(settings) : settings;
 
   const {
-    textTransform,
     headline,
     subline,
     paragraph,
@@ -53,16 +62,10 @@ const Preset: FC<PresetProps> = ({
     textType
   } = decodedSettings;
 
-  const date = new Date(dateCreated);
-  const year = date.getFullYear();
-  const day = date.getDate();
-  const month = date.getMonth();
-
   const updatedTextType = textTypes.filter(type => type.value === textType)[0];
 
   return (
     <StyledPreset
-      textTransform={textTransform}
       headline={headline}
       subline={subline}
       paragraph={paragraph}
@@ -100,9 +103,21 @@ const Preset: FC<PresetProps> = ({
           </button>
           <div className="preset__meta">
             <span className="preset__meta-text">
-              {day}.{month < 9 ? `0${month + 1}` : month + 1}.{year} |{" "}
               {updatedTextType.label}
-              {likes ? ` | ${likes} ${likes === 1 ? "like" : "likes"}` : ""}
+
+              {dateCreated && (
+                <>
+                  <br />
+                  {getDate(dateCreated)}
+                </>
+              )}
+
+              {likes ? (
+                <>
+                  <br />
+                  {likes} {likes !== 1 ? "likes" : "like"}
+                </>
+              ) : null}
             </span>
 
             <PresetOptions

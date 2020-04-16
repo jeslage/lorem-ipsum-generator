@@ -37,7 +37,7 @@ export const logout = () => {
   Cookies.remove("token");
   // to support logging out from all windows
   window.localStorage.setItem("logout", Date.now().toString());
-  Router.push("/login");
+  Router.push("/");
 };
 
 export const withAuthSync = (PageComponent: NextPage) => {
@@ -45,7 +45,7 @@ export const withAuthSync = (PageComponent: NextPage) => {
     const syncLogout = event => {
       if (event.key === "logout") {
         console.log("Logged out from storage!");
-        Router.push("/login");
+        Router.push("/");
       }
     };
 

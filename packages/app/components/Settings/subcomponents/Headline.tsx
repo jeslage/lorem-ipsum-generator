@@ -35,6 +35,7 @@ const Headline = () => {
     color,
     margin,
     textAlign,
+    textTransform,
     numberOfCharacters,
     custom,
     customText
@@ -184,6 +185,21 @@ const Headline = () => {
               ]}
               onChange={value =>
                 updateNestedSettings("headline", "textAlign", value)
+              }
+            />
+
+            <RadioGroup
+              label="Text transform"
+              value={textTransform}
+              name="headline-texttransform"
+              iconBefore="mixedcase"
+              options={[
+                { value: "none", icon: "mixedcase" },
+                { value: "uppercase", icon: "uppercase" },
+                { value: "lowercase", icon: "lowercase" }
+              ]}
+              onChange={value =>
+                updateNestedSettings("headline", "textTransform", value)
               }
             />
 

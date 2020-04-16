@@ -11,6 +11,7 @@ export interface ButtonProps {
   className?: string;
   disabled?: boolean;
   title?: string;
+  type?: "button" | "submit" | "reset";
   onClick?: (e: React.MouseEvent) => void;
 }
 
@@ -23,10 +24,11 @@ const Button: FC<ButtonProps> = ({
   onClick,
   className,
   title,
+  type = "button",
   ...props
 }) => (
   <StyledButton
-    type="button"
+    type={type}
     variant={variant}
     className={className}
     onClick={onClick}

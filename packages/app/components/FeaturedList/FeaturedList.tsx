@@ -4,15 +4,13 @@ import * as clipboard from "clipboard-polyfill";
 
 import { encodeConfig, decodeConfig } from "../../helper";
 import { sortBy } from "./helper/sortBy";
+import textConfig from "../../config/text";
 
-import { usePresetsQuery } from "../../graphql/queries/presets.graphql";
 import { useAddPresetMutation } from "../../graphql/mutations/createPreset.graphql";
-import { usePublishPresetMutation } from "../../graphql/mutations/publishPreset.graphql";
 
 import { SettingsContext, PresetsContext } from "../../contexts";
 
 import Button from "../Button";
-import LoadingIndicator from "../LoadingIndicator";
 import Preset from "../Preset";
 import Select from "../Select";
 import { PresetOptionsType } from "../Preset/Preset";
@@ -21,17 +19,24 @@ import StyledFeaturedList from "./FeaturedList.style";
 
 const FeaturedList = () => {
   const { addToast } = useToasts();
+
   const { settings, updateAllSettings } = useContext(SettingsContext);
-  const { likedPresets, likePreset, unlikePreset } = useContext(PresetsContext);
+  const {
+    featuredPresets,
+    likedPresets,
+    likePreset,
+    unlikePreset,
+    addPreset
+  } = useContext(PresetsContext);
+
   const [sorted, setSorted] = useState<string>("asc");
+  const [filter, setFilter] = useState({
+    textType: "all"
+  });
 
   const { textType } = settings;
 
-  const { data, loading, error } = usePresetsQuery({
-    variables: { published: true }
-  });
   const [addPresetMutation] = useAddPresetMutation();
-  const [publishPresetMutation] = usePublishPresetMutation();
 
   const getOptions = item => {
     const liked = likedPresets.includes(item.id);
@@ -48,36 +53,23 @@ const FeaturedList = () => {
       }
     ];
 
-    if (!item.published) {
-      presetOptions.push({
-        label: "Publish preset",
-        icon: "plus",
-        callback: () => {
-          publishPresetMutation({ variables: { id: item.id } });
-        }
-      });
-    }
-
-    if (item.shortId) {
-      presetOptions.push({
-        label: "Share preset",
-        icon: "copy",
-        callback: () => {
-          clipboard.writeText(`http://localhost:3000/${item.shortId}`);
-        }
-      });
-    }
-
     return presetOptions;
   };
+
+  const filteredPresets = featuredPresets
+    ? featuredPresets.sort(sortBy(sorted)).filter(item => {
+        if (filter.textType !== "all") {
+          return item.textType === filter.textType;
+        }
+
+        return true;
+      })
+    : [];
 
   return (
     <StyledFeaturedList>
       <div className="featuredList__presets">
-        {loading && <LoadingIndicator />}
-        {error && <p>Sorry, something went wrong...</p>}
-
-        {!loading && !error && data && data.presets.length > 0 ? (
+        {featuredPresets && featuredPresets.length > 0 ? (
           <>
             <Select
               label="Sort by:"
@@ -91,24 +83,65 @@ const FeaturedList = () => {
                 { label: "Least liked", value: "leastLiked" }
               ]}
             />
+            <Select
+              label="Text type:"
+              initialValue={filter.textType}
+              onChange={val => setFilter(prev => ({ ...prev, textType: val }))}
+              name="textType"
+              options={[
+                { label: "All", value: "all" },
+                ...textConfig.map(item => ({
+                  label: item.label,
+                  value: item.value
+                })),
+                { label: "Custom", value: "custom" }
+              ]}
+            />
 
-            {data.presets.sort(sortBy(sorted)).map(item => (
-              <Preset
-                className="featuredList__preset"
-                settings={item.settings}
-                dateCreated={parseFloat(item.dateCreated)}
-                key={item.id}
-                likes={item.likes}
-                options={getOptions(item)}
-                onClick={() => {
-                  addToast("Settings updated", {
-                    appearance: "success",
-                    autoDismiss: true
-                  });
-                  updateAllSettings(decodeConfig(item.settings));
-                }}
-              />
-            ))}
+            {filteredPresets.length > 0 ? (
+              filteredPresets.map(item => (
+                <Preset
+                  className="featuredList__preset"
+                  settings={item.settings}
+                  key={item.id}
+                  likes={item.likes}
+                  options={getOptions(item)}
+                  additionalOptions={[
+                    {
+                      label: "Add to presets",
+                      callback: () => {
+                        addPreset(item.settings);
+                        addToast("Successfully added to own presets", {
+                          appearance: "success",
+                          autoDismiss: true
+                        });
+                      }
+                    },
+                    {
+                      label: "Copy share link",
+                      callback: () => {
+                        clipboard.writeText(
+                          `http://localhost:3000/${item.shortId}`
+                        );
+                        addToast("Share link copied successfully", {
+                          appearance: "success",
+                          autoDismiss: true
+                        });
+                      }
+                    }
+                  ]}
+                  onClick={() => {
+                    addToast("Settings updated", {
+                      appearance: "success",
+                      autoDismiss: true
+                    });
+                    updateAllSettings(decodeConfig(item.settings));
+                  }}
+                />
+              ))
+            ) : (
+              <p>No presets</p>
+            )}
           </>
         ) : (
           <p className="featuredList__no-presets">No featured presets!</p>
@@ -117,7 +150,6 @@ const FeaturedList = () => {
 
       <div className="featuredList__bar">
         <Button
-          disabled={loading || Boolean(error)}
           onClick={() => {
             try {
               addPresetMutation({
@@ -140,7 +172,7 @@ const FeaturedList = () => {
           }}
           iconBefore="plus"
         >
-          {loading ? "Loading presets" : "Submit your current preset"}
+          Submit your current preset
         </Button>
       </div>
     </StyledFeaturedList>

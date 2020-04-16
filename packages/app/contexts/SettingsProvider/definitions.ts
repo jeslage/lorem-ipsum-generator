@@ -1,3 +1,5 @@
+import { TextAlignProperty, TextTransformProperty } from "csstype";
+
 export type ParagraphSettings = {
   fontFamily: string;
   count: number;
@@ -6,7 +8,8 @@ export type ParagraphSettings = {
   lineHeight: number;
   letterSpacing: number;
   color: string;
-  textAlign: string;
+  textAlign: TextAlignProperty;
+  textTransform: TextTransformProperty;
   margin: {
     top: number;
     right: number;
@@ -26,7 +29,8 @@ export type HeadlineSettings = {
   size: number;
   lineHeight: number;
   color: string;
-  textAlign: string;
+  textAlign: TextAlignProperty;
+  textTransform: TextTransformProperty;
   margin: {
     top: number;
     right: number;
@@ -46,7 +50,8 @@ export type SublineSettings = {
   size: number;
   lineHeight: number;
   color: string;
-  textAlign: string;
+  textAlign: TextAlignProperty;
+  textTransform: TextTransformProperty;
   margin: {
     top: number;
     right: number;
@@ -69,7 +74,6 @@ export interface SettingsObject {
   textWidth: number;
   backgroundColor: string;
   removeSpecialCharacters: boolean;
-  textTransform: string;
   paragraph: ParagraphSettings;
   headline: HeadlineSettings;
   subline: SublineSettings;

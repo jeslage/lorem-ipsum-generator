@@ -39,12 +39,13 @@ const getInlineStyles = type => `
     line-height: ${type.lineHeight};
     ${type.letterSpacing ? `letter-spacing: ${type.letterSpacing}px;` : ""}
     text-align: ${type.textAlign};
+    text-transform: ${type.textTransform};
     color: ${type.color};
 `;
 
 const TextProvider = ({ children }) => {
   const { settings, utility } = useContext(SettingsContext);
-  const { removeSpecialCharacters, textTransform, textType } = settings;
+  const { removeSpecialCharacters, textType } = settings;
   const { printTags, printInlineStyles } = utility;
 
   const index = {
@@ -77,8 +78,10 @@ const TextProvider = ({ children }) => {
       .substring(0, settings[key].numberOfCharacters)
       .trim();
 
-    if (textTransform === "lowercase") updatedText = updatedText.toLowerCase();
-    if (textTransform === "uppercase") updatedText = updatedText.toUpperCase();
+    if (settings[key].textTransform === "lowercase")
+      updatedText = updatedText.toLowerCase();
+    if (settings[key].textTransform === "uppercase")
+      updatedText = updatedText.toUpperCase();
 
     if (key === "paragraph" && updatedText.slice(-1) !== ".")
       updatedText = `${updatedText}.`;
@@ -114,9 +117,9 @@ const TextProvider = ({ children }) => {
         <ListTag>
           {texts[textType].list.map((item, i) => {
             let updatedItem = item;
-            if (textTransform === "lowercase")
+            if (settings.paragraph.textTransform === "lowercase")
               updatedItem = updatedItem.toLowerCase();
-            if (textTransform === "uppercase")
+            if (settings.paragraph.textTransform === "uppercase")
               updatedItem = updatedItem.toUpperCase();
             if (removeSpecialCharacters)
               updatedItem = deleteSpecialCharacters(item);

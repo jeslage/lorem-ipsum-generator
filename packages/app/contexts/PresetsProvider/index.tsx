@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { encodeConfig, decodeConfig } from "../../helper";
 import { useLikePresetMutation } from "../../graphql/mutations/likePreset.graphql";
 import { useUnlikePresetMutation } from "../../graphql/mutations/unlikePreset.graphql";
+import { usePresetsQuery } from "../../graphql/queries/presets.graphql";
 
 import { SettingsContext } from "../SettingsProvider";
 
@@ -14,6 +15,7 @@ import {
 } from "./definitions";
 
 export const PresetsContext = React.createContext<PresetsContextProps>({
+  featuredPresets: [],
   presets: [],
   likedPresets: [],
   addPreset: () => {},
@@ -27,6 +29,10 @@ const PresetsProvider: FC<PresetsProviderProps> = ({
   initialPresets,
   initialLikedPresets
 }) => {
+  const { data: featuredPresets, refetch } = usePresetsQuery({
+    variables: { published: true }
+  });
+
   const [presets, setPresets] = useState<Preset[]>(
     initialPresets ? decodeConfig(initialPresets) : []
   );
@@ -45,10 +51,10 @@ const PresetsProvider: FC<PresetsProviderProps> = ({
     Cookies.set("likedPresets", encodeConfig(likedPresets));
   }, [likedPresets]);
 
-  const addPreset = () => {
+  const addPreset = (value?: string) => {
     const obj = {
       dateCreated: Date.now(),
-      settings
+      settings: value ? decodeConfig(value) : settings
     };
 
     setPresets(prev => [obj, ...prev]);
@@ -65,17 +71,23 @@ const PresetsProvider: FC<PresetsProviderProps> = ({
   const [likePresetMutation] = useLikePresetMutation();
   const [unlikePresetMutation] = useUnlikePresetMutation();
 
-  const likePreset = (id: string, likes: number): void => {
-    likePresetMutation({
+  const likePreset = async (id: string, likes: number) => {
+    await likePresetMutation({
       variables: { id, likes }
     });
+
+    refetch();
+
     setLikedPresets(prev => [...prev, id]);
   };
 
-  const unlikePreset = (id: string, likes: number): void => {
-    unlikePresetMutation({
+  const unlikePreset = async (id: string, likes: number) => {
+    await unlikePresetMutation({
       variables: { id, likes }
     });
+
+    refetch();
+
     const newPresets = likedPresets.filter(i => i !== id);
     setLikedPresets(newPresets);
   };
@@ -83,6 +95,7 @@ const PresetsProvider: FC<PresetsProviderProps> = ({
   return (
     <PresetsContext.Provider
       value={{
+        featuredPresets: featuredPresets?.presets,
         presets,
         addPreset,
         removePreset,

@@ -8,6 +8,7 @@
   "author": "Johannes Eslage <hello@johanneseslage.de>",
   "license": "MIT",
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "dev": "lerna run dev --parallel",
     "cosmos": "lerna run --scope @lorem-ipsum-generator/app cosmos"
   },

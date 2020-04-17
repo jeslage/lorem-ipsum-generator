@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 
 const fs = require("fs");
 
-const url = "http://localhost:8000";
+const url = process.env.GRAPHQL_URL;
 
 fetch(url, {
   method: "POST",

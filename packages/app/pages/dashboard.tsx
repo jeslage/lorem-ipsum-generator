@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import styled from "styled-components";
+import getConfig from "next/config";
 
 import { withAuthSync, logout } from "../helper/auth";
 import withApollo from "../graphql/with-apollo";
@@ -11,6 +12,8 @@ import { useUnpublishPresetMutation } from "../graphql/mutations/unpublishPreset
 
 import Preset from "../components/Preset";
 import Button from "../components/Button";
+
+const { publicRuntimeConfig } = getConfig();
 
 const StyledDashboard = styled.div`
   padding: 20px;
@@ -50,7 +53,8 @@ const DashboardPage: NextPage = () => {
   const handleClick = item => {
     if (typeof window !== "undefined") {
       const win = window.open(
-        `http://localhost:3000/${item.shortId || `?c=${item.settings}`}`,
+        `${publicRuntimeConfig.ROOT_URL}/${item.shortId ||
+          `?c=${item.settings}`}`,
         "_blank"
       );
 

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import * as clipboard from "clipboard-polyfill";
+import getConfig from "next/config";
 
 import { encodeConfig, decodeConfig } from "../../helper";
 import { sortBy } from "./helper/sortBy";
@@ -16,6 +17,8 @@ import Select from "../Select";
 import { PresetOptionsType } from "../Preset/Preset";
 
 import StyledFeaturedList from "./FeaturedList.style";
+
+const { publicRuntimeConfig } = getConfig();
 
 const FeaturedList = () => {
   const { addToast } = useToasts();
@@ -121,7 +124,7 @@ const FeaturedList = () => {
                       label: "Copy share link",
                       callback: () => {
                         clipboard.writeText(
-                          `http://localhost:3000/${item.shortId}`
+                          `${publicRuntimeConfig.ROOT_URL}/${item.shortId}`
                         );
                         addToast("Share link copied successfully", {
                           appearance: "success",

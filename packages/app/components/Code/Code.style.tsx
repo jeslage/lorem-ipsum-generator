@@ -44,6 +44,7 @@ const StyledCode = styled.div<StyledCodeProps>`
 
   code[class*="language-"],
   pre[class*="language-"] {
+    font-family: "Courier New", Courier, monospace;
     font-weight: 600;
     position: relative;
     direction: ltr;
@@ -53,7 +54,8 @@ const StyledCode = styled.div<StyledCodeProps>`
     word-spacing: normal;
     word-break: normal;
     line-height: 1.5;
-    background: #000;
+    font-size: 14px;
+    background: ${props => props.theme.colors.active};
     tab-size: 4;
     hyphens: none;
   }

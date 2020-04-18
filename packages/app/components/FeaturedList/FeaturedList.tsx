@@ -124,7 +124,7 @@ const FeaturedList = () => {
                       label: "Copy share link",
                       callback: () => {
                         clipboard.writeText(
-                          `${publicRuntimeConfig.ROOT_URL}/${item.shortId}`
+                          `${publicRuntimeConfig.ROOT_URL}/preset/${item.shortId}`
                         );
                         addToast("Share link copied successfully", {
                           appearance: "success",

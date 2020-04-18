@@ -4,3 +4,4 @@ generated
 .DS_Store
 out
 .env
+dist

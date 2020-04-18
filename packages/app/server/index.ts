@@ -21,8 +21,8 @@ app.prepare().then(() => {
     return app.render(req, res, "/dashboard", req.query);
   });
 
-  server.get("/:shortId", (req, res) => {
-    return app.render(req, res, "/", req.query);
+  server.get("/preset/:shortId", (req, res) => {
+    return app.render(req, res, "/shortId", { shortId: req.params.shortId });
   });
 
   server.all("*", (req, res) => {
@@ -31,6 +31,6 @@ app.prepare().then(() => {
 
   server.listen(port, err => {
     if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
+    console.log(`🚀 App ready at http://localhost:${port}`);
   });
 });

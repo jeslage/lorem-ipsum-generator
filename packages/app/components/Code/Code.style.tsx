@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { fontSize, color } from "../../styles";
+
 type StyledCodeProps = {
   readonly init: boolean;
 };
@@ -23,11 +25,6 @@ const StyledCode = styled.div<StyledCodeProps>`
     border: none;
     cursor: pointer;
     outline: 0;
-
-    [data-whatinput="mouse"] &,
-    [data-whatinput="touch"] & {
-      outline: 0;
-    }
 
     svg {
       width: 15px;
@@ -54,8 +51,8 @@ const StyledCode = styled.div<StyledCodeProps>`
     word-spacing: normal;
     word-break: normal;
     line-height: 1.5;
-    font-size: 14px;
-    background: ${props => props.theme.colors.active};
+    font-size: ${fontSize("m")};
+    background: ${color("active")};
     tab-size: 4;
     hyphens: none;
   }

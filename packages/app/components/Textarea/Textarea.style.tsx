@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { color } from "../../styles";
 
 const StyledTextarea = styled.label`
   display: block;
@@ -21,8 +22,8 @@ const StyledTextarea = styled.label`
     background: none;
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid ${props => props.theme.colors.color};
-    color: ${props => props.theme.colors.color};
+    border: 1px solid ${color("color")};
+    color: ${color("color")};
   }
 
   button {
@@ -38,7 +39,7 @@ const StyledTextarea = styled.label`
     svg {
       width: 15px;
       height: 15px;
-      fill: ${props => props.theme.colors.color};
+      fill: ${color("color")};
     }
   }
 `;

@@ -7,7 +7,7 @@ import Icon, { IconTypes } from "../Icon";
 export interface IconButtonProps {
   icon: IconTypes;
   label: string;
-  variant?: "default" | "outlined";
+  variant?: "primary" | "secondary" | "outlined";
   size?: "small" | "large";
   className?: string;
   disabled?: boolean;
@@ -17,7 +17,7 @@ export interface IconButtonProps {
 const IconButton: FC<IconButtonProps> = ({
   children,
   icon,
-  variant = "default",
+  variant = "primary",
   size = "small",
   disabled = false,
   onClick,

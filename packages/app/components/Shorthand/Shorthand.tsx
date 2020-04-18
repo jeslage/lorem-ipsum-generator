@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 
-import Icon, { IconTypes } from "../Icon";
+import { IconTypes } from "../Icon";
 
 import StyledShorthand from "./Shorthand.style";
+import Label from "../Label";
 
 type ShorthandObject = {
   top: number;
@@ -28,6 +29,8 @@ const Shorthand: FC<ShorthandProps> = ({
 }) => {
   const { top, left, right, bottom } = value;
   const updateValue = (key, val) => {
+    if (isNaN(val)) return;
+
     const newValue = {
       ...value,
       [key]: parseFloat(val)
@@ -63,20 +66,11 @@ const Shorthand: FC<ShorthandProps> = ({
 
   return (
     <StyledShorthand>
-      <div className="shorthand__text">
-        {(label || iconBefore) && (
-          <p className="shorthand__label">
-            {iconBefore && <Icon type={iconBefore} />}
-            {label && label}
-          </p>
-        )}
-        {description && (
-          <p className="shorthand__description">
-            <small>{description}</small>
-          </p>
-        )}
-      </div>
-      <div className="shorthand__shorthand">
+      {(label || iconBefore) && (
+        <Label label={label} icon={iconBefore} description={description} />
+      )}
+
+      <div className="shorthand">
         <input
           type="text"
           pattern="[0-9.]*"

@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import { ButtonProps } from "./Button";
 
+import { fontSize, color } from "../../styles";
+
 type StyledButtonProps = Pick<ButtonProps, "variant">;
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -14,15 +16,21 @@ const StyledButton = styled.button<StyledButtonProps>`
   padding: 12px 20px;
   text-align: center;
   font-weight: bold;
-  font-size: 11px;
+  font-size: ${fontSize("s")};
   cursor: pointer;
   border-radius: 30px;
   width: 100%;
-  border: 1px solid ${props => props.theme.colors.color};
-  color: ${props => props.theme.colors.color};
+  border: 1px solid ${color("color")};
+  color: ${color("color")};
+  transition: background 0.2s ease-in-out;
 
-  &:active {
-    color: ${props => props.theme.colors.color};
+  &:active,
+  &:focus {
+    color: ${color("color")};
+  }
+
+  &:hover {
+    background: ${color("active")};
   }
 
   &[disabled] {
@@ -32,7 +40,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   svg {
     height: 15px;
     width: auto;
-    fill: ${props => props.theme.colors.color};
+    fill: ${color("color")};
   }
 
   .button__icon-before {

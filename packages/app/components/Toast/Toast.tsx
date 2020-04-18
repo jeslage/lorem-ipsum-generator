@@ -1,20 +1,22 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import { ToastProps } from "react-toast-notifications";
 
 import Icon from "../Icon";
-import { ToastProps } from "react-toast-notifications";
+
+import { fontSize, color } from "../../styles";
 
 const StyledToast = styled.div`
   width: 340px;
-  background: ${({ theme }) => theme.colors.active};
+  background: ${color("active")};
   box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.2);
-  color: ${({ theme }) => theme.colors.color};
+  color: ${color("color")};
   border-radius: 5px;
   display: flex;
   align-items: center;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 12px;
+  font-size: ${fontSize("m")};
   margin: 20px;
   position: relative;
   z-index: 999;
@@ -24,7 +26,7 @@ const StyledToast = styled.div`
     padding: 20px 15px;
     display: flex;
     justify-content: center;
-    background: ${({ theme }) => theme.colors.color};
+    background: ${color("color")};
   }
 
   span {
@@ -35,7 +37,7 @@ const StyledToast = styled.div`
   svg {
     width: 15px;
     height: 15px;
-    fill: ${({ theme }) => theme.colors.background};
+    fill: ${color("background")};
   }
 `;
 

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { hexToRgbA } from "../../../../helper";
+import { color } from "../../../../styles";
 
 const StyledInlineSettings = styled.div<{ isOpen: boolean }>`
   position: relative;
@@ -14,7 +14,7 @@ const StyledInlineSettings = styled.div<{ isOpen: boolean }>`
   }
 
   .inlineSettings__content {
-    background: ${props => hexToRgbA(props.theme.colors.hover, 0.98)};
+    background: ${color("hover")};
     border-radius: 0 0.75em 0.75em 0.75em;
     padding: 1px 1.5em;
   }
@@ -29,8 +29,8 @@ const StyledInlineSettings = styled.div<{ isOpen: boolean }>`
     border-radius: 50%;
     margin: 0;
     padding: 0.8em;
-    background: ${props => hexToRgbA(props.theme.colors.hover, 0.98)};
-    color: ${props => props.theme.colors.color};
+    background: ${color("hover")};
+    color: ${color("color")};
 
     ${props =>
       props.isOpen &&

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { color } from "../../../../styles";
+
 const StyledPresetOptions = styled.div`
   position: relative;
   display: flex;
@@ -22,11 +24,11 @@ const StyledPresetOptions = styled.div`
     margin-top: 5px;
     width: 150px;
     right: 0;
-    background: ${props => props.theme.colors.hover};
-    color: ${props => props.theme.colors.color};
+    background: ${color("hover")};
+    color: ${color("color")};
     z-index: 999;
     border-radius: 5px;
-    border: 1px solid ${props => props.theme.colors.background};
+    border: 1px solid ${color("background")};
     overflow: hidden;
 
     button {
@@ -42,14 +44,14 @@ const StyledPresetOptions = styled.div`
       color: inherit;
       font-weight: bold;
       margin: 0;
-      border-bottom: 1px solid ${props => props.theme.colors.hover};
+      border-bottom: 1px solid ${color("hover")};
 
       &:last-of-type {
         border-bottom: none;
       }
 
       &:hover {
-        background: ${props => props.theme.colors.active};
+        background: ${color("active")};
       }
     }
   }

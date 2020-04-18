@@ -1,27 +1,15 @@
 import styled from "styled-components";
 
+import { fontSize, color } from "../../styles";
+
 const StyledSelect = styled.div`
-  margin: 1.5em 0;
+  margin: 1em 0;
+  min-height: 30px;
 
   label {
     display: flex;
     align-items: center;
     position: relative;
-  }
-
-  .select__label {
-    flex-grow: 2;
-    margin: 0;
-    display: flex;
-    font-size: 14px;
-    align-items: center;
-
-    svg {
-      width: 20px;
-      height: auto;
-      margin-right: 15px;
-      fill: ${props => props.theme.colors.border};
-    }
   }
 
   select {
@@ -32,7 +20,7 @@ const StyledSelect = styled.div`
     border-radius: 0;
     margin: 0;
     appearance: none;
-    font-size: 14px;
+    font-size: ${fontSize("m")};
     color: inherit;
     font-family: inherit;
     text-align-last: right;
@@ -61,7 +49,7 @@ const StyledSelect = styled.div`
       width: 10px;
       height: 2px;
       border-radius: 1px;
-      background: ${props => props.theme.colors.color};
+      background: ${color("color")};
     }
 
     &:before {

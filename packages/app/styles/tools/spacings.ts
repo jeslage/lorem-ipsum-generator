@@ -1,4 +1,4 @@
-import { spacings } from "../settings";
+import { spacings } from "../theme";
 import { px2rem } from "./utility";
 /**
  * Returns spacing from settings referenced by id

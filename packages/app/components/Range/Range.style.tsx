@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
+import { fontSize, color } from "../../styles";
+
 const StyledRange = styled.div`
-  margin: 1.5em 0;
+  margin: 1em 0;
 
   label {
     display: flex;
@@ -9,25 +11,9 @@ const StyledRange = styled.div`
     position: relative;
   }
 
-  .range__label {
-    flex-grow: 2;
-    margin: 0;
-    display: flex;
-    font-size: 14px;
-    align-items: center;
-    color: ${props => props.theme.colors.color};
-
-    svg {
-      width: 20px;
-      height: auto;
-      margin-right: 15px;
-      fill: ${props => props.theme.colors.border};
-    }
-  }
-
-  span {
+  .range__input {
     margin-right: 10px;
-    font-size: 14px;
+    font-size: ${fontSize("m")};
   }
 
   input[type="text"] {
@@ -44,7 +30,7 @@ const StyledRange = styled.div`
     background: none;
 
     &:focus {
-      border-color: ${({ theme }) => theme.colors.border};
+      border-color: ${color("border")};
     }
   }
 
@@ -63,7 +49,7 @@ const StyledRange = styled.div`
     width: 100%;
     height: 4px;
     cursor: pointer;
-    background: ${({ theme }) => theme.colors.border};
+    background: ${color("border")};
     border-radius: 2px;
   }
 
@@ -71,7 +57,7 @@ const StyledRange = styled.div`
     width: 100%;
     height: 4px;
     cursor: pointer;
-    background: ${({ theme }) => theme.colors.border};
+    background: ${color("border")};
     border-radius: 2px;
   }
 
@@ -79,7 +65,7 @@ const StyledRange = styled.div`
     width: 100%;
     height: 4px;
     cursor: pointer;
-    background: ${({ theme }) => theme.colors.border};
+    background: ${color("border")};
     border-radius: 2px;
   }
 
@@ -87,7 +73,7 @@ const StyledRange = styled.div`
     height: 20px;
     width: 20px;
     border-radius: 10px;
-    background: ${({ theme }) => theme.colors.color};
+    background: ${color("color")};
     cursor: pointer;
     appearance: none;
     margin-top: -8px;
@@ -97,7 +83,7 @@ const StyledRange = styled.div`
     height: 20px;
     width: 20px;
     border-radius: 10px;
-    background: ${({ theme }) => theme.colors.color};
+    background: ${color("color")};
     cursor: pointer;
     appearance: none;
     margin-top: -8px;
@@ -107,7 +93,7 @@ const StyledRange = styled.div`
     height: 20px;
     width: 20px;
     border-radius: 10px;
-    background: ${({ theme }) => theme.colors.color};
+    background: ${color("color")};
     cursor: pointer;
     appearance: none;
     margin-top: -8px;

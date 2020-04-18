@@ -1,16 +1,18 @@
 import { createGlobalStyle } from "styled-components";
+import fontSize from "./tools/typo";
+import { color } from "./tools/utility";
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
     margin: 0;
     padding: 0;
-    background: ${props => props.theme.colors.background};
-    color: ${props => props.theme.colors.color};
+    background: ${color("background")};
+    color: ${color("color")};
   }
 
   small {
-    font-size: 11px;
+    font-size: ${fontSize("s")};
   }
 
   html,

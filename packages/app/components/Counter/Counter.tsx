@@ -2,7 +2,9 @@ import React, { FC } from "react";
 
 import StyledCounter from "./Counter.style";
 
-import Icon, { IconTypes } from "../Icon";
+import { IconTypes } from "../Icon";
+import IconButton from "../IconButton";
+import Label from "../Label";
 
 export interface CounterProps {
   iconBefore?: IconTypes;
@@ -56,31 +58,20 @@ const Counter: FC<CounterProps> = ({
 
   return (
     <StyledCounter>
-      <div className="counter__text">
-        {(label || iconBefore) && (
-          <p className="counter__label">
-            {iconBefore && <Icon type={iconBefore} />}
-            {label && label}
-          </p>
-        )}
-        {description && (
-          <p className="counter__description">
-            <small>{description}</small>
-          </p>
-        )}
-      </div>
-      <div className="counter__counter">
-        <button
-          type="button"
+      {(label || iconBefore) && (
+        <Label icon={iconBefore} label={label} description={description} />
+      )}
+
+      <div className="counter">
+        <IconButton
           onClick={() => updateValue(value - steps)}
           disabled={value === min}
-          aria-label="Decrease"
-        >
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <rect height="2" rx="1" width="12" x="6" y="11" />
-          </svg>
-        </button>
-        <span>
+          label="Decrease"
+          icon="minus"
+          variant="outlined"
+        />
+
+        <span className="counter__input">
           <input
             type="text"
             pattern="[0-9.]*"
@@ -90,17 +81,14 @@ const Counter: FC<CounterProps> = ({
           />
           {suffix}
         </span>
-        <button
-          type="button"
+
+        <IconButton
           onClick={() => updateValue(value + steps)}
           disabled={value === max}
-          aria-label="Increase"
-        >
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <rect height="2" rx="1" width="12" x="6" y="11" />
-            <rect height="12" rx="1" width="2" x="11" y="6" />
-          </svg>
-        </button>
+          label="Increase"
+          icon="plus"
+          variant="outlined"
+        />
       </div>
     </StyledCounter>
   );

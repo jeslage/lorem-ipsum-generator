@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { color } from "../../styles";
 
 const StyledColorpicker = styled.div`
   display: flex;
   align-items: center;
-  margin: 1.5em 0;
+  margin: 1em 0;
 
   .colorPicker__cover {
     position: fixed;
@@ -24,28 +25,13 @@ const StyledColorpicker = styled.div`
     padding: 5px;
     width: 60px;
     border-radius: 30px;
-    border: 1px solid ${props => props.theme.colors.color};
+    border: 1px solid ${color("color")};
 
     span {
       display: block;
       border-radius: 30px;
       background: ${props => props.color};
       height: 20px;
-    }
-  }
-
-  .colorPicker__label {
-    flex-grow: 2;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-
-    svg {
-      width: 20px;
-      height: auto;
-      margin-right: 15px;
-      fill: ${props => props.theme.colors.border};
     }
   }
 

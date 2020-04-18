@@ -1,7 +1,7 @@
 import lzString from "lz-string";
 import { NextPageContext } from "next";
 
-export const hexToRgbA = (hex: string, alpha: number): string => {
+export const hexToRgbA = (hex: any, alpha: number): string => {
   var c;
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
     c = hex.substring(1).split("");

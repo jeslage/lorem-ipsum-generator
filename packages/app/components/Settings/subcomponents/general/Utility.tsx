@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 
-import CreateHtmlButton from "../../CreateHtmlButton";
-import { SettingsContext } from "../../../contexts";
-import Switch from "../../Switch";
+import CreateHtmlButton from "../../../CreateHtmlButton";
+import { SettingsContext } from "../../../../contexts";
+import Switch from "../../../Switch";
 
 const Utility = () => {
   const { utility, updateUtility } = useContext(SettingsContext);
-
   const { printTags, printInlineStyles } = utility;
 
   return (

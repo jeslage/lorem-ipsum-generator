@@ -80,16 +80,6 @@ export interface SettingsObject {
   list: ListSettings;
 }
 
-export interface ThemeObject extends SettingsObject {
-  colors: {
-    color: string;
-    background: string;
-    border: string;
-    hover: string;
-    active: string;
-  };
-}
-
 export interface UtilityObject {
   printTags: boolean;
   printInlineStyles: boolean;

@@ -1,14 +1,15 @@
 import styled from "styled-components";
+import { fontSize, color } from "../../styles";
 
 const StyledHistory = styled.div`
   .history__list {
     height: 200px;
     overflow-y: auto;
-    font-size: 12px;
+    font-size: ${fontSize("m")};
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid ${props => props.theme.colors.active};
-    border-top: 1px solid ${props => props.theme.colors.active};
+    border-bottom: 1px solid ${color("active")};
+    border-top: 1px solid ${color("active")};
 
     p {
       text-align: center;
@@ -25,17 +26,17 @@ const StyledHistory = styled.div`
     cursor: pointer;
     padding: 10px 2em;
     margin: 0;
-    color: ${props => props.theme.colors.color};
+    color: ${color("color")};
     text-align: left;
-    background: ${props => props.theme.colors.hover};
-    border-bottom: 1px solid ${props => props.theme.colors.active};
+    background: ${color("hover")};
+    border-bottom: 1px solid ${color("active")};
 
     &.inactive {
       opacity: 0.5;
     }
 
     &.current {
-      background: ${props => props.theme.colors.active};
+      background: ${color("active")};
       border: none;
     }
 
@@ -60,17 +61,17 @@ const StyledHistory = styled.div`
     align-items: center;
     width: 100%;
     font-weight: bold;
-    font-size: 11px;
+    font-size: ${fontSize("s")};
     text-transform: uppercase;
-    color: ${props => props.theme.colors.color};
-    background: ${props => props.theme.colors.active};
+    color: ${color("color")};
+    background: ${color("active")};
     margin: 0;
 
     svg {
       height: 15px;
       width: 15px;
       margin-right: 5px;
-      fill: ${props => props.theme.colors.color};
+      fill: ${color("color")};
     }
   }
 `;

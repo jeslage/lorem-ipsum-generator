@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import Icon, { IconTypes } from "../Icon";
 
 import StyledRadioGroup from "./RadioGroup.style";
+import Label from "../Label";
 
 type RadioOption = {
   value: string;
@@ -11,6 +12,7 @@ type RadioOption = {
 
 export interface RadioGroupProps {
   label?: string;
+  description?: string;
   iconBefore?: IconTypes;
   name: string;
   value: string;
@@ -20,6 +22,7 @@ export interface RadioGroupProps {
 
 const RadioGroup: FC<RadioGroupProps> = ({
   label,
+  description,
   iconBefore,
   name,
   value,
@@ -29,11 +32,9 @@ const RadioGroup: FC<RadioGroupProps> = ({
   return (
     <StyledRadioGroup>
       {(label || iconBefore) && (
-        <p className="radioGroup__label">
-          {iconBefore && <Icon type={iconBefore} />}
-          {label && label}
-        </p>
+        <Label label={label} icon={iconBefore} description={description} />
       )}
+
       {options.map(option => (
         <label key={option.value} className="radioGroup__radio">
           <input

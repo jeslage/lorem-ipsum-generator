@@ -1,14 +1,16 @@
 import React, { useState, useEffect, FC } from "react";
 
-import Icon, { IconTypes } from "../Icon";
+import { IconTypes } from "../Icon";
 
 import StyledSelect from "./Select.style";
+import Label from "../Label";
 
 export interface SelectProps {
   options: any;
   iconBefore?: IconTypes;
   initialValue: string;
   label?: string;
+  description?: string;
   name: string;
   onChange?: (value: string) => void;
 }
@@ -16,6 +18,7 @@ export interface SelectProps {
 const Select: FC<SelectProps> = ({
   options,
   iconBefore,
+  description,
   initialValue,
   label,
   name,
@@ -41,11 +44,9 @@ const Select: FC<SelectProps> = ({
     <StyledSelect>
       <label>
         {(label || iconBefore) && (
-          <p className="select__label">
-            {iconBefore && <Icon type={iconBefore} />}
-            {label && label}
-          </p>
+          <Label label={label} icon={iconBefore} description={description} />
         )}
+
         <select value={currentValue} onChange={handleChange} name={name}>
           {options.map(option => (
             <option value={option.value} key={option.value}>

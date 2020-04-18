@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { IconButtonProps } from "./IconButton";
+import { color } from "../../styles";
 
 type StyledIconButtonProps = Pick<IconButtonProps, "variant" | "size">;
 
@@ -14,18 +15,19 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   flex-shrink: 0;
   cursor: pointer;
   border-radius: 30px;
-  border: 1px solid ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.color};
-  background: ${props => props.theme.colors.background};
-  transition: background 0.2s ease-in-out;
+  border: 1px solid ${color("hover")};
+  color: ${color("color")};
+  background: ${color("hover")};
+  transition: all 0.2s ease-in-out;
 
   &:active,
   &:focus {
-    color: ${props => props.theme.colors.hover};
+    color: ${color("hover")};
   }
 
   &:hover {
-    background: ${props => props.theme.colors.hover};
+    border-color: ${color("active")};
+    background: ${color("active")};
   }
 
   &[disabled] {
@@ -51,17 +53,24 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   svg {
     height: 15px;
     width: 15px;
-    fill: ${props => props.theme.colors.color};
+    fill: ${color("color")};
   }
+
+  ${props =>
+    props.variant === "secondary" &&
+    css`
+      border: 1px solid ${color("background")};
+      background: ${color("background")};
+    `}
 
   ${props =>
     props.variant === "outlined" &&
     css`
-      border-color: ${props => props.theme.colors.color};
+      border-color: ${color("color")};
       background: none;
 
       &:hover {
-        background: transparent;
+        border-color: ${color("color")};
       }
     `}
 `;

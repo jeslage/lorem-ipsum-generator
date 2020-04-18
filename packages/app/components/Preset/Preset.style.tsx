@@ -5,6 +5,8 @@ import {
   SublineSettings
 } from "../../contexts/SettingsProvider/definitions";
 
+import { fontSize, color } from "../../styles";
+
 type StyledPresetProps = {
   readonly backgroundColor: string;
   readonly paragraph: ParagraphSettings;
@@ -49,7 +51,7 @@ const StyledPreset = styled.div<StyledPresetProps>`
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-bottom: 1px solid ${props => props.theme.colors.background};
+    border-bottom: 1px solid ${color("background")};
   }
 
   .preset__paragraph {
@@ -90,7 +92,7 @@ const StyledPreset = styled.div<StyledPresetProps>`
     small {
       display: block;
       font-family: Helvetica, Arial, sans-serif;
-      font-size: 10px;
+      font-size: ${fontSize("s")};
       text-transform: uppercase;
       font-weight: normal;
       margin-bottom: 5px;
@@ -108,7 +110,7 @@ const StyledPreset = styled.div<StyledPresetProps>`
     color: ${({ paragraph }) => paragraph.color};
     text-transform: uppercase;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 10px;
+    font-size: ${fontSize("s")};
   }
 
   .preset__options {

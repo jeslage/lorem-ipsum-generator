@@ -1,24 +1,30 @@
 import React, { FC } from "react";
 
-import Icon, { IconTypes } from "../Icon";
+import { IconTypes } from "../Icon";
 
 import StyledSwitch from "./Switch.style";
+import Label from "../Label";
 
 export interface SwitchProps {
   iconBefore?: IconTypes;
   isActive?: boolean;
   label?: string;
+  description?: string;
   onChange: (value: boolean) => void;
 }
 
-const Switch: FC<SwitchProps> = ({ iconBefore, label, onChange, isActive }) => (
+const Switch: FC<SwitchProps> = ({
+  iconBefore,
+  label,
+  description,
+  onChange,
+  isActive
+}) => (
   <StyledSwitch isActive={isActive}>
     {(label || iconBefore) && (
-      <p className="switch__label">
-        {iconBefore && <Icon type={iconBefore} />}
-        {label && label}
-      </p>
+      <Label label={label} icon={iconBefore} description={description} />
     )}
+
     <button
       onClick={() => {
         if (onChange) onChange(!isActive);

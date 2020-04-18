@@ -9,13 +9,12 @@ import { HistoryContext } from "../HistoryProvider";
 import { encodeConfig } from "../../helper";
 import {
   SettingsObject,
-  ThemeObject,
   UtilityObject,
   SettingsContextProps,
   SettingsProviderProps
 } from "./definitions";
 
-import { colors } from "../../styles/settings";
+import { getTheme } from "../../styles/theme";
 
 export const defaultConfig: SettingsObject = {
   textType: "loremIpsum",
@@ -88,11 +87,6 @@ export const defaultConfig: SettingsObject = {
     orderedList: false
   }
 };
-
-export const getTheme = (settings?: SettingsObject): ThemeObject => ({
-  ...(settings || defaultConfig),
-  colors
-});
 
 const defaultUtility: UtilityObject = {
   printTags: false,

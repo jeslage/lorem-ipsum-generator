@@ -1,25 +1,10 @@
 import styled from "styled-components";
+import { color } from "../../styles";
 
 const StyledRadioGroup = styled.div`
   display: flex;
   align-items: center;
-  margin: 1.5em 0;
-
-  .radioGroup__label {
-    flex-grow: 2;
-    padding-right: 20px;
-    margin: 0;
-    display: flex;
-    font-size: 14px;
-    align-items: center;
-
-    svg {
-      width: 20px;
-      height: auto;
-      margin-right: 15px;
-      fill: ${props => props.theme.colors.border};
-    }
-  }
+  margin: 1em 0;
 
   .radioGroup__icon {
     display: flex;
@@ -32,7 +17,7 @@ const StyledRadioGroup = styled.div`
     svg {
       width: 20px;
       height: auto;
-      fill: ${props => props.theme.colors.color};
+      fill: ${color("color")};
     }
   }
 

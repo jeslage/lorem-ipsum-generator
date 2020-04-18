@@ -9,6 +9,7 @@ import withApollo from "../graphql/with-apollo";
 import { usePresetsQuery } from "../graphql/queries/presets.graphql";
 import { usePublishPresetMutation } from "../graphql/mutations/publishPreset.graphql";
 import { useUnpublishPresetMutation } from "../graphql/mutations/unpublishPreset.graphql";
+import { useDeletePresetMutation } from "../graphql/mutations/deletePreset.graphql";
 
 import Preset from "../components/Preset";
 import Button from "../components/Button";
@@ -46,6 +47,7 @@ const DashboardPage: NextPage = () => {
   const { data, refetch } = usePresetsQuery();
   const [publishPresetMutation] = usePublishPresetMutation();
   const [unpublishPresetMutation] = useUnpublishPresetMutation();
+  const [deletePresetMutation] = useDeletePresetMutation();
 
   const unpublishedPresets = data?.presets.filter(item => !item.published);
   const publishedPresets = data?.presets.filter(item => item.published);
@@ -53,7 +55,7 @@ const DashboardPage: NextPage = () => {
   const handleClick = item => {
     if (typeof window !== "undefined") {
       const win = window.open(
-        `${publicRuntimeConfig.ROOT_URL}/${item.shortId ||
+        `${publicRuntimeConfig.ROOT_URL}${item.shortId ||
           `?c=${item.settings}`}`,
         "_blank"
       );
@@ -81,6 +83,16 @@ const DashboardPage: NextPage = () => {
               likes={item.likes}
               onClick={() => handleClick(item)}
               options={[
+                {
+                  label: "Delete",
+                  icon: "remove",
+                  callback: async () => {
+                    await deletePresetMutation({
+                      variables: { id: item.id }
+                    });
+                    refetch();
+                  }
+                },
                 {
                   label: "Unpublish",
                   icon: "minus",

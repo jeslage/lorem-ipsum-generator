@@ -4,8 +4,12 @@ import styled from "styled-components";
 
 import withApollo from "../graphql/with-apollo";
 import { withAuthSync, login } from "../helper/auth";
+
 import { useLoginMutation } from "../graphql/mutations/login.graphql";
+
 import Button from "../components/Button";
+
+import { fontSize, color } from "../styles";
 
 const StyledLogin = styled.div`
   height: 100vh;
@@ -22,12 +26,12 @@ const StyledLogin = styled.div`
 
   input {
     background: none;
-    color: ${props => props.theme.colors.color};
-    border: 2px solid ${props => props.theme.colors.color};
+    color: ${color("color")};
+    border: 2px solid ${color("color")};
     padding: 10px 15px;
 
     font-weight: bold;
-    font-size: 12px;
+    font-size: ${fontSize("m")};
     margin-bottom: 20px;
   }
 

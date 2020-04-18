@@ -9,7 +9,7 @@ import { withAuthSync } from "../helper/auth";
 import withApollo from "../graphql/with-apollo";
 import GlobalStyle from "../styles/global";
 
-import { mq } from "../styles/tools";
+import { mq } from "../styles";
 
 import { PresetsProvider } from "../contexts";
 

@@ -9,7 +9,6 @@ import { redirect } from "../helper";
 const ShortIdPage = () => <p>This link is invalid...</p>;
 
 ShortIdPage.getInitialProps = async (ctx: WithApolloPageContext) => {
-  console.log(ctx.query);
   const { data }: Partial<PresetQueryResult> = await ctx.apolloClient.query({
     query: PresetDocument,
     variables: { shortId: ctx.query.shortId }

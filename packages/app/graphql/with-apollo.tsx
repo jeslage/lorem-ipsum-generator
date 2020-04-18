@@ -10,8 +10,11 @@ import {
 } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
+import getConfig from "next/config";
 
 import introspectionQueryResultData from "./schema.json";
+
+const { publicRuntimeConfig } = getConfig();
 
 type TApolloClient = ApolloClient<NormalizedCacheObject>;
 
@@ -156,7 +159,7 @@ function createApolloClient(initialState = {}) {
   return new ApolloClient({
     ssrMode,
     link: new HttpLink({
-      uri: process.env.GRAPHQL_SERVER_URL, // Server URL (must be absolute)
+      uri: publicRuntimeConfig.GRAPHQL_SERVER_URL, // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
       fetch
     }),

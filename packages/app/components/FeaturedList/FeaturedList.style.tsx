@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { color } from "../../styles";
 
 const StyledFeaturedList = styled.div`
   height: calc(100vh - 52px);
@@ -16,8 +17,8 @@ const StyledFeaturedList = styled.div`
     position: sticky;
     display: flex;
     bottom: 0;
-    background: ${props => props.theme.colors.hover};
-    border-top: 1px solid ${props => props.theme.colors.active};
+    background: ${color("hover")};
+    border-top: 1px solid ${color("active")};
     padding: 0 1.5em;
 
     button {

@@ -2,12 +2,13 @@ import React, { useState, FC } from "react";
 import { ChromePicker } from "react-color";
 
 import StyledColorPicker from "./ColorPicker.style";
-import Icon, { IconTypes } from "../Icon";
+import { IconTypes } from "../Icon";
+import Label from "../Label";
 
 export interface ColorPickerProps {
   iconBefore?: IconTypes;
-  title?: string;
   label?: string;
+  description?: string;
   value: any;
   className?: string;
   onChange?: (value: string) => void;
@@ -15,8 +16,8 @@ export interface ColorPickerProps {
 
 const ColorPicker: FC<ColorPickerProps> = ({
   iconBefore,
-  title,
   label,
+  description,
   onChange,
   value
 }) => {
@@ -25,11 +26,9 @@ const ColorPicker: FC<ColorPickerProps> = ({
   return (
     <StyledColorPicker color={value}>
       {(label || iconBefore) && (
-        <p className="colorPicker__label" title={title}>
-          {iconBefore && <Icon type={iconBefore} />}
-          {label && label}
-        </p>
+        <Label label={label} icon={iconBefore} description={description} />
       )}
+
       <div className="colorPicker__wrapper">
         <button
           onClick={() => setVisible(prev => !prev)}

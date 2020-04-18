@@ -4,7 +4,8 @@ const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)));
 
 module.exports = compose(withSourceMaps)({
   publicRuntimeConfig: {
-    ROOT_URL: process.env.ROOT_URL
+    ROOT_URL: process.env.ROOT_URL,
+    GRAPHQL_SERVER_URL: process.env.GRAPHQL_SERVER_URL
   },
   webpack(config, options) {
     config.module.rules.push({

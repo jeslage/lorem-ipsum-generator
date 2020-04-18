@@ -1,4 +1,4 @@
-import { breakpoints, colors } from "../settings";
+import { breakpoints, colors, ThemeObject } from "../theme";
 
 /**
  * Simple CSS MediaQuery. Expects a breakpoint (string or number) and min or max string (default min).
@@ -31,13 +31,11 @@ export function mq(
  * @returns {string} Resulting color from configuration file
  * @example color: ${color('white')};
  */
-export function color(id: keyof typeof colors = "background") {
-  if (!Object.prototype.hasOwnProperty.call(colors, id)) {
-    throw new Error(`Color ${id} not known`);
-  }
-
-  return colors[id];
-}
+export const color = (id: keyof typeof colors = "background") => ({
+  theme
+}: {
+  theme: ThemeObject;
+}): string => theme.ui.colors[id];
 
 /**
  * CSS to reset button styling.

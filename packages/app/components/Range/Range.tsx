@@ -1,13 +1,15 @@
 import React, { FC } from "react";
 
-import Icon, { IconTypes } from "../Icon";
+import { IconTypes } from "../Icon";
 
 import StyledRange from "./Range.style";
+import Label from "../Label";
 
 export interface RangeProps {
   iconBefore?: IconTypes;
   value?: number;
   label?: string;
+  description?: string;
   onChange?: (value: number) => void;
   doubleClickValue?: number;
   min?: number;
@@ -19,6 +21,7 @@ const Range: FC<RangeProps> = ({
   iconBefore,
   value = 50,
   label,
+  description,
   onChange,
   doubleClickValue,
   min = 0,
@@ -65,13 +68,10 @@ const Range: FC<RangeProps> = ({
     <StyledRange>
       <label>
         {(label || iconBefore) && (
-          <p className="range__label">
-            {iconBefore && <Icon type={iconBefore} />}
-            {label && label}
-          </p>
+          <Label label={label} icon={iconBefore} description={description} />
         )}
 
-        <span>
+        <span className="range__input">
           <input
             type="text"
             pattern="[0-9.]*"

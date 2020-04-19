@@ -14,3 +14,13 @@ export interface HistoryContextProps {
   resetHistory: () => void;
   historyForward: (callback: any) => void;
 }
+
+export type HistoryReducerState = {
+  history: HistoryObject[];
+  historyIndex: number;
+};
+
+export type HistoryReducerAction = {
+  type: string;
+  payload?: any;
+};

@@ -49,6 +49,7 @@ const Subline = () => {
 
           <Counter
             label="Offset"
+            iconBefore="offset"
             description="Number of paragraphs before first subline."
             min={0}
             value={offset}
@@ -68,6 +69,7 @@ const Subline = () => {
 
           <Switch
             label="Custom sublines"
+            iconBefore="pen"
             isActive={custom}
             onChange={bool => {
               if (customText.length === 0) {

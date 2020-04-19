@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { HistoryObject, HistoryContextProps } from "./definitions";
+import React, { useReducer } from "react";
+import { HistoryContextProps } from "./definitions";
+import { reducer } from "./reducer";
 
 export const HistoryContext = React.createContext<HistoryContextProps>({
   history: [],
@@ -12,26 +13,28 @@ export const HistoryContext = React.createContext<HistoryContextProps>({
 });
 
 const HistoryProvider = ({ children }) => {
-  const [history, setHistory] = useState<HistoryObject[]>([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [{ history, historyIndex }, dispatch] = useReducer(reducer, {
+    history: [],
+    historyIndex: -1
+  });
 
-  const addToHistory = obj => {
+  // const [history, setHistory] = useState<HistoryObject[]>([]);
+  // const [historyIndex, setHistoryIndex] = useState(-1);
+
+  const addToHistory = item => {
     if (historyIndex + 1 !== history.length) {
       history.splice(historyIndex + 1, history.length);
     }
-
-    setHistoryIndex(prev => prev + 1);
-    setHistory(prev => [...prev, obj]);
+    return dispatch({ type: "ADD_TO_HISTORY", payload: { item } });
   };
 
-  const updateHistoryIndex = (index, callback) => {
-    setHistoryIndex(index);
+  const updateHistoryIndex = async (index, callback) => {
+    dispatch({ type: "UPDATE_HISTORY_INDEX", payload: { index } });
     if (callback) callback(history[index]);
   };
 
   const resetHistory = () => {
-    setHistory([]);
-    setHistoryIndex(0);
+    return dispatch({ type: "RESET_HISTORY" });
   };
 
   const historyForward = callback => {
@@ -39,8 +42,8 @@ const HistoryProvider = ({ children }) => {
 
     if (history.length === newIndex) return;
 
+    dispatch({ type: "UPDATE_HISTORY_INDEX", payload: { index: newIndex } });
     if (callback) callback(history[newIndex]);
-    setHistoryIndex(newIndex);
   };
 
   const historyBack = callback => {
@@ -48,9 +51,8 @@ const HistoryProvider = ({ children }) => {
 
     const newIndex = historyIndex - 1;
 
+    dispatch({ type: "UPDATE_HISTORY_INDEX", payload: { index: newIndex } });
     if (callback) callback(history[newIndex]);
-
-    setHistoryIndex(newIndex);
   };
 
   return (

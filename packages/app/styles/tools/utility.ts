@@ -7,23 +7,12 @@ import { breakpoints, colors, ThemeObject } from "../theme";
  * @returns {string} Media query definition
  * @example ${mq('m', 'max')} { css styles go here };
  */
-export function mq(
+export const mq = (
   mediaQuery: keyof typeof breakpoints,
   minMax: "min" | "max" = "min"
-) {
-  if (typeof mediaQuery !== "number" && typeof mediaQuery !== "string") {
-    throw new Error("mediaQuery must be a string or number");
-  }
-
-  const value =
-    typeof mediaQuery === "string"
-      ? breakpoints[mediaQuery]
-      : `${mediaQuery}px`;
-
-  return `
-    @media (${minMax}-width: ${value})
+) => ({ theme }: { theme: ThemeObject }) => `
+    @media (${minMax}-width: ${px2rem(theme.ui.breakpoints[mediaQuery])})
   `;
-}
 
 /**
  * Returns color from settings referenced by id

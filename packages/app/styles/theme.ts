@@ -19,10 +19,10 @@ const colors = {
 
 // Breakpoints
 const breakpoints = {
-  s: "375px",
-  m: "768px",
-  l: "940px",
-  xl: "1280px"
+  s: 375,
+  m: 768,
+  l: 940,
+  xl: 1280
 };
 
 // Spacings

@@ -1,4 +1,4 @@
-import { spacings } from "../theme";
+import { spacings, ThemeObject } from "../theme";
 import { px2rem } from "./utility";
 /**
  * Returns spacing from settings referenced by id
@@ -8,6 +8,10 @@ import { px2rem } from "./utility";
  * @example padding: ${space('m')};
  */
 
-export default function space(id: keyof typeof spacings) {
-  return px2rem(spacings[id]);
-}
+const space = (id: keyof typeof spacings) => ({
+  theme
+}: {
+  theme: ThemeObject;
+}) => px2rem(theme.ui.spacings[id]);
+
+export default space;

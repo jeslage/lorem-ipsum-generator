@@ -19,6 +19,8 @@ const StyledPreset = styled.div<StyledPresetProps>`
   flex-wrap: wrap;
   display: flex;
   min-height: 200px;
+  border-radius: 3px;
+  overflow: hidden;
   justify-content: flex-end;
 
   .preset__card {

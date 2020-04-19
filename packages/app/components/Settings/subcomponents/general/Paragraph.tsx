@@ -39,6 +39,7 @@ const Paragraph = () => {
 
       <Switch
         label="Custom paragraphs"
+        iconBefore="pen"
         isActive={custom}
         onChange={bool => {
           if (customText.length === 0) {
@@ -52,6 +53,7 @@ const Paragraph = () => {
           updateNestedSettings("paragraph", "custom", bool);
         }}
       />
+
       {custom && (
         <>
           {customText.map((text, index) => (

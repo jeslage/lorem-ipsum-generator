@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, FC } from "react";
+import React, { useEffect, useContext, FC, useReducer } from "react";
 
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
@@ -11,92 +11,20 @@ import {
   SettingsObject,
   UtilityObject,
   SettingsContextProps,
-  SettingsProviderProps
+  SettingsProviderProps,
+  NestedSettingsObjects,
+  NestedSettingsObjectSubKey
 } from "./definitions";
 
+import { reducer } from "./reducer";
+
 import { getTheme } from "../../styles/theme";
-
-export const defaultConfig: SettingsObject = {
-  textType: "loremIpsum",
-  textWidth: 100,
-  backgroundColor: "#fff",
-  removeSpecialCharacters: false,
-  paragraph: {
-    fontFamily: fontFamilies[0].value,
-    count: 6,
-    numberOfCharacters: 1000,
-    size: 20,
-    lineHeight: 1.5,
-    letterSpacing: 0,
-    textTransform: "none",
-    color: "#000",
-    textAlign: "left",
-    margin: {
-      top: 20,
-      right: 0,
-      bottom: 20,
-      left: 0
-    },
-    custom: false,
-    customText: []
-  },
-  headline: {
-    fontFamily: fontFamilies[0].value,
-    enabled: false,
-    numberOfCharacters: 50,
-    frequency: 2,
-    offset: 0,
-    size: 30,
-    lineHeight: 1.5,
-    textTransform: "none",
-    color: "#000",
-    textAlign: "left",
-    margin: {
-      top: 20,
-      right: 0,
-      bottom: 20,
-      left: 0
-    },
-    custom: false,
-    customText: []
-  },
-  subline: {
-    fontFamily: fontFamilies[0].value,
-    enabled: false,
-    numberOfCharacters: 50,
-    frequency: 2,
-    offset: 1,
-    size: 24,
-    lineHeight: 1.5,
-    textTransform: "none",
-    color: "#000",
-    textAlign: "left",
-    margin: {
-      top: 20,
-      right: 0,
-      bottom: 20,
-      left: 0
-    },
-    custom: false,
-    customText: []
-  },
-  list: {
-    enabled: false,
-    frequency: 2,
-    offset: 1,
-    orderedList: false
-  }
-};
-
-const defaultUtility: UtilityObject = {
-  printTags: false,
-  printInlineStyles: false
-};
+import { defaultConfig, defaultUtility } from "./config";
 
 const defaultContextProps: SettingsContextProps = {
   utility: defaultUtility,
   settings: defaultConfig,
-  fontFamilies: [],
+  fontFamilies: fontFamilies,
   addNestedArray: () => {},
   updateSettings: () => {},
   updateNestedSettings: () => {},
@@ -118,9 +46,9 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
   const router = useRouter();
   const { addToHistory } = useContext(HistoryContext);
 
-  // Build initial settings state
-  const [settings, setSettings] = useState<SettingsObject>(
-    queryConfig
+  const [{ settings, utility }, dispatch] = useReducer(reducer, {
+    utility: defaultUtility,
+    settings: queryConfig
       ? {
           // General
           textType: queryConfig.textType || defaultConfig.textType,
@@ -142,9 +70,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
           list: queryConfig.list || defaultConfig.list
         }
       : defaultConfig
-  );
-
-  const [utility, setUtility] = useState(defaultUtility);
+  });
 
   useEffect(() => {
     // Add initial settings to history object
@@ -170,22 +96,17 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
   }, [settings]);
 
   // Update utility value
-  const updateUtility = (key, value) => {
-    setUtility(prev => ({
-      ...prev,
-      [key]: value
-    }));
+  const updateUtility = (key: keyof UtilityObject, value: boolean) => {
+    return dispatch({ type: "UPDATE_UTILITY", payload: { key, value } });
   };
 
   // Update settings value
   const updateSettings = (
-    key: string,
+    key: keyof SettingsObject,
     value: string | number,
     changeHistory = true
   ) => {
     const newSettings = { ...settings, [key]: value };
-
-    setSettings(newSettings);
 
     if (changeHistory) {
       addToHistory({
@@ -195,12 +116,17 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
         settings: encodeConfig(newSettings)
       });
     }
+
+    return dispatch({
+      type: "UPDATE_SETTINGS",
+      payload: { settings: newSettings }
+    });
   };
 
   // Update nested settings value
   const updateNestedSettings = (
-    key: string,
-    subKey: string,
+    key: keyof NestedSettingsObjects,
+    subKey: NestedSettingsObjectSubKey,
     value: string | number,
     changeHistory = true
   ) => {
@@ -208,8 +134,6 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
       ...settings,
       [key]: { ...settings[key], [subKey]: value }
     };
-
-    setSettings(newSettings);
 
     if (changeHistory) {
       addToHistory({
@@ -219,11 +143,16 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
         settings: encodeConfig(newSettings)
       });
     }
+
+    return dispatch({
+      type: "UPDATE_SETTINGS",
+      payload: { settings: newSettings }
+    });
   };
 
   const updateNestedArray = async (
-    key: string,
-    subKey: string,
+    key: keyof NestedSettingsObjects,
+    subKey: NestedSettingsObjectSubKey,
     value: string | number,
     index: number,
     changeHistory = true
@@ -239,8 +168,6 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
       }
     };
 
-    setSettings(newSettings);
-
     if (changeHistory) {
       addToHistory({
         parentKey: key,
@@ -249,28 +176,29 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
         settings: encodeConfig(newSettings)
       });
     }
+
+    return dispatch({
+      type: "UPDATE_SETTINGS",
+      payload: { settings: newSettings }
+    });
   };
 
-  const removeNestedArray = (key: string, subKey: string, index: number) => {
-    const newArray = settings[key][subKey].filter((_, i) => i !== index);
-
-    setSettings(prev => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        [subKey]: newArray.length === 0 ? ["Insert custom text"] : newArray
-      }
-    }));
+  const removeNestedArray = (
+    key: keyof NestedSettingsObjects,
+    subKey: NestedSettingsObjectSubKey,
+    index: number
+  ) => {
+    return dispatch({
+      type: "REMOVE_NESTED_ARRAY",
+      payload: { key, subKey, index }
+    });
   };
 
-  const addNestedArray = (key: string, subKey: string) => {
-    setSettings(prev => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        [subKey]: [...settings[key][subKey], ""]
-      }
-    }));
+  const addNestedArray = (
+    key: keyof NestedSettingsObjects,
+    subKey: NestedSettingsObjectSubKey
+  ) => {
+    return dispatch({ type: "ADD_NESTED_ARRAY", payload: { key, subKey } });
   };
 
   // Update all settings
@@ -284,7 +212,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
       });
     }
 
-    setSettings(obj);
+    return dispatch({ type: "UPDATE_SETTINGS", payload: { settings: obj } });
   };
 
   // Reset text settings
@@ -296,7 +224,10 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
       settings: encodeConfig(defaultConfig)
     });
 
-    setSettings(defaultConfig);
+    return dispatch({
+      type: "UPDATE_SETTINGS",
+      payload: { settings: defaultConfig }
+    });
   };
 
   const theme = getTheme(settings);

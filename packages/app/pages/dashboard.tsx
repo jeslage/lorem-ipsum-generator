@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import styled from "styled-components";
+
 import getConfig from "next/config";
 
 import { withAuthSync, logout } from "../helper/auth";
@@ -55,7 +56,7 @@ const DashboardPage: NextPage = () => {
   const handleClick = item => {
     if (typeof window !== "undefined") {
       const win = window.open(
-        `${publicRuntimeConfig.ROOT_URL}${item.shortId ||
+        `${publicRuntimeConfig.ROOT_URL}preset/${item.shortId ||
           `?c=${item.settings}`}`,
         "_blank"
       );

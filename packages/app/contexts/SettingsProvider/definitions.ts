@@ -80,6 +80,17 @@ export interface SettingsObject {
   list: ListSettings;
 }
 
+export type NestedSettingsObjects = Pick<
+  SettingsObject,
+  "paragraph" | "headline" | "subline" | "list"
+>;
+
+export type NestedSettingsObjectSubKey =
+  | keyof ListSettings
+  | keyof ParagraphSettings
+  | keyof HeadlineSettings
+  | keyof SublineSettings;
+
 export interface UtilityObject {
   printTags: boolean;
   printInlineStyles: boolean;
@@ -107,3 +118,8 @@ export interface SettingsContextProps {
 export interface SettingsProviderProps {
   queryConfig?: Partial<SettingsObject>;
 }
+
+export type ReducerState = {
+  settings: SettingsObject;
+  utility: UtilityObject;
+};

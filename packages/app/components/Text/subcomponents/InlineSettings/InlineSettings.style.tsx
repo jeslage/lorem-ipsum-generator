@@ -41,6 +41,7 @@ const StyledInlineSettings = styled.div<{ isOpen: boolean }>`
     svg {
       width: 15px;
       height: 15px;
+      fill: ${color("color")};
     }
   }
 `;

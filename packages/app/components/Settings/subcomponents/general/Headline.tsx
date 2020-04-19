@@ -71,6 +71,7 @@ const Headline = () => {
 
           <Switch
             label="Custom headlines"
+            iconBefore="pen"
             isActive={custom}
             onChange={bool => {
               if (customText.length === 0) {
@@ -84,6 +85,7 @@ const Headline = () => {
               updateNestedSettings("headline", "custom", bool);
             }}
           />
+
           {custom && (
             <>
               {customText.map((text, index) => (

@@ -7,7 +7,7 @@ import { convertArrayToObject } from "../../helper";
 
 import { TextContextProps } from "./definitions";
 
-export const TextContext = React.createContext<TextContextProps>({
+const defaultTextContext = {
   textTypes: [],
   texts: {},
   getList: () => (
@@ -16,7 +16,11 @@ export const TextContext = React.createContext<TextContextProps>({
     </ul>
   ),
   getText: () => "Text"
-});
+};
+
+export const TextContext = React.createContext<TextContextProps>(
+  defaultTextContext
+);
 
 const textTypes = textConfig.map(({ value, label }) => ({ value, label }));
 const texts = convertArrayToObject(
@@ -34,13 +38,13 @@ const deleteSpecialCharacters = string =>
   string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
 
 const getInlineStyles = type => `
-    font-family: ${type.fontFamily};
-    font-size: ${type.size}px;
-    line-height: ${type.lineHeight};
-    ${type.letterSpacing ? `letter-spacing: ${type.letterSpacing}px;` : ""}
-    text-align: ${type.textAlign};
-    text-transform: ${type.textTransform};
-    color: ${type.color};
+  font-family: ${type.fontFamily};
+  font-size: ${type.size}px;
+  line-height: ${type.lineHeight};
+  ${type.letterSpacing ? `letter-spacing: ${type.letterSpacing}px;` : ""}
+  text-align: ${type.textAlign};
+  text-transform: ${type.textTransform};
+  color: ${type.color};
 `;
 
 const TextProvider = ({ children }) => {
@@ -54,12 +58,16 @@ const TextProvider = ({ children }) => {
     subline: 0
   };
 
-  const getText = (key: string, tag: string): string => {
+  const getText = (
+    key: "paragraph" | "subline" | "headline",
+    tag: string
+  ): string => {
     let text = "";
 
-    const textsArray = settings[key].custom
-      ? settings[key].customText
-      : texts[textType][key];
+    const textsArray =
+      settings[key].custom && settings[key].customText.length > 0
+        ? settings[key].customText
+        : texts[textType][key];
 
     if (textsArray[index[key]]) {
       text = textsArray[index[key]];

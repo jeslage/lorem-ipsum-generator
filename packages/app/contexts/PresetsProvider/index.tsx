@@ -14,7 +14,7 @@ import {
   Preset
 } from "./definitions";
 
-export const PresetsContext = React.createContext<PresetsContextProps>({
+const defaultPresetContext = {
   featuredPresets: [],
   presets: [],
   likedPresets: [],
@@ -22,7 +22,11 @@ export const PresetsContext = React.createContext<PresetsContextProps>({
   removePreset: () => {},
   likePreset: () => {},
   unlikePreset: () => {}
-});
+};
+
+export const PresetsContext = React.createContext<PresetsContextProps>(
+  defaultPresetContext
+);
 
 const PresetsProvider: FC<PresetsProviderProps> = ({
   children,
@@ -43,13 +47,11 @@ const PresetsProvider: FC<PresetsProviderProps> = ({
 
   const { settings } = useContext(SettingsContext);
 
-  useEffect(() => {
-    Cookies.set("presets", encodeConfig(presets));
-  }, [presets]);
-
-  useEffect(() => {
-    Cookies.set("likedPresets", encodeConfig(likedPresets));
-  }, [likedPresets]);
+  // Set cookies
+  useEffect(() => Cookies.set("presets", encodeConfig(presets)), [presets]);
+  useEffect(() => Cookies.set("likedPresets", encodeConfig(likedPresets)), [
+    likedPresets
+  ]);
 
   const addPreset = (value?: string) => {
     const obj = {

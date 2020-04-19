@@ -62,6 +62,7 @@ const Subline = () => {
             max={200}
             steps={1}
             value={numberOfCharacters}
+            iconBefore="numberOfCharacters"
             onChange={value =>
               updateNestedSettings("subline", "numberOfCharacters", value)
             }

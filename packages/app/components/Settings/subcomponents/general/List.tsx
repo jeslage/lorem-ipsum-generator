@@ -21,6 +21,7 @@ const List = () => {
         <>
           <Counter
             label="Frequency"
+            iconBefore="frequency"
             description="Number of paragraphs between lists."
             value={frequency}
             onChange={value => {
@@ -35,6 +36,7 @@ const List = () => {
           {frequency !== 1 && (
             <Counter
               label="Offset"
+              iconBefore="offset"
               description="Number of paragraphs before first list."
               min={0}
               value={offset}

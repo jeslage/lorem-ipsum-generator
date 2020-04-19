@@ -23,11 +23,13 @@ const Paragraph = () => {
     <>
       <Counter
         label="Paragraphs"
+        iconBefore="numberOfParagraphs"
         value={count}
         onChange={value => updateNestedSettings("paragraph", "count", value)}
       />
       <Counter
         label="Characters"
+        iconBefore="numberOfCharacters"
         min={50}
         max={9999}
         steps={20}

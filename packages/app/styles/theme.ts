@@ -27,8 +27,9 @@ const breakpoints = {
 
 // Spacings
 const spacings = {
-  s: 20,
-  m: 30,
+  xs: 5,
+  s: 15,
+  m: 20,
   l: 40,
   xl: 60
 };

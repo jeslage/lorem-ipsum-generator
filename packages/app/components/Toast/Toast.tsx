@@ -4,26 +4,26 @@ import { ToastProps } from "react-toast-notifications";
 
 import Icon from "../Icon";
 
-import { fontSize, color } from "../../styles";
+import { fontSize, color, space } from "../../styles";
 
 const StyledToast = styled.div`
   width: 340px;
   background: ${color("active")};
   box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.2);
   color: ${color("color")};
-  border-radius: 5px;
+  border-radius: ${space("xs")};
   display: flex;
   align-items: center;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: ${fontSize("m")};
-  margin: 20px;
+  font-size: ${fontSize("s")};
+  margin: ${space("m")};
   position: relative;
   z-index: 999;
   overflow: hidden;
 
   .toast__icon {
-    padding: 20px 15px;
+    padding: ${space("m")} ${space("s")};
     display: flex;
     justify-content: center;
     background: ${color("color")};
@@ -31,12 +31,12 @@ const StyledToast = styled.div`
 
   span {
     margin: 0;
-    padding: 20px 15px;
+    padding: ${space("m")} ${space("s")};
   }
 
   svg {
-    width: 15px;
-    height: 15px;
+    width: ${space("s")};
+    height: ${space("s")};
     fill: ${color("background")};
   }
 `;

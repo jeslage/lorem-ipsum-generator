@@ -1,6 +1,15 @@
 import lzString from "lz-string";
 import { NextPageContext } from "next";
 
+export const groupBy = key => array =>
+  array.reduce(
+    (objectsByKeyValue, obj) => ({
+      ...objectsByKeyValue,
+      [obj[key]]: (objectsByKeyValue[obj[key]] || []).concat(obj)
+    }),
+    {}
+  );
+
 export const hexToRgbA = (hex: any, alpha: number): string => {
   var c;
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
@@ -44,3 +53,16 @@ export const redirect = (ctx: NextPageContext, path: string) => {
     document.location.pathname = path;
   }
 };
+
+export const deleteSpecialCharacters = string =>
+  string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
+
+export const getInlineStyles = type => `
+  font-family: ${type.fontFamily};
+  font-size: ${type.size}px;
+  line-height: ${type.lineHeight};
+  ${type.letterSpacing ? `letter-spacing: ${type.letterSpacing}px;` : ""}
+  text-align: ${type.textAlign};
+  text-transform: ${type.textTransform};
+  color: ${type.color};
+`;

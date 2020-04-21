@@ -5,11 +5,10 @@ import getConfig from "next/config";
 
 import { encodeConfig, decodeConfig } from "../../helper";
 import { sortBy } from "./helper/sortBy";
-import textConfig from "../../config/text";
 
 import { useAddPresetMutation } from "../../graphql/mutations/createPreset.graphql";
 
-import { SettingsContext, PresetsContext } from "../../contexts";
+import { SettingsContext, PresetsContext, TextContext } from "../../contexts";
 
 import Button from "../Button";
 import Preset from "../Preset";
@@ -24,6 +23,7 @@ const FeaturedList = () => {
   const { addToast } = useToasts();
 
   const { settings, updateAllSettings } = useContext(SettingsContext);
+  const { texts } = useContext(TextContext);
   const {
     featuredPresets,
     likedPresets,
@@ -93,9 +93,9 @@ const FeaturedList = () => {
               name="textType"
               options={[
                 { label: "All", value: "all" },
-                ...textConfig.map(item => ({
-                  label: item.label,
-                  value: item.value
+                ...Object.keys(texts).map(key => ({
+                  label: texts[key].label,
+                  value: key
                 })),
                 { label: "Custom", value: "custom" }
               ]}

@@ -1,16 +1,7 @@
-export type TextObject = {
-  label: string;
-  value: string;
-  paragraph: string[];
-  headline: string[];
-  subline: string[];
-  list: string[];
-};
-
-const textConfig: TextObject[] = [
-  {
+export const textConfig = {
+  loremIpsum: {
+    genre: "Basic",
     label: "Lorem Ipsum",
-    value: "loremIpsum",
     paragraph: [
       "Lorem Ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.",
       "Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
@@ -27,9 +18,9 @@ const textConfig: TextObject[] = [
     ],
     list: ["Punkt 1", "Punkt 2", "Punkt 3"]
   },
-  {
+  kennedySpeech: {
+    genre: "Speech",
     label: "Ich bin ein Berliner - Kennedy",
-    value: "kennedySpeech",
     paragraph: [
       "I am proud to come to this city as the guest of your distinguished Mayor, who has symbolized throughout the world the fighting spirit of West Berlin. And I am proud to visit the Federal Republic with your distinguished Chancellor, who for so many years has committed Germany to democracy and freedom and progress, and to come here in the company of my fellow American, General Clay, who has been in this city during its great moments of crisis and will come again if ever needed. Two thousand years ago the proudest boast was: »Civis Romanus sum«. Today, in the world of freedom, the proudest boast is: »Ich bin ein Berliner«.",
       "There are many people in the world who really don’t understand, or say they don’t, what is the great issue between the Free World and the Communist world. Let them come to Berlin. There are some who say that Communism is the wave of the future. Let them come to Berlin. And there are some who say in Europe and elsewhere: We can work with the Communists. Let them come to Berlin. And there are even a few who say that it’s true that Communism is an evil system, but it permits us to make economic progress. Laß sie nach Berlin kommen. Freedom has many difficulties, and democracy is not perfect. But we have never had to put a wall up to keep our people in, to prevent them from leaving us. I want to say on behalf of my countrymen, who live many miles away on the other side of the Atlantic, who are far distant from you, that they take the greatest pride that they have been able to share with you, even from a distance, the story of the last 18 years.",
@@ -47,9 +38,9 @@ const textConfig: TextObject[] = [
     ],
     list: ["Punkt 1", "Punkt 2", "Punkt 3"]
   },
-  {
+  victorySpeech: {
+    genre: "Speech",
     label: "Yes we can - Obama",
-    value: "victorySpeech",
     paragraph: [
       "Hello, Chicago. If there is anyone out there who still doubts that America is a place where all things are possible, who still wonders if the dream of our founders is alive in our time, who still questions the power of our democracy, tonight is your answer. It's the answer told by lines that stretched around schools and churches in numbers this nation has never seen, by people who waited three hours and four hours, many for the first time in their lives, because they believed that this time must be different, that their voices could be that difference. It's the answer spoken by young and old, rich and poor, Democrat and Republican, black, white, Hispanic, Asian, Native American, gay, straight, disabled and not disabled, Americans who sent a message to the world that we have never been just a collection of individuals or a collection of red states and blue states. ",
       "We are, and always will be, the United States of America. It's the answer that led those who've been told for so long by so many to be cynical and fearful and doubtful about what we can achieve to put their hands on the arc of history and bend it once more toward the hope of a better day. It's been a long time coming, but tonight, because of what we did on this date in this election at this defining moment, change has come to America. A little bit earlier this evening, I received an extraordinarily gracious call from Senator McCain. Senator McCain fought long and hard in this campaign. And he's fought even longer and harder for the country that he loves. He has endured sacrifices for America that most of us cannot begin to imagine. We are better off for the service rendered by this brave and selfless leader.",
@@ -67,9 +58,9 @@ const textConfig: TextObject[] = [
     subline: ["Yes we can", "Yes we can"],
     list: ["Punkt 1", "Punkt 2", "Punkt 3"]
   },
-  {
+  trumpIpsum: {
+    genre: "Basic",
     label: "Trump Ipsum",
-    value: "trumpIpsum",
     paragraph: [
       "Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? Lorem Ispum is a choke artist. It chokes! We are going to make placeholder text great again. Greater than ever before. I have a 10 year old son. He has words. He is so good with these words it's unbelievable. An ‘extremely credible source’ has called my office and told me that Barack Obama’s placeholder text is a fraud. You're telling the enemy exactly what you're going to do. No wonder you've been fighting Lorem Ipsum your entire adult life. That other text? Sadly, it’s no longer a 10. He’s not a word hero. He’s a word hero because he was captured. I like text that wasn’t captured.",
       "You know, it really doesn’t matter what you write as long as you’ve got a young, and beautiful, piece of text. An 'extremely credible source' has called my office and told me that Lorem Ipsum's birth certificate is a fraud. An ‘extremely credible source’ has called my office and told me that Barack Obama’s placeholder text is a fraud. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? The best taco bowls are made in Trump Tower Grill. I love Hispanics! The other thing with Lorem Ipsum is that you have to take out its family. I will write some great placeholder text – and nobody writes better placeholder text than me, believe me – and I’ll write it very inexpensively. I will write some great, great text on your website’s Southern border, and I will make Google pay for that text. Mark my words.",
@@ -86,9 +77,9 @@ const textConfig: TextObject[] = [
     ],
     list: ["Punkt 1", "Punkt 2", "Punkt 3"]
   },
-  {
+  hipsterIpsum: {
+    genre: "Basic",
     label: "Hipster Ipsum",
-    value: "hipsterIpsum",
     paragraph: [
       "Wolf typewriter squid fixie, sartorial helvetica affogato tote bag normcore williamsburg kombucha freegan pickled put a bird on it 90's. Salvia pour-over cliche hot chicken banh mi. Synth viral whatever schlitz lumbersexual lomo brooklyn authentic +1 selfies. Kinfolk unicorn green juice blog four loko, swag prism shoreditch hashtag meh. Live-edge meh bitters taxidermy ramps meggings poke 90's crucifix cray cornhole copper mug everyday carry slow-carb. Ugh etsy crucifix, beard photo booth narwhal authentic brooklyn chia normcore.",
       "Cardigan blue bottle succulents twee hexagon swag. Vice slow-carb chartreuse ugh, thundercats DIY mustache kogi vinyl. Adaptogen hot chicken tbh prism food truck, helvetica slow-carb waistcoat lomo succulents pinterest poke. Keffiyeh mumblecore tofu PBR&B normcore helvetica. Shoreditch craft beer tattooed venmo. Echo park semiotics gastropub meggings.",
@@ -111,9 +102,9 @@ const textConfig: TextObject[] = [
     ],
     list: ["Punkt 1", "Punkt 2", "Punkt 3"]
   },
-  {
+  blockchainIpsum: {
+    genre: "Basic",
     label: "Blockchain Ipsum",
-    value: "blockchainIpsum",
     paragraph: [
       "When Ethereum surrendered few fundamental analysis in a public key, blockchain forgot a hashrate behind lots of distributed denial of service attack! Although Decred formed lots of provably side chain, Decred sharded the provably fair mnemonic phrase! Decred formed lots of distributed denial of service attack when Silk Road thought some minimum escrow, but Ripple limited some IPO at some REKT! ICO allowed the constant distributed denial of service attack!",
       "Someone generated some technical analysis. Maker looked at a market cap during a public key! Because Augur identified some all-time-low behind the difficulty, TRON threw away a algo-traded gas for the moon.",
@@ -136,6 +127,4 @@ const textConfig: TextObject[] = [
     ],
     list: ["Punkt 1", "Punkt 2", "Punkt 3"]
   }
-];
-
-export default textConfig;
+};

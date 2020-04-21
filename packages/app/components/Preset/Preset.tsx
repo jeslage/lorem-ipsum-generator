@@ -64,6 +64,11 @@ const Preset: FC<PresetProps> = ({
 
   const updatedTextType = textTypes.filter(type => type.value === textType)[0];
 
+  const getSubstring = (key: string) =>
+    decodedSettings[key].custom
+      ? decodedSettings[key].customText[0].substring(0, 60)
+      : texts[textType][key][0].substring(0, 60);
+
   return (
     <StyledPreset
       headline={headline}
@@ -80,25 +85,11 @@ const Preset: FC<PresetProps> = ({
             aria-label="Update settings"
           >
             {headline && headline.enabled && (
-              <h2>
-                {headline.custom
-                  ? headline.customText[0].substring(0, 60)
-                  : texts[textType].headline[0].substring(0, 60)}
-              </h2>
+              <h2>{getSubstring("headline")}</h2>
             )}
-            {subline && subline.enabled && (
-              <h3>
-                {subline.custom
-                  ? subline.customText[0].substring(0, 60)
-                  : texts[textType].subline[0].substring(0, 60)}{" "}
-              </h3>
-            )}
+            {subline && subline.enabled && <h3>{getSubstring("subline")}</h3>}
             {paragraph && (
-              <p className="preset__paragraph">
-                {paragraph.custom
-                  ? paragraph.customText[0].substring(0, 60)
-                  : texts[textType].paragraph[0].substring(0, 60)}{" "}
-              </p>
+              <p className="preset__paragraph">{getSubstring("paragraph")}</p>
             )}
           </button>
           <div className="preset__meta">

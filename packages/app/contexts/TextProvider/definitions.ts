@@ -1,12 +1,14 @@
-import { TextObject } from "../../config/text";
-
+export type TextObject = {
+  label: string;
+  paragraph: string[];
+  headline: string[];
+  subline: string[];
+  list: string[];
+};
 export interface TextContextProps {
-  textTypes: Pick<TextObject, "label" | "value">[];
+  textTypes: { label: string; value: string }[];
   texts: {
-    [key: string]: Pick<
-      TextObject,
-      "paragraph" | "headline" | "subline" | "list"
-    >;
+    [key: string]: TextObject;
   };
   getText: (key: "paragraph" | "headline" | "subline", tag: string) => string;
   getList: () => JSX.Element;

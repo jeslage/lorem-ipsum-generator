@@ -5,8 +5,14 @@ import { IconTypes } from "../Icon";
 import StyledSelect from "./Select.style";
 import Label from "../Label";
 
+type Option = {
+  value: string;
+  label: string;
+  [key: string]: any;
+};
+
 export interface SelectProps {
-  options: any;
+  options: Option[];
   iconBefore?: IconTypes;
   initialValue: string;
   label?: string;
@@ -54,6 +60,7 @@ const Select: FC<SelectProps> = ({
             </option>
           ))}
         </select>
+
         <div className="select__icon" />
       </label>
     </StyledSelect>

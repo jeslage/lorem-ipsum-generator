@@ -48,10 +48,13 @@ const PresetsProvider: FC<PresetsProviderProps> = ({
   const { settings } = useContext(SettingsContext);
 
   // Set cookies
-  useEffect(() => Cookies.set("presets", encodeConfig(presets)), [presets]);
-  useEffect(() => Cookies.set("likedPresets", encodeConfig(likedPresets)), [
-    likedPresets
-  ]);
+  useEffect(() => {
+    Cookies.set("presets", encodeConfig(presets));
+  }, [presets]);
+
+  useEffect(() => {
+    Cookies.set("likedPresets", encodeConfig(likedPresets));
+  }, [likedPresets]);
 
   const addPreset = (value?: string) => {
     const obj = {

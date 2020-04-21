@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 
-import textConfig from "../../config/text";
+import { textConfig } from "./config";
 
 import { SettingsContext } from "../SettingsProvider";
-import { convertArrayToObject } from "../../helper";
 
 import { TextContextProps } from "./definitions";
+import { deleteSpecialCharacters, getInlineStyles } from "../../helper";
 
 const defaultTextContext = {
   textTypes: [],
@@ -22,30 +22,11 @@ export const TextContext = React.createContext<TextContextProps>(
   defaultTextContext
 );
 
-const textTypes = textConfig.map(({ value, label }) => ({ value, label }));
-const texts = convertArrayToObject(
-  textConfig.map(({ value, paragraph, headline, subline, list }) => ({
-    value,
-    paragraph,
-    headline,
-    subline,
-    list
-  })),
-  "value"
-);
-
-const deleteSpecialCharacters = string =>
-  string.replace(/[^a-zA-Z0-9.,-?!\s]/g, "");
-
-const getInlineStyles = type => `
-  font-family: ${type.fontFamily};
-  font-size: ${type.size}px;
-  line-height: ${type.lineHeight};
-  ${type.letterSpacing ? `letter-spacing: ${type.letterSpacing}px;` : ""}
-  text-align: ${type.textAlign};
-  text-transform: ${type.textTransform};
-  color: ${type.color};
-`;
+const textTypes = Object.keys(textConfig).map(key => ({
+  value: key,
+  label: textConfig[key].label,
+  genre: textConfig[key].genre
+}));
 
 const TextProvider = ({ children }) => {
   const { settings, utility } = useContext(SettingsContext);
@@ -67,7 +48,7 @@ const TextProvider = ({ children }) => {
     const textsArray =
       settings[key].custom && settings[key].customText.length > 0
         ? settings[key].customText
-        : texts[textType][key];
+        : textConfig[textType][key];
 
     if (textsArray[index[key]]) {
       text = textsArray[index[key]];
@@ -123,7 +104,7 @@ const TextProvider = ({ children }) => {
           </p>
         )}
         <ListTag>
-          {texts[textType].list.map((item, i) => {
+          {textConfig[textType].list.map((item, i) => {
             let updatedItem = item;
             if (settings.paragraph.textTransform === "lowercase")
               updatedItem = updatedItem.toLowerCase();
@@ -144,7 +125,9 @@ const TextProvider = ({ children }) => {
   };
 
   return (
-    <TextContext.Provider value={{ textTypes, texts, getText, getList }}>
+    <TextContext.Provider
+      value={{ textTypes, texts: textConfig, getText, getList }}
+    >
       {children}
     </TextContext.Provider>
   );

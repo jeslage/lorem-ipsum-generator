@@ -3,7 +3,6 @@ import React, { useEffect, useContext, FC, useReducer } from "react";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 
-import { fontFamilies } from "../../config/fontFamilies";
 import { HistoryContext } from "../HistoryProvider";
 
 import { encodeConfig } from "../../helper";
@@ -19,12 +18,12 @@ import {
 import { reducer } from "./reducer";
 
 import { getTheme } from "../../styles/theme";
-import { defaultConfig, defaultUtility } from "./config";
+import { defaultConfig, defaultUtility, fontFamilies } from "./config";
 
 const defaultContextProps: SettingsContextProps = {
   utility: defaultUtility,
   settings: defaultConfig,
-  fontFamilies: fontFamilies,
+  fontFamilies: [],
   addNestedArray: () => {},
   updateSettings: () => {},
   updateNestedSettings: () => {},
